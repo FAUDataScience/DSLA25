@@ -13,9 +13,9 @@ bibliography: references.bib
 biblio-style: apalike
 # description: "Test"
 link-citations: yes
-github-repo: kevinlanning/DataSciLibArts
+github-repo: kevinlanning/DSLA25
 # classoption: "openany"
-cover-image: chihuahuamuffin.png
+# cover-image: images/chihuahuamuffin.png
 # urlcolor: blue
 ---
 # {-} 
