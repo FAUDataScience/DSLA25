@@ -16,6 +16,6 @@ link-citations: yes
 github-repo: kevinlanning/DSLA25
 # classoption: "openany"
 # cover-image: images/chihuahuamuffin.png
-# urlcolor: blue
+urlcolor: blue
 ---
 # {-} 

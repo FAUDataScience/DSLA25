@@ -26,7 +26,7 @@ A minimal amount of sleuthing - a click on the STOR 390 link at the top of the p
 
 ## go into the clouds
 
-In addition to the desktop version of R (and Rstudio) we will be using in this class, there is a cloud-based environment as well. Go to the website [posit.cloud](https://posit.cloud), click on "learn more" in the "Free" column, then sign up.
+In addition to the desktop version of R (and Rstudio) we will be using in this class, there is a cloud-based environment as well. As mentioned in the last chapter, you can sign up for a starter account at [posit.cloud](https://posit.cloud).
 
 When you open posit.cloud, you should see a column on the left of the screen that includes four sections - spaces, learn, help, and info. (If you don't see these, click on the hamburger menu in the upper left corner and it will appear). Browse through the recipes tab, particularly the ones in the left most column, to start to get a sense of how you might solve some common challenges in R.
 
