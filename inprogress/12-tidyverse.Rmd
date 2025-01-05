@@ -2,6 +2,8 @@
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
+# (PART) Part III Towards data proficiency {.unnumbered}
+
 # the tidyverse
 
 > *The tidyverse is an opinionated collection of R packages designed for data science -* <https://www.tidyverse.org/>

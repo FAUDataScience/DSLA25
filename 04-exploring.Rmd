@@ -59,7 +59,7 @@ output: html_document
 
 Go ahead and click on the clever "knit" icon in the bar just above the source window to create a sample document. You'll need to save the file with a new name, then R will finally create an HTML (Hyper Text Markdown Language ) page. Compare the R Markdown document (your code) with the result (the HTML).
 
-The second chapter of [Healy's online book about Data visualizations](https://socviz.co/) provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the [Wickham and Grolemund text](https://r4ds.had.co.nz/index.html) [@healy2017; @wickham2023].
+The second chapter of [Healy's online book about Data visualizations](https://socviz.co/) provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the [Wickham and Grolemund text](https://r4ds.had.co.nz/index.html) [@healy2017; @wickham2023]. We'll be discussing R Markdown (and its cousin Quarto) in Chapter 6.
 
 ## older approaches
 
@@ -96,4 +96,3 @@ Finally, you might consider the text and videos from the Coursera R class. Most 
 [![Roger Peng](https://img.youtube.com/vi/wy0h1f5awRI/0.jpg)](https://youtu.be/wy0h1f5awRI).
 
 *Video 4.1: Roger Peng introducing R*
-

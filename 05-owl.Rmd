@@ -1,0 +1,51 @@
+```{r owl, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Part II: Towards data literacy {.unnumbered}
+
+# now draw the rest of the owl
+
+![Fig 5.1: Draw the rest of the owl.](images/InkedrCr9A_LI.jpg)
+
+In the prior chapter, you explored several different sources for learning how to code in R. Now it's time to explore other approaches. Take a break from reading, and spend some time coding and consolidating, reviewing tutorials, or playing with data.
+
+## time for hands-on experience?
+
+If you want to work actively with a dataset, here are two possibilities that you might consider. Each has been supplied as its own package.
+
+### begin by loading the tidyverse
+
+The tidyverse allows the use of the 'pipe' operator, ("%\>%"), which is useful for combining commands.
+
+Remember that any package needs to be installed on your machine once before progressing. That is, if you installed the tidyverse previously, you don't need to do the first line here. If you haven't installed the tidyverse, you should remove the octothorpe or pound sign (\#) before running this next chunk:
+
+```{r}
+# install.packages("tidyverse")
+library(tidyverse)
+```
+
+### maybe explore the babynames package
+
+The babynames dataset is described [here](https://cran.r-project.org/web/packages/babynames/readme/README.html). What is in the data? What interesting questions might you ask about the dataset?
+
+```{r}
+# install.packages("babynames")
+library(babynames)
+data(babynames)
+str(babynames)
+babynames %>% slice_sample(n = 5)
+```
+
+### or the (ggplot2)movies package
+
+The index page for the movies dataset is [here](https://cran.r-project.org/web/packages/ggplot2movies/index.html).
+
+```{r}
+# install.packages("ggplot2movies")
+library(ggplot2movies)
+data(movies)
+str(movies)
+movies %>% slice_sample(n = 5)
+```
+
+Regardless of whether you have played with one or both of these datasets, worked with the tutorials, or something else, please be prepared to share your experiences with the class at our next meeting.

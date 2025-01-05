@@ -45,3 +45,10 @@ Try to make a cool graph - one that informs the viewer, and, to paraphrase Tukey
 Try several different displays. Which fail? Which succeed? **Be prepared to share your efforts.**
 
 Don't be afraid to screw up. *Each mistake you wisdom*.
+
+Andrew Couch, who hosts the "Tidy Tuesday" podcast, walks through the recreation of a fairly complex plot from The Economist <https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H->
+
+There is also this from Rpubs: https://rpubs.com/tangerine/economist-plot - likely a student project economist thing.
+
+a datacamp ggplot course https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2
+
