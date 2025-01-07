@@ -54,3 +54,6 @@ the-power-of-animation
 telling-the-truth-when-the-truth-is-unclear
 visualizing-uncertainty
 further-reading-and-resources
+exercises-etc.
+generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet
+now-play-with-this-spreadsheet

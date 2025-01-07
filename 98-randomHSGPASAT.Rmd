@@ -1,0 +1,65 @@
+---
+title: "98-RandomHSGPASAT"
+output: html_document
+date: "2025-01-07"
+---
+
+# exercises etc.
+
+## generating correlated data (GPA and SAT) and putting it in a Google Sheet
+
+
+It's simple to generate a single random variable, but we often want to examine data for several variables that might be correlated. The MVRnorm function, in the MASS package, does this.
+
+We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).
+
+We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet.
+
+```{r makegooglesheet, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+# library(MASS) the whole library is not loaded because of dplyr::select 
+library(randomNames)
+library(googlesheets4)
+
+set.seed(33458) # for reproducibility
+correlation <- 0.3 
+nrows <- 50
+
+names <- randomNames(nrows, which.names = "first") %>%
+    bind_cols(randomNames(nrows, 
+                          which.names = "last")) %>%
+       rename (FirstName = 1, LastName = 2)
+
+hsdata <- MASS::mvrnorm(n = nrows, 
+                mu = c(0.0, 0),
+                Sigma = matrix(
+                    c(1, correlation, correlation, 1),
+                    nrow = 2, ncol = 2)) %>% 
+    as_tibble() %>%
+    select (gpa = 1, sat = 2) %>% 
+    mutate (sat = 500 + (100 * round(sat, 1))) %>% 
+    mutate (gpa = 3 + round(gpa, 2)) %>%
+    mutate (gpa = case_when(
+        gpa < 0 ~ 0,
+        gpa > 4.5 ~ 4.5,
+        TRUE ~ gpa)) %>% 
+    mutate (sat = case_when(
+        sat < 200 ~ 200,
+        gpa > 800 ~ 800,
+        TRUE ~ sat))
+
+hsdata <- names %>% 
+    bind_cols(hsdata) %>% 
+    arrange(FirstName) %>% 
+    as_data_frame()
+#gs4_create(name="RandomHSGPASAT",
+#           sheets = hsdata)
+slice(hsdata, 1:3)
+```
+
+## now play with this spreadsheet
+
+what are the means for GPA and SAT? What are the standard deviations? 
+what is the difference between 'sort range' and 'sort sheet' in Google Sheets?
