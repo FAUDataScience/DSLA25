@@ -254,7 +254,7 @@ div.csl-indent {
 <li class="chapter" data-level="8" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>8</b> exercises etc.</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="exercises-etc..html"><a href="exercises-etc..html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>8.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
-<li class="chapter" data-level="8.2" data-path="exercises-etc..html"><a href="exercises-etc..html#now-play-with-this-spreadsheet"><i class="fa fa-check"></i><b>8.2</b> now play with this spreadsheet</a></li>
+<li class="chapter" data-level="8.2" data-path="exercises-etc..html"><a href="exercises-etc..html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>8.2</b> now look at your data in the spreadsheet</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -317,11 +317,10 @@ div.csl-indent {
 <span id="cb21-34"><a href="exercises-etc..html#cb21-34" tabindex="-1"></a></span>
 <span id="cb21-35"><a href="exercises-etc..html#cb21-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
 <span id="cb21-36"><a href="exercises-etc..html#cb21-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-37"><a href="exercises-etc..html#cb21-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) <span class="co">#%&gt;% </span></span>
-<span id="cb21-38"><a href="exercises-etc..html#cb21-38" tabindex="-1"></a><span class="co">#    as_data_frame()</span></span>
-<span id="cb21-39"><a href="exercises-etc..html#cb21-39" tabindex="-1"></a><span class="fu">gs4_create</span>(<span class="at">name=</span><span class="st">&quot;RandomHSGPASAT&quot;</span>,</span>
-<span id="cb21-40"><a href="exercises-etc..html#cb21-40" tabindex="-1"></a>           <span class="at">sheets =</span> hsdata)</span>
-<span id="cb21-41"><a href="exercises-etc..html#cb21-41" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<span id="cb21-37"><a href="exercises-etc..html#cb21-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) </span>
+<span id="cb21-38"><a href="exercises-etc..html#cb21-38" tabindex="-1"></a><span class="fu">gs4_create</span>(<span class="at">name=</span><span class="st">&quot;RandomHSGPASAT&quot;</span>,</span>
+<span id="cb21-39"><a href="exercises-etc..html#cb21-39" tabindex="-1"></a>           <span class="at">sheets =</span> hsdata)</span>
+<span id="cb21-40"><a href="exercises-etc..html#cb21-40" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   FirstName   LastName      gpa   sat
 ##   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
@@ -329,9 +328,10 @@ div.csl-indent {
 ## 2 Aaron       Vongphackdy  0.96   330
 ## 3 Abdus Salam Leben        3.33   330</code></pre>
 </div>
-<div id="now-play-with-this-spreadsheet" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> now play with this spreadsheet<a href="exercises-etc..html#now-play-with-this-spreadsheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="now-look-at-your-data-in-the-spreadsheet" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> now look at your data in the spreadsheet<a href="exercises-etc..html#now-look-at-your-data-in-the-spreadsheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this <a href="https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing">spreadsheet</a>, what are the means for GPA and SAT? What are the standard deviations? what is the difference between ‘sort range’ and ‘sort sheet’ in Google Sheets?</p>
+<p>What do you think about the randomnames package? Do the names appear “representative” (of what)? If you wanted to generate a more representative sample of names, how might you proceed?</p>
 
 </div>
 </div>

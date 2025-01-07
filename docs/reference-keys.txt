@@ -56,4 +56,4 @@ visualizing-uncertainty
 further-reading-and-resources
 exercises-etc.
 generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet
-now-play-with-this-spreadsheet
+now-look-at-your-data-in-the-spreadsheet
