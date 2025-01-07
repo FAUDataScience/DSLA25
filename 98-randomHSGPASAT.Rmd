@@ -8,14 +8,13 @@ date: "2025-01-07"
 
 ## generating correlated data (GPA and SAT) and putting it in a Google Sheet
 
-
 It's simple to generate a single random variable, but we often want to examine data for several variables that might be correlated. The MVRnorm function, in the MASS package, does this.
 
 We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).
 
 We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet.
 
-```{r makegooglesheet, include=FALSE}
+```{r makegooglesheet, include=TRUE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
@@ -52,14 +51,13 @@ hsdata <- MASS::mvrnorm(n = nrows,
 
 hsdata <- names %>% 
     bind_cols(hsdata) %>% 
-    arrange(FirstName) %>% 
-    as_data_frame()
-#gs4_create(name="RandomHSGPASAT",
-#           sheets = hsdata)
+    arrange(FirstName) #%>% 
+#    as_data_frame()
+gs4_create(name="RandomHSGPASAT",
+           sheets = hsdata)
 slice(hsdata, 1:3)
 ```
 
 ## now play with this spreadsheet
 
-what are the means for GPA and SAT? What are the standard deviations? 
-what is the difference between 'sort range' and 'sort sheet' in Google Sheets?
+In this [spreadsheet](https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing), what are the means for GPA and SAT? What are the standard deviations? what is the difference between 'sort range' and 'sort sheet' in Google Sheets?

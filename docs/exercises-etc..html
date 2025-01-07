@@ -281,11 +281,57 @@ div.csl-indent {
 <p>It’s simple to generate a single random variable, but we often want to examine data for several variables that might be correlated. The MVRnorm function, in the MASS package, does this.</p>
 <p>We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).</p>
 <p>We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exercises-etc..html#cb21-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-2"><a href="exercises-etc..html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="exercises-etc..html#cb21-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb21-4"><a href="exercises-etc..html#cb21-4" tabindex="-1"></a><span class="co"># library(MASS) the whole library is not loaded because of dplyr::select </span></span>
+<span id="cb21-5"><a href="exercises-etc..html#cb21-5" tabindex="-1"></a><span class="fu">library</span>(randomNames)</span>
+<span id="cb21-6"><a href="exercises-etc..html#cb21-6" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb21-7"><a href="exercises-etc..html#cb21-7" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="exercises-etc..html#cb21-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb21-9"><a href="exercises-etc..html#cb21-9" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fl">0.3</span> </span>
+<span id="cb21-10"><a href="exercises-etc..html#cb21-10" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb21-11"><a href="exercises-etc..html#cb21-11" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="exercises-etc..html#cb21-12" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">randomNames</span>(nrows, <span class="at">which.names =</span> <span class="st">&quot;first&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-13"><a href="exercises-etc..html#cb21-13" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">randomNames</span>(nrows, </span>
+<span id="cb21-14"><a href="exercises-etc..html#cb21-14" tabindex="-1"></a>                          <span class="at">which.names =</span> <span class="st">&quot;last&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-15"><a href="exercises-etc..html#cb21-15" tabindex="-1"></a>       <span class="fu">rename</span> (<span class="at">FirstName =</span> <span class="dv">1</span>, <span class="at">LastName =</span> <span class="dv">2</span>)</span>
+<span id="cb21-16"><a href="exercises-etc..html#cb21-16" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="exercises-etc..html#cb21-17" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> nrows, </span>
+<span id="cb21-18"><a href="exercises-etc..html#cb21-18" tabindex="-1"></a>                <span class="at">mu =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="dv">0</span>),</span>
+<span id="cb21-19"><a href="exercises-etc..html#cb21-19" tabindex="-1"></a>                <span class="at">Sigma =</span> <span class="fu">matrix</span>(</span>
+<span id="cb21-20"><a href="exercises-etc..html#cb21-20" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="dv">1</span>, correlation, correlation, <span class="dv">1</span>),</span>
+<span id="cb21-21"><a href="exercises-etc..html#cb21-21" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-22"><a href="exercises-etc..html#cb21-22" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-23"><a href="exercises-etc..html#cb21-23" tabindex="-1"></a>    <span class="fu">select</span> (<span class="at">gpa =</span> <span class="dv">1</span>, <span class="at">sat =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-24"><a href="exercises-etc..html#cb21-24" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="dv">500</span> <span class="sc">+</span> (<span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(sat, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-25"><a href="exercises-etc..html#cb21-25" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">round</span>(gpa, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-26"><a href="exercises-etc..html#cb21-26" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-27"><a href="exercises-etc..html#cb21-27" tabindex="-1"></a>        gpa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-28"><a href="exercises-etc..html#cb21-28" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="fl">4.5</span> <span class="sc">~</span> <span class="fl">4.5</span>,</span>
+<span id="cb21-29"><a href="exercises-etc..html#cb21-29" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> gpa)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-30"><a href="exercises-etc..html#cb21-30" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-31"><a href="exercises-etc..html#cb21-31" tabindex="-1"></a>        sat <span class="sc">&lt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="dv">200</span>,</span>
+<span id="cb21-32"><a href="exercises-etc..html#cb21-32" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">~</span> <span class="dv">800</span>,</span>
+<span id="cb21-33"><a href="exercises-etc..html#cb21-33" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> sat))</span>
+<span id="cb21-34"><a href="exercises-etc..html#cb21-34" tabindex="-1"></a></span>
+<span id="cb21-35"><a href="exercises-etc..html#cb21-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
+<span id="cb21-36"><a href="exercises-etc..html#cb21-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-37"><a href="exercises-etc..html#cb21-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) <span class="co">#%&gt;% </span></span>
+<span id="cb21-38"><a href="exercises-etc..html#cb21-38" tabindex="-1"></a><span class="co">#    as_data_frame()</span></span>
+<span id="cb21-39"><a href="exercises-etc..html#cb21-39" tabindex="-1"></a><span class="fu">gs4_create</span>(<span class="at">name=</span><span class="st">&quot;RandomHSGPASAT&quot;</span>,</span>
+<span id="cb21-40"><a href="exercises-etc..html#cb21-40" tabindex="-1"></a>           <span class="at">sheets =</span> hsdata)</span>
+<span id="cb21-41"><a href="exercises-etc..html#cb21-41" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   FirstName   LastName      gpa   sat
+##   &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Aaida       Marfizo      4.5    730
+## 2 Aaron       Vongphackdy  0.96   330
+## 3 Abdus Salam Leben        3.33   330</code></pre>
 </div>
 <div id="now-play-with-this-spreadsheet" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> now play with this spreadsheet<a href="exercises-etc..html#now-play-with-this-spreadsheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>what are the means for GPA and SAT? What are the standard deviations?
-what is the difference between ‘sort range’ and ‘sort sheet’ in Google Sheets?</p>
+<p>In this <a href="https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing">spreadsheet</a>, what are the means for GPA and SAT? What are the standard deviations? what is the difference between ‘sort range’ and ‘sort sheet’ in Google Sheets?</p>
 
 </div>
 </div>
