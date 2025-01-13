@@ -10,6 +10,7 @@ There are many sources for learning the basics of R. A few of these follow. Plea
 
 About seven years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction [here](https://idc9.github.io/stor390/notes/getting_started/getting_started.html).
 
+
 You can consider his report from the standpoint of style (formatting, organization), coding (how he did this), data (the part of the IMDB data he is looking at), and his results (plots of distributions and relationships).
 
 Do you have any questions about the movie data? How might you ask these?
