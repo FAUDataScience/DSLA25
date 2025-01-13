@@ -1,5 +1,4 @@
 ---
-title: "98-RandomHSGPASAT"
 output: html_document
 date: "2025-01-07"
 ---
@@ -23,8 +22,8 @@ library(randomNames)
 library(googlesheets4)
 
 set.seed(33458) # for reproducibility
-correlation <- 0.3 
-nrows <- 50
+correlation <- 0.4
+nrows <- 1000
 
 names <- randomNames(nrows, which.names = "first") %>%
     bind_cols(randomNames(nrows, 
