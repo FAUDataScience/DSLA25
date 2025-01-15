@@ -30,9 +30,10 @@ using-swirl
 readingwatching-roger-pengs-text-andor-videos
 now-draw-the-rest-of-the-owl
 time-for-hands-on-experience
-begin-by-loading-the-tidyverse
-maybe-explore-the-babynames-package
+consider-loading-the-tidyverse
+now-explore-the-babynames-package
 or-the-ggplot2movies-package
+assignment
 literate-programming
 projects-are-directories
 scripts-are-files-of-code

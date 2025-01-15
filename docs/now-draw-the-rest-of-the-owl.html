@@ -216,12 +216,13 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
 <li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience?</a>
+<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#begin-by-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> begin by loading the tidyverse</a></li>
-<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#maybe-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> maybe explore the babynames package</a></li>
+<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
 <li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
 <ul>
@@ -282,17 +283,19 @@ div.csl-indent {
 </div>
 <p>In the prior chapter, you explored several different sources for learning how to code in R. Now it’s time to explore other approaches. Take a break from reading, and spend some time coding and consolidating, reviewing tutorials, or playing with data.</p>
 <div id="time-for-hands-on-experience" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> time for hands-on experience?<a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you want to work actively with a dataset, here are two possibilities that you might consider. Each has been supplied as its own package.</p>
-<div id="begin-by-loading-the-tidyverse" class="section level3 hasAnchor" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> begin by loading the tidyverse<a href="now-draw-the-rest-of-the-owl.html#begin-by-loading-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The tidyverse allows the use of the ‘pipe’ operator, (“%&gt;%”), which is useful for combining commands.</p>
-<p>Remember that any package needs to be installed on your machine once before progressing. That is, if you installed the tidyverse previously, you don’t need to do the first line here. If you haven’t installed the tidyverse, you should remove the octothorpe or pound sign (#) before running this next chunk:</p>
+<h2><span class="header-section-number">5.1</span> time for hands-on experience<a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you want to work actively with a dataset, here are two possibilities. (You are not limited to just these, so if you want to look at something else that’s fine too). Each of these datasets has been supplied as its own package.</p>
+<div id="consider-loading-the-tidyverse" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> consider loading the tidyverse<a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The tidyverse allows the use of the ‘pipe’ operator, (“%&gt;%”), which is useful for combining commands. Now there is a native pipe in Base R (“|&gt;”), which does the same thing. But we will be using the tidyverse for a number of reasons, so go ahead and install it if you haven’t already, then load it.</p>
+<blockquote>
+<p>Remember that any package needs to be installed on your machine once before progressing. That is, if you installed the tidyverse previously, you don’t need to do the first line here. If you haven’t installed the tidyverse, you should remove the octothorpe or pound sign (#) on the second line before running this next chunk:</p>
+</blockquote>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="now-draw-the-rest-of-the-owl.html#cb2-1" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
 <span id="cb2-2"><a href="now-draw-the-rest-of-the-owl.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
-<div id="maybe-explore-the-babynames-package" class="section level3 hasAnchor" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> maybe explore the babynames package<a href="now-draw-the-rest-of-the-owl.html#maybe-explore-the-babynames-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="now-explore-the-babynames-package" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> now explore the babynames package<a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The babynames dataset is described <a href="https://cran.r-project.org/web/packages/babynames/readme/README.html">here</a>. What is in the data? What interesting questions might you ask about the dataset?</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="now-draw-the-rest-of-the-owl.html#cb3-1" tabindex="-1"></a><span class="co"># install.packages(&quot;babynames&quot;)</span></span>
 <span id="cb3-2"><a href="now-draw-the-rest-of-the-owl.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
@@ -359,8 +362,31 @@ div.csl-indent {
 ## #   Action &lt;int&gt;, Animation &lt;int&gt;, Comedy &lt;int&gt;, Drama &lt;int&gt;,
 ## #   Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</code></pre>
 <p>Regardless of whether you have played with one or both of these datasets, worked with the tutorials, or something else, please be prepared to share your experiences with the class at our next meeting.</p>
-
 </div>
+</div>
+<div id="assignment" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> assignment<a href="now-draw-the-rest-of-the-owl.html#assignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our next meeting, go as far as you can with the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>Open the dataset. Describe the data in a paragraph based on one or more R functions (such as str, glimpse, and slice).</p>
+<ol style="list-style-type: lower-alpha">
+<li>What are the variables? What are the observations? What are the data types? What are the ranges of the variables? Are there missing values?</li>
+</ol></li>
+<li><p>After looking at the data, describe one or more questions of interest that you would like to ask about the data. (I do mean “of interest” - something that has meaning, that people would actually like to know).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write each question in a separate paragraph. Use headings to structure your document.</li>
+</ol></li>
+<li><p>Describe, in words, how you would do look at your question. Be as specific as possible, but don’t worry about R syntax (e.g., I would pull out such-and-such variables, or such-and-such observations, and I would compare them with x, or I would like this with ‘y’). Explain what you might find, and why (again) that would be interesting.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Now draw the rest of the owl - translate your words into code, and run the analysis.</li>
+</ol></li>
+<li><p>If appropriate, describe what a graph or visualization of the data might look like.</p>
+<ol style="list-style-type: lower-alpha">
+<li>go for it if you can.</li>
+</ol></li>
+<li><p>Save your work as an R markdown document, and knit it to an html file.</p></li>
+</ol>
+
 </div>
 </div>
             </section>
