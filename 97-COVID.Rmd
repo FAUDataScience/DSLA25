@@ -13,7 +13,7 @@ library(httr)
 library(tidyverse)
 ```
 
-# examining local COVID data in R
+# archive: chronicling the early pandemic in R
 
 In Winter 2020, as the COVID-19 pandemic began to take hold, I began
 chronicling the course of the virus. What follows is an archive,
