@@ -140,7 +140,7 @@ Please consider each of the following data visualizations.
 
 ### Stand your ground {-}
 
-![Figure 7.13: Does "stand your ground" make us safer?](images/standground.PNG){alt="Figure 7.8: Stand your ground makes us all safer. Or not."} 
+![*Figure 7.13: Does "stand your ground" make us safer?*](images/standground.PNG) 
 
 > *Again -*
 >
@@ -154,7 +154,7 @@ Please consider each of the following data visualizations.
 
 ### Big businesses {-}
 
-![*Figure 7.13: Voronoi's "Top 50 Most Profitable Companies"*](images/voronoi.jpg)
+![*Figure 7.14: Voronoi's "Top 50 Most Profitable Companies"*](images/voronoi.jpg)
 
 > Finally, What does this visualization tell you at first glance?
 >
