@@ -140,7 +140,7 @@ Please consider each of the following data visualizations.
 
 ### Stand your ground {.unnumbered}
 
-![*Figure 7.13: Does "stand your ground" make us safer?*](images/standground.PNG)
+![*Figure 7.13: Does "stand your ground" make us safer?*](images/standyourground.PNG)
 
 > *Again -*
 >
