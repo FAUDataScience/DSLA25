@@ -1,3 +1,7 @@
+```{r viz, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # principles of data visualization
 
 ## some opening thoughts
