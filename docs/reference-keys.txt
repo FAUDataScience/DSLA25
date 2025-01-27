@@ -55,9 +55,6 @@ the-power-of-animation
 telling-the-truth-when-the-truth-is-unclear
 visualizing-uncertainty
 exercises
-smartphone-sales
-stand-your-ground
-big-businesses
 further-reading-and-resources
 visualization-in-r-with-ggplot
 a-picture-words-numbers
