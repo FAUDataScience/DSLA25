@@ -56,10 +56,13 @@ telling-the-truth-when-the-truth-is-unclear
 visualizing-uncertainty
 exercises
 further-reading-and-resources
+addendum
+some-notes-on-healy
 visualization-in-r-with-ggplot
 a-picture-words-numbers
-read-hadley-ggplots
-exploring-more-data
+read-hadley-wickhams-ggplots-chapter
+explore
+some-sources
 exercises-etc.
 generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet
 now-look-at-your-data-in-the-spreadsheet

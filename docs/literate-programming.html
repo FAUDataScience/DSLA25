@@ -257,12 +257,16 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>7.10</b> addendum</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>7.10.1</b> some notes on Healy</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
-<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-hadley-ggplots"><i class="fa fa-check"></i><b>8.2</b> Read Hadley ggplots</a></li>
-<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#exploring-more-data"><i class="fa fa-check"></i><b>8.3</b> exploring more data</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-hadley-wickhams-ggplots-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Hadley Wickham’s ggplots chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>9</b> exercises etc.</a>
 <ul>
@@ -311,7 +315,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="literate-programming.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb11-2"><a href="literate-programming.html#cb11-2" tabindex="-1"></a>file1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/datawithN.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 10 Columns: 4
-## ── Column specification ────────────────────
+## ── Column specification ─────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): gender
 ## dbl (3): id, age, N
@@ -327,7 +331,7 @@ div.csl-indent {
 ## $ gender &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, NA, &quot;M&quot;, &quot;F&quot;</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="literate-programming.html#cb15-1" tabindex="-1"></a>file2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/datawithES.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 10 Columns: 4
-## ── Column specification ────────────────────
+## ── Column specification ─────────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): gender
 ## dbl (3): id, age, ES

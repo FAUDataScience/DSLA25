@@ -1,54 +1,57 @@
+```{r ggplot, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # visualization in R with ggplot
 
 In the last chapter, we introduced data visualization, citing "vision-aries" including Edward Tufte and Hans Rosling, inspired works such as Minard's *Carte Figurative* and Periscopic's *stolen years*, as well as a few cautionary tales of misleading and confusing graphs.
 
 Here, in playing with and learning the R package **ggplot**, we begin to move from consumers to creators of data visualizations.
 
-As the first visualization in [@wickham2016] reminds us, data visualization is at the core of exploratory data analysis:
+As the first visualization in [@wickham2023] reminds us, data visualization is at the core of exploratory data analysis:
 
-![Fig 7.1: Data visualization is at the core of data analysis ([@wickham2016])](images/dataviscycle.PNG)
+![Fig 8.1: Data visualization is at the core of data analysis ([@wickham2023])](images/dataviscycle.PNG)
 
 In the world of data science, statistical programming is about discovering and communicating truths within your data. This **exploratory data analysis is the corner of science, particularly at a time in which confirmatory studies are increasingly found to be unreproducible**.
 
-Most of your reading will be from Chapter 3 of [@wickham2016], this is intended only as a supplement.
+Most of your reading will be from Chapter 1 of [@wickham2023], this is intended only as a supplement.
 
 ## a picture \> (words, numbers)?
 
-The chapter begins with a quote from John Tukey about the importance of graphs. Yet there is a tendency among some statisticians and scientists to discount graphs, to consider graphic representations of data as less valuable than statistical ones. It is true that, because there are many ways to graph data, and because scientists and data journalists are humans with pre-existing beliefs and values, a graphical displays should not be assumed to simply depict a singular reality. But the same can be said about statistical analyses (see Chapter 8).
+The chapter begins with a quote from John Tukey about the importance of graphs. Yet there is a tendency among some statisticians and scientists to discount graphs, to consider graphic representations of data as less valuable than statistical ones. It is true that, because there are many ways to graph data, and because scientists and data journalists are humans with pre-existing beliefs and values, a graphical displays should not be assumed to simply depict a singular reality. But the same can be said about statistical analyses (see Chapter 9).
 
 To consider the value of statistical versus graphical displays, consider 'Anscombe's quartet' (screenshot below, live at <http://bit.ly/anscombe2019>):
 
-![Table 7.1: An adaptation of Anscombe's "quartet" [@anscombe1973]](images/spreadsheet61.PNG)
+![Table 8.1: An adaptation of Anscombe's "quartet" [@anscombe1973]](images/spreadsheet61.PNG)
 
-> **Exercise 7_1** *Consider the spreadsheet chunk presented above, which I am characterizing as data collected on a sample of ten primary school children at recess on four consecutive days. Working with your classmates, compute the mean, standard deviation, and correlation between the two measures for one day. Share your results with the class.*
+> **Exercise 8_1** *Consider the spreadsheet chunk presented above, which I am characterizing as data collected on a sample of ten primary school children at recess on four consecutive days. Working with your classmates, compute the mean, standard deviation, and correlation between the two measures for one day. Share your results with the class.*
 
-The four pairs of variables in [@anscombe1973] appear statistically "the same," yet the data suggest something else. Later, we'll try to plot these. Perhaps graphs can reveal truths that statistics can hide.
+The four pairs of variables in [@anscombe1973] appear statistically "the same," yet the data suggest something else. Additional examples of the problem of relying on simple statistics, in particular correlation coefficients, are considered in the first chapter of Healy [-@healy2018]. Perhaps graphs can reveal truths that statistics can hide.
 
-> **Exercise 7_2** *The anscombe data is included as a library in R. Can you find, load, and explore it?*
+> **Exercise 8_2** *The Anscombe data is included as a library in R. Can you find, load, and explore it?*
 
-## Read Hadley ggplots
+## Read Hadley Wickham's ggplots chapter
 
-In class, we will review and recreate the plots in section 3.2 of [@wickham2016] and exercises through 3.4.
+In class, we will review and recreate the plots in section 1.2 of [@wickham2023] and exercises in 1.2.5 and 1.4.3 and 1.5.5
 
-Savor this section, reading slowly, and playing around with the RStudio interface. For example, read about the mpg data in the 'help' panel, pull up the mpg data in a view window, and sort through it by clicking on various columns.
+Savor this section: Read slowly, and play around with the RStudio interface. For example, read about the mpg data in the 'help' panel, pull up the mpg data in a view window, and sort through it by clicking on various columns.
 
-![Fig. 7.2: A screenshot from RStudio, showing the mpg dataset](images/rstudio62.PNG)
+![Fig. 8.2: A screenshot from RStudio, showing the mpg dataset](images/rstudio62.PNG)
 
-## exploring more data
-
-Explore the Gapminder data <https://cran.r-project.org/web/packages/gapminder/README.html>
-
-Choose one of the datasets in R, pull out a few variables, and explore these.
+## explore 
 
 Try to make a cool graph - one that informs the viewer, and, to paraphrase Tukey, helps us see what we don't expect.
 
 Try several different displays. Which fail? Which succeed? **Be prepared to share your efforts.**
 
-Don't be afraid to screw up. *Each mistake you wisdom*.
+Remember the 15 minute rule, and don't be afraid to screw up. *Each mistake you wisdom*.
 
-Andrew Couch, who hosts the "Tidy Tuesday" podcast, walks through the recreation of a fairly complex plot from The Economist <https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H->
+#### some sources
 
-There is also this from Rpubs: https://rpubs.com/tangerine/economist-plot - likely a student project economist thing.
+The Datacamp ggplot course <https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2>
 
-a datacamp ggplot course https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2
+The Gapminder data <https://cran.r-project.org/web/packages/gapminder/readme/README.html>
 
+A graph in The Economist. Here, Andrew Couch, host of the "Tidy Tuesday" podcast, walks through the recreation of a fairly complex plot from The Economist. Follow along, beginning with the links to GitHub <https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H->
+
+For another example of an Economist-style visualization, there is also this analysis of Global Terrorism Data from Rpubs: <https://rpubs.com/tangerine/economist-plot>. (This appears to be a student assignment). As with the 'movies" data described in an earlier project, the link to the data is no longer valid. To access it, you can establish an account on Kaggle (which links to older data) and/or the global terrorism database at the University of Maryland.

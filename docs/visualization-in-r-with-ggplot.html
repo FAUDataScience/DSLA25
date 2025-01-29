@@ -257,12 +257,16 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>7.10</b> addendum</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>7.10.1</b> some notes on Healy</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
-<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-hadley-ggplots"><i class="fa fa-check"></i><b>8.2</b> Read Hadley ggplots</a></li>
-<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#exploring-more-data"><i class="fa fa-check"></i><b>8.3</b> exploring more data</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-hadley-wickhams-ggplots-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Hadley Wickham’s ggplots chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>9</b> exercises etc.</a>
 <ul>
@@ -291,55 +295,60 @@ div.csl-indent {
 <h1><span class="header-section-number">8</span> visualization in R with ggplot<a href="visualization-in-r-with-ggplot.html#visualization-in-r-with-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In the last chapter, we introduced data visualization, citing “vision-aries” including Edward Tufte and Hans Rosling, inspired works such as Minard’s <em>Carte Figurative</em> and Periscopic’s <em>stolen years</em>, as well as a few cautionary tales of misleading and confusing graphs.</p>
 <p>Here, in playing with and learning the R package <strong>ggplot</strong>, we begin to move from consumers to creators of data visualizations.</p>
-<p>As the first visualization in <span class="citation">(<a href="#ref-wickham2016"><strong>wickham2016?</strong></a>)</span> reminds us, data visualization is at the core of exploratory data analysis:</p>
+<p>As the first visualization in <span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> reminds us, data visualization is at the core of exploratory data analysis:</p>
 <div class="float">
-<img src="images/dataviscycle.PNG" alt="Fig 7.1: Data visualization is at the core of data analysis ((wickham2016?))" />
-<div class="figcaption">Fig 7.1: Data visualization is at the core of data analysis (<span class="citation">(<a href="#ref-wickham2016"><strong>wickham2016?</strong></a>)</span>)</div>
+<img src="images/dataviscycle.PNG" alt="Fig 8.1: Data visualization is at the core of data analysis ((Wickham, Çetinkaya-Rundel, and Grolemund 2023))" />
+<div class="figcaption">Fig 8.1: Data visualization is at the core of data analysis (<span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>)</div>
 </div>
 <p>In the world of data science, statistical programming is about discovering and communicating truths within your data. This <strong>exploratory data analysis is the corner of science, particularly at a time in which confirmatory studies are increasingly found to be unreproducible</strong>.</p>
-<p>Most of your reading will be from Chapter 3 of <span class="citation">(<a href="#ref-wickham2016"><strong>wickham2016?</strong></a>)</span>, this is intended only as a supplement.</p>
+<p>Most of your reading will be from Chapter 1 of <span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>, this is intended only as a supplement.</p>
 <div id="a-picture-words-numbers" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> a picture &gt; (words, numbers)?<a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The chapter begins with a quote from John Tukey about the importance of graphs. Yet there is a tendency among some statisticians and scientists to discount graphs, to consider graphic representations of data as less valuable than statistical ones. It is true that, because there are many ways to graph data, and because scientists and data journalists are humans with pre-existing beliefs and values, a graphical displays should not be assumed to simply depict a singular reality. But the same can be said about statistical analyses (see Chapter 8).</p>
+<p>The chapter begins with a quote from John Tukey about the importance of graphs. Yet there is a tendency among some statisticians and scientists to discount graphs, to consider graphic representations of data as less valuable than statistical ones. It is true that, because there are many ways to graph data, and because scientists and data journalists are humans with pre-existing beliefs and values, a graphical displays should not be assumed to simply depict a singular reality. But the same can be said about statistical analyses (see Chapter 9).</p>
 <p>To consider the value of statistical versus graphical displays, consider ‘Anscombe’s quartet’ (screenshot below, live at <a href="http://bit.ly/anscombe2019" class="uri">http://bit.ly/anscombe2019</a>):</p>
 <div class="float">
-<img src="images/spreadsheet61.PNG" alt="Table 7.1: An adaptation of Anscombe’s “quartet” (Anscombe 1973)" />
-<div class="figcaption">Table 7.1: An adaptation of Anscombe’s “quartet” <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span></div>
+<img src="images/spreadsheet61.PNG" alt="Table 8.1: An adaptation of Anscombe’s “quartet” (Anscombe 1973)" />
+<div class="figcaption">Table 8.1: An adaptation of Anscombe’s “quartet” <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span></div>
 </div>
 <blockquote>
-<p><strong>Exercise 7_1</strong> <em>Consider the spreadsheet chunk presented above, which I am characterizing as data collected on a sample of ten primary school children at recess on four consecutive days. Working with your classmates, compute the mean, standard deviation, and correlation between the two measures for one day. Share your results with the class.</em></p>
+<p><strong>Exercise 8_1</strong> <em>Consider the spreadsheet chunk presented above, which I am characterizing as data collected on a sample of ten primary school children at recess on four consecutive days. Working with your classmates, compute the mean, standard deviation, and correlation between the two measures for one day. Share your results with the class.</em></p>
 </blockquote>
-<p>The four pairs of variables in <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span> appear statistically “the same,” yet the data suggest something else. Later, we’ll try to plot these. Perhaps graphs can reveal truths that statistics can hide.</p>
+<p>The four pairs of variables in <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span> appear statistically “the same,” yet the data suggest something else. Additional examples of the problem of relying on simple statistics, in particular correlation coefficients, are considered in the first chapter of Healy <span class="citation">(<a href="#ref-healy2018"><strong>healy2018?</strong></a>)</span>. Perhaps graphs can reveal truths that statistics can hide.</p>
 <blockquote>
-<p><strong>Exercise 7_2</strong> <em>The anscombe data is included as a library in R. Can you find, load, and explore it?</em></p>
+<p><strong>Exercise 8_2</strong> <em>The Anscombe data is included as a library in R. Can you find, load, and explore it?</em></p>
 </blockquote>
 </div>
-<div id="read-hadley-ggplots" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Read Hadley ggplots<a href="visualization-in-r-with-ggplot.html#read-hadley-ggplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In class, we will review and recreate the plots in section 3.2 of <span class="citation">(<a href="#ref-wickham2016"><strong>wickham2016?</strong></a>)</span> and exercises through 3.4.</p>
-<p>Savor this section, reading slowly, and playing around with the RStudio interface. For example, read about the mpg data in the ‘help’ panel, pull up the mpg data in a view window, and sort through it by clicking on various columns.</p>
+<div id="read-hadley-wickhams-ggplots-chapter" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Read Hadley Wickham’s ggplots chapter<a href="visualization-in-r-with-ggplot.html#read-hadley-wickhams-ggplots-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In class, we will review and recreate the plots in section 1.2 of <span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> and exercises in 1.2.5 and 1.4.3 and 1.5.5</p>
+<p>Savor this section: Read slowly, and play around with the RStudio interface. For example, read about the mpg data in the ‘help’ panel, pull up the mpg data in a view window, and sort through it by clicking on various columns.</p>
 <div class="float">
-<img src="images/rstudio62.PNG" alt="Fig. 7.2: A screenshot from RStudio, showing the mpg dataset" />
-<div class="figcaption">Fig. 7.2: A screenshot from RStudio, showing the mpg dataset</div>
+<img src="images/rstudio62.PNG" alt="Fig. 8.2: A screenshot from RStudio, showing the mpg dataset" />
+<div class="figcaption">Fig. 8.2: A screenshot from RStudio, showing the mpg dataset</div>
 </div>
 </div>
-<div id="exploring-more-data" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> exploring more data<a href="visualization-in-r-with-ggplot.html#exploring-more-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Explore the Gapminder data <a href="https://cran.r-project.org/web/packages/gapminder/README.html" class="uri">https://cran.r-project.org/web/packages/gapminder/README.html</a></p>
-<p>Choose one of the datasets in R, pull out a few variables, and explore these.</p>
+<div id="explore" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> explore<a href="visualization-in-r-with-ggplot.html#explore" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Try to make a cool graph - one that informs the viewer, and, to paraphrase Tukey, helps us see what we don’t expect.</p>
 <p>Try several different displays. Which fail? Which succeed? <strong>Be prepared to share your efforts.</strong></p>
-<p>Don’t be afraid to screw up. <em>Each mistake you wisdom</em>.</p>
-<p>Andrew Couch, who hosts the “Tidy Tuesday” podcast, walks through the recreation of a fairly complex plot from The Economist <a href="https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H-" class="uri">https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H-</a></p>
-<p>There is also this from Rpubs: <a href="https://rpubs.com/tangerine/economist-plot" class="uri">https://rpubs.com/tangerine/economist-plot</a> - likely a student project economist thing.</p>
-<p>a datacamp ggplot course <a href="https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2" class="uri">https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2</a></p>
+<p>Remember the 15 minute rule, and don’t be afraid to screw up. <em>Each mistake you wisdom</em>.</p>
+<div id="some-sources" class="section level4 hasAnchor" number="8.3.0.1">
+<h4><span class="header-section-number">8.3.0.1</span> some sources<a href="visualization-in-r-with-ggplot.html#some-sources" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The Datacamp ggplot course <a href="https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2" class="uri">https://app.datacamp.com/learn/courses/introduction-to-data-visualization-with-ggplot2</a></p>
+<p>The Gapminder data <a href="https://cran.r-project.org/web/packages/gapminder/readme/README.html" class="uri">https://cran.r-project.org/web/packages/gapminder/readme/README.html</a></p>
+<p>A graph in The Economist. Here, Andrew Couch, host of the “Tidy Tuesday” podcast, walks through the recreation of a fairly complex plot from The Economist. Follow along, beginning with the links to GitHub <a href="https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H-" class="uri">https://youtu.be/gcDQ_KbXQ3o?si=wFadvTi886hQm6H-</a></p>
+<p>For another example of an Economist-style visualization, there is also this analysis of Global Terrorism Data from Rpubs: <a href="https://rpubs.com/tangerine/economist-plot" class="uri">https://rpubs.com/tangerine/economist-plot</a>. (This appears to be a student assignment). As with the ’movies” data described in an earlier project, the link to the data is no longer valid. To access it, you can establish an account on Kaggle (which links to older data) and/or the global terrorism database at the University of Maryland.</p>
 
+</div>
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-anscombe1973" class="csl-entry">
 Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>American Statistician</em> 27 (1): 17–21.
+</div>
+<div id="ref-wickham2023" class="csl-entry">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science 2e</em>. " O’Reilly Media, Inc.". <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=TiLEEAAAQBAJ&amp;oi=fnd&amp;pg=PT9&amp;dq=r4ds+2e&amp;ots=ZJr-ihzQuM&amp;sig=NKto0ViShGg7yiv76WF2sHejD80">https://books.google.com/books?hl=en&amp;lr=&amp;id=TiLEEAAAQBAJ&amp;oi=fnd&amp;pg=PT9&amp;dq=r4ds+2e&amp;ots=ZJr-ihzQuM&amp;sig=NKto0ViShGg7yiv76WF2sHejD80</a>.
 </div>
 </div>
             </section>

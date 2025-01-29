@@ -163,7 +163,13 @@ Please consider each of the following data visualizations.
 > Would Tufte agree? Why or why not?
 >
 > Are Tufte's principles of data visualization sound?
+>
+> It's been argued that we live in an attention economy, in which 'eyes' (e.g., in a screen) are more valuable than wealth. How does this relate to the design of data visualizations?
 
 ## further reading and resources
 
 If you'd like to learn more, Tufte [-@tufte2001] and his other books are beautiful and thought provoking. Cleveland [-@cleveland1985] examines graphs from a more rigorous psychological and empirical viewpoint. The Data Stories podcasts are often excellent, despite the challenge of an auditory medium for visual display ([especially the episode on Hans Rosling](http://datastori.es/92-a-tribute-to-hans-rosling/)). And Healy[-@healy2017] provides a comprehensive introduction that, in essence, provides the basis for a semester-long course based in the ggplot2 package in R that we will be working with in the next chapter [@wickham2023].
+
+## addendum
+
+### some notes on Healy
