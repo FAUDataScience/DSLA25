@@ -1,0 +1,115 @@
+```{r probability, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# on probability and statistics
+
+We previously considered [@anscombe1973] and his quartet, and how visualizing data is valuable. This week, we move to a brief discussion of principles of statistics.
+
+## on probability
+
+**Discrete** probability is used to understand the likelihood of categorical events. We can think of initial estimates of probability as subjective or personal. For some events (*what is the probability this plane will crash?*), an estimate of probability can be drawn from a base rate or relative frequency (e.g., *p(this plane will crash) = (number of flights with crashes/ number of flights)*.
+
+For other events (what is the probability that a US President will resign or be impeached before completing his term of office?), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as 'for this airline,' or 'for this type of jet' etc.[^09-probabilityandinference-1]
+
+[^09-probabilityandinference-1]: TTypically, there is no single base rate that is clearly superior to others. Just as there is no single answer to the plane crash estimate, a baseball manager, in considering whether a pinch hitter might be brought in to bat at a crucial spot in a game, might consider the omnibus batting average (effectively a relative frequency of hits/opportunities), batting average at night, against this pitcher, etc.
+
+    In general, there is not a correct answer to this "problem of the reference class" in part because a more precise reference group (737 Max planes, batting against a particular pitcher) is *inherently* based on a smaller sample of data, and is therefore less stable, than a broader, but coarser reference group upon which a probability estimate might also be based [@Lanning1987].
+
+The personal origins of probability estimates should become less important as we are exposed to data and revise our estimates in accordance with Bayes theorem. But over the last 50 years, a substantial body of evidence has demonstrates that, under at least some circumstances, we don't make estimates of probability in this way.
+
+## the rules of probability
+
+Here's an introduction to the principles of probability. These are presented, with examples and code, in this [R markdown document](https://github.com/datasciencelabs/2020/blob/master/06_probability/01_discrete-probability.Rmd) at Harvard's datasciencelabs repository:
+
+> **I. For any event A, 0 \<= P (A) \<= 1**
+>
+> **II. Let S be the sample space, or set of all possible outcomes. Then P(S) = 1, and P (not S) = 0.**
+>
+> **III. If P (A and B) = 0, then P (A or B) = P (A) + P (B).**
+>
+> **IV. P (A\|B) = P (A and B)/ P (B)**
+
+Principle III applies for **mutually exclusive** events, such as A = you are in class this morning, B = you are at the beach this morning. For mutually exclusive (disjoint, disjunctive) events, the union is the sum of the two events. This is called the addition rule for disjoint events.
+
+A different rule applies for events that are **mutually independent**, such as (A = I toss a coin and it lands on 'Heads') and (B = it will rain tomorrow). What we mean by independent is that our estimates of the probability of one don't change based on the state of the other - your estimate of the likelihood of rain shouldn't depend on my coin flip. Here, you multiply rather than add:
+
+> **If P (A\|B) = P (A), then P (A and B) = P (A) P (B).**
+
+In words - if the probability of A given B equals the probability of A, then the probability of both A and B equals the probability of A times the probability of B.
+
+This **multiplication rule** is handy for estimating the probability of an outcome that happens following a chain of independent events, such as the probability that the next eight times I toss a coin it will land on "tails" every time:
+
+> P (TTTTTTTT) = P (T) P (T) P (T) P (T) P (T) P (T) P (T) P (T). = .58 = 1/256.
+
+Many sets of events are neither disjoint nor independent, so we need more general ways of thinking about pairs of events. For most of us, Venn diagrams are useful to think about combining probabilities. The **union or P (A U B)** describes the probability that A, B, or both of these will occur. Here, you will use the **general addition rule:**
+
+> **P (A or B) = P (A) + P (B) - P (A and B)**
+
+(the probability of A or B is the probability of A plus the probability of B minus the probability of both A and B).
+
+For the **intersection or P (A ∩ B)**, we need to consider **conditional probabilities**. Think of the probability of two events sequentially: First, what's the probability of A? Second, what's the probability of B, given that A has occurred? Multiply these to get the likelihood of A and B:
+
+> **P (A and B) = P (A) P (B\|A).**
+
+*Example: The probability of you and your roommate both getting mononucleosis equals the probability of your getting mono times the probability that your roommate gets it, given that you have it also.*
+
+This is the **general multiplication rule**. In this abstract example, the order is irrelevant. To estimate the likelihood of A and B, we could as easily take the probability of B, and multiply it by the conditional probability of A given B
+
+> **P (A and B) = P (B) P (A\|B).**
+
+*Use the mono example again. What are A and B here? Does it still make sense? When might P (B\|A) make more sense than P (A\|B)?*
+
+We are often interested in estimating conditional probabilities, in which case we'll use the same equation, but solve instead for P (A\|B). This leads us back to principle IV:
+
+> **IV. P (A\|B) = P (A and B)/ P (B)**
+
+### keeping conditional probabilities straight
+
+In general, P (B\|A) and P (A\|B) are not equivalent.
+
+Here, one could use a Venn diagram to model this asymmetry. There are several R packages for doing this, including Venn and VennDiagram.
+
+### exercises
+
+> **Exercise 9.1.** In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
+
+![](images/FloridaCar.jpg)
+
+> Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these are Dodge Chargers.
+>
+> a)  On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., p(FHP cruiser \| Dodge Charger)?
+>
+> b)  If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (p(FHP cruiser \| Dodge Charger)?
+>
+> c)  Provide a reasonable estimate of this additional value, then compute (p(FHP cruiser \| Dodge Charger).
+>
+> d)  Working with your own numbers, what is p(Dodge Charger \| FHP cruiser)?
+>
+> e)  How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?
+>
+> **Exercise 9.2.**
+>
+> a)  Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.
+>
+> b)  Use R to generate your Venn Diagram.
+>
+> c)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
+
+## continuous probability distributions
+
+We can also use probability with **continuous** variables such as systolic blood pressure (that's the first one), which has a mean of approximately 120 and a standard deviation of 15. Continuous probability distributions are handy tools for thinking about the meaning of scores, particularly when we express scores in standard deviations from the mean (z scores). More to the point, this way of thinking about probability is widely used in questions of scientific inference, as, for example, in testing hypotheses such that "the average systolic blood pressure among a group of people studying at a coffee shop (hence caffeinated) will be significantly greater than that of the population as a whole."
+
+This is part of the logic of **Null Hypothesis Significance Testing (NHST)** - if the result in my coffee shop sample is sufficiently high, then I say that I have rejected the null hypothesis, and found data which support the hypothesis of interest.
+
+## dangerous equations
+
+Just as [@tufte2001] demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, [@wainer2007] shows that a lack of statistical literacy is also "dangerous."
+
+Wainer cites three specific examples of important, yet widely misunderstood, statistical laws. The first of these is deMoivre's equation, which shows that variability decreases with the square root of sample size. Because the variability of a sample decreases with the size of that sample, small samples tend to have extreme scores. For example, the counties with the highest and lowest rates of kidney cancer (or most other unexplained health measures) will be sparsely populated, typically rural places.
+
+For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or reverse when new variables are added.
+
+Wainer's third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change [@hastie2010].
+
+## 
