@@ -5,35 +5,33 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 on probability and statistics | Data science for the liberal arts</title>
-  <meta name="description" content="Test" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="description" content="9 on probability and statistics | Data science for the liberal arts" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 on probability and statistics | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="/chihuahuamuffin.png" />
-  <meta property="og:description" content="Test" />
-  <meta name="github-repo" content="kevinlanning/DataSciLibArts" />
+  
+  <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="9 on probability and statistics | Data science for the liberal arts" />
   
-  <meta name="twitter:description" content="Test" />
-  <meta name="twitter:image" content="/chihuahuamuffin.png" />
+  
+  
 
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2021-09-12" />
+<meta name="date" content="2025-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="examining-local-covid-data-in-r.html"/>
+<link rel="prev" href="visualization-in-r-with-ggplot.html"/>
 <link rel="next" href="reproducibility-and-the-replication-crisis.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,16 +49,14 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
-<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -96,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -109,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -124,10 +120,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -158,102 +159,114 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="index.html#section"></a></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>preface</a>
 <ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-role-of-the-liberal-arts-in-data-science"><i class="fa fa-check"></i>the role of the liberal arts in data science</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
 </ul></li>
-<li class="part"><span><b>I Introduction</b></span></li>
-<li class="chapter" data-level="1" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> data science for the liberal arts</a>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> what is “data science for the liberal arts?”</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#type-c-data-science-data-science-for-the-liberal-arts"><i class="fa fa-check"></i><b>1.1</b> type C data science = data science for the liberal arts</a></li>
-<li class="chapter" data-level="1.2" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.2</b> the incompleteness of the data science Venn diagram</a></li>
-<li class="chapter" data-level="1.3" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#a-dimension-of-depth"><i class="fa fa-check"></i><b>1.3</b> a dimension of depth</a></li>
-<li class="chapter" data-level="1.4" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#google-and-the-liberal-arts"><i class="fa fa-check"></i><b>1.4</b> Google and the liberal arts</a></li>
-<li class="chapter" data-level="1.5" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#data-sci-and-tmi"><i class="fa fa-check"></i><b>1.5</b> data sci and TMI</a></li>
-<li class="chapter" data-level="1.6" data-path="data-science-for-the-liberal-arts.html"><a href="data-science-for-the-liberal-arts.html#discussion-what-will-you-do-with-data-science"><i class="fa fa-check"></i><b>1.6</b> discussion: what will you do with data science?</a></li>
+<li class="chapter" data-level="1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.1</b> the incompleteness of the data science Venn diagram</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#additional-domains"><i class="fa fa-check"></i><b>1.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#an-additional-dimension"><i class="fa fa-check"></i><b>1.1.2</b> an additional dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>1.2</b> the importance of data science for society</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#training-in-the-liberal-arts---success-in-tech"><i class="fa fa-check"></i><b>1.2.1</b> training in the liberal arts -&gt; success in tech</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>1.2.2</b> the challenge of TMI</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>1.3</b> discussion: what are your objectives in data science?</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> getting started</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>2.1</b> are you already a programmer and statistician?</a></li>
-<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#some-best-practices-for-spreadsheets"><i class="fa fa-check"></i><b>2.2</b> some best practices for spreadsheets</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>2.2</b> spreadsheets - some best practices</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-machine-some-basic-tools"><i class="fa fa-check"></i><b>2.3</b> setting up your machine: some basic tools</a></li>
-<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a modified 15-minute rule</a></li>
-<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#discussion-who-deserves-a-good-grade"><i class="fa fa-check"></i><b>2.5</b> discussion: who deserves a good grade?</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>2.5</b> installing R and RStudio desktop</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="welcome-to-r-world.html"><a href="welcome-to-r-world.html"><i class="fa fa-check"></i><b>3</b> welcome to R world</a>
+<li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="welcome-to-r-world.html"><a href="welcome-to-r-world.html#using-rstudio-cloud"><i class="fa fa-check"></i><b>3.1</b> Using RStudio cloud</a></li>
-<li class="chapter" data-level="3.2" data-path="welcome-to-r-world.html"><a href="welcome-to-r-world.html#using-r-studio-on-your-laptop"><i class="fa fa-check"></i><b>3.2</b> Using R Studio on your laptop</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="r-stands-for.html"><a href="r-stands-for.html"><i class="fa fa-check"></i><b>4</b> R stands for …</a>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>3.1</b> some key characteristics of R</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="r-stands-for.html"><a href="r-stands-for.html#a-few-characteristics-of-r"><i class="fa fa-check"></i><b>4.1</b> a few characteristics of R</a></li>
-<li class="chapter" data-level="4.2" data-path="r-stands-for.html"><a href="r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>4.2</b> finding help</a></li>
-<li class="chapter" data-level="4.3" data-path="r-stands-for.html"><a href="r-stands-for.html#wickham-and-r-for-data-science"><i class="fa fa-check"></i><b>4.3</b> Wickham and R for Data Science</a></li>
+<li class="chapter" data-level="3.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.1.1</b> base R and packages</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.2</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.3</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.4</b> finding help</a></li>
+<li class="chapter" data-level="3.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>3.5</b> Wickham and R for Data Science 2e</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>4.1</b> go to the movies</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>4.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
+<li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.6</b> older approaches</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.6.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
 <li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#review-the-rstudio-cloud-primers"><i class="fa fa-check"></i><b>5.1</b> Review the RStudio cloud primers</a></li>
-<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#play-with-rstudio-on-your-laptop"><i class="fa fa-check"></i><b>5.2</b> Play with RStudio on your laptop</a>
+<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#create-a-new-r-markdown-document-and-knit-it-to-a-pdf-or-a-word-doc"><i class="fa fa-check"></i><b>5.2.1</b> Create a new R Markdown document and knit it to a PDF or a Word doc</a></li>
-<li class="chapter" data-level="5.2.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#play-with-and-explore-the-movies-data"><i class="fa fa-check"></i><b>5.2.2</b> Play with and explore the movies data</a></li>
+<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#take-a-datacamp-class"><i class="fa fa-check"></i><b>5.3</b> Take a DataCamp class</a></li>
-<li class="chapter" data-level="5.4" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#swirl-swirlstats"><i class="fa fa-check"></i><b>5.4</b> Swirl (Swirlstats)</a></li>
-<li class="chapter" data-level="5.5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#read-pengs-text-andor-watch-the-associated-videos"><i class="fa fa-check"></i><b>5.5</b> Read Peng’s text and/or watch the associated videos</a></li>
-<li class="chapter" data-level="5.6" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#code-along-with-a-tidy-webinar-or-attend-a-virtual-conference"><i class="fa fa-check"></i><b>5.6</b> Code along with a tidy webinar, or attend a virtual conference</a></li>
-<li class="chapter" data-level="5.7" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#something-else"><i class="fa fa-check"></i><b>5.7</b> Something else</a></li>
+<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
 </ul></li>
-<li class="part"><span><b>II Part II Towards data literacy</b></span></li>
-<li class="chapter" data-level="6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>6</b> principles of data visualization</a>
+<li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>6.1</b> some opening thoughts</a></li>
-<li class="chapter" data-level="6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>6.2</b> some early graphs</a></li>
-<li class="chapter" data-level="6.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>6.3</b> Tukey and EDA</a></li>
-<li class="chapter" data-level="6.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>6.4</b> approaches to graphs</a></li>
-<li class="chapter" data-level="6.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>6.5</b> Tufte: first principles</a></li>
-<li class="chapter" data-level="6.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>6.6</b> the politics of data visualization</a>
-<ul>
-<li class="chapter" data-level="6.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>6.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
-<li class="chapter" data-level="6.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>6.6.2</b> poor design can be a tool to deceive</a></li>
+<li class="chapter" data-level="6.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>6.1</b> projects are directories</a></li>
+<li class="chapter" data-level="6.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>6.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="6.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>6.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="6.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>6.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="6.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>6.5</b> What to do when you are stuck</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>6.7</b> the psychology of data visualization</a>
+<li class="chapter" data-level="7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>7</b> principles of data visualization</a>
 <ul>
-<li class="chapter" data-level="6.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>6.7.1</b> the power of animation</a></li>
-<li class="chapter" data-level="6.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>6.7.2</b> telling the truth when the truth is unclear</a></li>
-<li class="chapter" data-level="6.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>6.7.3</b> visualizing uncertainty</a></li>
-</ul></li>
-<li class="chapter" data-level="6.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>6.8</b> further reading and resources</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>7</b> visualization in R with ggplot</a>
+<li class="chapter" data-level="7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>7.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>7.2</b> some early graphs</a></li>
+<li class="chapter" data-level="7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>7.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="7.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>7.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="7.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>7.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="7.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>7.6</b> the politics of data visualization</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>7.1</b> a picture &gt; (words, numbers)?</a></li>
-<li class="chapter" data-level="7.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-hadley-ggplots"><i class="fa fa-check"></i><b>7.2</b> Read Hadley ggplots</a></li>
-<li class="chapter" data-level="7.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#exploring-more-data"><i class="fa fa-check"></i><b>7.3</b> exploring more data</a></li>
+<li class="chapter" data-level="7.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>7.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="7.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>7.6.2</b> poor design can be a tool to deceive</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html"><i class="fa fa-check"></i><b>8</b> examining local COVID data in R</a>
+<li class="chapter" data-level="7.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>7.7</b> the psychology of data visualization</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#tracking-the-novel-coronavirus-from-feb-2020"><i class="fa fa-check"></i><b>8.1</b> tracking the Novel Coronavirus (from Feb 2020)</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#reading-the-data-feb-2020"><i class="fa fa-check"></i><b>8.1.1</b> reading the data (Feb 2020)</a></li>
-<li class="chapter" data-level="8.1.2" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#cleaning-wrangling-munging-the-data-feb-2020"><i class="fa fa-check"></i><b>8.1.2</b> cleaning (wrangling, munging) the data (Feb 2020)</a></li>
-<li class="chapter" data-level="8.1.3" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#eleven-months-later-the-code-still-runs"><i class="fa fa-check"></i><b>8.1.3</b> eleven months later: the code still runs!</a></li>
-<li class="chapter" data-level="8.1.4" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#shall-we-graph-it-feb-2021"><i class="fa fa-check"></i><b>8.1.4</b> shall we graph it? (Feb 2021)</a></li>
-<li class="chapter" data-level="8.1.5" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#too-bad"><i class="fa fa-check"></i><b>8.1.5</b> too bad</a></li>
-<li class="chapter" data-level="8.1.6" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#what-now"><i class="fa fa-check"></i><b>8.1.6</b> what now?</a></li>
-<li class="chapter" data-level="8.1.7" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#an-initial-plot-feb-2020"><i class="fa fa-check"></i><b>8.1.7</b> an initial plot (Feb 2020)</a></li>
-<li class="chapter" data-level="8.1.8" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#five-weeks-later-mar-2020"><i class="fa fa-check"></i><b>8.1.8</b> five weeks later (Mar 2020)</a></li>
-<li class="chapter" data-level="8.1.9" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#adding-recovered-cases-code-from-feb-data-through-mar-2020"><i class="fa fa-check"></i><b>8.1.9</b> adding recovered cases (code from Feb, data through Mar 2020)</a></li>
+<li class="chapter" data-level="7.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>7.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="7.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>7.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="7.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>7.7.3</b> visualizing uncertainty</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#plotting-confirmed-cases-feb-mar-2020"><i class="fa fa-check"></i><b>8.2</b> plotting confirmed cases (Feb-Mar 2020)</a></li>
-<li class="chapter" data-level="8.3" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#status-feb-2021"><i class="fa fa-check"></i><b>8.3</b> status (Feb 2021)</a>
+<li class="chapter" data-level="7.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>7.8</b> exercises</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#an-assignment"><i class="fa fa-check"></i><b>8.3.1</b> An assignment</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="examining-local-covid-data-in-r.html"><a href="examining-local-covid-data-in-r.html#how-to-create-new-knowledge"><i class="fa fa-check"></i><b>8.4</b> how to create new knowledge</a></li>
+<li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>7.10</b> addendum</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>7.10.1</b> some notes on Healy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>9</b> on probability and statistics</a>
 <ul>
@@ -261,9 +274,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.2.2</b> exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-most-dangerous-equation"><i class="fa fa-check"></i><b>9.4</b> the most dangerous equation</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -274,140 +288,6 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis-iii-pre-registration"><i class="fa fa-check"></i><b>10.2</b> answers to the reproducibility crisis III: Pre-registration</a></li>
 <li class="chapter" data-level="10.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>10.3</b> further readings</a></li>
-</ul></li>
-<li class="part"><span><b>III Part III Towards data proficiency</b></span></li>
-<li class="chapter" data-level="11" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html"><i class="fa fa-check"></i><b>11</b> literate programming with R markdown</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>11.1</b> scripts are files of code</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>11.1.1</b> some elements of coding style</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html#projects-are-directories-containing-related-scripts"><i class="fa fa-check"></i><b>11.2</b> projects are directories containing related scripts</a></li>
-<li class="chapter" data-level="11.3" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html#r-markdown-documents-integrate-rationale-script-and-results"><i class="fa fa-check"></i><b>11.3</b> R markdown documents integrate rationale, script, and results</a></li>
-<li class="chapter" data-level="11.4" data-path="literate-programming-with-r-markdown.html"><a href="literate-programming-with-r-markdown.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>11.4</b> What to do when you are stuck</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="the-tidyverse.html"><a href="the-tidyverse.html"><i class="fa fa-check"></i><b>12</b> the tidyverse</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="the-tidyverse.html"><a href="the-tidyverse.html#some-simple-principles"><i class="fa fa-check"></i><b>12.1</b> some simple principles</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html"><i class="fa fa-check"></i><b>13</b> finding, exploring, and cleaning data</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#data-in-r-libraries"><i class="fa fa-check"></i><b>13.1</b> Data in R libraries</a></li>
-<li class="chapter" data-level="13.2" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#other-prepared-datasets"><i class="fa fa-check"></i><b>13.2</b> Other prepared datasets</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#keep-it-manageable"><i class="fa fa-check"></i><b>13.2.1</b> Keep it manageable</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#makeextractcombine-your-own-data"><i class="fa fa-check"></i><b>13.3</b> Make/extract/combine your own data</a></li>
-<li class="chapter" data-level="13.4" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#exploring-data"><i class="fa fa-check"></i><b>13.4</b> exploring data</a></li>
-<li class="chapter" data-level="13.5" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#messy-data-cleaning-and-curation"><i class="fa fa-check"></i><b>13.5</b> messy data: Cleaning and curation</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html"><i class="fa fa-check"></i><b>14</b> transforming and joining data</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#from-data-on-the-web-to-data-in-r"><i class="fa fa-check"></i><b>14.1</b> from data on the web to data in R</a></li>
-<li class="chapter" data-level="14.2" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#working-with-geodata-a-function-to-get-us-states-from-latitudelongitude"><i class="fa fa-check"></i><b>14.2</b> working with geodata: a function to get US states from latitude/longitude</a>
-<ul>
-<li class="chapter" data-level="14.2.1" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#applying-the-function-to-the-music-data"><i class="fa fa-check"></i><b>14.2.1</b> applying the function to the music data</a></li>
-</ul></li>
-<li class="chapter" data-level="14.3" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#drowning-in-the-sea-of-songs-with-apologies-to-artist-arivoim1187b990643"><i class="fa fa-check"></i><b>14.3</b> drowning in the sea of songs (with apologies to Artist #<em>ARIVOIM1187B990643</em>)</a>
-<ul>
-<li class="chapter" data-level="14.3.1" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#combining-the-song-titles-with-our-us-artists"><i class="fa fa-check"></i><b>14.3.1</b> combining the song titles with our US artists</a></li>
-<li class="chapter" data-level="14.3.2" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#exercises"><i class="fa fa-check"></i><b>14.3.2</b> exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="14.4" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#review-of-munging-tools"><i class="fa fa-check"></i><b>14.4</b> review of munging tools</a></li>
-<li class="chapter" data-level="14.5" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#more-about-joining"><i class="fa fa-check"></i><b>14.5</b> more about joining</a>
-<ul>
-<li class="chapter" data-level="14.5.1" data-path="transforming-and-joining-data.html"><a href="transforming-and-joining-data.html#more-about-munging"><i class="fa fa-check"></i><b>14.5.1</b> more about munging</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>15</b> strings, factors, dates, and times</a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>15.1</b> strings</a></li>
-<li class="chapter" data-level="15.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>15.2</b> factors</a>
-<ul>
-<li class="chapter" data-level="15.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>15.2.1</b> types of babies</a></li>
-<li class="chapter" data-level="15.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>15.2.2</b> types of grown-ups</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>15.3</b> dates</a></li>
-<li class="chapter" data-level="15.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>15.4</b> times</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>16</b> lists</a></li>
-<li class="chapter" data-level="17" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>17</b> loops, functions, and beyond</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>17.1</b> loops</a></li>
-<li class="chapter" data-level="17.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>17.2</b> from loop to apply to purrr::map</a></li>
-<li class="chapter" data-level="17.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>17.3</b> some examples of functions</a>
-<ul>
-<li class="chapter" data-level="17.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>17.3.1</b> preliminaries</a></li>
-<li class="chapter" data-level="17.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>17.3.2</b> the function</a></li>
-<li class="chapter" data-level="17.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>17.3.3</b> applying the function</a></li>
-</ul></li>
-<li class="chapter" data-level="17.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>17.4</b> how many bottles of what?</a></li>
-</ul></li>
-<li class="chapter" data-level="18" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html"><i class="fa fa-check"></i><b>18</b> from correlation to regression</a>
-<ul>
-<li class="chapter" data-level="18.1" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#correlation"><i class="fa fa-check"></i><b>18.1</b> correlation</a></li>
-<li class="chapter" data-level="18.2" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>18.2</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a>
-<ul>
-<li class="chapter" data-level="18.2.1" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#the-regression-line"><i class="fa fa-check"></i><b>18.2.1</b> The regression line</a></li>
-<li class="chapter" data-level="18.2.2" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#warning-there-are-two-regression-lines"><i class="fa fa-check"></i><b>18.2.2</b> Warning: there are two regression lines</a></li>
-</ul></li>
-<li class="chapter" data-level="18.3" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#multiple-regression"><i class="fa fa-check"></i><b>18.3</b> multiple regression</a></li>
-<li class="chapter" data-level="18.4" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#swiss-fertility-data"><i class="fa fa-check"></i><b>18.4</b> Swiss fertility data</a></li>
-<li class="chapter" data-level="18.5" data-path="from-correlation-to-regression.html"><a href="from-correlation-to-regression.html#marital-affairs-data"><i class="fa fa-check"></i><b>18.5</b> marital affairs data</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="cross-validation.html"><a href="cross-validation.html"><i class="fa fa-check"></i><b>19</b> cross-validation</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="cross-validation.html"><a href="cross-validation.html#revisiting-the-affairs-data"><i class="fa fa-check"></i><b>19.1</b> revisiting the affairs data</a></li>
-<li class="chapter" data-level="19.2" data-path="cross-validation.html"><a href="cross-validation.html#avoiding-capitalizing-on-chance"><i class="fa fa-check"></i><b>19.2</b> avoiding capitalizing on chance</a>
-<ul>
-<li class="chapter" data-level="19.2.1" data-path="cross-validation.html"><a href="cross-validation.html#splitting-the-data-into-training-and-test-subsamples"><i class="fa fa-check"></i><b>19.2.1</b> splitting the data into training and test subsamples</a></li>
-</ul></li>
-<li class="chapter" data-level="19.3" data-path="cross-validation.html"><a href="cross-validation.html#an-example-of-cross-validated-linear-regression"><i class="fa fa-check"></i><b>19.3</b> an example of cross-validated linear regression</a>
-<ul>
-<li class="chapter" data-level="19.3.1" data-path="cross-validation.html"><a href="cross-validation.html#applying-logistic-regression-analysis-to-the-training-data"><i class="fa fa-check"></i><b>19.3.1</b> applying logistic regression analysis to the training data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html"><i class="fa fa-check"></i><b>20</b> prediction and classification</a>
-<ul>
-<li class="chapter" data-level="20.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-regression-to-classification-selection-of-a-threshold"><i class="fa fa-check"></i><b>20.1</b> from regression to classification: selection of a threshold</a>
-<ul>
-<li class="chapter" data-level="20.1.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#applying-the-model-to-the-test-data"><i class="fa fa-check"></i><b>20.1.1</b> applying the model to the test data</a></li>
-<li class="chapter" data-level="20.1.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#changing-our-decision-threshold"><i class="fa fa-check"></i><b>20.1.2</b> changing our decision threshold</a></li>
-<li class="chapter" data-level="20.1.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#more-confusion"><i class="fa fa-check"></i><b>20.1.3</b> more confusion</a></li>
-<li class="chapter" data-level="20.1.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#rocs-and-auc"><i class="fa fa-check"></i><b>20.1.4</b> ROCs and AUC</a></li>
-</ul></li>
-<li class="chapter" data-level="20.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#another-approach-to-classification-k-nearest-neighbor"><i class="fa fa-check"></i><b>20.2</b> another approach to classification: k-nearest neighbor</a>
-<ul>
-<li class="chapter" data-level="20.2.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#application-the-affairs-data"><i class="fa fa-check"></i><b>20.2.1</b> application: the affairs data</a></li>
-<li class="chapter" data-level="20.2.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-one-doppelganger-to-many"><i class="fa fa-check"></i><b>20.2.2</b> from one doppelganger to many</a></li>
-<li class="chapter" data-level="20.2.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-bayesian-classifier"><i class="fa fa-check"></i><b>20.2.3</b> the Bayesian classifier</a></li>
-<li class="chapter" data-level="20.2.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#back-to-the-affairs-data"><i class="fa fa-check"></i><b>20.2.4</b> Back to the affairs data</a></li>
-<li class="chapter" data-level="20.2.5" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#avoiding-capitalization-on-chance-again"><i class="fa fa-check"></i><b>20.2.5</b> avoiding capitalization on chance (again)</a></li>
-<li class="chapter" data-level="20.2.6" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-multinomial-case"><i class="fa fa-check"></i><b>20.2.6</b> the multinomial case</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="21" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><i class="fa fa-check"></i><b>21</b> machine learning: chihuahuas vs muffins, and other distinctions and ideas</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#supervised-versus-unsupervised"><i class="fa fa-check"></i><b>21.1</b> supervised versus unsupervised</a></li>
-<li class="chapter" data-level="21.2" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#prediction-versus-classification"><i class="fa fa-check"></i><b>21.2</b> prediction versus classification</a></li>
-<li class="chapter" data-level="21.3" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#understanding-versus-prediction"><i class="fa fa-check"></i><b>21.3</b> understanding versus prediction</a></li>
-<li class="chapter" data-level="21.4" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#bias-versus-variability"><i class="fa fa-check"></i><b>21.4</b> bias versus variability</a>
-<ul>
-<li class="chapter" data-level="21.4.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#resampling-beyond-test-training-and-validation-samples"><i class="fa fa-check"></i><b>21.4.1</b> resampling: beyond test, training, and validation samples</a></li>
-</ul></li>
-<li class="chapter" data-level="21.5" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#compensatory-versus-non-compensatory-problems"><i class="fa fa-check"></i><b>21.5</b> compensatory versus non-compensatory problems</a></li>
-<li class="chapter" data-level="21.6" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#a-postscript-the-tidymodels-packages"><i class="fa fa-check"></i><b>21.6</b> a postscript: The Tidymodels packages</a></li>
-</ul></li>
-<li class="chapter" data-level="22" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html"><i class="fa fa-check"></i><b>22</b> some ethical concerns for the data scientist</a>
-<ul>
-<li class="chapter" data-level="22.1" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#ethics-and-personality-harvesting"><i class="fa fa-check"></i><b>22.1</b> ethics and personality harvesting</a></li>
-<li class="chapter" data-level="22.2" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-law-of-unintended-consequences"><i class="fa fa-check"></i><b>22.2</b> the law of unintended consequences</a></li>
-<li class="chapter" data-level="22.3" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#your-privacy-is-my-concern"><i class="fa fa-check"></i><b>22.3</b> your privacy is my concern</a></li>
-<li class="chapter" data-level="22.4" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#who-should-hold-the-digital-keys"><i class="fa fa-check"></i><b>22.4</b> who should hold the digital keys?</a></li>
-<li class="chapter" data-level="22.5" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#contact-tracing-and-covid-19"><i class="fa fa-check"></i><b>22.5</b> contact-tracing and COVID-19</a></li>
-<li class="chapter" data-level="22.6" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-digital-divide"><i class="fa fa-check"></i><b>22.6</b> the digital divide</a></li>
-<li class="chapter" data-level="22.7" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#still-more-case-studies"><i class="fa fa-check"></i><b>22.7</b> still more case studies</a></li>
-<li class="chapter" data-level="22.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>22.8</b> some potential remedies</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -427,15 +307,17 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="on-probability-and-statistics" class="section level1" number="9">
-<h1><span class="header-section-number">9</span> on probability and statistics</h1>
-<p>Last week, we considered <span class="citation">(<a href="#ref-anscombe1973" role="doc-biblioref">Anscombe 1973</a>)</span> and his quartet, and how visualizing data is valuable. This week, we move to a brief discussion of principles of statistics.</p>
-<div id="on-probability" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> on probability</h2>
-<p><strong>Discrete</strong> probability is used to understand the likelihood of categorical events. We can think of initial estimates of probability as subjective or personal. For some events (<em>what is the probability this plane will crash?</em>), an estimate of probability can be drawn from a base rate or relative frequency (e.g., <em>p(this plane will crash) = (number of flights with crashes/ number of flights)</em>). For other events (what is the probability that a US President will resign or be impeached before completing his term of office?), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as ‘for this airline’ etc. <span class="citation">(<a href="#ref-lanning1987" role="doc-biblioref">Lanning 1987</a>)</span>. The personal origins of probability estimates should become less important as we are exposed to data and revise our estimates in accordance with Bayes theorem. But over the last 45 years, a substantial body of evidence has demonstrates that, under at least some circumstances, we don’t make estimates of probability in this way. (This material is discussed in the Thinking and Decision Making/Behavioral Economics class).</p>
+<div id="on-probability-and-statistics" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> on probability and statistics<a href="on-probability-and-statistics.html#on-probability-and-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We previously considered <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span> and his quartet, and how visualizing data is valuable. This week, we move to a brief discussion of principles of statistics.</p>
+<div id="on-probability" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> on probability<a href="on-probability-and-statistics.html#on-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Discrete</strong> probability is used to understand the likelihood of categorical events. We can think of initial estimates of probability as subjective or personal. For some events (<em>what is the probability this plane will crash?</em>), an estimate of probability can be drawn from a base rate or relative frequency (e.g., <em>p(this plane will crash) = (number of flights with crashes/ number of flights)</em>.</p>
+<p>For other events (what is the probability that a US President will resign or be impeached before completing his term of office?), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as ‘for this airline,’ or ‘for this type of jet’ etc.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>The personal origins of probability estimates should become less important as we are exposed to data and revise our estimates in accordance with Bayes theorem. But over the last 50 years, a substantial body of evidence has demonstrates that, under at least some circumstances, we don’t make estimates of probability in this way.</p>
 </div>
-<div id="the-rules-of-probability" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> the rules of probability</h2>
+<div id="the-rules-of-probability" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> the rules of probability<a href="on-probability-and-statistics.html#the-rules-of-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here’s an introduction to the principles of probability. These are presented, with examples and code, in this <a href="https://github.com/datasciencelabs/2020/blob/master/06_probability/01_discrete-probability.Rmd">R markdown document</a> at Harvard’s datasciencelabs repository:</p>
 <blockquote>
 <p><strong>I. For any event A, 0 &lt;= P (A) &lt;= 1</strong></p>
@@ -443,13 +325,12 @@ div.csl-indent {
 <p><strong>III. If P (A and B) = 0, then P (A or B) = P (A) + P (B).</strong></p>
 <p><strong>IV. P (A|B) = P (A and B)/ P (B)</strong></p>
 </blockquote>
-<p>Principle III applies for <strong>mutually exclusive</strong> events, such as A = you are here this morning, B = you are at the beach this morning. For mutually exclusive (disjoint, disjunctive) events, the union is the sum of the two events. This is called the addition rule for disjoint events.</p>
+<p>Principle III applies for <strong>mutually exclusive</strong> events, such as A = you are in class this morning, B = you are at the beach this morning. For mutually exclusive (disjoint, disjunctive) events, the union is the sum of the two events. This is called the addition rule for disjoint events.</p>
 <p>A different rule applies for events that are <strong>mutually independent</strong>, such as (A = I toss a coin and it lands on ‘Heads’) and (B = it will rain tomorrow). What we mean by independent is that our estimates of the probability of one don’t change based on the state of the other - your estimate of the likelihood of rain shouldn’t depend on my coin flip. Here, you multiply rather than add:</p>
 <blockquote>
 <p><strong>If P (A|B) = P (A), then P (A and B) = P (A) P (B).</strong></p>
 </blockquote>
 <p>In words - if the probability of A given B equals the probability of A, then the probability of both A and B equals the probability of A times the probability of B.</p>
-<p>Ask yourself - are mutually exclusive events independent? Come up with your own examples.</p>
 <p>This <strong>multiplication rule</strong> is handy for estimating the probability of an outcome that happens following a chain of independent events, such as the probability that the next eight times I toss a coin it will land on “tails” every time:</p>
 <blockquote>
 <p>P (TTTTTTTT) = P (T) P (T) P (T) P (T) P (T) P (T) P (T) P (T). = .58 = 1/256.</p>
@@ -473,55 +354,80 @@ div.csl-indent {
 <blockquote>
 <p><strong>IV. P (A|B) = P (A and B)/ P (B)</strong></p>
 </blockquote>
+<div id="keeping-conditional-probabilities-straight" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> keeping conditional probabilities straight<a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In general, P (B|A) and P (A|B) are not equivalent.</p>
+<p>Here, one could use a Venn diagram to model this asymmetry. There are several R packages for doing this, including Venn and VennDiagram.</p>
+</div>
+<div id="exercises-1" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> exercises<a href="on-probability-and-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
-<p><em>What is the likelihood of getting in an accident (A), given that one is driving on I-95 (B)? How would you estimate this? If there are fewer accidents on Military Trail, does this mean that you would be safer there?</em></p>
+<p><strong>Exercise 9.1.</strong> In 2024, the Florida Highway Patrol won a national competition for “best looking cruiser.” The winning car was a Dodge Charger.</p>
 </blockquote>
-<div id="keeping-conditional-probabilities-straight" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> keeping conditional probabilities straight</h3>
-<p>In general, P (B|A) and P (A|B) are not equivalent. Moore’s (2000) <em>Basic Practice of Statistics</em> gives the example of</p>
+<p><img src="images/FloridaCar.jpg" /></p>
 <blockquote>
-<p>P (Police car | Crown Victoria) = .7, and P (Crown Vic | Police car) = .85.</p>
+<p>Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these are Dodge Chargers.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., p(FHP cruiser | Dodge Charger)?</p></li>
+<li><p>If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (p(FHP cruiser | Dodge Charger)?</p></li>
+<li><p>Provide a reasonable estimate of this additional value, then compute (p(FHP cruiser | Dodge Charger).</p></li>
+<li><p>Working with your own numbers, what is p(Dodge Charger | FHP cruiser)?</p></li>
+<li><p>How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?</p></li>
+</ol>
+<p><strong>Exercise 9.2.</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.</p></li>
+<li><p>Use R to generate your Venn Diagram.</p></li>
+<li><p>Look at your figure. In general, if P (A|B) &lt; P (B|A), what must be true of the relationship of P (A) to P (B)?</p></li>
+</ol>
 </blockquote>
-<p>Here, one could use a Venn diagram to model this asymmetry. There are several R packages for doing this, including Venn and VennDiagram. Consider exploring these, or at the very least make a rough sketch that can help you answer the following question: &gt; In general, if P (A|B) &lt; P (B|A), what must be true of the relationship of P (A) to P (B)?</p>
 </div>
 </div>
-<div id="continuous-probability-distributions" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> continuous probability distributions</h2>
-<p>We can also use probability with <strong>continuous</strong> variables such as systolic blood pressure (that’s the first one), which has a mean of approximately 120 and a standard deviation of 15. Continuous probability distributions are handy tools for thinking about the meaning of scores, particularly when we express scores in standard deviations from the mean (z scores). More to the point, this way of thinking about probability is widely used in questions of scientific inference, as, for example, in testing hypotheses such that “the average systolic blood pressure among a group of people studying at Crux (hence caffeinated) will be significantly greater than that of the population as a whole.”</p>
-<p>This is part of the logic of <strong>Null Hypothesis Significance Testing (NHST)</strong> - if the result in my Crux sample is sufficiently high, then I say that I have rejected the null hypothesis, and found data which support the hypothesis of interest.</p>
+<div id="continuous-probability-distributions" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> continuous probability distributions<a href="on-probability-and-statistics.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also use probability with <strong>continuous</strong> variables such as systolic blood pressure (that’s the first one), which has a mean of approximately 120 and a standard deviation of 15. Continuous probability distributions are handy tools for thinking about the meaning of scores, particularly when we express scores in standard deviations from the mean (z scores). More to the point, this way of thinking about probability is widely used in questions of scientific inference, as, for example, in testing hypotheses such that “the average systolic blood pressure among a group of people studying at a coffee shop (hence caffeinated) will be significantly greater than that of the population as a whole.”</p>
+<p>This is part of the logic of <strong>Null Hypothesis Significance Testing (NHST)</strong> - if the result in my coffee shop sample is sufficiently high, then I say that I have rejected the null hypothesis, and found data which support the hypothesis of interest.</p>
 </div>
-<div id="the-most-dangerous-equation" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> the most dangerous equation</h2>
-<p>Just as <span class="citation">(<a href="#ref-tufte2001" role="doc-biblioref">Tufte 2001</a>)</span> demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, <span class="citation">(<a href="#ref-wainer2007" role="doc-biblioref">Howard Wainer 2007</a>)</span> shows that a lack of statistical literacy is also “dangerous.”</p>
-<p>He argues that deMoivre’s equation is the most dangerous equation - this equation (for the standard error) shows that variability decreases with the square root of sample size. Other nominees include the linear regression equation (and, in particular, how coefficients may change or reverse when new variables are added) and regression to the mean. Regarding linear regression, Simpson’s paradox shows how the direction of regression coefficients may change when additional variables are added to a model.</p>
-<p>I would argue that, from the standpoint of psychology, ignorance of regression to the mean was arguably more ‘dangerous’ than ignorance about the central limit theorem and standard error, in particular because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change <span class="citation">(<a href="#ref-hastie2010" role="doc-biblioref">Hastie and Dawes 2010</a>)</span>.</p>
+<div id="dangerous-equations" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> dangerous equations<a href="on-probability-and-statistics.html#dangerous-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just as <span class="citation">(<a href="#ref-tufte2001">Tufte 2001</a>)</span> demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, <span class="citation">(<a href="#ref-wainer2007">Howard Wainer 2007</a>)</span> shows that a lack of statistical literacy is also “dangerous.”</p>
+<p>Wainer cites three specific examples of important, yet widely misunderstood, statistical laws. The first of these is deMoivre’s equation, which shows that variability decreases with the square root of sample size. Because the variability of a sample decreases with the size of that sample, small samples tend to have extreme scores. For example, the counties with the highest and lowest rates of kidney cancer (or most other unexplained health measures) will be sparsely populated, typically rural places.</p>
+<p>For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or reverse when new variables are added.</p>
+<p>Wainer’s third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change <span class="citation">(<a href="#ref-hastie2010">Hastie and Dawes 2010</a>)</span>.</p>
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-anscombe1973" class="csl-entry">
 Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>American Statistician</em> 27 (1): 17–21.
 </div>
 <div id="ref-hastie2010" class="csl-entry">
-Hastie, Reid, and Robyn M Dawes. 2010. <em>Rational Choice in an Uncertain World: <span>The</span> Psychology of Judgment and Decision Making</em>. <span>Sage</span>.
+Hastie, Reid, and Robyn M Dawes. 2010. <em>Rational Choice in an Uncertain World: <span>The</span> Psychology of Judgment and Decision Making</em>. Sage.
 </div>
 <div id="ref-lanning1987" class="csl-entry">
-Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span>Non</span>-Normative <span>Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/fv4hh5">https://doi.org/fv4hh5</a>.
+Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span class="nocase">Non-normative Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/fv4hh5">https://doi.org/fv4hh5</a>.
 </div>
 <div id="ref-tufte2001" class="csl-entry">
-Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. Second. <span>Cheshire, CT</span>: <span>Graphics Press</span>.
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Cheshire, CT: Graphics Press.
 </div>
 <div id="ref-wainer2007" class="csl-entry">
-Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>,”</span> 9.
+Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Typically, there is no single base rate that is clearly superior to others. Just as there is no single answer to the plane crash estimate, a baseball manager, in considering whether a pinch hitter might be brought in to bat at a crucial spot in a game, might consider the omnibus batting average (effectively a relative frequency of hits/opportunities), batting average at night, against this pitcher, etc.</p>
+<p>In general, there is not a correct answer to this “problem of the reference class” in part because a more precise reference group (737 Max planes, batting against a particular pitcher) is <em>inherently</em> based on a smaller sample of data, and is therefore less stable, than a broader, but coarser reference group upon which a probability estimate might also be based <span class="citation">(<a href="#ref-lanning1987">Lanning 1987</a>)</span>.<a href="on-probability-and-statistics.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="examining-local-covid-data-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualization-in-r-with-ggplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="reproducibility-and-the-replication-crisis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -548,7 +454,7 @@ gitbook.start({
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
-"theme": "white",
+"theme": "sepia",
 "family": "sans",
 "size": 2
 },
@@ -576,20 +482,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

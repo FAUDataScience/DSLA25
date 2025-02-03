@@ -1,3 +1,7 @@
+```{r reproducibility, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # reproducibility and the replication crisis
 
 Probability theory is elegant, and the logic of **Null Hypothesis Significance Testing (NHST)** is compelling. But philosophers of science have long recognized that this is not really how science works [@lakatos1969]. That is, science is not primarily built by the testing and rejecting of null hypotheses. (Think, for example, of how you might describe an experiment for testing the hypothesis that gravity exists, and whether you would ever reject this hypothesis).
@@ -24,7 +28,7 @@ In recent years, the tension between **the false ideal of NHST** and the real wo
 
 Here's a video which provides some more context for the crisis:
 
-[![Reproducibility](images/reprostill.png)](https://youtu.be/42QuXLucH3Q).
+[![Reproducibility](images/reprostill.png)](https://youtu.be/42QuXLucH3Q) .
 
 \*Video 10.1: On the reproducibility crisis (12 mins)
 

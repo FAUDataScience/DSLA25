@@ -26,11 +26,11 @@ To consider the value of statistical versus graphical displays, consider 'Anscom
 
 > **Exercise 8_1** *Consider the spreadsheet chunk presented above, which I am characterizing as data collected on a sample of ten primary school children at recess on four consecutive days. Working with your classmates, compute the mean, standard deviation, and correlation between the two measures for one day. Share your results with the class.*
 
-The four pairs of variables in [@anscombe1973] appear statistically "the same," yet the data suggest something else. Additional examples of the problem of relying on simple statistics, in particular correlation coefficients, are considered in the first chapter of Healy [-@healy2018]. Perhaps graphs can reveal truths that statistics can hide.
+The four pairs of variables in [@anscombe1973] appear statistically "the same," yet the data suggest something else. Additional examples of the problem of relying on simple statistics, in particular correlation coefficients, are considered in the first chapter of Healy [-@healy2017]. Perhaps graphs can reveal truths that statistics can hide.
 
 > **Exercise 8_2** *The Anscombe data is included as a library in R. Can you find, load, and explore it?*
 
-## Read Hadley Wickham's ggplots chapter
+## Read Wickham's opening chapter
 
 In class, we will review and recreate the plots in section 1.2 of [@wickham2023] and exercises in 1.2.5 and 1.4.3 and 1.5.5
 
@@ -38,7 +38,7 @@ Savor this section: Read slowly, and play around with the RStudio interface. For
 
 ![Fig. 8.2: A screenshot from RStudio, showing the mpg dataset](images/rstudio62.PNG)
 
-## explore 
+## explore
 
 Try to make a cool graph - one that informs the viewer, and, to paraphrase Tukey, helps us see what we don't expect.
 
