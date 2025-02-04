@@ -20,7 +20,6 @@ library(tidyverse)
 # library(MASS) the whole library is not loaded because of dplyr::select 
 library(randomNames)
 library(googlesheets4)
-
 set.seed(33458) # for reproducibility
 correlation <- 0.4
 nrows <- 1000

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 on probability and statistics | Data science for the liberal arts</title>
   <meta name="description" content="9 on probability and statistics | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 on probability and statistics | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-02-03" />
+<meta name="date" content="2025-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -309,11 +309,14 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="on-probability-and-statistics" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">9</span> on probability and statistics<a href="on-probability-and-statistics.html#on-probability-and-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>We previously considered <span class="citation">(<a href="#ref-anscombe1973">Anscombe 1973</a>)</span> and his quartet, and how visualizing data is valuable. This week, we move to a brief discussion of principles of statistics.</p>
+<p>We previously considered Anscombe<span class="citation">(<a href="#ref-anscombe1973">1973</a>)</span> and his quartet, and how visualizing data is valuable. This week, we move to a brief discussion of principles of statistics.</p>
 <div id="on-probability" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> on probability<a href="on-probability-and-statistics.html#on-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Discrete</strong> probability is used to understand the likelihood of categorical events. We can think of initial estimates of probability as subjective or personal. For some events (<em>what is the probability this plane will crash?</em>), an estimate of probability can be drawn from a base rate or relative frequency (e.g., <em>p(this plane will crash) = (number of flights with crashes/ number of flights)</em>.</p>
-<p>For other events (what is the probability that a US President will resign or be impeached before completing his term of office?), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as ‘for this airline,’ or ‘for this type of jet’ etc.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>For other events (e.g., <em>what is the probability that a US President will resign or be impeached before completing their term of office?</em>), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as ‘for this airline,’ or ‘for this type of jet’ etc.</p>
+<p>The claim that there is a simple distinction between ‘relative frequencies’ and ‘personal probabilities’ turns out to be an oversimplification. Relative frequencies are not statistical givens, because in many of not most situations there is no single base rate that is clearly superior to others. For the plane crash example, we might consider crash rates among all planes, all jets, and all carriers, or particular planes (Boeing 737 Max jets), particular carriers (United), or the intersection of some or all of these as well as other variables (United 737 Max airliners flying out of LaGuiardia at night). There is no single answer to the plane crash estimate, in other words.</p>
+<p>Similarly, a baseball manager, in considering whether a pinch hitter might be brought in to bat at a crucial spot in a game, might consider an omnibus batting average (effectively a relative frequency of hits/opportunities), batting average at night, against this pitcher, etc.</p>
+<p>In general, there is not a correct answer to this “problem of the reference class” in part because a more precise reference group (737 Max planes, batting against a particular pitcher) is <em>inherently</em> based on a smaller sample of data, and is therefore less stable, than a broader, but coarser reference group upon which a probability estimate might also be based <span class="citation">(<a href="#ref-lanning1987">Lanning 1987</a>)</span>.</p>
 <p>The personal origins of probability estimates should become less important as we are exposed to data and revise our estimates in accordance with Bayes theorem. But over the last 50 years, a substantial body of evidence has demonstrates that, under at least some circumstances, we don’t make estimates of probability in this way.</p>
 </div>
 <div id="the-rules-of-probability" class="section level2 hasAnchor" number="9.2">
@@ -390,9 +393,9 @@ div.csl-indent {
 </div>
 <div id="dangerous-equations" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> dangerous equations<a href="on-probability-and-statistics.html#dangerous-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Just as <span class="citation">(<a href="#ref-tufte2001">Tufte 2001</a>)</span> demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, <span class="citation">(<a href="#ref-wainer2007">Howard Wainer 2007</a>)</span> shows that a lack of statistical literacy is also “dangerous.”</p>
+<p>Just as Tufte <span class="citation">(<a href="#ref-tufte2001">2001</a>)</span> demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, Wainer <span class="citation">(<a href="#ref-wainer2007">2007</a>)</span> shows that a lack of statistical literacy is also “dangerous.”</p>
 <p>Wainer cites three specific examples of important, yet widely misunderstood, statistical laws. The first of these is deMoivre’s equation, which shows that variability decreases with the square root of sample size. Because the variability of a sample decreases with the size of that sample, small samples tend to have extreme scores. For example, the counties with the highest and lowest rates of kidney cancer (or most other unexplained health measures) will be sparsely populated, typically rural places.</p>
-<p>For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or reverse when new variables are added.</p>
+<p>For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.</p>
 <p>Wainer’s third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change <span class="citation">(<a href="#ref-hastie2010">Hastie and Dawes 2010</a>)</span>.</p>
 
 </div>
@@ -414,13 +417,6 @@ Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 
 <div id="ref-wainer2007" class="csl-entry">
 Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>Typically, there is no single base rate that is clearly superior to others. Just as there is no single answer to the plane crash estimate, a baseball manager, in considering whether a pinch hitter might be brought in to bat at a crucial spot in a game, might consider the omnibus batting average (effectively a relative frequency of hits/opportunities), batting average at night, against this pitcher, etc.</p>
-<p>In general, there is not a correct answer to this “problem of the reference class” in part because a more precise reference group (737 Max planes, batting against a particular pitcher) is <em>inherently</em> based on a smaller sample of data, and is therefore less stable, than a broader, but coarser reference group upon which a probability estimate might also be based <span class="citation">(<a href="#ref-lanning1987">Lanning 1987</a>)</span>.<a href="on-probability-and-statistics.html#fnref4" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
