@@ -28,17 +28,17 @@ In recent years, the tension between **the false ideal of NHST** and the real wo
 
 Here's a video which provides some more context for the crisis:
 
-[![Reproducibility](images/reprostill.png)](https://youtu.be/42QuXLucH3Q) .
+[![Reproducibility](images/reprostill.PNG)](https://youtu.be/42QuXLucH3Q) .
 
 \*Video 10.1: On the reproducibility crisis (12 mins)
 
-## Answers to the reproducibility crisis
+## answers to the reproducibility crisis
 
 For scientific progress to occur, there needs to be more than a simple rejection of what is wrong with current methods and research programs: Here, as elsewhere, criticism must be constructive to be valuable.
 
 There have been a number of solutions proposed to the reproducibility crisis.
 
-### Tweak or abandon NHST
+### partial answer 1: Tweak or abandon NHST
 
 The first cluster of responses to the reproducibility crisis is concerned with statistics, specifically problems with Null Hypothesis Significance Testing (NHST). These include (a) justifying one's alpha - making it more stringent, for example, for counter-intuitive claims [@grange2018], (b) changing the default p value from .05 to .005 [@benjamin2018], and (c) abandoning significance testing altogether [@mcshane2017].
 
@@ -52,7 +52,7 @@ The first cluster of responses to the reproducibility crisis is concerned with s
 
 ![munafo2017](images/munafo2017threats.PNG)
 
-### keep a log of every step of every analysis in R markdown or Jupyter notebooks
+### partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks
 
 A second cluster of responses is concerned with keeping good records. Let's say that you are running a study, say, which looks at the hypothesis of differential variation of females and males in a cognitive measure; your interest is to critically examine the hypothesis discussed by [@wainer2007] that males show more variability.
 
@@ -62,10 +62,10 @@ The alternative is to keep a record of your work in R markdown. This is more tim
 
 Part of the problem of scientific reproducibility is to keep comprehensive records. This record-keeping and research transparency is at the heart of R markdown documents.
 
-## answers to the reproducibility crisis III: Pre-registration
+### partial answer 3: Pre-registration of your research
 
 The third answer to the reproducibility crisis is the most comprehensive; it involves not merely keeping a record of what you have done, but preregistering your work, that is, fully specifying your planned analyses beforehand [@miguel2014]. The author, an economist, outlines his argument in a five-minute video [here](https://www.futurelearn.com/courses/open-social-science-research/0/steps/31436). For randomized controlled trials, consider socialscienceregistry.org, and for more general use, use the open science framework page.
 
 ## further readings
 
-Finally, if you would like to learn more about the reproducibility crisis, there is a collection of papers in Nature [here](https://www.nature.com/collections/prbfkwmwvz/).
+Finally, if you would like to learn more about the reproducibility crisis, there is a recent collection of papers in Nature [here](https://www.nature.com/collections/prbfkwmwvz/).
