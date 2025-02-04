@@ -1,5 +1,6 @@
 ```{r ggplot, include=FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+install.packages("anscombier")
 ```
 
 # visualization in R with ggplot
