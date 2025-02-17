@@ -11,6 +11,56 @@ library(tidyverse)
 
 What do you want to study?
 
+## florida educational data
+
+Florida, like many states, makes data on school quality publicly available. Schools are assessed, in part, on student performance (scores on comprehensive tests in fields such as English Language Arts). Schools are also assessed on measures such as whether this performance has increased across years, the percent of students who graduate in four years, and the percentage of students who pass Advanced Placement and related exams. You can learn more about these measures at <https://www.fldoe.org/core/fileparse.php/18534/urlt/SchoolGradesOverview24.pdf>).
+
+The data itself are available in an Excel spreadsheet. Here's a screenshot of the first few columns and rows of the file.
+
+![](images/FloridaSchools.png)
+
+It's apparent that the file looks a little messy. As we saw in a prior chapter, we would like the first row of the dataset to include the variable (column) names: here, there are three rows of header prior to this. Further, many of the variable names include spaces, minus signs, and the like.
+
+To read the data, we'll use use readxl, which is part of the peripheral tidyverse. To use it, you must first download the data from the web (you can find it at <https://www.fldoe.org/file/18534/SchoolGrades24.xlsx>). Then use the library (readxl) command or, as we do here, pull the one function from the library using the double-colon syntax:
+
+```{r}
+FloridaSchools <- readxl::read_excel("data/SchoolGrades24.xlsx", skip = 3) |>
+    janitor::clean_names() 
+FloridaHighSchools <- FloridaSchools |> 
+    drop_na('graduation_rate_2022_23')#
+    |> 
+    select (`District Number`: `School Number`, 
+            `School Name`, `English Language Arts Achievement`: `Social Studies Achievement`, 
+            `Graduation Rate 2022-23`:`Grade 2019`)
+```
+
+Beyond the tidyverse
+
+What about big vs small schools?
+
+Need to scrape a site like <https://fhsaa.com/sports/2021/12/3/SchoolEnrollmentNumbers.aspx>
+
+What about teacher salaries?
+
+Cleaning up variable names - Janitor
+
+{r}
+
+FloridaHighSchools2 \<- FloridaHighSchools \|\> janitor::clean_names()
+
+Selecting only High schools and a few columns
+
+{r}
+
+library(janitor) FloridaHighSchools2 \<- FloridaHighSchools \|\> janitor::clean_names()
+
+A lesser problem, but still annoying, is that many of the variable names include spaces (e.g., Grade 2019). When R sees two words separated by a space, it encodes this as two separate variables. A quick way to fix this is with yet another discuss read_xl, read.xlsx (web page approach, risk of this
+
+discuss :: vs library
+
+life expectancy data
+
+
 ## Data in R libraries
 
 A few weeks back, we explored five different R packages (libraries) for looking at COVID data. There are a number of other R packages which provide 'easy' access to data - for example, consider the [**babynames package**](https://cran.r-project.org/web/packages/babynames/babynames.pdf). Install it on your machine, load the library, and View it.

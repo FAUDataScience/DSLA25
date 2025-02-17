@@ -1,0 +1,145 @@
+---
+title: "SomeData"
+output: html_document
+date: "2025-02-14"
+---
+
+introduce tidyverse
+
+wrangling and tidying picture of horse![](images/horses.png)
+
+to introduce core tidyverse and periphery
+
+core and manipulating
+
+## Illustrating pivot_wider with fake restaurant data
+
+You are attending a professional meeting and find that there are 100 restaurants near your hotel. We'll name all of the restaurants using names drawn from the 100 most popular names in recent years.
+
+To do this, we'll begin with the babynames data, then will use the filter command to choose only names since 1981, then we group and summarize the data by name, then sort the names by popularity, then select only the name column.
+
+```{r}
+library(tidyverse)
+# make restaurant names
+restonames <- babynames |> 
+    filter(year > 1980) |> 
+    group_by(name) |> 
+    summarise(n=sum(n)) |> 
+    arrange(desc(n)) |> 
+    slice(1:100) |> 
+    select(name) 
+head(restonames)
+```
+
+In the prior chunk of text we essentially massaged the babynames data in a few ways to get us a list of 100 popular names. In data wrangling, we frequently need or want to do more than this, such as create new variables. We can use the mutate command to create 'restaurant names' from 'person names' as follows:
+
+```{r}
+restonames2 <- restonames |> 
+    mutate (name = str_c(name,"s_place")) 
+head(restonames2)
+```
+
+Now, assume that the restaurants has been graded by the Department of Health on an A to F scale. We'll assign these *health* ratings randomly, using the following three steps.
+
+> First, we seed the (pseudo) random number generator; this allows the result to be reproducible.
+>
+> Then we declare health as a random integer for each restaurant on 1 to 5 scale. We do this by creating a random distribution (runif) ranging from 1 to 5, and rounding this score to the nearest integer.
+>
+> Then, we recode these as letter grades using the 'case_when' function.
+
+In addition, assume that we have cost data as well. We'll use essentially the same code to come up with our cost variable.
+
+```{r}
+# add health ratings
+set.seed(33458)
+fakerestodata <- restonames2 |>
+    mutate (health = round(runif(n=n(),1,5))) |> 
+    mutate (health = case_when (health == 1 ~ 'F',
+                                health == 2 ~ 'D',
+                                health == 3 ~ 'C',
+                                health == 4 ~ 'B',
+                                health == 5 ~ 'A')) |> 
+    mutate (cost = round(runif(n=n(),1,3))) |>
+    mutate (cost = case_when (cost == 1 ~ '$',
+                              cost == 2 ~ '$$',
+                              cost == 3 ~ '$$$'))
+```
+
+Each restaurant now has a name, a health rating, and a classification as cheap (\$), moderate (\$\$), or expensive (\$\$\$). Now we add an additional variable - *popularity*. This is again randomly generated on a 1 to 5 scale. But restaurants that are popular at lunch may not be popular at dinner (they may cater to office workers, for example), and some restaurants may be closed for one or both of these two meals - say 25% at lunch and 15% at dinner. Here, there are four separate steps:
+
+> Let 'lunchdata' be a copy of the fakerestodata
+>
+> Generate a popularity score as a random variable.
+>
+> Generate a second random variable called 'meal', which is initially set to a random number between 0 and 1.
+>
+> Then, use the *case_when* syntax to recode this: if mean is below a cutoff (e.g., .25 for Lunch), set the value to NA, otherwise call it 'Lunch.'
+>
+> Then do the same for 'dinnerdata.'
+>
+> Then bind the dinnerdata to the lunchdata.
+>
+> Finally, remove the lines where the meal data is missing
+
+```{r}
+# add lunch and dinner data
+lunchdata <- fakerestodata |>
+    mutate (popularity = round(runif(n=n(),1,5))) |> 
+    # set 
+    mutate (meal = (runif(n=n()))) |> 
+    mutate (meal = case_when (meal < .25 ~ NA, 
+                              TRUE ~ "Lunch" ))
+dinnerdata <- fakerestodata |>
+    mutate (popularity = round(runif(n=n(),1,5))) |> 
+    mutate (meal = (runif(n=n()))) |> 
+    mutate (meal = case_when (meal < .15 ~ NA, 
+                              TRUE ~ "Dinner" ))
+tallrestodata <- lunchdata |> 
+    bind_rows(dinnerdata) |> 
+    drop_na(meal)
+```
+
+## is tallrestodata tidy?
+
+I might, for example, want to look at restaurants which are much more popular at one meal than they are at another - perhaps I want to meet someone at a popular restaurant when no one else is there. For this, I would want to create a new variable in the data for popularity at lunch minus dinner (or vice-versa).
+
+One way to do this is to use pivot_wider
+
+(melt and cast, reshape)
+
+Freds_place, and doesn't care what m
+
+Let's have lunch at Hannahs_place!
+
+```{r}
+widerestodata <- tallrestodata |> 
+    pivot_wider(names_from = meal,
+                names_prefix = "popularity_",
+                values_from = 
+                    c(popularity)) |> 
+    mutate (popdiff = popularity_Lunch -
+                popularity_Dinner) |> 
+    arrange(desc(popdiff))
+head(widerestodata)
+```
+
+Exercises
+
+Add one or more new variables to your dataset that might be relevant to choosing a restaurant (such as distance, ambiance, or type of cuisine).
+
+Come up with a decision rule that you might use for choosing a restaurant. This rule might include filters and/or simple algebraic expressions (such as '+' or '-'). Express your decision rule using code, then select your best restaurant.
+
+widerestodata \<- tallrestodata \|\> pivot_wider(names_from = meal, values_from = c(popularity)) head(tallrestodata,5)\
+head(widerestodata,5)
+
+\`\`\`
+
+florida educational data
+
+![](images/FloridaSchools.png)
+
+discuss read_xl, read.xlsx (web page approach, risk of this
+
+discuss :: vs library
+
+life expectancy data

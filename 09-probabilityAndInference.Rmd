@@ -113,3 +113,7 @@ Wainer cites three specific examples of important, yet widely misunderstood, sta
 For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.
 
 Wainer's third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change [@hastie2010].
+
+## notes for next revision
+
+This chapter should include a mnore explicit treatment of Bayes theorem as well as a demonstration of empirically generated probability distributions.

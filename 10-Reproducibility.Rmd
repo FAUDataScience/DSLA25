@@ -69,3 +69,8 @@ The third answer to the reproducibility crisis is the most comprehensive; it inv
 ## further readings
 
 Finally, if you would like to learn more about the reproducibility crisis, there is a recent collection of papers in Nature [here](https://www.nature.com/collections/prbfkwmwvz/).
+
+
+## notes for next revision
+
+This chapter could include more recent scholarship on the reproducibility crisis and links to sites including OSF. It could also introduce an empirical approach to reproducibility (e.g., k-fold sampling).

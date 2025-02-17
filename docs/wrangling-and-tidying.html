@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 wrangling and tidying | Data science for the liberal arts</title>
+  <meta name="description" content="11 wrangling and tidying | Data science for the liberal arts" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 wrangling and tidying | Data science for the liberal arts" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="kevinlanning/DSLA25" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 wrangling and tidying | Data science for the liberal arts" />
+  
+  
+  
+
+<meta name="author" content="Kevin Lanning" />
+
+
+<meta name="date" content="2025-02-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reproducibility-and-the-replication-crisis.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-role-of-the-liberal-arts-in-data-science"><i class="fa fa-check"></i>the role of the liberal arts in data science</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> what is “data science for the liberal arts?”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.1</b> the incompleteness of the data science Venn diagram</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#additional-domains"><i class="fa fa-check"></i><b>1.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#an-additional-dimension"><i class="fa fa-check"></i><b>1.1.2</b> an additional dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>1.2</b> the importance of data science for society</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#training-in-the-liberal-arts---success-in-tech"><i class="fa fa-check"></i><b>1.2.1</b> training in the liberal arts -&gt; success in tech</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>1.2.2</b> the challenge of TMI</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>1.3</b> discussion: what are your objectives in data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> getting started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>2.1</b> are you already a programmer and statistician?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>2.2</b> spreadsheets - some best practices</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-machine-some-basic-tools"><i class="fa fa-check"></i><b>2.3</b> setting up your machine: some basic tools</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>2.5</b> installing R and RStudio desktop</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>3.1</b> some key characteristics of R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.1.1</b> base R and packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.2</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.3</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.4</b> finding help</a></li>
+<li class="chapter" data-level="3.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>3.5</b> Wickham and R for Data Science 2e</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>4.1</b> go to the movies</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>4.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
+<li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.6</b> older approaches</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.6.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
+<li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>6.1</b> projects are directories</a></li>
+<li class="chapter" data-level="6.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>6.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="6.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>6.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="6.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>6.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="6.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>6.5</b> What to do when you are stuck</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>7</b> principles of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>7.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>7.2</b> some early graphs</a></li>
+<li class="chapter" data-level="7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>7.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="7.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>7.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="7.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>7.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="7.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>7.6</b> the politics of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>7.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="7.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>7.6.2</b> poor design can be a tool to deceive</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>7.7</b> the psychology of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>7.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="7.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>7.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="7.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>7.7.3</b> visualizing uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>7.8</b> exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>7.10</b> addendum</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>7.10.1</b> some notes on Healy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>9</b> on probability and statistics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>9.1</b> on probability</a></li>
+<li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#notes-for-next-revision"><i class="fa fa-check"></i><b>9.5</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>10.1</b> answers to the reproducibility crisis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>10.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>10.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
+<li class="chapter" data-level="10.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>10.1.3</b> partial answer 3: Pre-registration of your research</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>10.2</b> further readings</a></li>
+<li class="chapter" data-level="10.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>10.3</b> notes for next revision</a></li>
+</ul></li>
+<li class="part"><span><b>I Part III Towards data proficiency</b></span></li>
+<li class="chapter" data-level="11" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html"><i class="fa fa-check"></i><b>11</b> wrangling and tidying</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>11.1</b> the structure of the tidyverse</a></li>
+<li class="chapter" data-level="11.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#where-should-we-eat"><i class="fa fa-check"></i><b>11.2</b> where should we eat?</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>11.2.1</b> tall and wide formats</a></li>
+<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-2"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>11.3</b> more on tidy coding</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wrangling-and-tidying" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">11</span> wrangling and tidying<a href="wrangling-and-tidying.html#wrangling-and-tidying" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="float">
+<img src="images/horses.png" alt="wild horses are beautiful, wild data … not so much" />
+<div class="figcaption"><em>wild horses are beautiful, wild data … not so much</em></div>
+</div>
+<p>The term ‘wrangling’ has been used to describe the process by which unruly, messy, and complex datasets are organized and restructured so that they can be summarized, interpreted, and understood. <em>Wrangling</em> includes finding errors, which requires looking at your data closely enough to identify problems, and transforming the data as needed to allow data analyses to take place. <em>Tidying</em> is also concerned with data preparation, but is focused on the narrower task of arranging data into simple data frames (tibbles) in which each variable is in its own column, each observation is in its own row, and each cell includes one and only one value.</p>
+<p>In practice, the processes of data wrangling and data tidying are often overlapping. In this chapter, we will explore (a little) wrangling and (some) tidying using simulated data. First, we briefly consider some characteristics of the tidyverse</p>
+<div id="the-structure-of-the-tidyverse" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> the structure of the tidyverse<a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The R programming language was initially intended to serve engineers, and the tidyverse can be seen as a collection of packages which are aimed at a broader audience of statisticians and data scientists, and to help them become more productive <span class="citation">(<a href="#ref-peng2018">R. Peng 2018</a>)</span>. Tidyverse packages have a common syntax that makes it easier to generate and understand code and create reproducible results. Tidyverse packages may be described as having three layers.</p>
+<p><strong>The core of the tidyverse</strong> includes nine packages. You will see the list of these packages when you load the tidyverse:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="wrangling-and-tidying.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Each package includes a number of functions. Many tidyverse packages are described on handy <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a> such as this one for dplyr:</p>
+<p><a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf"><img src="images/dplyrcheatsheet.png" alt="Dplyr Cheatsheet" /></a></p>
+<p><strong>The periphery of the tidyverse</strong> consists of additional packages which are less commonly invoked than those in the tidyverse core. Unlike the core packages, all of these peripheral or auxiliary packages must be loaded into memory by an explicit statement, e.g., <em>library(googlesheets4).</em> You can see the list of all (core and peripheral) packages with the tidyverse_packages command:</p>
+<blockquote>
+<p><em>&gt; # install.packages(“tidyverse”)<br />
+&gt; tidyverse_packages ()</em></p>
+</blockquote>
+<p>For me, the most useful packages in this peripheral or auxiliary layer have been <strong>googledrive</strong>, <strong>googlesheets4</strong>, and <strong>readxl</strong> (for working with Google apps and Excel files). I’ve also used <strong>rvest</strong>, <strong>xml2</strong>, and <strong>jsonlite</strong> (for web scraping and parsing more complex data structures).</p>
+<p>In addition to the core and periphery of the tidyverse, there is a more loosely-defined third layer of what may be considered to be <strong>tidyverse-friendly packages</strong>. These packages, which are not installed with the core and peripheral tidyverse, include a wide range of tools that are handy for using tidy syntax in particular applications, such as <strong>janitor</strong> (for cleaning data), <strong>tidytext</strong> (for text analysis), and <strong>tidygraph</strong> (for network analysis). When you use these, you’ll need to first make sure that they are installed on your machine. (R studio will remind you to do this). Then you can load them into memory.</p>
+<p>At each of these three levels, the tidyverse is constantly evolving. For example, at this writing, one of the peripheral or auxiliary packages (<strong>httr</strong>) has been superseded by a newer package (<strong>httr2</strong>); despite this, httr (and not httr2) remains in the auxiliary layer.</p>
+</div>
+<div id="where-should-we-eat" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> where should we eat?<a href="wrangling-and-tidying.html#where-should-we-eat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tidyverse functions from at least two of the core tidyverse packages, <strong>dplyr</strong> and <strong>tidyr</strong>, help wrangle, clean, and shape our data into a tidy form that can ‘spark joy’ <span class="citation">(<a href="#ref-kondo2016">Kondo 2016</a>)</span>. To learn more about tidy data and how we use dplyr and tidyr in everyday coding, we will construct and explore a simulated dataset, consisting of a 100 restaurants, each of which is described by just a few variables.</p>
+<p>To do this, we’ll first name the restaurants. We begin with the data from the babynames package, then will use <em>filter</em> function (from dplyr) to choose only names since 1981, then we <em>group</em> and <em>summarize</em> the data by name, then <em>arrange</em> (sort) the names by popularity, then <em>slice</em> (take only) the first 100 observations, then finally <em>select</em> only the name column. Each of these functions is part of the dplyr package:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="wrangling-and-tidying.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb22-2"><a href="wrangling-and-tidying.html#cb22-2" tabindex="-1"></a><span class="co"># make restaurant names</span></span>
+<span id="cb22-3"><a href="wrangling-and-tidying.html#cb22-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> babynames <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href="wrangling-and-tidying.html#cb22-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1980</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-5"><a href="wrangling-and-tidying.html#cb22-5" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span> </span>
+<span id="cb22-6"><a href="wrangling-and-tidying.html#cb22-6" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="wrangling-and-tidying.html#cb22-7" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-8"><a href="wrangling-and-tidying.html#cb22-8" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-9"><a href="wrangling-and-tidying.html#cb22-9" tabindex="-1"></a>    <span class="fu">select</span>(name) </span>
+<span id="cb22-10"><a href="wrangling-and-tidying.html#cb22-10" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 1
+##   name       
+##   &lt;chr&gt;      
+## 1 Michael    
+## 2 Christopher
+## 3 Matthew</code></pre>
+<p>In the prior chunk of text we wrangled - or, if you prefer, massaged - the babynames data in a few ways to get us a simple list of 100 popular names. But this is only a start. Let’s change the set of ‘person names’ into ‘restaurant names.’ To do this, we will use <em>mutate</em> (another dplyr function) then combine each name with the phrase <em>’s_place.</em>’ To combine strings, we use the <em>str_c</em> function. This is from the <strong>stringr</strong> package, which is another package in the core of the tidyverse:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="wrangling-and-tidying.html#cb24-1" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="wrangling-and-tidying.html#cb24-2" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">resto_name =</span> <span class="fu">str_c</span>(name,<span class="st">&quot;s_place&quot;</span>)) </span>
+<span id="cb24-3"><a href="wrangling-and-tidying.html#cb24-3" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   name        resto_name        
+##   &lt;chr&gt;       &lt;chr&gt;             
+## 1 Michael     Michaels_place    
+## 2 Christopher Christophers_place
+## 3 Matthew     Matthews_place</code></pre>
+<p>Now, assume that the restaurants has been graded by the Department of Health on an A to F scale. We’ll assign these <em>health</em> ratings randomly, using the following three steps.</p>
+<blockquote>
+<p><em>First, we seed the (pseudo) random number generator; this allows the result to be reproducible. If you don’t do this, you will almost certainly get different ratings each time you run the code.</em></p>
+<p><em>Then, we declare health as a random integer for each restaurant on 1 to 5 scale. We can do this in several ways. Here, I use the sample function to directly generate my 100 integers. (I originally used runif, which generates random numbers, then rounded this score to the nearest integer, but this is more complicated, and leads to fewer observations with extreme values. It’s commented out in my code.).</em></p>
+<p><em>Then, we recode these as letter grades using the case_when function. This function is akin to an ‘if-else’ statement. Note that the case_when syntax is tricky. If we think of the double equals as ‘is equal to’, the tilde as ‘call it’, and the comma as ‘else,’ the first part of the case when statement becomes the following:</em></p>
+<p><em>when health is equal to 1, call it F, else …</em></p>
+</blockquote>
+<p>In addition to health, assume that we have cost data as well. We’ll use essentially the same code to come up with our cost variable. Then we drop our original name variable.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="wrangling-and-tidying.html#cb26-1" tabindex="-1"></a><span class="co"># add health ratings</span></span>
+<span id="cb26-2"><a href="wrangling-and-tidying.html#cb26-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb26-3"><a href="wrangling-and-tidying.html#cb26-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="wrangling-and-tidying.html#cb26-4" tabindex="-1"></a><span class="co">#    mutate(health = round(runif(n=n(),1,5))) |&gt; </span></span>
+<span id="cb26-5"><a href="wrangling-and-tidying.html#cb26-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">health =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span>  </span>
+<span id="cb26-6"><a href="wrangling-and-tidying.html#cb26-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">health =</span> <span class="fu">case_when</span>(health <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;F&#39;</span>,</span>
+<span id="cb26-7"><a href="wrangling-and-tidying.html#cb26-7" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;D&#39;</span>,</span>
+<span id="cb26-8"><a href="wrangling-and-tidying.html#cb26-8" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;C&#39;</span>,</span>
+<span id="cb26-9"><a href="wrangling-and-tidying.html#cb26-9" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&#39;B&#39;</span>,</span>
+<span id="cb26-10"><a href="wrangling-and-tidying.html#cb26-10" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&#39;A&#39;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb26-11"><a href="wrangling-and-tidying.html#cb26-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span></span>
+<span id="cb26-12"><a href="wrangling-and-tidying.html#cb26-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">case_when</span>(cost <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;$&#39;</span>,</span>
+<span id="cb26-13"><a href="wrangling-and-tidying.html#cb26-13" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;$$&#39;</span>,</span>
+<span id="cb26-14"><a href="wrangling-and-tidying.html#cb26-14" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;$$$&#39;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb26-15"><a href="wrangling-and-tidying.html#cb26-15" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>name)</span>
+<span id="cb26-16"><a href="wrangling-and-tidying.html#cb26-16" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   resto_name         health cost 
+##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;
+## 1 Michaels_place     B      $$$  
+## 2 Christophers_place A      $$   
+## 3 Matthews_place     C      $$$</code></pre>
+<p>Each restaurant now has a restaurant name, a health rating, and a classification as cheap ($), moderate ($$), or expensive ($$$). Now we add an additional variable - <em>popularity</em>. This is again randomly generated on a 1 to 5 scale. But restaurants that are popular at lunch may not be popular at breakfast or dinner (they may cater to office workers, for example), and some restaurants may be closed for one or more of these meals - say, 30% at breakfast, 25% at lunch and 15% at dinner. Here, there are four separate steps:</p>
+<blockquote>
+<p><em>Create ‘breakfastdata’ as a copy of the fakerestodata</em></p>
+<p><em>Generate a popularity score as a random variable.</em></p>
+<p><em>Generate a second random variable called ‘meal’, which is initially set to a random integer between 1 and 100.</em></p>
+<p><em>Then, use the case_when syntax to recode this: if mean is below a cutoff (30 for Breakfast), set the value to NA (missing), otherwise call it ‘Breakfast.’</em></p>
+<p><em>Then do the same for ‘lunchdata’ and for ‘dinnerdata.’ We’ll use different cutoffs here as we expect that more restaurants will be open for dinner, and fewer for breakfast.</em></p>
+<p><em>Then bind the lunchdata and the dinnerdata to the breakfastdata.</em></p>
+<p><em>Finally, remove the lines where the meal data is missing.</em></p>
+</blockquote>
+<p>We are calling this dataset ‘tallrestodata’ for reasons that will become apparent.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="wrangling-and-tidying.html#cb28-1" tabindex="-1"></a><span class="co"># note that the same code runs three times </span></span>
+<span id="cb28-2"><a href="wrangling-and-tidying.html#cb28-2" tabindex="-1"></a><span class="co"># we should simplify this by creating a function</span></span>
+<span id="cb28-3"><a href="wrangling-and-tidying.html#cb28-3" tabindex="-1"></a>breakfastdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="wrangling-and-tidying.html#cb28-4" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-5"><a href="wrangling-and-tidying.html#cb28-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-6"><a href="wrangling-and-tidying.html#cb28-6" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb28-7"><a href="wrangling-and-tidying.html#cb28-7" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Breakfast&quot;</span> ))</span>
+<span id="cb28-8"><a href="wrangling-and-tidying.html#cb28-8" tabindex="-1"></a>lunchdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb28-9"><a href="wrangling-and-tidying.html#cb28-9" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-10"><a href="wrangling-and-tidying.html#cb28-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-11"><a href="wrangling-and-tidying.html#cb28-11" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">26</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb28-12"><a href="wrangling-and-tidying.html#cb28-12" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Lunch&quot;</span> ))</span>
+<span id="cb28-13"><a href="wrangling-and-tidying.html#cb28-13" tabindex="-1"></a>dinnerdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb28-14"><a href="wrangling-and-tidying.html#cb28-14" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-15"><a href="wrangling-and-tidying.html#cb28-15" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-16"><a href="wrangling-and-tidying.html#cb28-16" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">16</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb28-17"><a href="wrangling-and-tidying.html#cb28-17" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Dinner&quot;</span> ))</span>
+<span id="cb28-18"><a href="wrangling-and-tidying.html#cb28-18" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> lunchdata <span class="sc">|&gt;</span> </span>
+<span id="cb28-19"><a href="wrangling-and-tidying.html#cb28-19" tabindex="-1"></a>    <span class="fu">bind_rows</span>(dinnerdata, breakfastdata) <span class="sc">|&gt;</span> </span>
+<span id="cb28-20"><a href="wrangling-and-tidying.html#cb28-20" tabindex="-1"></a>    <span class="fu">drop_na</span>(meal)</span>
+<span id="cb28-21"><a href="wrangling-and-tidying.html#cb28-21" tabindex="-1"></a><span class="fu">head</span>(tallrestodata,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   resto_name         health cost  popularity meal 
+##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;
+## 1 Michaels_place     B      $$$            4 Lunch
+## 2 Christophers_place A      $$             5 Lunch
+## 3 Matthews_place     C      $$$            5 Lunch</code></pre>
+<div id="tall-and-wide-formats" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> tall and wide formats<a href="wrangling-and-tidying.html#tall-and-wide-formats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Tallrestodata</em> is tidy - each column is a variable, each row is an observation, and each cell includes a unique value. But it may not be exactly what we need. I might, for example, want to go to a popular restaurant when no one else is there - perhaps to go to breakfast at a restaurant that is popular only at lunch and dinner.</p>
+<p>One approach to this is to create a new variable in the data for the (average popularity at lunch and dinner) minus (popularity at breakfast). High scores on this would give us restaurants that might be really good or interesting, but not crowded, for a breakfast meal. But popularity at breakfast, lunch, and dinner are in different rows of the restodata; so this is a little tricky.</p>
+<p>The easiest way to do this is to use the <em>pivot_wider</em> function from the tidyr package. Again, the syntax is challenging - you may find the <a href="https://rstudio.github.io/cheatsheets/tidyr.pdf">cheatsheet</a> to be useful. This will reshape the data from tall and narrow to a format that is typically wider and shorter.</p>
+<p>From this wider data, we use mutate twice t ultimately create a new variable called <em>secretBreakfastPlace</em>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="wrangling-and-tidying.html#cb30-1" tabindex="-1"></a>widerestodata <span class="ot">&lt;-</span> tallrestodata <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="wrangling-and-tidying.html#cb30-2" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> meal,</span>
+<span id="cb30-3"><a href="wrangling-and-tidying.html#cb30-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
+<span id="cb30-4"><a href="wrangling-and-tidying.html#cb30-4" tabindex="-1"></a>                <span class="at">values_from =</span> </span>
+<span id="cb30-5"><a href="wrangling-and-tidying.html#cb30-5" tabindex="-1"></a>                    <span class="fu">c</span>(popularity)) <span class="sc">|&gt;</span> </span>
+<span id="cb30-6"><a href="wrangling-and-tidying.html#cb30-6" tabindex="-1"></a><span class="co"># we could create the secretBreakfast variable</span></span>
+<span id="cb30-7"><a href="wrangling-and-tidying.html#cb30-7" tabindex="-1"></a><span class="co"># in a single step, but this is probably more clear</span></span>
+<span id="cb30-8"><a href="wrangling-and-tidying.html#cb30-8" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">lunchDinnerPop =</span> (popularity_Lunch <span class="sc">+</span></span>
+<span id="cb30-9"><a href="wrangling-and-tidying.html#cb30-9" tabindex="-1"></a>                popularity_Dinner)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb30-10"><a href="wrangling-and-tidying.html#cb30-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">secretBreakfastPlace =</span> lunchDinnerPop <span class="sc">-</span></span>
+<span id="cb30-11"><a href="wrangling-and-tidying.html#cb30-11" tabindex="-1"></a>                popularity_Breakfast) </span>
+<span id="cb30-12"><a href="wrangling-and-tidying.html#cb30-12" tabindex="-1"></a><span class="fu">head</span>(widerestodata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   resto_name         health cost  popularity_Lunch popularity_Dinner
+##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;            &lt;int&gt;             &lt;int&gt;
+## 1 Michaels_place     B      $$$                  4                 2
+## 2 Christophers_place A      $$                   5                 3
+## 3 Matthews_place     C      $$$                  5                 4
+## 4 Joshuas_place      A      $$                   1                 2
+## 5 Daniels_place      C      $                    4                 3
+## 6 Davids_place       F      $                    1                 4
+## # ℹ 3 more variables: popularity_Breakfast &lt;int&gt;, lunchDinnerPop &lt;dbl&gt;,
+## #   secretBreakfastPlace &lt;dbl&gt;</code></pre>
+<p>Although the <em>widerestodata</em> has what we want, it is not tidy: The ‘popularity’ variable is now in three columns rather than one, and there are many cells with missing values. So we reshape the data back to its tall and tidy form, but which now includes the variable describing the two new mutated variables. Then we sort it by our desired variable, secretBreakfastPlace</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="wrangling-and-tidying.html#cb32-1" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> widerestodata <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="wrangling-and-tidying.html#cb32-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;meal&#39;</span>,</span>
+<span id="cb32-3"><a href="wrangling-and-tidying.html#cb32-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
+<span id="cb32-4"><a href="wrangling-and-tidying.html#cb32-4" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&#39;popularity_Breakfast&#39;</span>,</span>
+<span id="cb32-5"><a href="wrangling-and-tidying.html#cb32-5" tabindex="-1"></a>                          <span class="st">&#39;popularity_Lunch&#39;</span>,</span>
+<span id="cb32-6"><a href="wrangling-and-tidying.html#cb32-6" tabindex="-1"></a>                          <span class="st">&#39;popularity_Dinner&#39;</span>),</span>
+<span id="cb32-7"><a href="wrangling-and-tidying.html#cb32-7" tabindex="-1"></a>                <span class="at">values_to =</span> </span>
+<span id="cb32-8"><a href="wrangling-and-tidying.html#cb32-8" tabindex="-1"></a>                    (<span class="st">&#39;popularity&#39;</span>),</span>
+<span id="cb32-9"><a href="wrangling-and-tidying.html#cb32-9" tabindex="-1"></a>                <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb32-10"><a href="wrangling-and-tidying.html#cb32-10" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(secretBreakfastPlace))</span>
+<span id="cb32-11"><a href="wrangling-and-tidying.html#cb32-11" tabindex="-1"></a><span class="fu">head</span>(tallrestodata)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   resto_name   health cost  lunchDinnerPop secretBreakfastPlace meal  popularity
+##   &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;                &lt;dbl&gt; &lt;chr&gt;      &lt;int&gt;
+## 1 Jamess_place B      $                4.5                  3.5 Brea…          1
+## 2 Jamess_place B      $                4.5                  3.5 Lunch          5
+## 3 Jamess_place B      $                4.5                  3.5 Dinn…          4
+## 4 Matthews_pl… C      $$$              4.5                  2.5 Brea…          2
+## 5 Matthews_pl… C      $$$              4.5                  2.5 Lunch          5
+## 6 Matthews_pl… C      $$$              4.5                  2.5 Dinn…          4</code></pre>
+</div>
+<div id="exercises-2" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> exercises<a href="wrangling-and-tidying.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Study and understand the code</strong>. Ask and see if you can answer questions about each chunk of code. For example, there are 100 observations in each of the breakfast, lunch, and dinner datasets. How many are there in tall and wide restodata sets? Why?</p>
+<p><strong>Expand on the code: Where you would <em>really</em> want to eat</strong>? Look at the data and think about it. Make it more realistic if you can. How would you actually decide? Come up with a decision rule that you might use for choosing a restaurant. This rule might include filters and/or simple algebraic expressions (such as ‘+’ or ‘-’). Express your decision rule using code, then select your best restaurant. You may also want to create new variables such as distance, ambiance, or type of cuisine.</p>
+</div>
+</div>
+<div id="more-on-tidy-coding" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> more on tidy coding<a href="wrangling-and-tidying.html#more-on-tidy-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are many sources for help. The help panel in R Studio is a start, but you may have better look on Google. Here are some suggestions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>work with tidy data.</strong> Make each row an observation, and each column a variable. Complex data sets, such as samples of text, become much more manageable when reduced to simple arrays.</p></li>
+<li><p><strong>think in tidy; talk the talk</strong>. For example, recognize that <strong>%&gt;% or |&gt;</strong> (the pipe) means <em>then</em>. Statements with pipes begin with data, may include queries (extract, combine, arrange), and finish with a command.</p></li>
+<li><p><strong>search for tidyverse solutions.</strong> When you have a problem in your code, for example, “how do I compute the mean for different groups of a variable in R?,” do a Google search for <em>R mean groups tidyverse</em>, not just <em>R mean groups.</em> This will get you in the habit of working with tidy solutions where they can be found.</p></li>
+<li><p><strong>look for new answers</strong>. Because R and the tidyverse are constantly evolving, consider looking at recent pages first. In your Google search bar, click on Tools -&gt; Past year).</p></li>
+<li><p><strong>adhere to good coding style.</strong> Well-written code is reasonably parsimonious, readable, and easily debugged. There are a few style manuals for R, including one from <a href="http://adv-r.had.co.nz/Style.html">Hadley</a>, and this [Rchaeological Commentary] (<a href="https://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf" class="uri">https://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf</a>).</p></li>
+<li><p><strong>write functions.</strong> If you repeat a section of code, rewrite it as a function. (See the example above).</p></li>
+<li><p><strong>annotate your work</strong>. Assume that you will come back to it at a later date, while working on a different project, and use portions of your current code. Your R markdown documents should be a log. When you run in to a significant, challenging problem, don’t delete your mistakes, but ## comment them out - as I have done in a few places above.</p></li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="wrangling-and-tidying.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb34-2"><a href="wrangling-and-tidying.html#cb34-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="wrangling-and-tidying.html#cb34-3" tabindex="-1"></a><span class="co"># when should you comment out an error</span></span>
+<span id="cb34-4"><a href="wrangling-and-tidying.html#cb34-4" tabindex="-1"></a><span class="co"># instead of deleting it? for me, I&#39;ll </span></span>
+<span id="cb34-5"><a href="wrangling-and-tidying.html#cb34-5" tabindex="-1"></a><span class="co"># comment out errors that took me a long time </span></span>
+<span id="cb34-6"><a href="wrangling-and-tidying.html#cb34-6" tabindex="-1"></a><span class="co"># to solve, and/or that I&#39;ll learn from. </span></span>
+<span id="cb34-7"><a href="wrangling-and-tidying.html#cb34-7" tabindex="-1"></a><span class="co"># Probably not here, in other words...</span></span>
+<span id="cb34-8"><a href="wrangling-and-tidying.html#cb34-8" tabindex="-1"></a><span class="co">#  filter(lifeExp) &gt; 70 bad parens</span></span>
+<span id="cb34-9"><a href="wrangling-and-tidying.html#cb34-9" tabindex="-1"></a>    <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code></pre></div>
+<p>Finally, <strong>maintain perspective.</strong> Your need to solve problems (how to analyze x, etc.) should not take a back seat to your desire to write the best code. There is almost always a better way to do things. Strive reasonably to accomplish this, but be prepared to <strong>kludge</strong>.</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-kondo2016" class="csl-entry">
+Kondo, Marie. 2016. <em>Spark <span>Joy</span>: An Illustrated Master Class on the Art of Organizing and Tidying up</em>. Ten Speed Press.
+</div>
+<div id="ref-peng2018" class="csl-entry">
+Peng, Roger. 2018. <span>“Teaching r to New Users - from Tapply to the Tidyverse.”</span>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reproducibility-and-the-replication-crisis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "sepia",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
