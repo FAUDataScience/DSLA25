@@ -1,0 +1,142 @@
+
+```{r data, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# install.packages(c("corrr", "janitor"))
+library(readxl)
+library(janitor)
+library(tidyverse)
+library(corrr)
+```
+
+# finding, exploring, and cleaning data
+
+**Data science, oddly enough, begins not with R... but with *data*.**
+There is no shortage of datasets available to analyze, and each can give
+rise to a host of interesting analyses and insights.
+
+What do you want to study? Let's begin by looking at schools
+
+## florida educational data
+
+Florida, like many states, makes data on school quality publicly
+available. Schools are assessed, in part, on student performance (scores
+on comprehensive tests in fields such as English Language Arts). Schools
+are also assessed on measures such as whether this performance has
+increased across years, the percent of students who graduate in four
+years, and the percentage of students who pass Advanced Placement and
+related exams. You can learn more about these measures at
+<https://www.fldoe.org/core/fileparse.php/18534/urlt/SchoolGradesOverview24.pdf>).
+
+The data itself are available in an Excel spreadsheet. Here's a
+screenshot of the first few columns and rows of the file.
+
+![](images/FloridaSchools.png)
+
+It's apparent that the file looks a little messy. As we saw in a prior
+chapter, we would like the first row of the dataset to include the
+variable (column) names: here, there are three rows of header prior to
+this. Further, many of the variable names include spaces, minus signs,
+and the like.
+
+We will first download the data from the web (at this writing, you can
+find it at <https://www.fldoe.org/file/18534/SchoolGrades24.xlsx>). We
+will store it on our disk in a subdirectory of our project folder called
+'data.'
+
+![*Slash: Windows or Mac?*](images/slash.png)
+
+### A digression: Slash, Windows and the world.
+
+Once we download the data, we need to tell R where to find it. If we are
+working with an *Rproject*, we might keep everything - code, data, and
+output - in the same directory. But we often need or want to store data
+in a separate place, in which case you will need to specify a file path,
+which will include one or more slashes.
+
+In most of the computing world, including Macs, filepaths are delineated
+by forward slashes ("/"). On a Windows machine, filepaths instead
+include backwards slashes ("\\"). To further complicate matters, the
+backwards slash has a special significance as an 'escape' character -
+this means, as we will see in the chapter on text analysis, that it
+tells the system to interpret the following character literally (for
+example, a comma is read as a *comma*) rather than symbolically (where a
+comma might be read as a separator between two objects).
+
+In any operating system, we can locate files using relative paths
+(starting in your project directory) or absolute ones (starting in your
+computer's root directory). Relative paths generally work better, as you
+can use the code on multiple machines. But if you can't find your
+datafile, try the absolute path as a kludge.
+
+### Getting the data from our machine into R
+
+Ones we have specified the datapath, we can use the read_excel command,
+which is in the readxl library, which is part of the peripheral
+tidyverse (so you do not need to first install it on your computer).
+We'll tell R to skip the first three lines of text.
+
+We'll continue the pipe with a simple command from the janitor package -
+which you will need to load on to your machine. That command gets rid of
+spaces in variable names and replaces them with *camelCase* or, the
+default, **snake_case**. (To see why you want to do this try omitting
+this line from your code).
+
+```{r}
+# relative path with backward slashes replaced by forward ones
+datadir <- "data/" # this is a relative path
+# absolute path with backward slashes made literal with escapes
+# datadir <- "C:\\Users\\me\\OneDrive\\GitRepos\\DSLA25\\data\\"
+
+FloridaSchools <- read_excel(
+# here, we could also just do 
+#   "data/SchoolGrades24.xlsx"), 
+    paste0(datadir, "SchoolGrades24.xlsx"),
+    skip = 3) |>
+    clean_names() 
+```
+
+### let's look just at high schools
+
+There are a few ways that we could reduce this to just High Schools -
+one is to include only schools which report a graduation rate that is
+not a missing value. We'll do that to reduce the number of rows in the
+data, and we'll reduce the columns to a handful of measures of interest.
+
+```{r}
+FloridaHighSchools <- FloridaSchools |> 
+    drop_na('graduation_rate_2022_23') |> 
+    select (district_number, district_name, 
+            school_number, school_name,
+            english_language_arts_achievement,
+            mathematics_achievement,
+            science_achievement,
+            social_studies_achievement,
+            graduation_rate_2022_23,
+            grade_2024,
+            percent_of_economically_disadvantaged_students)
+head(FloridaHighSchools)
+
+```
+
+### can we compute district (county) means? 
+
+Here, we reduce the set of high schools to one line per district, with
+scores the simple means of the schools in the district.
+
+```{r}
+FloridaHighSchoolsbyDistict <- FloridaHighSchools |> 
+ #   select(-grade, -school_name) |> 
+    group_by(district_name) |> 
+    summarise_if(is.numeric, mean)
+FloridaHighSchoolsbyDistict |> 
+    select(graduation_rate_2022_23,
+           percent_of_economically_disadvantaged_students) |> 
+    correlate()
+```
+
+Is there a relationship between graduation rate and economic
+disadvantage? Which districts score at the top and bottom of these two
+indices? **On the basis of our previous discussions in the class, what
+would we expect them to have in common?**
+
+### so what should we do now?

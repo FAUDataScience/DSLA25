@@ -84,3 +84,10 @@ where-should-we-eat
 tall-and-wide-formats
 exercises-2
 more-on-tidy-coding
+finding-exploring-and-cleaning-data
+florida-educational-data
+a-digression-slash-windows-and-the-world.
+getting-the-data-from-our-machine-into-r
+lets-look-just-at-high-schools
+can-we-compute-district-county-means
+so-what-should-we-do-now

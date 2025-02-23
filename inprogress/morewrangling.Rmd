@@ -1,0 +1,40 @@
+---
+title: "MoreWrangling"
+output: html_document
+date: "2025-02-23"
+---
+
+# more wrangling
+
+In this chapter, we consider the following topics:
+
+working with missing (NA are contagious; R4DS 2e, chap 12)
+logical operators and subsetting (R4DS 2e, chap 12)
+
+eda
+modular arithmetic (R4DS 2e, chap 13)
+rounding and communication
+transformations and Tukey (log, ranks, standardization)
+mean and median
+
+joining dataframes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
