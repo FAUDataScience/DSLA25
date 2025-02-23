@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 finding, exploring, and cleaning data | Data science for the liberal arts</title>
-  <meta name="description" content="12 finding, exploring, and cleaning data | Data science for the liberal arts" />
+  <title>9 finding, exploring, and cleaning data | Data science for the liberal arts</title>
+  <meta name="description" content="9 finding, exploring, and cleaning data | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 finding, exploring, and cleaning data | Data science for the liberal arts" />
+  <meta property="og:title" content="9 finding, exploring, and cleaning data | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 finding, exploring, and cleaning data | Data science for the liberal arts" />
+  <meta name="twitter:title" content="9 finding, exploring, and cleaning data | Data science for the liberal arts" />
   
   
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="wrangling-and-tidying.html"/>
+<link rel="prev" href="reproducibility-and-the-replication-crisis.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -123,29 +123,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 </head>
 
@@ -166,151 +143,148 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a></li>
-<li class="chapter" data-level="1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> what is “data science for the liberal arts?”</a>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.1</b> the incompleteness of the data science Venn diagram</a>
+<li class="chapter" data-level="0.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>0.1</b> the incompleteness of the data science Venn diagram</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#additional-domains"><i class="fa fa-check"></i><b>1.1.1</b> additional domains</a></li>
-<li class="chapter" data-level="1.1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#an-additional-dimension"><i class="fa fa-check"></i><b>1.1.2</b> an additional dimension</a></li>
+<li class="chapter" data-level="0.1.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#additional-domains"><i class="fa fa-check"></i><b>0.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="0.1.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#an-additional-dimension"><i class="fa fa-check"></i><b>0.1.2</b> an additional dimension</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>1.2</b> the importance of data science for society</a>
+<li class="chapter" data-level="0.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>0.2</b> the importance of data science for society</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#training-in-the-liberal-arts---success-in-tech"><i class="fa fa-check"></i><b>1.2.1</b> training in the liberal arts -&gt; success in tech</a></li>
-<li class="chapter" data-level="1.2.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>1.2.2</b> the challenge of TMI</a></li>
+<li class="chapter" data-level="0.2.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#training-in-the-liberal-arts---success-in-tech"><i class="fa fa-check"></i><b>0.2.1</b> training in the liberal arts -&gt; success in tech</a></li>
+<li class="chapter" data-level="0.2.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>0.2.2</b> the challenge of TMI</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>1.3</b> discussion: what are your objectives in data science?</a></li>
+<li class="chapter" data-level="0.3" data-path="part-i-introduction.html"><a href="part-i-introduction.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>0.3</b> discussion: what are your objectives in data science?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> getting started</a>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> getting started</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>2.1</b> are you already a programmer and statistician?</a></li>
-<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>2.2</b> spreadsheets - some best practices</a></li>
-<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-machine-some-basic-tools"><i class="fa fa-check"></i><b>2.3</b> setting up your machine: some basic tools</a></li>
-<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a (modified) 15-minute rule</a></li>
-<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>2.5</b> installing R and RStudio desktop</a></li>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>1.1</b> are you already a programmer and statistician?</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>1.2</b> spreadsheets - some best practices</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-machine-some-basic-tools"><i class="fa fa-check"></i><b>1.3</b> setting up your machine: some basic tools</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>1.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>1.5</b> installing R and RStudio desktop</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
+<li class="chapter" data-level="2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>2</b> what R stands for …</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>3.1</b> some key characteristics of R</a>
+<li class="chapter" data-level="2.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>2.1</b> some key characteristics of R</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.1.1</b> base R and packages</a></li>
+<li class="chapter" data-level="2.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>2.1.1</b> base R and packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.2</b> cha-cha-cha-changes</a></li>
-<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.3</b> some technical characteristics</a></li>
-<li class="chapter" data-level="3.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.4</b> finding help</a></li>
-<li class="chapter" data-level="3.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>3.5</b> Wickham and R for Data Science 2e</a></li>
+<li class="chapter" data-level="2.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>2.2</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="2.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>2.3</b> some technical characteristics</a></li>
+<li class="chapter" data-level="2.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>2.4</b> finding help</a></li>
+<li class="chapter" data-level="2.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>2.5</b> Wickham and R for Data Science 2e</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
+<li class="chapter" data-level="3" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>3</b> exploring R world</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>4.1</b> go to the movies</a></li>
-<li class="chapter" data-level="4.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>4.2</b> go into the clouds</a></li>
-<li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
-<li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
-<li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
-<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.6</b> older approaches</a>
+<li class="chapter" data-level="3.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>3.1</b> go to the movies</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>3.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>3.3</b> open the box</a></li>
+<li class="chapter" data-level="3.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>3.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>3.5</b> learn to knit</a></li>
+<li class="chapter" data-level="3.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>3.6</b> older approaches</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.6.1</b> <strong>using Swirl</strong></a></li>
-<li class="chapter" data-level="4.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+<li class="chapter" data-level="3.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>3.6.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>3.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
-<li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
+<li class="chapter" data-level="3.7" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>3.7</b> time for hands-on experience</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
-<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
-<li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
+<li class="chapter" data-level="3.7.1" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>3.7.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="3.7.2" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>3.7.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="3.7.3" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>3.7.3</b> or the (ggplot2)movies package</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
+<li class="chapter" data-level="3.8" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#assignment"><i class="fa fa-check"></i><b>3.8</b> assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
+<li class="chapter" data-level="4" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>4</b> literate programming</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>6.1</b> projects are directories</a></li>
-<li class="chapter" data-level="6.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>6.2</b> scripts are files of code</a></li>
-<li class="chapter" data-level="6.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>6.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
-<li class="chapter" data-level="6.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>6.4</b> some elements of coding style</a></li>
-<li class="chapter" data-level="6.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>6.5</b> What to do when you are stuck</a></li>
+<li class="chapter" data-level="4.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>4.1</b> projects are directories</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>4.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>4.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>4.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="4.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>4.5</b> What to do when you are stuck</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>7</b> principles of data visualization</a>
+<li class="chapter" data-level="5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>5</b> principles of data visualization</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>7.1</b> some opening thoughts</a></li>
-<li class="chapter" data-level="7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>7.2</b> some early graphs</a></li>
-<li class="chapter" data-level="7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>7.3</b> Tukey and EDA</a></li>
-<li class="chapter" data-level="7.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>7.4</b> approaches to graphs</a></li>
-<li class="chapter" data-level="7.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>7.5</b> Tufte: first principles</a></li>
-<li class="chapter" data-level="7.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>7.6</b> the politics of data visualization</a>
+<li class="chapter" data-level="5.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>5.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="5.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>5.2</b> some early graphs</a></li>
+<li class="chapter" data-level="5.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>5.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="5.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>5.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="5.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>5.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="5.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>5.6</b> the politics of data visualization</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>7.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
-<li class="chapter" data-level="7.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>7.6.2</b> poor design can be a tool to deceive</a></li>
+<li class="chapter" data-level="5.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>5.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="5.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>5.6.2</b> poor design can be a tool to deceive</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>7.7</b> the psychology of data visualization</a>
+<li class="chapter" data-level="5.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>5.7</b> the psychology of data visualization</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>7.7.1</b> the power of animation</a></li>
-<li class="chapter" data-level="7.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>7.7.2</b> telling the truth when the truth is unclear</a></li>
-<li class="chapter" data-level="7.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>7.7.3</b> visualizing uncertainty</a></li>
+<li class="chapter" data-level="5.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>5.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="5.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>5.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="5.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>5.7.3</b> visualizing uncertainty</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>7.8</b> exercises</a>
+<li class="chapter" data-level="5.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>5.8</b> exercises</a>
 <ul>
 <li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
 <li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
 <li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
-<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>7.10</b> addendum</a>
+<li class="chapter" data-level="5.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>5.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="5.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>5.10</b> addendum</a>
 <ul>
-<li class="chapter" data-level="7.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>7.10.1</b> some notes on Healy</a></li>
+<li class="chapter" data-level="5.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>5.10.1</b> some notes on Healy</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
+<li class="chapter" data-level="6" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>6</b> visualization in R with ggplot</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
-<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Wickham’s opening chapter</a></li>
-<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
+<li class="chapter" data-level="6.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>6.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="6.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>6.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="6.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>6.3</b> explore</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>9</b> on probability and statistics</a>
+<li class="chapter" data-level="7" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>7</b> on probability and statistics</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>9.1</b> on probability</a></li>
-<li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
+<li class="chapter" data-level="7.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>7.1</b> on probability</a></li>
+<li class="chapter" data-level="7.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>7.2</b> the rules of probability</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.2.2</b> exercises</a></li>
+<li class="chapter" data-level="7.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>7.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="7.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>7.2.2</b> exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
-<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#notes-for-next-revision"><i class="fa fa-check"></i><b>9.5</b> notes for next revision</a></li>
+<li class="chapter" data-level="7.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>7.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="7.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>7.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="7.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#notes-for-next-revision"><i class="fa fa-check"></i><b>7.5</b> notes for next revision</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
+<li class="chapter" data-level="8" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>8</b> reproducibility and the replication crisis</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>10.1</b> answers to the reproducibility crisis</a>
+<li class="chapter" data-level="8.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>8.1</b> answers to the reproducibility crisis</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>10.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
-<li class="chapter" data-level="10.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>10.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
-<li class="chapter" data-level="10.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>10.1.3</b> partial answer 3: Pre-registration of your research</a></li>
+<li class="chapter" data-level="8.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>8.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>8.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
+<li class="chapter" data-level="8.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>8.1.3</b> partial answer 3: Pre-registration of your research</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>10.2</b> further readings</a></li>
-<li class="chapter" data-level="10.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>10.3</b> notes for next revision</a></li>
+<li class="chapter" data-level="8.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>8.2</b> further readings</a></li>
+<li class="chapter" data-level="8.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>8.3</b> notes for next revision</a></li>
 </ul></li>
-<li class="part"><span><b>I Part III Towards data proficiency</b></span></li>
-<li class="chapter" data-level="11" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html"><i class="fa fa-check"></i><b>11</b> wrangling and tidying</a>
+<li class="chapter" data-level="" data-path=""><a href="#part-part-iii-towards-data-proficiency"><i class="fa fa-check"></i>(PART) Part III Towards data proficiency</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>11.1</b> the structure of the tidyverse</a></li>
-<li class="chapter" data-level="11.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#where-should-we-eat"><i class="fa fa-check"></i><b>11.2</b> where should we eat?</a>
+<li class="chapter" data-level="8.4" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>8.4</b> the structure of the tidyverse</a></li>
+<li class="chapter" data-level="8.5" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#where-should-we-eat"><i class="fa fa-check"></i><b>8.5</b> where should we eat?</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>11.2.1</b> tall and wide formats</a></li>
-<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-2"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
+<li class="chapter" data-level="8.5.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>8.5.1</b> tall and wide formats</a></li>
+<li class="chapter" data-level="8.5.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#exercises-2"><i class="fa fa-check"></i><b>8.5.2</b> exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>11.3</b> more on tidy coding</a></li>
+<li class="chapter" data-level="8.6" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>8.6</b> more on tidy coding</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html"><i class="fa fa-check"></i><b>12</b> finding, exploring, and cleaning data</a>
+<li class="chapter" data-level="9" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html"><i class="fa fa-check"></i><b>9</b> finding, exploring, and cleaning data</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#florida-educational-data"><i class="fa fa-check"></i><b>12.1</b> florida educational data</a>
+<li class="chapter" data-level="9.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#florida-educational-data"><i class="fa fa-check"></i><b>9.1</b> florida educational data</a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>12.1.1</b> A digression: Slash, Windows and the world.</a></li>
-<li class="chapter" data-level="12.1.2" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>12.1.2</b> Getting the data from our machine into R</a></li>
-<li class="chapter" data-level="12.1.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#lets-look-just-at-high-schools"><i class="fa fa-check"></i><b>12.1.3</b> let’s look just at high schools</a></li>
-<li class="chapter" data-level="12.1.4" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means"><i class="fa fa-check"></i><b>12.1.4</b> can we compute district (county) means?</a></li>
-<li class="chapter" data-level="12.1.5" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#so-what-should-we-do-now"><i class="fa fa-check"></i><b>12.1.5</b> so what should we do now?</a></li>
+<li class="chapter" data-level="9.1.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>9.1.1</b> A digression: Slash, Windows and the world.</a></li>
+<li class="chapter" data-level="9.1.2" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>9.1.2</b> Getting the data from our machine into R</a></li>
+<li class="chapter" data-level="9.1.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#lets-look-just-at-high-schools"><i class="fa fa-check"></i><b>9.1.3</b> let’s look just at high schools</a></li>
+<li class="chapter" data-level="9.1.4" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means"><i class="fa fa-check"></i><b>9.1.4</b> can we compute district (county) means?</a></li>
+<li class="chapter" data-level="9.1.5" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#so-what-should-we-do-now"><i class="fa fa-check"></i><b>9.1.5</b> so what should we do now?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -331,14 +305,14 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="finding-exploring-and-cleaning-data" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">12</span> finding, exploring, and cleaning data<a href="finding-exploring-and-cleaning-data.html#finding-exploring-and-cleaning-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="finding-exploring-and-cleaning-data" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> finding, exploring, and cleaning data<a href="finding-exploring-and-cleaning-data.html#finding-exploring-and-cleaning-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><strong>Data science, oddly enough, begins not with R… but with <em>data</em>.</strong>
 There is no shortage of datasets available to analyze, and each can give
 rise to a host of interesting analyses and insights.</p>
 <p>What do you want to study? Let’s begin by looking at schools</p>
-<div id="florida-educational-data" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> florida educational data<a href="finding-exploring-and-cleaning-data.html#florida-educational-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="florida-educational-data" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> florida educational data<a href="finding-exploring-and-cleaning-data.html#florida-educational-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Florida, like many states, makes data on school quality publicly
 available. Schools are assessed, in part, on student performance (scores
 on comprehensive tests in fields such as English Language Arts). Schools
@@ -363,15 +337,15 @@ will store it on our disk in a subdirectory of our project folder called
 <img src="images/slash.png" alt="Slash: Windows or Mac?" />
 <div class="figcaption"><em>Slash: Windows or Mac?</em></div>
 </div>
-<div id="a-digression-slash-windows-and-the-world." class="section level3 hasAnchor" number="12.1.1">
-<h3><span class="header-section-number">12.1.1</span> A digression: Slash, Windows and the world.<a href="finding-exploring-and-cleaning-data.html#a-digression-slash-windows-and-the-world." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-digression-slash-windows-and-the-world." class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> A digression: Slash, Windows and the world.<a href="finding-exploring-and-cleaning-data.html#a-digression-slash-windows-and-the-world." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once we download the data, we need to tell R where to find it. If we are
 working with an <em>Rproject</em>, we might keep everything - code, data, and
 output - in the same directory. But we often need or want to store data
 in a separate place, in which case you will need to specify a file path,
-which will include one or more slashes.</p>
+which will include one or more slashes (and not the Guns N’ Roses guitarist kind).</p>
 <p>In most of the computing world, including Macs, filepaths are delineated
-by forward slashes (“/”). On a Windows machine, filepaths instead
+by forward slashes (“/”). On a Windows machine, they instead
 include backwards slashes (“\”). To further complicate matters, the
 backwards slash has a special significance as an ‘escape’ character -
 this means, as we will see in the chapter on text analysis, that it
@@ -384,8 +358,8 @@ computer’s root directory). Relative paths generally work better, as you
 can use the code on multiple machines. But if you can’t find your
 datafile, try the absolute path as a kludge.</p>
 </div>
-<div id="getting-the-data-from-our-machine-into-r" class="section level3 hasAnchor" number="12.1.2">
-<h3><span class="header-section-number">12.1.2</span> Getting the data from our machine into R<a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="getting-the-data-from-our-machine-into-r" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Getting the data from our machine into R<a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ones we have specified the datapath, we can use the read_excel command,
 which is in the readxl library, which is part of the peripheral
 tidyverse (so you do not need to first install it on your computer).
@@ -395,36 +369,36 @@ which you will need to load on to your machine. That command gets rid of
 spaces in variable names and replaces them with <em>camelCase</em> or, the
 default, <strong>snake_case</strong>. (To see why you want to do this try omitting
 this line from your code).</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="finding-exploring-and-cleaning-data.html#cb35-1" tabindex="-1"></a><span class="co"># relative path with backward slashes replaced by forward ones</span></span>
-<span id="cb35-2"><a href="finding-exploring-and-cleaning-data.html#cb35-2" tabindex="-1"></a>datadir <span class="ot">&lt;-</span> <span class="st">&quot;data/&quot;</span> <span class="co"># this is a relative path</span></span>
-<span id="cb35-3"><a href="finding-exploring-and-cleaning-data.html#cb35-3" tabindex="-1"></a><span class="co"># absolute path with backward slashes made literal with escapes</span></span>
-<span id="cb35-4"><a href="finding-exploring-and-cleaning-data.html#cb35-4" tabindex="-1"></a><span class="co"># datadir &lt;- &quot;C:\\Users\\me\\OneDrive\\GitRepos\\DSLA25\\data\\&quot;</span></span>
-<span id="cb35-5"><a href="finding-exploring-and-cleaning-data.html#cb35-5" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="finding-exploring-and-cleaning-data.html#cb35-6" tabindex="-1"></a>FloridaSchools <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb35-7"><a href="finding-exploring-and-cleaning-data.html#cb35-7" tabindex="-1"></a><span class="co"># here, we could also just do </span></span>
-<span id="cb35-8"><a href="finding-exploring-and-cleaning-data.html#cb35-8" tabindex="-1"></a><span class="co">#   &quot;data/SchoolGrades24.xlsx&quot;), </span></span>
-<span id="cb35-9"><a href="finding-exploring-and-cleaning-data.html#cb35-9" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;SchoolGrades24.xlsx&quot;</span>),</span>
-<span id="cb35-10"><a href="finding-exploring-and-cleaning-data.html#cb35-10" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb35-11"><a href="finding-exploring-and-cleaning-data.html#cb35-11" tabindex="-1"></a>    <span class="fu">clean_names</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="finding-exploring-and-cleaning-data.html#cb1-1" tabindex="-1"></a><span class="co"># relative path with backward slashes replaced by forward ones</span></span>
+<span id="cb1-2"><a href="finding-exploring-and-cleaning-data.html#cb1-2" tabindex="-1"></a>datadir <span class="ot">&lt;-</span> <span class="st">&quot;data/&quot;</span> <span class="co"># this is a relative path</span></span>
+<span id="cb1-3"><a href="finding-exploring-and-cleaning-data.html#cb1-3" tabindex="-1"></a><span class="co"># absolute path with backward slashes made literal with escapes</span></span>
+<span id="cb1-4"><a href="finding-exploring-and-cleaning-data.html#cb1-4" tabindex="-1"></a><span class="co"># datadir &lt;- &quot;C:\\Users\\me\\OneDrive\\GitRepos\\DSLA25\\data\\&quot;</span></span>
+<span id="cb1-5"><a href="finding-exploring-and-cleaning-data.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="finding-exploring-and-cleaning-data.html#cb1-6" tabindex="-1"></a>FloridaSchools <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb1-7"><a href="finding-exploring-and-cleaning-data.html#cb1-7" tabindex="-1"></a><span class="co"># here, we could also just do </span></span>
+<span id="cb1-8"><a href="finding-exploring-and-cleaning-data.html#cb1-8" tabindex="-1"></a><span class="co">#   &quot;data/SchoolGrades24.xlsx&quot;), </span></span>
+<span id="cb1-9"><a href="finding-exploring-and-cleaning-data.html#cb1-9" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;SchoolGrades24.xlsx&quot;</span>),</span>
+<span id="cb1-10"><a href="finding-exploring-and-cleaning-data.html#cb1-10" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="finding-exploring-and-cleaning-data.html#cb1-11" tabindex="-1"></a>    <span class="fu">clean_names</span>() </span></code></pre></div>
 </div>
-<div id="lets-look-just-at-high-schools" class="section level3 hasAnchor" number="12.1.3">
-<h3><span class="header-section-number">12.1.3</span> let’s look just at high schools<a href="finding-exploring-and-cleaning-data.html#lets-look-just-at-high-schools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="lets-look-just-at-high-schools" class="section level3 hasAnchor" number="9.1.3">
+<h3><span class="header-section-number">9.1.3</span> let’s look just at high schools<a href="finding-exploring-and-cleaning-data.html#lets-look-just-at-high-schools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are a few ways that we could reduce this to just High Schools -
 one is to include only schools which report a graduation rate that is
 not a missing value. We’ll do that to reduce the number of rows in the
 data, and we’ll reduce the columns to a handful of measures of interest.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="finding-exploring-and-cleaning-data.html#cb36-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaSchools <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="finding-exploring-and-cleaning-data.html#cb36-2" tabindex="-1"></a>    <span class="fu">drop_na</span>(<span class="st">&#39;graduation_rate_2022_23&#39;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb36-3"><a href="finding-exploring-and-cleaning-data.html#cb36-3" tabindex="-1"></a>    <span class="fu">select</span> (district_number, district_name, </span>
-<span id="cb36-4"><a href="finding-exploring-and-cleaning-data.html#cb36-4" tabindex="-1"></a>            school_number, school_name,</span>
-<span id="cb36-5"><a href="finding-exploring-and-cleaning-data.html#cb36-5" tabindex="-1"></a>            english_language_arts_achievement,</span>
-<span id="cb36-6"><a href="finding-exploring-and-cleaning-data.html#cb36-6" tabindex="-1"></a>            mathematics_achievement,</span>
-<span id="cb36-7"><a href="finding-exploring-and-cleaning-data.html#cb36-7" tabindex="-1"></a>            science_achievement,</span>
-<span id="cb36-8"><a href="finding-exploring-and-cleaning-data.html#cb36-8" tabindex="-1"></a>            social_studies_achievement,</span>
-<span id="cb36-9"><a href="finding-exploring-and-cleaning-data.html#cb36-9" tabindex="-1"></a>            graduation_rate_2022_23,</span>
-<span id="cb36-10"><a href="finding-exploring-and-cleaning-data.html#cb36-10" tabindex="-1"></a>            grade_2024,</span>
-<span id="cb36-11"><a href="finding-exploring-and-cleaning-data.html#cb36-11" tabindex="-1"></a>            percent_of_economically_disadvantaged_students)</span>
-<span id="cb36-12"><a href="finding-exploring-and-cleaning-data.html#cb36-12" tabindex="-1"></a><span class="fu">head</span>(FloridaHighSchools)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="finding-exploring-and-cleaning-data.html#cb2-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaSchools <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="finding-exploring-and-cleaning-data.html#cb2-2" tabindex="-1"></a>    <span class="fu">drop_na</span>(<span class="st">&#39;graduation_rate_2022_23&#39;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="finding-exploring-and-cleaning-data.html#cb2-3" tabindex="-1"></a>    <span class="fu">select</span> (district_number, district_name, </span>
+<span id="cb2-4"><a href="finding-exploring-and-cleaning-data.html#cb2-4" tabindex="-1"></a>            school_number, school_name,</span>
+<span id="cb2-5"><a href="finding-exploring-and-cleaning-data.html#cb2-5" tabindex="-1"></a>            english_language_arts_achievement,</span>
+<span id="cb2-6"><a href="finding-exploring-and-cleaning-data.html#cb2-6" tabindex="-1"></a>            mathematics_achievement,</span>
+<span id="cb2-7"><a href="finding-exploring-and-cleaning-data.html#cb2-7" tabindex="-1"></a>            science_achievement,</span>
+<span id="cb2-8"><a href="finding-exploring-and-cleaning-data.html#cb2-8" tabindex="-1"></a>            social_studies_achievement,</span>
+<span id="cb2-9"><a href="finding-exploring-and-cleaning-data.html#cb2-9" tabindex="-1"></a>            graduation_rate_2022_23,</span>
+<span id="cb2-10"><a href="finding-exploring-and-cleaning-data.html#cb2-10" tabindex="-1"></a>            grade_2024,</span>
+<span id="cb2-11"><a href="finding-exploring-and-cleaning-data.html#cb2-11" tabindex="-1"></a>            percent_of_economically_disadvantaged_students)</span>
+<span id="cb2-12"><a href="finding-exploring-and-cleaning-data.html#cb2-12" tabindex="-1"></a><span class="fu">head</span>(FloridaHighSchools)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   district_number district_name school_number school_name english_language_art…¹
 ##   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;                        &lt;dbl&gt;
@@ -439,18 +413,18 @@ data, and we’ll reduce the columns to a handful of measures of interest.</p>
 ## #   social_studies_achievement &lt;dbl&gt;, graduation_rate_2022_23 &lt;dbl&gt;,
 ## #   grade_2024 &lt;chr&gt;, percent_of_economically_disadvantaged_students &lt;dbl&gt;</code></pre>
 </div>
-<div id="can-we-compute-district-county-means" class="section level3 hasAnchor" number="12.1.4">
-<h3><span class="header-section-number">12.1.4</span> can we compute district (county) means?<a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="can-we-compute-district-county-means" class="section level3 hasAnchor" number="9.1.4">
+<h3><span class="header-section-number">9.1.4</span> can we compute district (county) means?<a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here, we reduce the set of high schools to one line per district, with
 scores the simple means of the schools in the district.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="finding-exploring-and-cleaning-data.html#cb38-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href="finding-exploring-and-cleaning-data.html#cb38-2" tabindex="-1"></a> <span class="co">#   select(-grade, -school_name) |&gt; </span></span>
-<span id="cb38-3"><a href="finding-exploring-and-cleaning-data.html#cb38-3" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
-<span id="cb38-4"><a href="finding-exploring-and-cleaning-data.html#cb38-4" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, mean)</span>
-<span id="cb38-5"><a href="finding-exploring-and-cleaning-data.html#cb38-5" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="sc">|&gt;</span> </span>
-<span id="cb38-6"><a href="finding-exploring-and-cleaning-data.html#cb38-6" tabindex="-1"></a>    <span class="fu">select</span>(graduation_rate_2022_23,</span>
-<span id="cb38-7"><a href="finding-exploring-and-cleaning-data.html#cb38-7" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span> </span>
-<span id="cb38-8"><a href="finding-exploring-and-cleaning-data.html#cb38-8" tabindex="-1"></a>    <span class="fu">correlate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="finding-exploring-and-cleaning-data.html#cb4-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="finding-exploring-and-cleaning-data.html#cb4-2" tabindex="-1"></a> <span class="co">#   select(-grade, -school_name) |&gt; </span></span>
+<span id="cb4-3"><a href="finding-exploring-and-cleaning-data.html#cb4-3" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
+<span id="cb4-4"><a href="finding-exploring-and-cleaning-data.html#cb4-4" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, mean)</span>
+<span id="cb4-5"><a href="finding-exploring-and-cleaning-data.html#cb4-5" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="finding-exploring-and-cleaning-data.html#cb4-6" tabindex="-1"></a>    <span class="fu">select</span>(graduation_rate_2022_23,</span>
+<span id="cb4-7"><a href="finding-exploring-and-cleaning-data.html#cb4-7" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span> </span>
+<span id="cb4-8"><a href="finding-exploring-and-cleaning-data.html#cb4-8" tabindex="-1"></a>    <span class="fu">correlate</span>()</span></code></pre></div>
 <pre><code>## Correlation computed with
 ## • Method: &#39;pearson&#39;
 ## • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
@@ -466,8 +440,8 @@ disadvantage? Which districts score at the top and bottom of these two
 indices? <strong>On the basis of our previous discussions in the class, what
 would we expect them to have in common?</strong></p>
 </div>
-<div id="so-what-should-we-do-now" class="section level3 hasAnchor" number="12.1.5">
-<h3><span class="header-section-number">12.1.5</span> so what should we do now?<a href="finding-exploring-and-cleaning-data.html#so-what-should-we-do-now" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="so-what-should-we-do-now" class="section level3 hasAnchor" number="9.1.5">
+<h3><span class="header-section-number">9.1.5</span> so what should we do now?<a href="finding-exploring-and-cleaning-data.html#so-what-should-we-do-now" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 </div>
 </div>
@@ -477,7 +451,7 @@ would we expect them to have in common?</strong></p>
           </div>
         </div>
       </div>
-<a href="wrangling-and-tidying.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reproducibility-and-the-replication-crisis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -51,10 +51,10 @@ Once we download the data, we need to tell R where to find it. If we are
 working with an *Rproject*, we might keep everything - code, data, and
 output - in the same directory. But we often need or want to store data
 in a separate place, in which case you will need to specify a file path,
-which will include one or more slashes.
+which will include one or more slashes (and not the Guns N' Roses guitarist kind).
 
 In most of the computing world, including Macs, filepaths are delineated
-by forward slashes ("/"). On a Windows machine, filepaths instead
+by forward slashes ("/"). On a Windows machine, they instead
 include backwards slashes ("\\"). To further complicate matters, the
 backwards slash has a special significance as an 'escape' character -
 this means, as we will see in the chapter on text analysis, that it
