@@ -91,3 +91,6 @@ getting-the-data-from-our-machine-into-r
 lets-look-just-at-high-schools
 can-we-compute-district-county-means
 so-what-should-we-do-now
+r-markdown
+including-plots
+so-what-should-we-do-now-1

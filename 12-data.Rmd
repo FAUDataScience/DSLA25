@@ -61,7 +61,21 @@ There are a few ways that we could reduce this to just High Schools - one is to 
 
 ```{r}
 FloridaHighSchools <- FloridaSchools |> 
-    drop_na('graduation_rate_2022_23') |> 
+    filter(str_detect(school_name,
+                      "HIGH SCHOOL")) |>   
+    mutate(school_name = 
+               str_replace(school_name,
+                           "JUNIOR/SENIOR HIGH SCHOOL","")) |>
+    mutate(school_name = 
+               str_replace(school_name,
+                           "MIDDLE/HIGH SCHOOL","")) |>
+    mutate(school_name = 
+               str_replace(school_name,
+                           "SENIOR HIGH SCHOOL","")) |> 
+    mutate(school_name = 
+               str_replace(school_name,
+                           "HIGH SCHOOL","")) |>
+    #    drop_na('graduation_rate_2022_23') |> 
     select (district_number, district_name, 
             school_number, school_name,
             english_language_arts_achievement,
@@ -80,6 +94,8 @@ head(FloridaHighSchools)
 Here, we reduce the set of high schools to one line per district, with scores the simple means of the schools in the district.
 
 ```{r}
+
+
 FloridaHighSchoolsbyDistict <- FloridaHighSchools |> 
  #   select(-grade, -school_name) |> 
     group_by(district_name) |> 
@@ -93,3 +109,76 @@ FloridaHighSchoolsbyDistict |>
 Is there a relationship between graduation rate and economic disadvantage? Which districts score at the top and bottom of these two indices? **On the basis of our previous discussions in the class, what would we expect them to have in common?**
 
 ### so what should we do now?
+
+There are measures of school size in Football league data (https://fhsaa.com/news/2023/12/21/football-classifications-available-for-2024-25-2025-26.aspx). 
+
+The names for schools there are formatted differently, however. We will use these classes to estimate enrollments and try to merge these with the data we have on school ratings.
+
+```{r}
+EnrollmentsFromFHSAA <- read_excel(
+    paste0(datadir, "Football_2024_26.xlsx"),
+        skip = 1) |>
+    clean_names() |> 
+    mutate(school_place = 
+               str_split(school_name,'\\(',
+                         simplify = T)[,2]) |> 
+    mutate(school_place = 
+               str_replace(school_place, "\\)", "")) |> 
+    mutate(school_name = 
+               str_split(school_name,'\\(',
+                         simplify = T)[,1]) |> 
+mutate (est_Enrollment =
+            case_when(
+                class == "1R" ~ mean(111,558),
+                class == "1A" ~ mean(61,643),
+                class == "2A" ~ mean(644,1166),
+                class == "3A" ~ mean(1167,1542),
+                class == "4A" ~ mean(1543,1822),
+                class == "5A" ~ mean(1823,2135),
+                class == "6A" ~ mean(2136,2512),
+                class == "7A" ~ mean(2512,4627))) |> 
+        mutate(school_name = toupper(school_name))
+```    
+
+The enrollment data are now in the EnrollmentsFromFHSAA dataset. We would like to merge these with the FloridaHighSchools data, using the school_name variable as the key.
+
+```{r}
+FloridaHighSchools2 <- FloridaHighSchools |>
+    left_join(EnrollmentsFromFHSAA, by = "school_name")
+```
+
+But when we do this, we get an error message. In each of the two datasets, there are duplicate names. We can see this by looking at the output of the following commands:
+
+```{r}
+(SchoolsWithSameNamesInFHS <- FloridaHighSchools |> 
+    group_by(school_name) |>
+    filter(n() > 1) |> 
+    select (school_name, district_name) |> 
+    arrange(school_name))
+
+(SchoolsWithSameNamesInEnrollments <- EnrollmentsFromFHSAA |> 
+    group_by(school_name) |>
+    filter(n() > 1) |> 
+    select (school_name, school_place))
+```
+There are 12 schools (6 pairs) in our FloridaHighSchools data, and 26 schools (13 pairs) in the EnrollmentsFromFHSAA data. We will set these aside and merge the remaining data.
+
+
+that have the same name. We can see this by looking at the output of the following command:
+
+```{r}
+(SchoolsWithUniqueNamesInFHS <- FloridaHighSchools |> 
+    group_by(school_name) |>
+    filter(n() == 1))
+
+(SchoolsWithUniqueNamesInEnrollments <- EnrollmentsFromFHSAA |> 
+    group_by(school_name) |>
+    filter(n() == 1))
+
+FloridaHighSchools2 <- SchoolsWithUniqueNamesInFHS |>
+    left_join(SchoolsWithUniqueNamesInEnrollments, 
+              by = "school_name")
+```
+
+### so what should we do now?
+
