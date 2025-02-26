@@ -1,4 +1,4 @@
-```{r data, include=FALSE, message = FALSE}
+```{r data, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # install.packages(c("corrr", "janitor"))
 library(readxl)
@@ -92,9 +92,9 @@ FloridaHighSchoolsbyDistict <- FloridaHighSchools |>
 
 ### can we estimate the relationship between economic disadvantage and graduation rates?
 
-The answer is yes, but with a caveat. What is it? 
+The answer is yes, but with a caveat. What is it?
 
-**Hint:  Which districts score at the top and bottom of these two indices? On the basis of our previous discussions in the class, what would we expect them to have in common?**
+**Hint: Which districts score at the top and bottom of these two indices? On the basis of our previous discussions in the class, what would we expect them to have in common?**
 
 ```{r}
 FloridaHighSchoolsbyDistict |> 
@@ -218,4 +218,13 @@ GradCountsRates <- FloridaHighSchools2 |>
 ```
 
 What's next?
-
+```{r}
+rdata <- FloridaHighSchools2 |> 
+    select(district_name, graduation_rate_2022_23,
+           percent_of_economically_disadvantaged_students) |>
+    left_join(GradCountsRates, by = "district_name") |>
+    select(graduation_rate_2022_23,
+           adjGradRate,
+           percent_of_economically_disadvantaged_students) |> 
+    correlate()
+```

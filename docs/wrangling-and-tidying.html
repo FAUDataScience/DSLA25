@@ -540,6 +540,12 @@ div.csl-indent {
 <span id="cb34-9"><a href="wrangling-and-tidying.html#cb34-9" tabindex="-1"></a>    <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code></pre></div>
 <p>Finally, <strong>maintain perspective.</strong> Your need to solve problems (how to analyze x, etc.) should not take a back seat to your desire to write the best code. There is almost always a better way to do things. Strive reasonably to accomplish this, but be prepared to <strong>kludge</strong>.</p>
 
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="wrangling-and-tidying.html#cb35-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-2"><a href="wrangling-and-tidying.html#cb35-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;corrr&quot;, &quot;janitor&quot;))</span></span>
+<span id="cb35-3"><a href="wrangling-and-tidying.html#cb35-3" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb35-4"><a href="wrangling-and-tidying.html#cb35-4" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb35-5"><a href="wrangling-and-tidying.html#cb35-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-6"><a href="wrangling-and-tidying.html#cb35-6" tabindex="-1"></a><span class="fu">library</span>(corrr)</span></code></pre></div>
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>

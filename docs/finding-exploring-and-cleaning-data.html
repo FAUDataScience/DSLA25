@@ -363,36 +363,36 @@ div.csl-indent {
 <h3><span class="header-section-number">12.1.2</span> Getting the data from our machine into R<a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ones we have specified the datapath, we can use the read_excel command, which is in the readxl library, which is part of the peripheral tidyverse (so you do not need to first install it on your computer). We’ll tell R to skip the first three lines of text.</p>
 <p>We’ll continue the pipe with a simple command from the janitor package - which you will need to load on to your machine. That command gets rid of spaces in variable names and replaces them with <em>camelCase</em> or, the default, <strong>snake_case</strong>. (To see why you want to do this try omitting this line from your code).</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="finding-exploring-and-cleaning-data.html#cb35-1" tabindex="-1"></a><span class="co"># relative path with backward slashes replaced by forward ones</span></span>
-<span id="cb35-2"><a href="finding-exploring-and-cleaning-data.html#cb35-2" tabindex="-1"></a>datadir <span class="ot">&lt;-</span> <span class="st">&quot;data/&quot;</span> <span class="co"># this is a relative path</span></span>
-<span id="cb35-3"><a href="finding-exploring-and-cleaning-data.html#cb35-3" tabindex="-1"></a><span class="co"># absolute path with backward slashes made literal with escapes</span></span>
-<span id="cb35-4"><a href="finding-exploring-and-cleaning-data.html#cb35-4" tabindex="-1"></a><span class="co"># datadir &lt;- &quot;C:\\Users\\me\\OneDrive\\GitRepos\\DSLA25\\data\\&quot;</span></span>
-<span id="cb35-5"><a href="finding-exploring-and-cleaning-data.html#cb35-5" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="finding-exploring-and-cleaning-data.html#cb35-6" tabindex="-1"></a>FloridaSchools <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb35-7"><a href="finding-exploring-and-cleaning-data.html#cb35-7" tabindex="-1"></a><span class="co"># here, we could also just do </span></span>
-<span id="cb35-8"><a href="finding-exploring-and-cleaning-data.html#cb35-8" tabindex="-1"></a><span class="co">#   &quot;data/SchoolGrades24.xlsx&quot;), </span></span>
-<span id="cb35-9"><a href="finding-exploring-and-cleaning-data.html#cb35-9" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;SchoolGrades24.xlsx&quot;</span>),</span>
-<span id="cb35-10"><a href="finding-exploring-and-cleaning-data.html#cb35-10" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb35-11"><a href="finding-exploring-and-cleaning-data.html#cb35-11" tabindex="-1"></a>    <span class="fu">clean_names</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="finding-exploring-and-cleaning-data.html#cb36-1" tabindex="-1"></a><span class="co"># relative path with backward slashes replaced by forward ones</span></span>
+<span id="cb36-2"><a href="finding-exploring-and-cleaning-data.html#cb36-2" tabindex="-1"></a>datadir <span class="ot">&lt;-</span> <span class="st">&quot;data/&quot;</span> <span class="co"># this is a relative path</span></span>
+<span id="cb36-3"><a href="finding-exploring-and-cleaning-data.html#cb36-3" tabindex="-1"></a><span class="co"># absolute path with backward slashes made literal with escapes</span></span>
+<span id="cb36-4"><a href="finding-exploring-and-cleaning-data.html#cb36-4" tabindex="-1"></a><span class="co"># datadir &lt;- &quot;C:\\Users\\me\\OneDrive\\GitRepos\\DSLA25\\data\\&quot;</span></span>
+<span id="cb36-5"><a href="finding-exploring-and-cleaning-data.html#cb36-5" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="finding-exploring-and-cleaning-data.html#cb36-6" tabindex="-1"></a>FloridaSchools <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb36-7"><a href="finding-exploring-and-cleaning-data.html#cb36-7" tabindex="-1"></a><span class="co"># here, we could also just do </span></span>
+<span id="cb36-8"><a href="finding-exploring-and-cleaning-data.html#cb36-8" tabindex="-1"></a><span class="co">#   &quot;data/SchoolGrades24.xlsx&quot;), </span></span>
+<span id="cb36-9"><a href="finding-exploring-and-cleaning-data.html#cb36-9" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;SchoolGrades24.xlsx&quot;</span>),</span>
+<span id="cb36-10"><a href="finding-exploring-and-cleaning-data.html#cb36-10" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-11"><a href="finding-exploring-and-cleaning-data.html#cb36-11" tabindex="-1"></a>    <span class="fu">clean_names</span>() </span></code></pre></div>
 </div>
 <div id="which-ones-are-high-schools" class="section level3 hasAnchor" number="12.1.3">
 <h3><span class="header-section-number">12.1.3</span> which ones are “high schools”?<a href="finding-exploring-and-cleaning-data.html#which-ones-are-high-schools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are a few ways that we could reduce this to just High Schools - one is to include only schools which report a graduation rate that is not a missing value; the other is to include just schools that have “HIGH SCHOOL” in the title. <strong>Which should we do? How should we decide?</strong></p>
 <p>In either case, we then reduce the columns to a handful of measures of interest.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="finding-exploring-and-cleaning-data.html#cb36-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaSchools <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="finding-exploring-and-cleaning-data.html#cb36-2" tabindex="-1"></a><span class="co">#   drop_na(&#39;graduation_rate_2022_23&#39;) |&gt; </span></span>
-<span id="cb36-3"><a href="finding-exploring-and-cleaning-data.html#cb36-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_detect</span>(school_name,</span>
-<span id="cb36-4"><a href="finding-exploring-and-cleaning-data.html#cb36-4" tabindex="-1"></a>                      <span class="st">&quot;HIGH SCHOOL&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb36-5"><a href="finding-exploring-and-cleaning-data.html#cb36-5" tabindex="-1"></a>    <span class="fu">select</span> (district_number, district_name, </span>
-<span id="cb36-6"><a href="finding-exploring-and-cleaning-data.html#cb36-6" tabindex="-1"></a>            school_number, school_name,</span>
-<span id="cb36-7"><a href="finding-exploring-and-cleaning-data.html#cb36-7" tabindex="-1"></a>            english_language_arts_achievement,</span>
-<span id="cb36-8"><a href="finding-exploring-and-cleaning-data.html#cb36-8" tabindex="-1"></a>            mathematics_achievement,</span>
-<span id="cb36-9"><a href="finding-exploring-and-cleaning-data.html#cb36-9" tabindex="-1"></a>            science_achievement,</span>
-<span id="cb36-10"><a href="finding-exploring-and-cleaning-data.html#cb36-10" tabindex="-1"></a>            social_studies_achievement,</span>
-<span id="cb36-11"><a href="finding-exploring-and-cleaning-data.html#cb36-11" tabindex="-1"></a>            graduation_rate_2022_23,</span>
-<span id="cb36-12"><a href="finding-exploring-and-cleaning-data.html#cb36-12" tabindex="-1"></a>            grade_2024,</span>
-<span id="cb36-13"><a href="finding-exploring-and-cleaning-data.html#cb36-13" tabindex="-1"></a>            percent_of_economically_disadvantaged_students)</span>
-<span id="cb36-14"><a href="finding-exploring-and-cleaning-data.html#cb36-14" tabindex="-1"></a><span class="fu">head</span>(FloridaHighSchools)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="finding-exploring-and-cleaning-data.html#cb37-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaSchools <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="finding-exploring-and-cleaning-data.html#cb37-2" tabindex="-1"></a><span class="co">#   drop_na(&#39;graduation_rate_2022_23&#39;) |&gt; </span></span>
+<span id="cb37-3"><a href="finding-exploring-and-cleaning-data.html#cb37-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_detect</span>(school_name,</span>
+<span id="cb37-4"><a href="finding-exploring-and-cleaning-data.html#cb37-4" tabindex="-1"></a>                      <span class="st">&quot;HIGH SCHOOL&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb37-5"><a href="finding-exploring-and-cleaning-data.html#cb37-5" tabindex="-1"></a>    <span class="fu">select</span> (district_number, district_name, </span>
+<span id="cb37-6"><a href="finding-exploring-and-cleaning-data.html#cb37-6" tabindex="-1"></a>            school_number, school_name,</span>
+<span id="cb37-7"><a href="finding-exploring-and-cleaning-data.html#cb37-7" tabindex="-1"></a>            english_language_arts_achievement,</span>
+<span id="cb37-8"><a href="finding-exploring-and-cleaning-data.html#cb37-8" tabindex="-1"></a>            mathematics_achievement,</span>
+<span id="cb37-9"><a href="finding-exploring-and-cleaning-data.html#cb37-9" tabindex="-1"></a>            science_achievement,</span>
+<span id="cb37-10"><a href="finding-exploring-and-cleaning-data.html#cb37-10" tabindex="-1"></a>            social_studies_achievement,</span>
+<span id="cb37-11"><a href="finding-exploring-and-cleaning-data.html#cb37-11" tabindex="-1"></a>            graduation_rate_2022_23,</span>
+<span id="cb37-12"><a href="finding-exploring-and-cleaning-data.html#cb37-12" tabindex="-1"></a>            grade_2024,</span>
+<span id="cb37-13"><a href="finding-exploring-and-cleaning-data.html#cb37-13" tabindex="-1"></a>            percent_of_economically_disadvantaged_students)</span>
+<span id="cb37-14"><a href="finding-exploring-and-cleaning-data.html#cb37-14" tabindex="-1"></a><span class="fu">head</span>(FloridaHighSchools)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   district_number district_name school_number school_name english_language_art…¹
 ##   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;                        &lt;dbl&gt;
@@ -410,19 +410,19 @@ div.csl-indent {
 <div id="can-we-compute-district-county-means" class="section level3 hasAnchor" number="12.1.4">
 <h3><span class="header-section-number">12.1.4</span> can we compute district (county) means?<a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here, we reduce the set of high schools to one line per district, with scores the simple means of the schools in the district.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="finding-exploring-and-cleaning-data.html#cb38-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href="finding-exploring-and-cleaning-data.html#cb38-2" tabindex="-1"></a> <span class="co">#   select(-grade, -school_name) |&gt; </span></span>
-<span id="cb38-3"><a href="finding-exploring-and-cleaning-data.html#cb38-3" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
-<span id="cb38-4"><a href="finding-exploring-and-cleaning-data.html#cb38-4" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, mean)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="finding-exploring-and-cleaning-data.html#cb39-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href="finding-exploring-and-cleaning-data.html#cb39-2" tabindex="-1"></a> <span class="co">#   select(-grade, -school_name) |&gt; </span></span>
+<span id="cb39-3"><a href="finding-exploring-and-cleaning-data.html#cb39-3" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
+<span id="cb39-4"><a href="finding-exploring-and-cleaning-data.html#cb39-4" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, mean)</span></code></pre></div>
 </div>
 <div id="can-we-estimate-the-relationship-between-economic-disadvantage-and-graduation-rates" class="section level3 hasAnchor" number="12.1.5">
 <h3><span class="header-section-number">12.1.5</span> can we estimate the relationship between economic disadvantage and graduation rates?<a href="finding-exploring-and-cleaning-data.html#can-we-estimate-the-relationship-between-economic-disadvantage-and-graduation-rates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The answer is yes, but with a caveat. What is it?</p>
 <p><strong>Hint: Which districts score at the top and bottom of these two indices? On the basis of our previous discussions in the class, what would we expect them to have in common?</strong></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="finding-exploring-and-cleaning-data.html#cb39-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="finding-exploring-and-cleaning-data.html#cb39-2" tabindex="-1"></a>    <span class="fu">select</span>(graduation_rate_2022_23,</span>
-<span id="cb39-3"><a href="finding-exploring-and-cleaning-data.html#cb39-3" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span> </span>
-<span id="cb39-4"><a href="finding-exploring-and-cleaning-data.html#cb39-4" tabindex="-1"></a>    <span class="fu">correlate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="finding-exploring-and-cleaning-data.html#cb40-1" tabindex="-1"></a>FloridaHighSchoolsbyDistict <span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a href="finding-exploring-and-cleaning-data.html#cb40-2" tabindex="-1"></a>    <span class="fu">select</span>(graduation_rate_2022_23,</span>
+<span id="cb40-3"><a href="finding-exploring-and-cleaning-data.html#cb40-3" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span> </span>
+<span id="cb40-4"><a href="finding-exploring-and-cleaning-data.html#cb40-4" tabindex="-1"></a>    <span class="fu">correlate</span>()</span></code></pre></div>
 <pre><code>## Correlation computed with
 ## • Method: &#39;pearson&#39;
 ## • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
@@ -439,11 +439,11 @@ div.csl-indent {
 <p>I can’t find data on HS enrollments that is free, recent, easy to pull down, and reasonably comprehensive. For our purposes, we can work with an estimate of this. There are measures of school size in Football league data (<a href="https://fhsaa.com/news/2023/12/21/football-classifications-available-for-2024-25-2025-26.aspx" class="uri">https://fhsaa.com/news/2023/12/21/football-classifications-available-for-2024-25-2025-26.aspx</a>).</p>
 <p>The names for schools there are formatted differently from our other dataset, so this will take a little work. We will first read in the data, then estimate enrollments based on the class of the school (Rural, 1R, 1A, 2A, 3A, 4A, 5A, 6A, 7A).</p>
 <p>Can you describe what is happening in each line of code in this section?</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="finding-exploring-and-cleaning-data.html#cb42-1" tabindex="-1"></a>EnrollmentsFromFHSAA <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb42-2"><a href="finding-exploring-and-cleaning-data.html#cb42-2" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;Football_2024_26.xlsx&quot;</span>),</span>
-<span id="cb42-3"><a href="finding-exploring-and-cleaning-data.html#cb42-3" tabindex="-1"></a>        <span class="at">skip =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb42-4"><a href="finding-exploring-and-cleaning-data.html#cb42-4" tabindex="-1"></a>    <span class="fu">clean_names</span>()</span>
-<span id="cb42-5"><a href="finding-exploring-and-cleaning-data.html#cb42-5" tabindex="-1"></a><span class="fu">head</span>(EnrollmentsFromFHSAA)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="finding-exploring-and-cleaning-data.html#cb43-1" tabindex="-1"></a>EnrollmentsFromFHSAA <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
+<span id="cb43-2"><a href="finding-exploring-and-cleaning-data.html#cb43-2" tabindex="-1"></a>    <span class="fu">paste0</span>(datadir, <span class="st">&quot;Football_2024_26.xlsx&quot;</span>),</span>
+<span id="cb43-3"><a href="finding-exploring-and-cleaning-data.html#cb43-3" tabindex="-1"></a>        <span class="at">skip =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="finding-exploring-and-cleaning-data.html#cb43-4" tabindex="-1"></a>    <span class="fu">clean_names</span>()</span>
+<span id="cb43-5"><a href="finding-exploring-and-cleaning-data.html#cb43-5" tabindex="-1"></a><span class="fu">head</span>(EnrollmentsFromFHSAA)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   school_name                      class       region      district   
 ##   &lt;chr&gt;                            &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;      
@@ -453,63 +453,72 @@ div.csl-indent {
 ## 4 American Heritage (Delray Beach) 2A          3           12         
 ## 5 American Heritage (Plantation)   4A          4           15         
 ## 6 Anclote (Holiday)                3A          3           9</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="finding-exploring-and-cleaning-data.html#cb44-1" tabindex="-1"></a>EnrollmentsFromFHSAA <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
-<span id="cb44-2"><a href="finding-exploring-and-cleaning-data.html#cb44-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span>  <span class="st">&quot;school_name&quot;</span>,</span>
-<span id="cb44-3"><a href="finding-exploring-and-cleaning-data.html#cb44-3" tabindex="-1"></a>             <span class="at">into =</span>  <span class="fu">c</span>(<span class="st">&quot;school_name&quot;</span>, <span class="st">&quot;school_place&quot;</span>), </span>
-<span id="cb44-4"><a href="finding-exploring-and-cleaning-data.html#cb44-4" tabindex="-1"></a>             <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="at">extra =</span> <span class="st">&quot;merge&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb44-5"><a href="finding-exploring-and-cleaning-data.html#cb44-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">est_enrollment =</span></span>
-<span id="cb44-6"><a href="finding-exploring-and-cleaning-data.html#cb44-6" tabindex="-1"></a>            <span class="fu">case_when</span>(</span>
-<span id="cb44-7"><a href="finding-exploring-and-cleaning-data.html#cb44-7" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;Rural&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">111</span>,<span class="dv">558</span>),</span>
-<span id="cb44-8"><a href="finding-exploring-and-cleaning-data.html#cb44-8" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;1R&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">111</span>,<span class="dv">558</span>),</span>
-<span id="cb44-9"><a href="finding-exploring-and-cleaning-data.html#cb44-9" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;1A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">61</span>,<span class="dv">643</span>),</span>
-<span id="cb44-10"><a href="finding-exploring-and-cleaning-data.html#cb44-10" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;2A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">644</span>,<span class="dv">1166</span>),</span>
-<span id="cb44-11"><a href="finding-exploring-and-cleaning-data.html#cb44-11" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;3A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1167</span>,<span class="dv">1542</span>),</span>
-<span id="cb44-12"><a href="finding-exploring-and-cleaning-data.html#cb44-12" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;4A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1543</span>,<span class="dv">1822</span>),</span>
-<span id="cb44-13"><a href="finding-exploring-and-cleaning-data.html#cb44-13" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;5A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1823</span>,<span class="dv">2135</span>),</span>
-<span id="cb44-14"><a href="finding-exploring-and-cleaning-data.html#cb44-14" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;6A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">2136</span>,<span class="dv">2512</span>),</span>
-<span id="cb44-15"><a href="finding-exploring-and-cleaning-data.html#cb44-15" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;7A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">2512</span>,<span class="dv">4627</span>), </span>
-<span id="cb44-16"><a href="finding-exploring-and-cleaning-data.html#cb44-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb44-17"><a href="finding-exploring-and-cleaning-data.html#cb44-17" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name))</span></code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 192 rows
-## [8, 18, 21, 22, 24, 26, 32, 33, 44, 46, 47, 49, 53, 57, 59,
-## 60, 62, 67, 73, 81, ...].</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="finding-exploring-and-cleaning-data.html#cb45-1" tabindex="-1"></a>EnrollmentsFromFHSAA <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
+<span id="cb45-2"><a href="finding-exploring-and-cleaning-data.html#cb45-2" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span>  <span class="st">&quot;school_name&quot;</span>,</span>
+<span id="cb45-3"><a href="finding-exploring-and-cleaning-data.html#cb45-3" tabindex="-1"></a>             <span class="at">into =</span>  <span class="fu">c</span>(<span class="st">&quot;school_name&quot;</span>, <span class="st">&quot;school_place&quot;</span>), </span>
+<span id="cb45-4"><a href="finding-exploring-and-cleaning-data.html#cb45-4" tabindex="-1"></a>             <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="at">extra =</span> <span class="st">&quot;merge&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb45-5"><a href="finding-exploring-and-cleaning-data.html#cb45-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">est_enrollment =</span></span>
+<span id="cb45-6"><a href="finding-exploring-and-cleaning-data.html#cb45-6" tabindex="-1"></a>            <span class="fu">case_when</span>(</span>
+<span id="cb45-7"><a href="finding-exploring-and-cleaning-data.html#cb45-7" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;Rural&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">111</span>,<span class="dv">558</span>),</span>
+<span id="cb45-8"><a href="finding-exploring-and-cleaning-data.html#cb45-8" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;1R&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">111</span>,<span class="dv">558</span>),</span>
+<span id="cb45-9"><a href="finding-exploring-and-cleaning-data.html#cb45-9" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;1A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">61</span>,<span class="dv">643</span>),</span>
+<span id="cb45-10"><a href="finding-exploring-and-cleaning-data.html#cb45-10" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;2A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">644</span>,<span class="dv">1166</span>),</span>
+<span id="cb45-11"><a href="finding-exploring-and-cleaning-data.html#cb45-11" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;3A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1167</span>,<span class="dv">1542</span>),</span>
+<span id="cb45-12"><a href="finding-exploring-and-cleaning-data.html#cb45-12" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;4A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1543</span>,<span class="dv">1822</span>),</span>
+<span id="cb45-13"><a href="finding-exploring-and-cleaning-data.html#cb45-13" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;5A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">1823</span>,<span class="dv">2135</span>),</span>
+<span id="cb45-14"><a href="finding-exploring-and-cleaning-data.html#cb45-14" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;6A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">2136</span>,<span class="dv">2512</span>),</span>
+<span id="cb45-15"><a href="finding-exploring-and-cleaning-data.html#cb45-15" tabindex="-1"></a>                class <span class="sc">==</span> <span class="st">&quot;7A&quot;</span> <span class="sc">~</span> <span class="fu">mean</span>(<span class="dv">2512</span>,<span class="dv">4627</span>), </span>
+<span id="cb45-16"><a href="finding-exploring-and-cleaning-data.html#cb45-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb45-17"><a href="finding-exploring-and-cleaning-data.html#cb45-17" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name))</span></code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Missing
+## pieces filled with `NA` in
+## 192 rows [8, 18, 21, 22, 24,
+## 26, 32, 33, 44, 46, 47, 49,
+## 53, 57, 59, 60, 62, 67, 73,
+## 81, ...].</code></pre>
 <p>Why do we get a warning here? Is it ok?</p>
 </div>
 </div>
 <div id="can-we-merge-the-datasets" class="section level2 hasAnchor" number="12.2">
 <h2><span class="header-section-number">12.2</span> can we merge the datasets?<a href="finding-exploring-and-cleaning-data.html#can-we-merge-the-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The enrollment data are now in the EnrollmentsFromFHSAA dataset. We first edit the school names from the FloridaHighSchools file to see if we can get them to match. Then we try to merge these with the FloridaHighSchools data, using the school_name variable as the key.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="finding-exploring-and-cleaning-data.html#cb46-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
-<span id="cb46-2"><a href="finding-exploring-and-cleaning-data.html#cb46-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
-<span id="cb46-3"><a href="finding-exploring-and-cleaning-data.html#cb46-3" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
-<span id="cb46-4"><a href="finding-exploring-and-cleaning-data.html#cb46-4" tabindex="-1"></a>                           <span class="st">&quot;JUNIOR/SENIOR HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb46-5"><a href="finding-exploring-and-cleaning-data.html#cb46-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
-<span id="cb46-6"><a href="finding-exploring-and-cleaning-data.html#cb46-6" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
-<span id="cb46-7"><a href="finding-exploring-and-cleaning-data.html#cb46-7" tabindex="-1"></a>                           <span class="st">&quot;MIDDLE/HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb46-8"><a href="finding-exploring-and-cleaning-data.html#cb46-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
-<span id="cb46-9"><a href="finding-exploring-and-cleaning-data.html#cb46-9" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
-<span id="cb46-10"><a href="finding-exploring-and-cleaning-data.html#cb46-10" tabindex="-1"></a>                           <span class="st">&quot;SENIOR HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb46-11"><a href="finding-exploring-and-cleaning-data.html#cb46-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
-<span id="cb46-12"><a href="finding-exploring-and-cleaning-data.html#cb46-12" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
-<span id="cb46-13"><a href="finding-exploring-and-cleaning-data.html#cb46-13" tabindex="-1"></a>                           <span class="st">&quot;HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>))</span>
-<span id="cb46-14"><a href="finding-exploring-and-cleaning-data.html#cb46-14" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
-<span id="cb46-15"><a href="finding-exploring-and-cleaning-data.html#cb46-15" tabindex="-1"></a>    <span class="fu">left_join</span>(EnrollmentsFromFHSAA, <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many relationship between `x`
-## and `y`.
-## ℹ Row 38 of `x` matches multiple rows in `y`.
-## ℹ Row 187 of `y` matches multiple rows in `x`.
-## ℹ If a many-to-many relationship is expected, set
-##   `relationship = &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="finding-exploring-and-cleaning-data.html#cb47-1" tabindex="-1"></a>FloridaHighSchools <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="finding-exploring-and-cleaning-data.html#cb47-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
+<span id="cb47-3"><a href="finding-exploring-and-cleaning-data.html#cb47-3" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
+<span id="cb47-4"><a href="finding-exploring-and-cleaning-data.html#cb47-4" tabindex="-1"></a>                           <span class="st">&quot;JUNIOR/SENIOR HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb47-5"><a href="finding-exploring-and-cleaning-data.html#cb47-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
+<span id="cb47-6"><a href="finding-exploring-and-cleaning-data.html#cb47-6" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
+<span id="cb47-7"><a href="finding-exploring-and-cleaning-data.html#cb47-7" tabindex="-1"></a>                           <span class="st">&quot;MIDDLE/HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb47-8"><a href="finding-exploring-and-cleaning-data.html#cb47-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
+<span id="cb47-9"><a href="finding-exploring-and-cleaning-data.html#cb47-9" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
+<span id="cb47-10"><a href="finding-exploring-and-cleaning-data.html#cb47-10" tabindex="-1"></a>                           <span class="st">&quot;SENIOR HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb47-11"><a href="finding-exploring-and-cleaning-data.html#cb47-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> </span>
+<span id="cb47-12"><a href="finding-exploring-and-cleaning-data.html#cb47-12" tabindex="-1"></a>               <span class="fu">str_replace</span>(school_name,</span>
+<span id="cb47-13"><a href="finding-exploring-and-cleaning-data.html#cb47-13" tabindex="-1"></a>                           <span class="st">&quot;HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>))</span>
+<span id="cb47-14"><a href="finding-exploring-and-cleaning-data.html#cb47-14" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
+<span id="cb47-15"><a href="finding-exploring-and-cleaning-data.html#cb47-15" tabindex="-1"></a>    <span class="fu">left_join</span>(EnrollmentsFromFHSAA, <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected
+## many-to-many relationship
+## between `x` and `y`.
+## ℹ Row 38 of `x` matches
+##   multiple rows in `y`.
+## ℹ Row 187 of `y` matches
+##   multiple rows in `x`.
+## ℹ If a many-to-many
+##   relationship is expected,
+##   set `relationship =
+##   &quot;many-to-many&quot;` to silence
+##   this warning.</code></pre>
 </div>
 <div id="finding-gremlins" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> finding gremlins<a href="finding-exploring-and-cleaning-data.html#finding-gremlins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>But when we do this, we get another warning message. Why is it there?</p>
 <p>In each of the two datasets, there are duplicate names. We can see this by looking at the output of the following commands:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="finding-exploring-and-cleaning-data.html#cb48-1" tabindex="-1"></a>(SchoolsWithSameNamesInFHS <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
-<span id="cb48-2"><a href="finding-exploring-and-cleaning-data.html#cb48-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
-<span id="cb48-3"><a href="finding-exploring-and-cleaning-data.html#cb48-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb48-4"><a href="finding-exploring-and-cleaning-data.html#cb48-4" tabindex="-1"></a>    <span class="fu">select</span> (school_name, district_name) <span class="sc">|&gt;</span> </span>
-<span id="cb48-5"><a href="finding-exploring-and-cleaning-data.html#cb48-5" tabindex="-1"></a>    <span class="fu">arrange</span>(school_name))</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="finding-exploring-and-cleaning-data.html#cb49-1" tabindex="-1"></a>(SchoolsWithSameNamesInFHS <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href="finding-exploring-and-cleaning-data.html#cb49-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="finding-exploring-and-cleaning-data.html#cb49-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="finding-exploring-and-cleaning-data.html#cb49-4" tabindex="-1"></a>    <span class="fu">select</span> (school_name, district_name) <span class="sc">|&gt;</span> </span>
+<span id="cb49-5"><a href="finding-exploring-and-cleaning-data.html#cb49-5" tabindex="-1"></a>    <span class="fu">arrange</span>(school_name))</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 2
 ## # Groups:   school_name [6]
 ##    school_name                        district_name
@@ -526,10 +535,10 @@ div.csl-indent {
 ## 10 &quot;RIVERVIEW &quot;                       SARASOTA     
 ## 11 &quot;SEMINOLE &quot;                        PINELLAS     
 ## 12 &quot;SEMINOLE &quot;                        SEMINOLE</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="finding-exploring-and-cleaning-data.html#cb50-1" tabindex="-1"></a>(SchoolsWithSameNamesInEnrollments <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
-<span id="cb50-2"><a href="finding-exploring-and-cleaning-data.html#cb50-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="finding-exploring-and-cleaning-data.html#cb50-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb50-4"><a href="finding-exploring-and-cleaning-data.html#cb50-4" tabindex="-1"></a>    <span class="fu">select</span> (school_name, school_place))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="finding-exploring-and-cleaning-data.html#cb51-1" tabindex="-1"></a>(SchoolsWithSameNamesInEnrollments <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="finding-exploring-and-cleaning-data.html#cb51-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href="finding-exploring-and-cleaning-data.html#cb51-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a href="finding-exploring-and-cleaning-data.html#cb51-4" tabindex="-1"></a>    <span class="fu">select</span> (school_name, school_place))</span></code></pre></div>
 <pre><code>## # A tibble: 26 × 2
 ## # Groups:   school_name [13]
 ##    school_name          school_place  
@@ -550,9 +559,9 @@ div.csl-indent {
 <div id="can-we-merge-the-remaining-data" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> can we merge the remaining data?<a href="finding-exploring-and-cleaning-data.html#can-we-merge-the-remaining-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will set these aside and merge the remaining data.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="finding-exploring-and-cleaning-data.html#cb52-1" tabindex="-1"></a>(SchoolsWithUniqueNamesInFHS <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
-<span id="cb52-2"><a href="finding-exploring-and-cleaning-data.html#cb52-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
-<span id="cb52-3"><a href="finding-exploring-and-cleaning-data.html#cb52-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="finding-exploring-and-cleaning-data.html#cb53-1" tabindex="-1"></a>(SchoolsWithUniqueNamesInFHS <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span> </span>
+<span id="cb53-2"><a href="finding-exploring-and-cleaning-data.html#cb53-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="finding-exploring-and-cleaning-data.html#cb53-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 439 × 11
 ## # Groups:   school_name [439]
 ##    district_number district_name school_number school_name                      
@@ -572,9 +581,9 @@ div.csl-indent {
 ## #   mathematics_achievement &lt;dbl&gt;, science_achievement &lt;dbl&gt;,
 ## #   social_studies_achievement &lt;dbl&gt;, graduation_rate_2022_23 &lt;dbl&gt;,
 ## #   grade_2024 &lt;chr&gt;, percent_of_economically_disadvantaged_students &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="finding-exploring-and-cleaning-data.html#cb54-1" tabindex="-1"></a>(SchoolsWithUniqueNamesInEnrollments <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
-<span id="cb54-2"><a href="finding-exploring-and-cleaning-data.html#cb54-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
-<span id="cb54-3"><a href="finding-exploring-and-cleaning-data.html#cb54-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="finding-exploring-and-cleaning-data.html#cb55-1" tabindex="-1"></a>(SchoolsWithUniqueNamesInEnrollments <span class="ot">&lt;-</span> EnrollmentsFromFHSAA <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="finding-exploring-and-cleaning-data.html#cb55-2" tabindex="-1"></a>    <span class="fu">group_by</span>(school_name) <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="finding-exploring-and-cleaning-data.html#cb55-3" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 520 × 6
 ## # Groups:   school_name [520]
 ##    school_name            school_place      class region district est_enrollment
@@ -590,22 +599,41 @@ div.csl-indent {
 ##  9 &quot;ARMWOOD &quot;             Seffner)          6A    2      8                  2136
 ## 10 &quot;ARNOLD &quot;              Panama City Beac… 4A    1      2                  1543
 ## # ℹ 510 more rows</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="finding-exploring-and-cleaning-data.html#cb56-1" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> SchoolsWithUniqueNamesInFHS <span class="sc">|&gt;</span></span>
-<span id="cb56-2"><a href="finding-exploring-and-cleaning-data.html#cb56-2" tabindex="-1"></a>    <span class="fu">left_join</span>(SchoolsWithUniqueNamesInEnrollments, </span>
-<span id="cb56-3"><a href="finding-exploring-and-cleaning-data.html#cb56-3" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="finding-exploring-and-cleaning-data.html#cb57-1" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> SchoolsWithUniqueNamesInFHS <span class="sc">|&gt;</span></span>
+<span id="cb57-2"><a href="finding-exploring-and-cleaning-data.html#cb57-2" tabindex="-1"></a>    <span class="fu">left_join</span>(SchoolsWithUniqueNamesInEnrollments, </span>
+<span id="cb57-3"><a href="finding-exploring-and-cleaning-data.html#cb57-3" tabindex="-1"></a>              <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
 <div id="can-we-try-to-run-the-correlation-again" class="section level3 hasAnchor" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> can we try to run the correlation again?<a href="finding-exploring-and-cleaning-data.html#can-we-try-to-run-the-correlation-again" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What does each line of this chunk do?</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="finding-exploring-and-cleaning-data.html#cb57-1" tabindex="-1"></a>GradCountsRates <span class="ot">&lt;-</span> FloridaHighSchools2 <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a href="finding-exploring-and-cleaning-data.html#cb57-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">est_Ngrads =</span> </span>
-<span id="cb57-3"><a href="finding-exploring-and-cleaning-data.html#cb57-3" tabindex="-1"></a>               <span class="fu">round</span>(est_enrollment <span class="sc">*</span> .<span class="dv">01</span> <span class="sc">*</span></span>
-<span id="cb57-4"><a href="finding-exploring-and-cleaning-data.html#cb57-4" tabindex="-1"></a>               graduation_rate_2022_23),<span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb57-5"><a href="finding-exploring-and-cleaning-data.html#cb57-5" tabindex="-1"></a>    <span class="fu">select</span>(district_name, est_enrollment, est_Ngrads) <span class="sc">|&gt;</span> </span>
-<span id="cb57-6"><a href="finding-exploring-and-cleaning-data.html#cb57-6" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
-<span id="cb57-7"><a href="finding-exploring-and-cleaning-data.html#cb57-7" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric,sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb57-8"><a href="finding-exploring-and-cleaning-data.html#cb57-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">adjGradRate =</span> est_Ngrads <span class="sc">/</span> est_enrollment)</span></code></pre></div>
-<pre><code>## Adding missing grouping variables: `school_name`</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="finding-exploring-and-cleaning-data.html#cb58-1" tabindex="-1"></a>GradCountsRates <span class="ot">&lt;-</span> FloridaHighSchools2 <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="finding-exploring-and-cleaning-data.html#cb58-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">est_Ngrads =</span> </span>
+<span id="cb58-3"><a href="finding-exploring-and-cleaning-data.html#cb58-3" tabindex="-1"></a>               <span class="fu">round</span>(est_enrollment <span class="sc">*</span> .<span class="dv">01</span> <span class="sc">*</span></span>
+<span id="cb58-4"><a href="finding-exploring-and-cleaning-data.html#cb58-4" tabindex="-1"></a>               graduation_rate_2022_23),<span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb58-5"><a href="finding-exploring-and-cleaning-data.html#cb58-5" tabindex="-1"></a>    <span class="fu">select</span>(district_name, est_enrollment, est_Ngrads) <span class="sc">|&gt;</span> </span>
+<span id="cb58-6"><a href="finding-exploring-and-cleaning-data.html#cb58-6" tabindex="-1"></a>    <span class="fu">group_by</span>(district_name) <span class="sc">|&gt;</span> </span>
+<span id="cb58-7"><a href="finding-exploring-and-cleaning-data.html#cb58-7" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric,sum, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb58-8"><a href="finding-exploring-and-cleaning-data.html#cb58-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">adjGradRate =</span> est_Ngrads <span class="sc">/</span> est_enrollment)</span></code></pre></div>
+<pre><code>## Adding missing grouping
+## variables: `school_name`</code></pre>
 <p>What’s next?</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="finding-exploring-and-cleaning-data.html#cb60-1" tabindex="-1"></a>rdata <span class="ot">&lt;-</span> FloridaHighSchools2 <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href="finding-exploring-and-cleaning-data.html#cb60-2" tabindex="-1"></a>    <span class="fu">select</span>(district_name, graduation_rate_2022_23,</span>
+<span id="cb60-3"><a href="finding-exploring-and-cleaning-data.html#cb60-3" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span></span>
+<span id="cb60-4"><a href="finding-exploring-and-cleaning-data.html#cb60-4" tabindex="-1"></a>    <span class="fu">left_join</span>(GradCountsRates, <span class="at">by =</span> <span class="st">&quot;district_name&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb60-5"><a href="finding-exploring-and-cleaning-data.html#cb60-5" tabindex="-1"></a>    <span class="fu">select</span>(graduation_rate_2022_23,</span>
+<span id="cb60-6"><a href="finding-exploring-and-cleaning-data.html#cb60-6" tabindex="-1"></a>           adjGradRate,</span>
+<span id="cb60-7"><a href="finding-exploring-and-cleaning-data.html#cb60-7" tabindex="-1"></a>           percent_of_economically_disadvantaged_students) <span class="sc">|&gt;</span> </span>
+<span id="cb60-8"><a href="finding-exploring-and-cleaning-data.html#cb60-8" tabindex="-1"></a>    <span class="fu">correlate</span>()</span></code></pre></div>
+<pre><code>## Adding missing grouping
+## variables: `school_name`
+## Adding missing grouping
+## variables: `school_name`
+## Non-numeric variables removed
+## from input: `school_name`
+## Correlation computed with •
+## Method: &#39;pearson&#39; • Missing
+## treated using:
+## &#39;pairwise.complete.obs&#39;</code></pre>
 
 </div>
 </div>
