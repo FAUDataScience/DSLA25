@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-02-23" />
+<meta name="date" content="2025-02-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,9 +308,16 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>12.1.1</b> A digression: Slash, Windows and the world.</a></li>
 <li class="chapter" data-level="12.1.2" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#getting-the-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>12.1.2</b> Getting the data from our machine into R</a></li>
-<li class="chapter" data-level="12.1.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#lets-look-just-at-high-schools"><i class="fa fa-check"></i><b>12.1.3</b> let’s look just at high schools</a></li>
+<li class="chapter" data-level="12.1.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#which-ones-are-high-schools"><i class="fa fa-check"></i><b>12.1.3</b> which ones are “high schools”?</a></li>
 <li class="chapter" data-level="12.1.4" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-compute-district-county-means"><i class="fa fa-check"></i><b>12.1.4</b> can we compute district (county) means?</a></li>
-<li class="chapter" data-level="12.1.5" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#so-what-should-we-do-now"><i class="fa fa-check"></i><b>12.1.5</b> so what should we do now?</a></li>
+<li class="chapter" data-level="12.1.5" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-estimate-the-relationship-between-economic-disadvantage-and-graduation-rates"><i class="fa fa-check"></i><b>12.1.5</b> can we estimate the relationship between economic disadvantage and graduation rates?</a></li>
+<li class="chapter" data-level="12.1.6" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#estimating-school-enrollments"><i class="fa fa-check"></i><b>12.1.6</b> estimating school enrollments</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-merge-the-datasets"><i class="fa fa-check"></i><b>12.2</b> can we merge the datasets?</a></li>
+<li class="chapter" data-level="12.3" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#finding-gremlins"><i class="fa fa-check"></i><b>12.3</b> finding gremlins</a></li>
+<li class="chapter" data-level="12.4" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-merge-the-remaining-data"><i class="fa fa-check"></i><b>12.4</b> can we merge the remaining data?</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="finding-exploring-and-cleaning-data.html"><a href="finding-exploring-and-cleaning-data.html#can-we-try-to-run-the-correlation-again"><i class="fa fa-check"></i><b>12.4.1</b> can we try to run the correlation again?</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -367,11 +374,11 @@ div.csl-indent {
 <pre><code>## # A tibble: 5 × 5
 ##    year sex   name        n       prop
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
-## 1  1954 M     Mallory    11 0.00000532
-## 2  2017 M     Elisha    280 0.000143  
-## 3  1980 F     Michal     59 0.0000331 
-## 4  1941 F     Phebe      22 0.0000177 
-## 5  1936 F     Willa     454 0.000421</code></pre>
+## 1  1975 M     Trenton   270 0.000166  
+## 2  1954 M     Orlanda    11 0.00000532
+## 3  1933 F     Clarene    17 0.0000162 
+## 4  1971 M     Hagan       6 0.0000033 
+## 5  2010 M     Tyquan     84 0.0000409</code></pre>
 </div>
 <div id="or-the-ggplot2movies-package" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> or the (ggplot2)movies package<a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -409,11 +416,11 @@ div.csl-indent {
 <pre><code>## # A tibble: 5 × 24
 ##   title      year length budget rating votes    r1    r2    r3    r4    r5    r6
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 Vaniglia…  2004    110     NA    6.3    26   4.5   4.5   4.5   0     4.5  14.5
-## 2 Masquera…  1998    120     NA    6.4     5   0     0     0     0    24.5  44.5
-## 3 Class of…  1973     95     NA    5.2   130   4.5   4.5   4.5  14.5  24.5  14.5
-## 4 Gun Duel…  1957     73     NA    5       9   0     0     0    24.5  14.5  45.5
-## 5 To my      2000     94     NA    3.8    21  14.5  24.5  14.5  14.5  14.5   4.5
+## 1 Big Doll…  1971     95 125000    4.6   194   4.5   4.5   4.5  14.5  14.5  24.5
+## 2 Clubbed …  1996     89     NA    5.3   222   4.5   4.5   4.5   4.5  14.5  24.5
+## 3 Will Unp…  2004     93     NA    8.9     7   0    14.5   0     0     0     0  
+## 4 Shall We…  1937    109 991000    7.6   603   4.5   4.5   0     4.5   4.5   4.5
+## 5 Hotel de…  1996     96     NA    6.3   276   4.5   4.5   4.5   4.5   4.5  14.5
 ## # ℹ 12 more variables: r7 &lt;dbl&gt;, r8 &lt;dbl&gt;, r9 &lt;dbl&gt;, r10 &lt;dbl&gt;, mpaa &lt;chr&gt;,
 ## #   Action &lt;int&gt;, Animation &lt;int&gt;, Comedy &lt;int&gt;, Drama &lt;int&gt;,
 ## #   Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</code></pre>
@@ -465,42 +472,42 @@ div.csl-indent {
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

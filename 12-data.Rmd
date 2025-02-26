@@ -55,27 +55,17 @@ FloridaSchools <- read_excel(
     clean_names() 
 ```
 
-### let's look just at high schools
+### which ones are "high schools"?
 
-There are a few ways that we could reduce this to just High Schools - one is to include only schools which report a graduation rate that is not a missing value. We'll do that to reduce the number of rows in the data, and we'll reduce the columns to a handful of measures of interest.
+There are a few ways that we could reduce this to just High Schools - one is to include only schools which report a graduation rate that is not a missing value; the other is to include just schools that have "HIGH SCHOOL" in the title. **Which should we do? How should we decide?**
+
+In either case, we then reduce the columns to a handful of measures of interest.
 
 ```{r}
 FloridaHighSchools <- FloridaSchools |> 
+#   drop_na('graduation_rate_2022_23') |> 
     filter(str_detect(school_name,
-                      "HIGH SCHOOL")) |>   
-    mutate(school_name = 
-               str_replace(school_name,
-                           "JUNIOR/SENIOR HIGH SCHOOL","")) |>
-    mutate(school_name = 
-               str_replace(school_name,
-                           "MIDDLE/HIGH SCHOOL","")) |>
-    mutate(school_name = 
-               str_replace(school_name,
-                           "SENIOR HIGH SCHOOL","")) |> 
-    mutate(school_name = 
-               str_replace(school_name,
-                           "HIGH SCHOOL","")) |>
-    #    drop_na('graduation_rate_2022_23') |> 
+                      "HIGH SCHOOL")) |> 
     select (district_number, district_name, 
             school_number, school_name,
             english_language_arts_achievement,
@@ -94,41 +84,47 @@ head(FloridaHighSchools)
 Here, we reduce the set of high schools to one line per district, with scores the simple means of the schools in the district.
 
 ```{r}
-
-
 FloridaHighSchoolsbyDistict <- FloridaHighSchools |> 
  #   select(-grade, -school_name) |> 
     group_by(district_name) |> 
     summarise_if(is.numeric, mean)
+```
+
+### can we estimate the relationship between economic disadvantage and graduation rates?
+
+The answer is yes, but with a caveat. What is it? 
+
+**Hint:  Which districts score at the top and bottom of these two indices? On the basis of our previous discussions in the class, what would we expect them to have in common?**
+
+```{r}
 FloridaHighSchoolsbyDistict |> 
     select(graduation_rate_2022_23,
            percent_of_economically_disadvantaged_students) |> 
     correlate()
 ```
 
-Is there a relationship between graduation rate and economic disadvantage? Which districts score at the top and bottom of these two indices? **On the basis of our previous discussions in the class, what would we expect them to have in common?**
+### estimating school enrollments
 
-### so what should we do now?
+I can't find data on HS enrollments that is free, recent, easy to pull down, and reasonably comprehensive. For our purposes, we can work with an estimate of this. There are measures of school size in Football league data (<https://fhsaa.com/news/2023/12/21/football-classifications-available-for-2024-25-2025-26.aspx>).
 
-There are measures of school size in Football league data (https://fhsaa.com/news/2023/12/21/football-classifications-available-for-2024-25-2025-26.aspx). 
+The names for schools there are formatted differently from our other dataset, so this will take a little work. We will first read in the data, then estimate enrollments based on the class of the school (Rural, 1R, 1A, 2A, 3A, 4A, 5A, 6A, 7A).
 
-The names for schools there are formatted differently, however. We will use these classes to estimate enrollments and try to merge these with the data we have on school ratings.
+Can you describe what is happening in each line of code in this section?
 
 ```{r}
 EnrollmentsFromFHSAA <- read_excel(
     paste0(datadir, "Football_2024_26.xlsx"),
         skip = 1) |>
-    clean_names() |> 
-    mutate(school_place = 
-               str_split(school_name,'\\(',
-                         simplify = T)[,2]) |> 
-    mutate(school_place = 
-               str_replace(school_place, "\\)", "")) |> 
-    mutate(school_name = 
-               str_split(school_name,'\\(',
-                         simplify = T)[,1]) |> 
-mutate (est_Enrollment =
+    clean_names()
+head(EnrollmentsFromFHSAA)
+
+EnrollmentsFromFHSAA <- EnrollmentsFromFHSAA |> 
+    separate(col =  "school_name",
+             into =  c("school_name", "school_place"), 
+             sep = "\\(", extra = "merge") |> 
+    mutate (est_enrollment =
             case_when(
+                class == "Rural" ~ mean(111,558),
                 class == "1R" ~ mean(111,558),
                 class == "1A" ~ mean(61,643),
                 class == "2A" ~ mean(644,1166),
@@ -136,18 +132,41 @@ mutate (est_Enrollment =
                 class == "4A" ~ mean(1543,1822),
                 class == "5A" ~ mean(1823,2135),
                 class == "6A" ~ mean(2136,2512),
-                class == "7A" ~ mean(2512,4627))) |> 
+                class == "7A" ~ mean(2512,4627), 
+                TRUE ~ NA)) |> 
         mutate(school_name = toupper(school_name))
-```    
+```
 
-The enrollment data are now in the EnrollmentsFromFHSAA dataset. We would like to merge these with the FloridaHighSchools data, using the school_name variable as the key.
+Why do we get a warning here? Is it ok?
+
+## can we merge the datasets?
+
+The enrollment data are now in the EnrollmentsFromFHSAA dataset. We first edit the school names from the FloridaHighSchools file to see if we can get them to match. Then we try to merge these with the FloridaHighSchools data, using the school_name variable as the key.
 
 ```{r}
+
+FloridaHighSchools <- FloridaHighSchools |>
+    mutate(school_name = 
+               str_replace(school_name,
+                           "JUNIOR/SENIOR HIGH SCHOOL","")) |>
+    mutate(school_name = 
+               str_replace(school_name,
+                           "MIDDLE/HIGH SCHOOL","")) |>
+    mutate(school_name = 
+               str_replace(school_name,
+                           "SENIOR HIGH SCHOOL","")) |> 
+    mutate(school_name = 
+               str_replace(school_name,
+                           "HIGH SCHOOL",""))
 FloridaHighSchools2 <- FloridaHighSchools |>
     left_join(EnrollmentsFromFHSAA, by = "school_name")
 ```
 
-But when we do this, we get an error message. In each of the two datasets, there are duplicate names. We can see this by looking at the output of the following commands:
+## finding gremlins
+
+But when we do this, we get another warning message. Why is it there?
+
+In each of the two datasets, there are duplicate names. We can see this by looking at the output of the following commands:
 
 ```{r}
 (SchoolsWithSameNamesInFHS <- FloridaHighSchools |> 
@@ -161,10 +180,12 @@ But when we do this, we get an error message. In each of the two datasets, there
     filter(n() > 1) |> 
     select (school_name, school_place))
 ```
-There are 12 schools (6 pairs) in our FloridaHighSchools data, and 26 schools (13 pairs) in the EnrollmentsFromFHSAA data. We will set these aside and merge the remaining data.
 
+There are 12 schools (6 pairs) in our FloridaHighSchools data, and 26 schools (13 pairs) in the EnrollmentsFromFHSAA data. How might we fix these?
 
-that have the same name. We can see this by looking at the output of the following command:
+## can we merge the remaining data?
+
+We will set these aside and merge the remaining data.
 
 ```{r}
 (SchoolsWithUniqueNamesInFHS <- FloridaHighSchools |> 
@@ -180,5 +201,21 @@ FloridaHighSchools2 <- SchoolsWithUniqueNamesInFHS |>
               by = "school_name")
 ```
 
-### so what should we do now?
+### can we try to run the correlation again?
+
+What does each line of this chunk do?
+
+```{r}
+GradCountsRates <- FloridaHighSchools2 |> 
+    mutate(est_Ngrads = 
+               round(est_enrollment * .01 *
+               graduation_rate_2022_23),0) |>
+    select(district_name, est_enrollment, est_Ngrads) |> 
+    group_by(district_name) |> 
+    summarise_if(is.numeric,sum, na.rm = TRUE) |> 
+    mutate(adjGradRate = est_Ngrads / est_enrollment)
+    
+```
+
+What's next?
 

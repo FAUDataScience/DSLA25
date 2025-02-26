@@ -88,9 +88,11 @@ finding-exploring-and-cleaning-data
 florida-educational-data
 a-digression-slash-windows-and-the-world.
 getting-the-data-from-our-machine-into-r
-lets-look-just-at-high-schools
+which-ones-are-high-schools
 can-we-compute-district-county-means
-so-what-should-we-do-now
-r-markdown
-including-plots
-so-what-should-we-do-now-1
+can-we-estimate-the-relationship-between-economic-disadvantage-and-graduation-rates
+estimating-school-enrollments
+can-we-merge-the-datasets
+finding-gremlins
+can-we-merge-the-remaining-data
+can-we-try-to-run-the-correlation-again
