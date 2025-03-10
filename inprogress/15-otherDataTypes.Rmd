@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(babynames)
-library(lubridate)
+#library(lubridate)
 ```
 # strings, factors, dates, and times
 
@@ -35,13 +35,17 @@ donuts %>% str_replace(" ","_")
 
 As you work with texts, simple problems sometimes require sophisticated codes. The regex that are used to solve these problems quickly become dense and challenging.
 
-One tool that can help you is the str_view command, which returns (when used in R studio) highlighted text showing corresponding passages. For example:
+One tool that can help you is the str_view command, which returns highlighted text showing corresponding passages. For example:
 
 ```{r}
-dumbSlashMovieTitles <- c("Craslash", 
-                     "Revenge o' \'McSlashy'", 
-                     "Star Wars: Episode \\slash")
-dumbSlashMovieTitles %>% str_view ("sh")
+dumbSlashMovieTitles <- c("Face/off", 
+                     "8 1/2", 
+                     "F/X",
+                     "Frost/Nixon",
+                     "Victor/Victoria",
+                     "Back\\Slasher")
+dumbSlashMovieTitles %>% str_view ("/")
+dumbSlashMovieTitles %>% str_view ("\\\\")
 ```
 
 Note the effects of the backslash: For example, the Star Wars movie has two slashes in the input, but only one in the output, as the backslash is the escape character that tells R to take the next character literally (as in the 'Revenge' movie).

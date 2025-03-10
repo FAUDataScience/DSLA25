@@ -37,10 +37,10 @@ diamonds %>%
 
 Beyond these *atomic vectors,* data can take more complex forms, such as hierarchical or tree-like structures such as the following.
 
-    Honors College Courses
+    Wilkes Honors College Courses
     ├───Area: Psychology
         ├───Name: Personality and Social Development
-        └───Term: Spring 2021
+        └───Term: Spring 2025
         └───Instructors: Lanning
         └───Students: 
             └───Al

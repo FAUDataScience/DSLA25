@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 reproducibility and the replication crisis | Data science for the liberal arts</title>
-  <meta name="description" content="10 reproducibility and the replication crisis | Data science for the liberal arts" />
+  <title>13 applied data science | Data science for the liberal arts</title>
+  <meta name="description" content="13 applied data science | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 reproducibility and the replication crisis | Data science for the liberal arts" />
+  <meta property="og:title" content="13 applied data science | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 reproducibility and the replication crisis | Data science for the liberal arts" />
+  <meta name="twitter:title" content="13 applied data science | Data science for the liberal arts" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="on-probability-and-statistics.html"/>
-<link rel="next" href="wrangling-and-tidying.html"/>
+<link rel="prev" href="finding-exploring-cleaning-and-combining-data.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -356,110 +356,189 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reproducibility-and-the-replication-crisis" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> reproducibility and the replication crisis<a href="reproducibility-and-the-replication-crisis.html#reproducibility-and-the-replication-crisis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Probability theory is elegant, and the logic of <strong>Null Hypothesis Significance Testing (NHST)</strong> is compelling. But philosophers of science have long recognized that this is not really how science works <span class="citation">(<a href="#ref-lakatos1969">Lakatos 1969</a>)</span>. That is, science is not primarily built by the testing and rejecting of null hypotheses. (Think, for example, of how you might describe an experiment for testing the hypothesis that gravity exists, and whether you would ever reject this hypothesis).</p>
-<p>The problem is a multifaceted one. It arises partly because, in any experiment, there is a large (infinite?) number of conditions which might be invoked to explain-away results of a failure of our work. It arises because we are human, and prone to various biases of decision making and information integration (that is, we are poor Bayesians). It arises, too, because scientific institutions such as journals, funding agencies, and universities are competitive environments which incentivize positive findings.</p>
-<p>In recent years, the tension between <strong>the false ideal of NHST</strong> and the real world of science has become increasingly evident. Within psychology, experimental studies have often - even typically - failed to replicate well-known results <span class="citation">(<a href="#ref-opensciencecollaboration2015">Open Science Collaboration 2015</a>)</span>. It’s not just psychology <span class="citation">(<a href="#ref-baker2016">Baker 2016</a>)</span>. One of the first important papers to shine light in the area <span class="citation">(<a href="#ref-ioannidis2005">Ioannidis 2005</a>)</span> came from medicine; it suggested six contributing factors, which I quote verbatim here:</p>
+<div id="applied-data-science" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> applied data science<a href="applied-data-science.html#applied-data-science" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>From the standpoint of applied data science, data analysis should have meaning,
+and should lead to consequential social or practical consequences. Here, we
+consider a few examples of applications of data science.</p>
+<div id="public-health-and-covid" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> public health and covid<a href="applied-data-science.html#public-health-and-covid" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Winter 2020, as the COVID-19 pandemic began to take hold, I began chronicling
+the course of the virus. In a prior version of this book, I wrote the following:</p>
 <blockquote>
-<p><em>The smaller the studies conducted in a scientific field, the less likely the research findings are to be true.</em></p>
-<ul>
-<li>This stems directly from our discussion of the central limit theorem and the instability of results from small samples.</li>
-</ul>
-<p><em>The smaller the effect sizes in a scientific field, the less likely the research findings are to be true</em></p>
-<ul>
-<li>We’ll talk about effect size below.</li>
-</ul>
-<p><em>The greater the number and the lesser the selection of tested relationships in a scientific field, the less likely the research findings are to be true.</em> (and) <em>The greater the flexibility in designs, definitions, outcomes, and analytical modes in a scientific field, the less likely the research findings are to be true.</em></p>
-<ul>
-<li>The “problem” of analytic flexibility leads to ‘p-hacking’</li>
-</ul>
-<p><em>The greater the financial and other interests and prejudices in a scientific field, the less likely the research findings are to be true</em> and <em>The hotter a scientific field (with more scientific teams involved), the less likely the research findings are to be true.</em></p>
-<ul>
-<li>Positive findings rise, and negative ones are ignored. And scientists are human, and subject to incentives.</li>
-</ul>
+<p><strong>tracking the Novel Coronavirus (from Feb 2020)</strong></p>
+<p>Here, I want to consider a timely (but challenging) dataset.</p>
+<p>The Novel Coronavirus is an emerging health crisis, particularly in Wuhan (a
+Chinese city larger than New York City) and the surrounding province of Hubei.
+<strong>It is not yet a threat in the United States - there have, at this writing
+(02/11/20) been zero cases in Florida.</strong> Still, tracking the spread of the
+virus - the unfolding number of people infected and recovered, as well as the
+number of deaths - is a fascinating exercise.</p>
 </blockquote>
-<p>Here’s a video which provides some more context for the crisis:</p>
-<p><a href="https://youtu.be/42QuXLucH3Q"><img src="images/reprostill.PNG" alt="Reproducibility" /></a> .</p>
-<p>*Video 10.1: On the reproducibility crisis (12 mins)</p>
-<div id="answers-to-the-reproducibility-crisis" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> answers to the reproducibility crisis<a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For scientific progress to occur, there needs to be more than a simple rejection of what is wrong with current methods and research programs: Here, as elsewhere, criticism must be constructive to be valuable.</p>
-<p>There have been a number of solutions proposed to the reproducibility crisis.</p>
-<div id="partial-answer-1-tweak-or-abandon-nhst" class="section level3 hasAnchor" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span> partial answer 1: Tweak or abandon NHST<a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first cluster of responses to the reproducibility crisis is concerned with statistics, specifically problems with Null Hypothesis Significance Testing (NHST). These include (a) justifying one’s alpha - making it more stringent, for example, for counter-intuitive claims <span class="citation">(<a href="#ref-grange2018">Grange et al. 2018</a>)</span>, (b) changing the default p value from .05 to .005 <span class="citation">(<a href="#ref-benjamin2018">Benjamin et al. 2018</a>)</span>, and (c) abandoning significance testing altogether <span class="citation">(<a href="#ref-mcshane2017">McShane et al. 2017</a>)</span>.</p>
-<p><span class="citation">(<a href="#ref-szucs2017">Szucs and Ioannidis 2017</a>)</span> goes into some of these issues in more detail and discusses other limitations of significance testing, including the dichotomous, all-or-none silliness of the accept/reject decision. (If you play the NHST game, there is no ‘almost’ significant, ‘approached significance,’ ‘highly significant’, etc.).</p>
-<p><span class="citation">(<a href="#ref-leek2015">Leek and Peng 2015</a>)</span> argue that the problems are not merely with NHST, but with the whole of data analysis. They maintain that better training in data science - courses like ours, perhaps, are part of the answer.</p>
-<p><img src="images/leek2015pipeline.PNG" alt="leek2015" /> (figure)</p>
-<p><span class="citation">(<a href="#ref-munafo2017">Munafò et al. 2017</a>)</span> also argue that threats to reproducible science occur at a number of places in science, not just with the evaluation of hypotheses.</p>
-<div class="float">
-<img src="images/munafo2017threats.PNG" alt="munafo2017" />
-<div class="figcaption">munafo2017</div>
+<p>I then went on to provide code for accessing data provided by the Johns Hopkins
+Center for Systems Science and Engineering (JHU/CSSE). The data was initially
+provided on a <a href="https://github.com/CSSEGISandData/COVID-19">GitHub site</a>, then
+moved to a dashboard here. You can learn more about the efforts of this team
+<a href="https://coronavirus.jhu.edu/">here</a>.</p>
+<div id="covid-data-in-2025" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> COVID data in 2025<a href="applied-data-science.html#covid-data-in-2025" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Today, there are a number of R packages intended to help analyze COVID data. The
+COVID19 package provides records of the outbreak on a global scale. Here’s some sample code:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="applied-data-science.html#cb54-1" tabindex="-1"></a><span class="co"># install.packages(&quot;COVID19&quot;)</span></span>
+<span id="cb54-2"><a href="applied-data-science.html#cb54-2" tabindex="-1"></a><span class="fu">library</span>(COVID19)</span>
+<span id="cb54-3"><a href="applied-data-science.html#cb54-3" tabindex="-1"></a>allCovid <span class="ot">&lt;-</span> <span class="fu">covid19</span>()</span></code></pre></div>
+<pre><code>## We have invested a lot of time and effort in creating COVID-19 Data
+## Hub, please cite the following when using it:
+## 
+##   Guidotti, E., Ardia, D., (2020), &quot;COVID-19 Data Hub&quot;, Journal of Open
+##   Source Software 5(51):2376, doi: 10.21105/joss.02376
+## 
+## The implementation details and the latest version of the data are
+## described in:
+## 
+##   Guidotti, E., (2022), &quot;A worldwide epidemiological database for
+##   COVID-19 at fine-grained spatial resolution&quot;, Sci Data 9(1):112, doi:
+##   10.1038/s41597-022-01245-1
+## To print citations in BibTeX format use:
+##  &gt; print(citation(&#39;COVID19&#39;), bibtex=TRUE)
+## 
+## To hide this message use &#39;verbose = FALSE&#39;.</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="applied-data-science.html#cb56-1" tabindex="-1"></a>CovidbyDate <span class="ot">&lt;-</span> allCovid <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="applied-data-science.html#cb56-2" tabindex="-1"></a>    <span class="fu">select</span>(date,confirmed, deaths, recovered, people_vaccinated,</span>
+<span id="cb56-3"><a href="applied-data-science.html#cb56-3" tabindex="-1"></a>           <span class="at">place =</span> administrative_area_level_1) <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="applied-data-science.html#cb56-4" tabindex="-1"></a>    <span class="fu">group_by</span>(date, place) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a href="applied-data-science.html#cb56-5" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb56-6"><a href="applied-data-science.html#cb56-6" tabindex="-1"></a>CovidbyDate <span class="sc">|&gt;</span></span>
+<span id="cb56-7"><a href="applied-data-science.html#cb56-7" tabindex="-1"></a>    <span class="fu">filter</span> (date <span class="sc">&lt;</span> <span class="st">&quot;2023-01-01&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-8"><a href="applied-data-science.html#cb56-8" tabindex="-1"></a>    <span class="fu">filter</span>(place <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-9"><a href="applied-data-science.html#cb56-9" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">confirmed =</span> <span class="fu">sum</span>(confirmed)) <span class="sc">%&gt;%</span></span>
+<span id="cb56-10"><a href="applied-data-science.html#cb56-10" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date)) <span class="sc">+</span>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>confirmed))</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>A second package can be used to examine the impact of COVID more indirectly, but possibly more accurately, by looking at excess mortality data.</p>
+</div>
+<div id="a-brief-digression-on-causality" class="section level3 hasAnchor" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> a brief digression on causality<a href="applied-data-science.html#a-brief-digression-on-causality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Human deaths, like most events, are multiply determined. In the case of COVID, many of those who contracted the disease suffered from other vulnerabilities including diabetes, obesity, pre-existing heart disease, and “old age.” They may have contracted pneumonia as a proximal cause in a pathway that might have included, for example,
+chronic cigarette smoking -&gt; emphysema -&gt; chronic obstructive pulmonary disease (COPD) -&gt; COVID -&gt; death.</p>
+<p>In these cases, like most cases, isolating an individual “cause” can be difficult if not arbitrary, Determinations as to the cause of death may be difficult to make, particularly in an environment in which political or economic considerations may be non-trivial.</p>
+</div>
+<div id="the-excess-mortality-package" class="section level3 hasAnchor" number="13.1.3">
+<h3><span class="header-section-number">13.1.3</span> the excess mortality package<a href="applied-data-science.html#the-excess-mortality-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The R excess mortality package (excessmort) can be used to calculate the expected
+number of deaths in a region and time period. Among other things, it can be used
+to estimate the effects of the pandemic on mortality in individual states based
+on historical data rather than particular diagnoses. Here are simple examples of
+the use of each.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="applied-data-science.html#cb57-1" tabindex="-1"></a><span class="co"># install.packages(&quot;excessmort&quot;)</span></span>
+<span id="cb57-2"><a href="applied-data-science.html#cb57-2" tabindex="-1"></a><span class="fu">library</span>(excessmort)</span>
+<span id="cb57-3"><a href="applied-data-science.html#cb57-3" tabindex="-1"></a>exclude_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2017</span>, <span class="dv">12</span>, <span class="dv">16</span>), <span class="fu">make_date</span>(<span class="dv">2018</span>, <span class="dv">1</span>, <span class="dv">16</span>), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>),</span>
+<span id="cb57-4"><a href="applied-data-science.html#cb57-4" tabindex="-1"></a>                   <span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">max</span>(cdc_state_counts<span class="sc">$</span>date), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>)) </span>
+<span id="cb57-5"><a href="applied-data-science.html#cb57-5" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb57-6"><a href="applied-data-science.html#cb57-6" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;Florida&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-7"><a href="applied-data-science.html#cb57-7" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
+<pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
+## the model is not recommended with less than five years of data. Consider
+## setting include.trend = FALSE.</code></pre>
+<pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
+<pre><code>## Overall death rate is 10.5.</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="applied-data-science.html#cb61-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="applied-data-science.html#cb62-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="applied-data-science.html#cb62-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="applied-data-science.html#cb62-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
+<pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
+## the model is not recommended with less than five years of data. Consider
+## setting include.trend = FALSE.</code></pre>
+<pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
+<pre><code>## Overall death rate is 7.33.</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="applied-data-science.html#cb66-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 </div>
 </div>
-<div id="partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks" class="section level3 hasAnchor" number="10.1.2">
-<h3><span class="header-section-number">10.1.2</span> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks<a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A second cluster of responses is concerned with keeping good records. Let’s say that you are running a study, say, which looks at the hypothesis of differential variation of females and males in a cognitive measure; your interest is to critically examine the hypothesis discussed by <span class="citation">(<a href="#ref-wainer2007">Howard Wainer 2007</a>)</span> that males show more variability.</p>
-<p>There have been <em>a lot</em> of studies related to this over the years, so that rather than collect new data you decide that you will work with existing data from several online archives. You find and download spreadsheets from two studies: In the first, gender is coded ‘1’ for male, ‘2’ for female. In the second, gender is coded ‘1’ for female, ‘2’ for male, and ‘3’ for other. There are, in essence, two ways that you can combine the variables into a common format: The first would be to take one of the spreadsheets and do a few find-and-replace commands on the appropriate column of the data. This is quick and easy - but when someone else, or even future you, returns to this data, you will not remember if you have recoded it.</p>
-<p>The alternative is to keep a record of your work in R markdown. This is more time consuming, and can sometimes be clumsy. But it is <del>virtuous</del> useful and clear - and when you screw up, you will have a full record of what happened.</p>
-<p>Part of the problem of scientific reproducibility is to keep comprehensive records. This record-keeping and research transparency is at the heart of R markdown documents.</p>
+<div id="other-datasets-in-and-beyond-r" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> other datasets in and beyond R<a href="applied-data-science.html#other-datasets-in-and-beyond-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The datasets library in R includes about 90 datasets of this writing. Many of
+these (e.g., iris, cars) are ubiquitous in R training; they are typically small
+and easy to work with.</p>
+<p>The Fivethirtyeight and fivethirtyeightdata packages include another 150 or so
+datasets on politics and popular culture.</p>
+<p>A set of 2500+ datasets which are in R packages may be found at
+<a href="https://vincentarelbundock.github.io/Rdatasets/datasets.html" class="uri">https://vincentarelbundock.github.io/Rdatasets/datasets.html</a> (you can find
+this in a sortable spreadsheet
+<a href="https://github.com/vincentarelbundock/Rdatasets/blob/master/datasets.csv">here</a>).
+These range in scope from the small (“Death By Horse Kicks”, 5 rows and 2
+columns) to the large “US Military Demographics”, 1.4 million rows and 6
+columns. Please consider explorinfg this site.</p>
+<p>The openintro package includes several hundred datasets; they are described
+<a href="https://cran.r-project.org/web/packages/openintro/openintro.pdf">here</a></p>
+<p>Note also that the
+<strong>R fivethirtyeight library</strong> provides access to a number of clever, clean, and
+largely manageable datasets, each of which underlies the empirical analyses and
+reports of Nate Silver and his team (You can learn more at
+<a href="https://data.fivethirtyeight.com/" class="uri">https://data.fivethirtyeight.com/</a>).</p>
+<p><a href="https://www.kaggle.com/account/login?phase=startSignInTab&amp;returnUrl=%2F">Kaggle</a>is
+a noun (a community, a website, a challenge), and a verb (to kaggle is to
+participate in a data challenge) which describes a crowdsourced competition to
+improve on a problem in prediction. Perhaps the first and best known example of
+this was the Netflix prize <span class="citation">(<a href="#ref-jackson2017"><strong>jackson2017?</strong></a>)</span>, which, in 2006, promised one million
+dollars to the first team to improve the algorithm by which that company
+recommended movies to its customer base. The competition took several years, and
+inspired substantial improvements in machine learning as well as in crowdsourced
+science. At this writing, Kaggle hosts many active competitions - including some
+with prizes of one million dollars or more.” (Good luck!) Kaggle also hosts
+hundreds of thousands of datasets. A good place to start is to filter the
+datasets stored in comma separated value format (.csv) and a usability rating of
+8 or more.</p>
+<p>Within psychology and behavioral science, the Open Science Framework (OSF)
+provides a system for hosting and sharing code and data from research articles.
+One OSF page is a compilation of many datasets from prominent papers in
+psychology and psychiatry: this now forwards to a
+<a href="https://docs.google.com/spreadsheets/d/1ejOJTNTL5ApCuGTUciV0REEEAqvhI2Rd2FCoj7afops/edit?gid=0#gid=0">spreadsheet</a>
+which, though it does include data from a number of large and important studies,
+it appears insufficiently curated, with many dead links.</p>
+<p>Outside of psychology, repositories of data from many disciplines may be found
+at Re3data <a href="https://www.re3data.org/" class="uri">https://www.re3data.org/</a>.</p>
+<p>There are many datasets about music - songs, artists, lyrics, etc. - at
+millionsongdataset. Note that many of these are quite large, but a <a href="http://labrosa.ee.columbia.edu/~dpwe/tmp/millionsongsubset.tar.gz">smaller
+random set of 10000
+files</a> is
+available.</p>
+<p>Or just <a href="https://toolbox.google.com/datasetsearch"><strong>Google datasets</strong></a>.</p>
+<div id="makeextractcombine-your-own-data" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> make/extract/combine your own data<a href="applied-data-science.html#makeextractcombine-your-own-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Despite the petabytes (exabytes? zettabytes?
+<a href="https://en.wikipedia.org/wiki/Yottabyte">yottabytes</a>?) of data in the datasets
+described above, it’s possible that the dataset that you want to examine does
+not yet exist. But you may be able to create it, for example, by <strong>scraping</strong>
+data from the Web. Typically, you would use an Application Programming Interface
+(API) to pull data down from platforms such as Twitter or Reddit. For these and
+other major social media and news platforms, there are R packages which will
+walk you through the process of getting the data from webpage to tidy dataset.
+(Be aware, though, that the methods for data access on these platforms
+frequently changes, so that code that worked a year ago might not work today).</p>
+<p>Another source of data is … your own life. If you wear a pedometer or sleep
+tracker, are a calorie counter or keep other logs as a member of the
+<strong>quantified self</strong> movement, consider how such data might relate to aspects of
+the physical environment (such as temperature, or the time between sunrise and
+sunset) and/or the broader social and cultural context (a measure, perhaps of
+the sentiment, or mood, of news articles from papers like the <em>NY Times</em>).</p>
+<p>Finally, you might want to <strong>combine multiple datasets</strong>, such as county-level
+home pricing data from Zillow (<a href="https://www.zillow.com/research/data/" class="uri">https://www.zillow.com/research/data/</a>),
+county-level elections data from, for example, here:
+<a href="https://github.com/tonmcg/US_County_Level_Election_Results_08-16" class="uri">https://github.com/tonmcg/US_County_Level_Election_Results_08-16</a>, and the
+boundaries of Woodard’s 11 American Nations (see Lanning). In joining different
+datasets, or data from different sources, we can go beyond a pedagogical
+exercise (learning about learning) and contribute new and meaningful knowledge.</p>
 </div>
-<div id="partial-answer-3-pre-registration-of-your-research" class="section level3 hasAnchor" number="10.1.3">
-<h3><span class="header-section-number">10.1.3</span> partial answer 3: Pre-registration of your research<a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The third answer to the reproducibility crisis is the most comprehensive; it involves not merely keeping a record of what you have done, but preregistering your work, that is, fully specifying your planned analyses beforehand <span class="citation">(<a href="#ref-miguel2014">Miguel et al. 2014</a>)</span>. The author, an economist, outlines his argument in a five-minute video <a href="https://www.futurelearn.com/courses/open-social-science-research/0/steps/31436">here</a>. For randomized controlled trials, consider socialscienceregistry.org, and for more general use, use the open science framework page.</p>
-</div>
-</div>
-<div id="further-readings" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> further readings<a href="reproducibility-and-the-replication-crisis.html#further-readings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Finally, if you would like to learn more about the reproducibility crisis, there is a recent collection of papers in Nature <a href="https://www.nature.com/collections/prbfkwmwvz/">here</a>.</p>
-</div>
-<div id="notes-for-next-revision-1" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> notes for next revision<a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This chapter could include more recent scholarship on the reproducibility crisis and links to sites including OSF. It could also introduce an empirical approach to reproducibility (e.g., k-fold sampling).</p>
+<div id="keep-it-manageable" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> keep it manageable<a href="applied-data-science.html#keep-it-manageable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Proceed with caution - many of these datasets are likely to be quite large (for
+example, analyses of images) and/or in formats that for now are too challenging
+(JSON). I encourage you to stick with data that are available in a .csv format
+and that don’t have more than, say, a million data points (e.g., 50,000
+observations * 20 variables).</p>
 
 </div>
-</div>
-
-
-
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-baker2016" class="csl-entry">
-Baker, Monya. 2016. <span>“Is There a Reproducibility Crisis?”</span> <em>Nature</em> 533: 26.
-</div>
-<div id="ref-benjamin2018" class="csl-entry">
-Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/cff2">https://doi.org/cff2</a>.
-</div>
-<div id="ref-grange2018" class="csl-entry">
-Grange, JA, D Lakens, F Adolfi, C Albers, F Anvari, M Apps, S Argamon, et al. 2018. <span>“Justify Your Alpha.”</span> <em>Nature Human Behavior</em>.
-</div>
-<div id="ref-ioannidis2005" class="csl-entry">
-Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/chhf6b">https://doi.org/chhf6b</a>.
-</div>
-<div id="ref-lakatos1969" class="csl-entry">
-Lakatos, Imre. 1969. <span>“Falsification and the Methodology of Scientific Research Programmes.”</span> <em>Criticism and the Growth of Knowledge. Cambridge University Press: Cambridge</em>.
-</div>
-<div id="ref-leek2015" class="csl-entry">
-Leek, Jeffrey T, and Roger D Peng. 2015. <span>“Statistics: <span>P</span> Values Are Just the Tip of the Iceberg.”</span> <em>Nature</em> 520 (7549): 612. <a href="https://doi.org/gfb8jm">https://doi.org/gfb8jm</a>.
-</div>
-<div id="ref-mcshane2017" class="csl-entry">
-McShane, Blakeley B., David Gal, Andrew Gelman, Christian Robert, and Jennifer L. Tackett. 2017. <span>“Abandon <span>Statistical Significance</span>.”</span> <em>arXiv:1709.07588 [Stat]</em>, September. <a href="https://arxiv.org/abs/1709.07588">https://arxiv.org/abs/1709.07588</a>.
-</div>
-<div id="ref-miguel2014" class="csl-entry">
-Miguel, Edward, Colin Camerer, Katherine Casey, Joshua Cohen, Kevin M Esterling, Alan Gerber, Rachel Glennerster, et al. 2014. <span>“Promoting Transparency in Social Science Research.”</span> <em>Science</em> 343 (6166): 30–31. <a href="https://doi.org/gdrcpz">https://doi.org/gdrcpz</a>.
-</div>
-<div id="ref-munafo2017" class="csl-entry">
-Munafò, Marcus R., Brian A. Nosek, Dorothy V. M. Bishop, Katherine S. Button, Christopher D. Chambers, Nathalie Percie du Sert, Uri Simonsohn, Eric-Jan Wagenmakers, Jennifer J. Ware, and John P. A. Ioannidis. 2017. <span>“A Manifesto for Reproducible Science.”</span> <em>Nature Human Behaviour</em> 1 (1): 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a>.
-</div>
-<div id="ref-opensciencecollaboration2015" class="csl-entry">
-Open Science Collaboration. 2015. <span>“Estimating the Reproducibility of Psychological Science.”</span> <em>Science</em> 349 (6251): aac4716–16. <a href="https://doi.org/68c">https://doi.org/68c</a>.
-</div>
-<div id="ref-szucs2017" class="csl-entry">
-Szucs, Denes, and John Ioannidis. 2017. <span>“When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.”</span> <em>Frontiers in Human Neuroscience</em> 11: 390. <a href="https://doi.org/gc6vws">https://doi.org/gc6vws</a>.
-</div>
-<div id="ref-wainer2007" class="csl-entry">
-Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
 </div>
 </div>
             </section>
@@ -467,8 +546,8 @@ Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</spa
           </div>
         </div>
       </div>
-<a href="on-probability-and-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wrangling-and-tidying.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="finding-exploring-cleaning-and-combining-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
