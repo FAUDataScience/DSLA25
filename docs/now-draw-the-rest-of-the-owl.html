@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-03-10" />
+<meta name="date" content="2025-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -338,6 +338,30 @@ div.csl-indent {
 <li class="chapter" data-level="13.2.2" data-path="applied-data-science.html"><a href="applied-data-science.html#keep-it-manageable"><i class="fa fa-check"></i><b>13.2.2</b> keep it manageable</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>14</b> strings, factors, dates, and times</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>14.1</b> strings</a></li>
+<li class="chapter" data-level="14.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>14.2</b> factors</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>14.2.1</b> types of babies</a></li>
+<li class="chapter" data-level="14.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>14.2.2</b> types of grown-ups</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>14.3</b> dates</a></li>
+<li class="chapter" data-level="14.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>14.4</b> times</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>15</b> lists</a></li>
+<li class="chapter" data-level="16" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>16</b> loops, functions, and beyond</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>16.1</b> loops</a></li>
+<li class="chapter" data-level="16.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>16.2</b> from loop to apply to purrr::map</a></li>
+<li class="chapter" data-level="16.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>16.3</b> some examples of functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>16.3.1</b> preliminaries</a></li>
+<li class="chapter" data-level="16.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>16.3.2</b> the function</a></li>
+<li class="chapter" data-level="16.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>16.3.3</b> applying the function</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>16.4</b> how many bottles of what?</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -390,13 +414,13 @@ div.csl-indent {
 ##  $ prop: num [1:1924665] 0.0724 0.0267 0.0205 0.0199 0.0179 ...</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="now-draw-the-rest-of-the-owl.html#cb5-1" tabindex="-1"></a>babynames <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##    year sex   name          n       prop
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;
-## 1  1990 F     Jennafer     32 0.0000156 
-## 2  2017 F     Taija         8 0.00000427
-## 3  1942 F     Georgetta    79 0.0000568 
-## 4  1975 F     Chalise       6 0.00000384
-## 5  1981 M     Ishmael      60 0.0000322</code></pre>
+##    year sex   name         n       prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+## 1  2012 M     Braheem      6 0.00000296
+## 2  1917 F     Hermione    12 0.0000107 
+## 3  1938 F     Merriam      5 0.00000438
+## 4  1946 F     Dorella      7 0.00000434
+## 5  2013 M     Karson     977 0.000484</code></pre>
 </div>
 <div id="or-the-ggplot2movies-package" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> or the (ggplot2)movies package<a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -434,11 +458,11 @@ div.csl-indent {
 <pre><code>## # A tibble: 5 × 24
 ##   title      year length budget rating votes    r1    r2    r3    r4    r5    r6
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 Vampiri,…  1957     78     NA    6.4    80   4.5   0     4.5   4.5  14.5  14.5
-## 2 Hyper Sp…  1989     81     NA    3.6    13  44.5   0    14.5  14.5   4.5   4.5
-## 3 One Hell…  2002     94 400000    2.7    70  34.5   4.5  14.5   4.5  14.5   4.5
-## 4 At&#39; zije…  1965    134     NA    7.2    13   0     0     0     0    14.5   0  
-## 5 I&#39;m From…  1992     60     NA    7.2   144   4.5   4.5   4.5   4.5   4.5   4.5
+## 1 Moonrake…  1958     82 NA        5.9    53   0     4.5   4.5   4.5  14.5  34.5
+## 2 Wells Fa…  1937     97  1.5e6    7      41   4.5   0     0     4.5   0    24.5
+## 3 Forest W…  1996     93 NA        3.7   162  24.5  14.5   4.5   4.5   4.5   4.5
+## 4 Rendez-v…  1955     75 NA        7.1     7   0     0     0     0    14.5  14.5
+## 5 Alibi      1955    103 NA        6      10   0     0     0     0    14.5  64.5
 ## # ℹ 12 more variables: r7 &lt;dbl&gt;, r8 &lt;dbl&gt;, r9 &lt;dbl&gt;, r10 &lt;dbl&gt;, mpaa &lt;chr&gt;,
 ## #   Action &lt;int&gt;, Animation &lt;int&gt;, Comedy &lt;int&gt;, Drama &lt;int&gt;,
 ## #   Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</code></pre>

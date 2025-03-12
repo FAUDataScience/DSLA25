@@ -1,4 +1,0 @@
-```{r tidyverse, include=FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-

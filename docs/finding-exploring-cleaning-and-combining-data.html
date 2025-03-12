@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-03-10" />
+<meta name="date" content="2025-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -338,6 +338,30 @@ div.csl-indent {
 <li class="chapter" data-level="13.2.2" data-path="applied-data-science.html"><a href="applied-data-science.html#keep-it-manageable"><i class="fa fa-check"></i><b>13.2.2</b> keep it manageable</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>14</b> strings, factors, dates, and times</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>14.1</b> strings</a></li>
+<li class="chapter" data-level="14.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>14.2</b> factors</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>14.2.1</b> types of babies</a></li>
+<li class="chapter" data-level="14.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>14.2.2</b> types of grown-ups</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>14.3</b> dates</a></li>
+<li class="chapter" data-level="14.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>14.4</b> times</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>15</b> lists</a></li>
+<li class="chapter" data-level="16" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>16</b> loops, functions, and beyond</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>16.1</b> loops</a></li>
+<li class="chapter" data-level="16.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>16.2</b> from loop to apply to purrr::map</a></li>
+<li class="chapter" data-level="16.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>16.3</b> some examples of functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>16.3.1</b> preliminaries</a></li>
+<li class="chapter" data-level="16.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>16.3.2</b> the function</a></li>
+<li class="chapter" data-level="16.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>16.3.3</b> applying the function</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>16.4</b> how many bottles of what?</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -472,10 +496,8 @@ div.csl-indent {
 <span id="cb42-16"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-17"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-18"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-18" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_place =</span> <span class="fu">str_remove</span>(school_place,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Missing pieces filled
-## with `NA` in 192 rows [8, 18, 21, 22, 24,
-## 26, 32, 33, 44, 46, 47, 49, 53, 57, 59, 60,
-## 62, 67, 73, 81, ...].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 192 rows [8, 18,
+## 21, 22, 24, 26, 32, 33, 44, 46, 47, 49, 53, 57, 59, 60, 62, 67, 73, 81, ...].</code></pre>
 <p>When we run this chunk, we get a warning. What is it about? Is it ok?</p>
 </div>
 </div>
@@ -497,15 +519,10 @@ div.csl-indent {
 <span id="cb44-13"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-13" tabindex="-1"></a>                           <span class="st">&quot;HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>))</span>
 <span id="cb44-14"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-14" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
 <span id="cb44-15"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-15" tabindex="-1"></a>    <span class="fu">left_join</span>(EnrollmentsFromFHSAA, <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many
-## relationship between `x` and `y`.
-## ℹ Row 38 of `x` matches multiple rows in
-##   `y`.
-## ℹ Row 187 of `y` matches multiple rows in
-##   `x`.
-## ℹ If a many-to-many relationship is
-##   expected, set `relationship =
-##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
+<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+## ℹ Row 38 of `x` matches multiple rows in `y`.
+## ℹ Row 187 of `y` matches multiple rows in `x`.
+## ℹ If a many-to-many relationship is expected, set `relationship = &quot;many-to-many&quot;` to silence this warning.</code></pre>
 <p>But when we do this, we get another warning message. Why is it there?</p>
 <div id="challenges-in-joining-datasets" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> challenges in joining datasets<a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -638,9 +655,7 @@ div.csl-indent {
 <span id="cb51-11"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-11" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">width =</span> <span class="st">&quot;14em&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb51-12"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-12" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## Joining with `by = join_by(district_name)`
-## Correlation computed with • Method:
-## &#39;pearson&#39; • Missing treated using:
-## &#39;pairwise.complete.obs&#39;</code></pre>
+## Correlation computed with • Method: &#39;pearson&#39; • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
