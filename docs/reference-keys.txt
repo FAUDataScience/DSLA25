@@ -122,3 +122,8 @@ preliminaries
 the-function
 applying-the-function
 how-many-bottles-of-what
+from-correlation-to-multiple-regression
+bivariate-analysis-galtons-height-data
+correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration
+from-correlation-to-regression
+multivariate-data

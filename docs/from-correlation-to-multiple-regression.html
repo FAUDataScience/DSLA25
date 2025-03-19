@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 exploring R world | Data science for the liberal arts</title>
-  <meta name="description" content="4 exploring R world | Data science for the liberal arts" />
+  <title>17 from correlation to multiple regression | Data science for the liberal arts</title>
+  <meta name="description" content="17 from correlation to multiple regression | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 exploring R world | Data science for the liberal arts" />
+  <meta property="og:title" content="17 from correlation to multiple regression | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 exploring R world | Data science for the liberal arts" />
+  <meta name="twitter:title" content="17 from correlation to multiple regression | Data science for the liberal arts" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="what-r-stands-for.html"/>
-<link rel="next" href="part-ii-towards-data-literacy.html"/>
+<link rel="prev" href="loops-functions-and-beyond.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -390,100 +390,173 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exploring-r-world" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> exploring R world<a href="exploring-r-world.html#exploring-r-world" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>There are many sources for learning the basics of R. A few of these follow. Please <strong>spend at least 180 mins exploring at least two of the following.</strong> Be prepared to discuss your progress next class: You will be asked which source(s) you used, what you struggled with, what questions you have, and what you would recommend to your classmates. <strong>Hint:</strong> If you find the material too challenging, remember the 15 minute rule, take a break away from your machine and other screens, clear your head, then try a different approach.</p>
-<div id="go-to-the-movies" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> go to the movies<a href="exploring-r-world.html#go-to-the-movies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>About seven years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction <a href="https://idc9.github.io/stor390/notes/getting_started/getting_started.html">here</a>.</p>
-<p>You can consider his report from the standpoint of style (formatting, organization), coding (how he did this), data (the part of the IMDB data he is looking at), and his results (plots of distributions and relationships).</p>
-<p>Do you have any questions about the movie data? How might you ask these?</p>
-<p>A minimal amount of sleuthing - a click on the STOR 390 link at the top of the page, then a quick scroll - reveals that “all of [Carmichael’s] course material is on the github repo” - or repository.</p>
-<ul>
-<li><p>Can you find the Rmd document that generated his work?</p></li>
-<li><p>Can you download it on to your machine?</p></li>
-<li><p>If you try to run it, what happens?</p></li>
-<li><p>If you were working on your thesis and came across a problem like this, what would you do next?</p></li>
-</ul>
+<div id="from-correlation-to-multiple-regression" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">17</span> from correlation to multiple regression<a href="from-correlation-to-multiple-regression.html#from-correlation-to-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous chapters, we have learned how to summarize and visualize data. We have seen that we can summarize data using <strong>descriptive statistics</strong> and visualize data using <strong>plots</strong>.</p>
+<p>We can distinguish between analyses of just one variable (the univariate case), two variables (bivariate), and multivariate (many variables).</p>
+<div id="bivariate-analysis-galtons-height-data" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> bivariate analysis: Galton’s height data<a href="from-correlation-to-multiple-regression.html#bivariate-analysis-galtons-height-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(Note that this section is excerpted directly from From <a href="https://github.com/datasciencelabs" class="uri">https://github.com/datasciencelabs</a>). <a href="https://en.wikipedia.org/wiki/Francis_Galton">Francis Galton</a>, a polymath and cousin of Charles Darwin, is one of the fathers of modern statistics. Galton liked to count - his motto is said to have been “whenever you can, count”. He collected data on the heights of families in England, and he found that there was a strong correlation between the heights of fathers and their sons.</p>
+<p>We have access to Galton’s family height data through the <code>HistData</code> package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key univariate statistics for the two variables of father and son height, each taken alone:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="from-correlation-to-multiple-regression.html#cb123-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GaltonFamilies&quot;</span>)</span>
+<span id="cb123-2"><a href="from-correlation-to-multiple-regression.html#cb123-2" tabindex="-1"></a>galton_heights <span class="ot">&lt;-</span> GaltonFamilies <span class="sc">%&gt;%</span></span>
+<span id="cb123-3"><a href="from-correlation-to-multiple-regression.html#cb123-3" tabindex="-1"></a>  <span class="fu">filter</span>(childNum <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> gender <span class="sc">==</span> <span class="st">&quot;male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb123-4"><a href="from-correlation-to-multiple-regression.html#cb123-4" tabindex="-1"></a>  <span class="fu">select</span>(father, childHeight) <span class="sc">%&gt;%</span></span>
+<span id="cb123-5"><a href="from-correlation-to-multiple-regression.html#cb123-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">son =</span> childHeight)</span>
+<span id="cb123-6"><a href="from-correlation-to-multiple-regression.html#cb123-6" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb123-7"><a href="from-correlation-to-multiple-regression.html#cb123-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(father), <span class="fu">sd</span>(father), <span class="fu">mean</span>(son), <span class="fu">sd</span>(son))</span></code></pre></div>
+<pre><code>##   mean(father) sd(father) mean(son)  sd(son)
+## 1     69.09888   2.546555  70.45475 2.557061</code></pre>
+<p>This <strong>univariate</strong> description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the <strong>correlation</strong> between the two variables.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="from-correlation-to-multiple-regression.html#cb125-1" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span></span>
+<span id="cb125-2"><a href="from-correlation-to-multiple-regression.html#cb125-2" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cor</span>(father, son)) <span class="sc">%&gt;%</span> </span>
+<span id="cb125-3"><a href="from-correlation-to-multiple-regression.html#cb125-3" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   cor(father, son)
+## 1            0.501</code></pre>
+<p>In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father’s height, we expect the son’s height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the <code>correlate()</code> function from the <code>corrr</code> package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The <code>fashion()</code> function can be used to easily clean up the output. (And the parentheses around the whole statement allows us to print out the result to the console / RMarkdown document, as well aas saving rmatrix in our environment).</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="from-correlation-to-multiple-regression.html#cb127-1" tabindex="-1"></a>(rmatrix <span class="ot">&lt;-</span> galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb127-2"><a href="from-correlation-to-multiple-regression.html#cb127-2" tabindex="-1"></a>  <span class="fu">select</span>(father, son) <span class="sc">%&gt;%</span> </span>
+<span id="cb127-3"><a href="from-correlation-to-multiple-regression.html#cb127-3" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb127-4"><a href="from-correlation-to-multiple-regression.html#cb127-4" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##     term father   son
+## 1 father         .501
+## 2    son   .501</code></pre>
+<div id="correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration" class="section level3 hasAnchor" number="17.1.1">
+<h3><span class="header-section-number">17.1.1</span> correlations based on small samples are unstable: A Monte Carlo demonstration<a href="from-correlation-to-multiple-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Correlations based on small samples can bounce around quite a bit. Consider what happens when, for example, we sample just 25 cases from Galton’s data, and compute the correlation within this sample. Note that I begin by setting a seed for the random sequence. I repeat this 1000 times, then plot the distribution of these sample rs:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="from-correlation-to-multiple-regression.html#cb129-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># why do I do this?</span></span>
+<span id="cb129-2"><a href="from-correlation-to-multiple-regression.html#cb129-2" tabindex="-1"></a>nTrials <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb129-3"><a href="from-correlation-to-multiple-regression.html#cb129-3" tabindex="-1"></a>nPerTrial <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb129-4"><a href="from-correlation-to-multiple-regression.html#cb129-4" tabindex="-1"></a>replications <span class="ot">&lt;-</span> <span class="fu">replicate</span>(nTrials, {</span>
+<span id="cb129-5"><a href="from-correlation-to-multiple-regression.html#cb129-5" tabindex="-1"></a>  <span class="fu">sample_n</span>(galton_heights, nPerTrial, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># we sample with replacement here</span></span>
+<span id="cb129-6"><a href="from-correlation-to-multiple-regression.html#cb129-6" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">r=</span><span class="fu">cor</span>(father, son)) <span class="sc">%&gt;%</span> </span>
+<span id="cb129-7"><a href="from-correlation-to-multiple-regression.html#cb129-7" tabindex="-1"></a>    .<span class="sc">$</span>r</span>
+<span id="cb129-8"><a href="from-correlation-to-multiple-regression.html#cb129-8" tabindex="-1"></a>})</span>
+<span id="cb129-9"><a href="from-correlation-to-multiple-regression.html#cb129-9" tabindex="-1"></a>replications <span class="sc">%&gt;%</span> </span>
+<span id="cb129-10"><a href="from-correlation-to-multiple-regression.html#cb129-10" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb129-11"><a href="from-correlation-to-multiple-regression.html#cb129-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(replications)) <span class="sc">+</span></span>
+<span id="cb129-12"><a href="from-correlation-to-multiple-regression.html#cb129-12" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;cyan&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>These sample correlations range from -0.002 to 0.882. Their average, however, at 0.503 is almost exactly that of the overall population. Often in data science, we will estimate population parameters in this way - by repeated sampling, and by studying the extent to which results are consistent across samples. More on that later.</p>
 </div>
-<div id="go-into-the-clouds" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> go into the clouds<a href="exploring-r-world.html#go-into-the-clouds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In addition to the desktop version of R (and Rstudio) we will be using in this class, there is a cloud-based environment as well. As mentioned in the last chapter, you can sign up for a starter account at <a href="https://posit.cloud">posit.cloud</a>.</p>
-<p>When you open posit.cloud, you should see a column on the left of the screen that includes four sections - spaces, learn, help, and info. (If you don’t see these, click on the hamburger menu in the upper left corner and it will appear). Browse through the recipes tab, particularly the ones in the left most column, to start to get a sense of how you might solve some common challenges in R.</p>
+<div id="from-correlation-to-regression" class="section level3 hasAnchor" number="17.1.2">
+<h3><span class="header-section-number">17.1.2</span> from correlation to regression<a href="from-correlation-to-multiple-regression.html#from-correlation-to-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In bivariate analysis, there is often an asymmetry between the two variables - one is often considered the <strong>predictor</strong> (or independent variable, typically x) and the other the <strong>response</strong> (or dependent variable, y). In these data, we are likely to consider the father’s height as the predictor and the son’s height as the response.</p>
+<p>As noted above, one way of thinking about a correlation between variables like heights of fathers (x) and sons (y), is that for every one standard deviation increase in x (father’s height), we expect the son’s height to increase by about <span class="math inline">\(r\)</span> times the standard deviation of y (the son’s height). We can compute all of these things manually and plot the points with a regression line. (We use the pull function to extract the values from the statistics from tibbles into single values).</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="from-correlation-to-multiple-regression.html#cb130-1" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(father)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb130-2"><a href="from-correlation-to-multiple-regression.html#cb130-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(son)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb130-3"><a href="from-correlation-to-multiple-regression.html#cb130-3" tabindex="-1"></a>s_x <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">sd</span>(father)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb130-4"><a href="from-correlation-to-multiple-regression.html#cb130-4" tabindex="-1"></a>s_y <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">sd</span>(son)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb130-5"><a href="from-correlation-to-multiple-regression.html#cb130-5" tabindex="-1"></a>r <span class="ot">&lt;-</span> galton_heights <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="fu">cor</span>(father, son))  <span class="sc">|&gt;</span> <span class="fu">pull</span> ()</span>
+<span id="cb130-6"><a href="from-correlation-to-multiple-regression.html#cb130-6" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="from-correlation-to-multiple-regression.html#cb130-7" tabindex="-1"></a>m <span class="ot">&lt;-</span>  r <span class="sc">*</span> s_y <span class="sc">/</span> s_x</span>
+<span id="cb130-8"><a href="from-correlation-to-multiple-regression.html#cb130-8" tabindex="-1"></a>b <span class="ot">&lt;-</span> mu_y <span class="sc">-</span> m<span class="sc">*</span>mu_x</span>
+<span id="cb130-9"><a href="from-correlation-to-multiple-regression.html#cb130-9" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="from-correlation-to-multiple-regression.html#cb130-10" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb130-11"><a href="from-correlation-to-multiple-regression.html#cb130-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(father, son)) <span class="sc">+</span> </span>
+<span id="cb130-12"><a href="from-correlation-to-multiple-regression.html#cb130-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb130-13"><a href="from-correlation-to-multiple-regression.html#cb130-13" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> b, <span class="at">slope =</span> m, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>Finally, if we first standardize the variables, then the regression line has intercept 0 and slope equal to the correlation <span class="math inline">\(\rho\)</span>. Here, the slope, regression line, and correlation are all equal (I’ve made the plot square to better indicate this).</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="from-correlation-to-multiple-regression.html#cb131-1" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb131-2"><a href="from-correlation-to-multiple-regression.html#cb131-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">scale</span>(father), <span class="fu">scale</span>(son))) <span class="sc">+</span> </span>
+<span id="cb131-3"><a href="from-correlation-to-multiple-regression.html#cb131-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb131-4"><a href="from-correlation-to-multiple-regression.html#cb131-4" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> r,  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-56-1.png" width="384" /></p>
 </div>
-<div id="open-the-box" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> open the box<a href="exploring-r-world.html#open-the-box" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Go to <a href="https://datasciencebox.org/content">datasciencebox/content</a>. Click on the “Hello world” link; this will take you to the beginning of Mine Çetinkaya-Rundel’s introductory lessons on R. These include slides, the source code for the slides (these are written in R markdown), and videos of her lectures, including the one we watched on the first day of class.</p>
-<p>Midway down this page, you’ll find a link to “the RStudio Cloud workspace for Data Science Course in a Box project.” Open it up and begin to explore the code and data behind her presentation.</p>
 </div>
-<div id="go-to-datacamp" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> go to (data)camp<a href="exploring-r-world.html#go-to-datacamp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Many folks swear by (and others, I presume, at) DataCamp, which kind of gamifies learning software. As a student in this class, you have access to all of their stuff… free. You can even do lessons on your phone. Use the link given to you in class to enroll, then explore the introductory-level classes in R at <a href="https://www.datacamp.com/category/r" class="uri">https://www.datacamp.com/category/r</a></p>
-</div>
-<div id="learn-to-knit" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> learn to knit<a href="exploring-r-world.html#learn-to-knit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In <em>literate programming</em>, comments, code, and results are integrated in a clear and reproducible way - they <em>document</em> our work.</p>
-<p>‘Markdown’ is a simple language for adding formatting to text. ‘R’ is a statistical language. ‘R Markdown’ is a variant of R that you can use to produce or publish complex documents like this one, as well as the Carmichael page described above.</p>
-<p>To create an R markdown (Rmd) document, open up Rstudio, click on (<strong>File -&gt; New File -&gt; R Markdown</strong>). A window will open up with a file that begins with a block of <em>YAML</em> (Yet Another Markdown Language). You can edit this as needed:</p>
-<pre><code>---
-title: &quot;Here&#39;s an R Markdown Document&quot;
-author: &quot;Frankie McFrank Frank&quot;
-date: &quot;1/12/2025&quot;
-output: html_document
----</code></pre>
-<p>Go ahead and click on the clever “knit” icon in the bar just above the source window to create a sample document. You’ll need to save the file with a new name, then R will finally create an HTML (Hyper Text Markdown Language ) page. Compare the R Markdown document (your code) with the result (the HTML).</p>
-<p>The second chapter of <a href="https://socviz.co/">Healy’s online book about Data visualizations</a> provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the <a href="https://r4ds.had.co.nz/index.html">Wickham and Grolemund text</a> <span class="citation">(<a href="#ref-healy2017">Healy 2017</a>; <a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. We’ll be discussing R Markdown (and its cousin Quarto) in Chapter 6.</p>
-</div>
-<div id="older-approaches" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> older approaches<a href="exploring-r-world.html#older-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I, like thousands of others, learned R in the process of completing the Johns Hopkins <a href="https://jhudatascience.org/courses.html">Data Science Specialization</a> offered through <a href="https://www.coursera.org/">Coursera</a>. The sequence can be challenging, but their introduction to R used an accessible, interactive R package called <em>Swirl.</em> You can read about swirl (“learn R in R”) at <a href="https://swirlstats.com/" class="uri">https://swirlstats.com/</a>.</p>
-<div id="using-swirl" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> <strong>using Swirl</strong><a href="exploring-r-world.html#using-swirl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>After loading R (and opening R studio), you will get to the Swirl lessons with the following steps:</p>
-<ol style="list-style-type: decimal">
-<li>Install the Swirl package on your computer (you only need to do this once). Type the following into your console window in R studio (typically left hand side of your screen or lower left)</li>
-</ol>
-<blockquote>
-<p>install.packages</p>
-</blockquote>
-<ol start="2" style="list-style-type: decimal">
-<li>Then load the package into your workspace (you’ll need to do this at the beginning of every session you use Swirl)</li>
-</ol>
-<blockquote>
-<p>library (swirl)</p>
-</blockquote>
-<ol start="2" style="list-style-type: decimal">
-<li>Then run it!</li>
-</ol>
-<blockquote>
-<p>swirl ()</p>
-</blockquote>
-<p>Swirl will ask a few questions then give you the option of choosing one of several courses. You’ll choose the R Programming option, which leads to 15 separate lessons.</p>
-<p>At the end of each lesson, you’ll be asked</p>
-<blockquote>
-<p><em>Would you like to receive credit for completing this course on Coursera.org?</em></p>
-</blockquote>
-<p>Answer no… then do another lesson.</p>
-</div>
-<div id="readingwatching-roger-pengs-text-andor-videos" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> reading/watching Roger Peng’s text and/or videos<a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, you might consider the text and videos from the Coursera R class. Most of the material from that class can be found in Roger Peng’s <span class="citation">(<a href="#ref-peng2014">2014</a>)</span> text, a slightly updated version of which can be found <a href="https://bookdown.org/rdpeng/rprogdatascience/">here</a>. The videos in the series may be found in this <a href="https://www.youtube.com/watch?v=wy0h1f5awRI&amp;list=PL_bgmYHGITt-8Noh1fZpxTHJ-GrBb626R">playlist</a>. Here’s an introduction:</p>
-<p><a href="https://youtu.be/wy0h1f5awRI"><img src="https://img.youtube.com/vi/wy0h1f5awRI/0.jpg" alt="Roger Peng" /></a>.</p>
-<p><em>Video 4.1: Roger Peng introducing R</em></p>
+<div id="multivariate-data" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> multivariate data<a href="from-correlation-to-multiple-regression.html#multivariate-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the Galton data, we examined the relationship between two variables - one a predictor (father’s height) and the other a response (son’s height). In this section (drawn from Peng, Caffo, and Leek’s treatment from Coursera - the Johns Hopkins Data Science Program), we will extend our analysis to consider multiple predictors of a single response or outcome variable. You may need to install the packages “UsingR”, “GGally” and/or”Hmisc”.</p>
+<p>We begin with a second dataset. You can learn about it by typing <code>?swiss</code> in the console.</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="from-correlation-to-multiple-regression.html#cb132-1" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb132-2"><a href="from-correlation-to-multiple-regression.html#cb132-2" tabindex="-1"></a><span class="fu">str</span>(swiss)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
+<p>Here’s a <em>scatterplot matrix</em> of the Swiss data. Look at the first column of plots (or first row of the correlations). What is the relationship between fertility and each of the other variables?</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="from-correlation-to-multiple-regression.html#cb134-1" tabindex="-1"></a><span class="co"># ds_theme_set()</span></span>
+<span id="cb134-2"><a href="from-correlation-to-multiple-regression.html#cb134-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb134-3"><a href="from-correlation-to-multiple-regression.html#cb134-3" tabindex="-1"></a><span class="fu">ggpairs</span> (swiss,</span>
+<span id="cb134-4"><a href="from-correlation-to-multiple-regression.html#cb134-4" tabindex="-1"></a>        <span class="at">lower =</span> <span class="fu">list</span>(</span>
+<span id="cb134-5"><a href="from-correlation-to-multiple-regression.html#cb134-5" tabindex="-1"></a>            <span class="at">continuous =</span> <span class="st">&quot;smooth&quot;</span>),</span>
+<span id="cb134-6"><a href="from-correlation-to-multiple-regression.html#cb134-6" tabindex="-1"></a>        <span class="at">axisLabels =</span><span class="st">&quot;none&quot;</span>,</span>
+<span id="cb134-7"><a href="from-correlation-to-multiple-regression.html#cb134-7" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/scatterplot%20matrix%20with%20ggpairs,%20swiss-1.png" width="672" /></p>
+<p>Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="from-correlation-to-multiple-regression.html#cb135-1" tabindex="-1"></a>swissReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> ., <span class="at">data=</span>swiss)</span>
+<span id="cb135-2"><a href="from-correlation-to-multiple-regression.html#cb135-2" tabindex="-1"></a><span class="fu">summary</span>(swissReg)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ ., data = swiss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2743  -5.2617   0.5032   4.1198  15.3213 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      66.91518   10.70604   6.250 1.91e-07 ***
+## Agriculture      -0.17211    0.07030  -2.448  0.01873 *  
+## Examination      -0.25801    0.25388  -1.016  0.31546    
+## Education        -0.87094    0.18303  -4.758 2.43e-05 ***
+## Catholic          0.10412    0.03526   2.953  0.00519 ** 
+## Infant.Mortality  1.07705    0.38172   2.822  0.00734 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.165 on 41 degrees of freedom
+## Multiple R-squared:  0.7067, Adjusted R-squared:  0.671 
+## F-statistic: 19.76 on 5 and 41 DF,  p-value: 5.594e-10</code></pre>
+<p>Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed. Here’s a second dataset, the marital affairs data, which is also included in the Ecdat package.
+We’ll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="from-correlation-to-multiple-regression.html#cb137-1" tabindex="-1"></a>Fair1 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
+<span id="cb137-2"><a href="from-correlation-to-multiple-regression.html#cb137-2" tabindex="-1"></a>  <span class="fu">select</span>(sex<span class="sc">:</span>child, nbaffairs)</span>
+<span id="cb137-3"><a href="from-correlation-to-multiple-regression.html#cb137-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair1,  </span>
+<span id="cb137-4"><a href="from-correlation-to-multiple-regression.html#cb137-4" tabindex="-1"></a><span class="co"># if you wanted to jam all 9 vars onto one page you could do this</span></span>
+<span id="cb137-5"><a href="from-correlation-to-multiple-regression.html#cb137-5" tabindex="-1"></a><span class="co">#        upper = list(continuous = wrap(ggally_cor, size = 10)),</span></span>
+<span id="cb137-6"><a href="from-correlation-to-multiple-regression.html#cb137-6" tabindex="-1"></a>         <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
+<span id="cb137-7"><a href="from-correlation-to-multiple-regression.html#cb137-7" tabindex="-1"></a>         <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb137-8"><a href="from-correlation-to-multiple-regression.html#cb137-8" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-57-1.png" width="100%" /></p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="from-correlation-to-multiple-regression.html#cb138-1" tabindex="-1"></a>Fair2 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
+<span id="cb138-2"><a href="from-correlation-to-multiple-regression.html#cb138-2" tabindex="-1"></a>  <span class="fu">select</span>(religious<span class="sc">:</span>nbaffairs) </span>
+<span id="cb138-3"><a href="from-correlation-to-multiple-regression.html#cb138-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair2, <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
+<span id="cb138-4"><a href="from-correlation-to-multiple-regression.html#cb138-4" tabindex="-1"></a>           <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb138-5"><a href="from-correlation-to-multiple-regression.html#cb138-5" tabindex="-1"></a>           <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-57-2.png" width="100%" /></p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="from-correlation-to-multiple-regression.html#cb139-1" tabindex="-1"></a>affairReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>Fair)</span>
+<span id="cb139-2"><a href="from-correlation-to-multiple-regression.html#cb139-2" tabindex="-1"></a><span class="fu">summary</span>(affairReg)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = nbaffairs ~ ., data = Fair)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.0503 -1.7226 -0.7947  0.2101 12.7036 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.87201    1.13750   5.162 3.34e-07 ***
+## sexmale      0.05409    0.30049   0.180   0.8572    
+## age         -0.05098    0.02262  -2.254   0.0246 *  
+## ym           0.16947    0.04122   4.111 4.50e-05 ***
+## childyes    -0.14262    0.35020  -0.407   0.6840    
+## religious   -0.47761    0.11173  -4.275 2.23e-05 ***
+## education   -0.01375    0.06414  -0.214   0.8303    
+## occupation   0.10492    0.08888   1.180   0.2383    
+## rate        -0.71188    0.12001  -5.932 5.09e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.095 on 592 degrees of freedom
+## Multiple R-squared:  0.1317, Adjusted R-squared:   0.12 
+## F-statistic: 11.23 on 8 and 592 DF,  p-value: 7.472e-15</code></pre>
 
-</div>
-</div>
-</div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-healy2017" class="csl-entry">
-Healy, Kieran. 2017. <span>“Data Visualization for Social Science: <span>A</span> Practical Introduction with r and Ggplot2.”</span>
-</div>
-<div id="ref-peng2014" class="csl-entry">
-Peng, Roger D. 2014. <em>R <span>Programming</span> for <span>Data Science</span></em>.
-</div>
-<div id="ref-wickham2023" class="csl-entry">
-Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science 2e</em>. " O’Reilly Media, Inc.".
 </div>
 </div>
             </section>
@@ -491,8 +564,8 @@ Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for 
           </div>
         </div>
       </div>
-<a href="what-r-stands-for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="part-ii-towards-data-literacy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loops-functions-and-beyond.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

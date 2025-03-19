@@ -1,0 +1,61 @@
+---
+title: "Untitled"
+output: html_document
+date: "2025-03-08"
+---Check our estimates of high school grad rate.
+
+On [this page](https://www.flhealthcharts.gov/ChartsDashboards/rdPage.aspx?rdReport=NonVitalIndGrpExtn.DataViewer&cid=0552), there are estimates of High School Graduation Rates by county. Let's check to see if our results are close to these.
+
+```{r}
+GradRatesFromFLHealthCharts <- read_excel(
+    paste0(datadir, "NonVitalIndGrp-FL-Data-2023.xlsx"),
+        skip = 1) |>
+    clean_names() |> 
+    mutate(district_name = toupper(county)) |> 
+    mutate (FLHealthGradEst = percent_percent/100) 
+GradCountsRates2 <- GradCountsRates |> 
+    left_join(GradRatesFromFLHealthCharts) |> 
+    mutate(diffRates =  adjGradRate - FLHealthGradEst) |>
+    filter(!is.na(adjGradRate)) |> 
+    select(-c(county,percent_percent))
+    
+meandiff = mean((GradCountsRates2$adjGradRate -
+                        GradCountsRates2$FLHealthGradEst))
+meanabsdiff = mean(abs(GradCountsRates2$adjGradRate -
+                        GradCountsRates2$FLHealthGradEst))
+cor(GradCountsRates2$adjGradRate,
+                        GradCountsRates2$FLHealthGradEst)
+                        
+                        
+                        
+                        messy data: Cleaning and curation
+
+Between 50 and 80% of the work of the data scientist consists of the compiling,
+cleaning and curation of data, or what is called data munging or wrangling.
+
+One part of data wrangling is looking for and dealing with encoding
+inconsistencies, missing values, and errors. Consider the following:
+
+Exercise 13.2
+
+Run the following code in an R markdown document. You'll need to add a library
+beforehand.
+
+car2019 \<- tibble("model" = c("Corolla", "Prius", "Camry", "Avalon"), "price" =
+c(22.5, "about 25K" , 24762, "33000-34000"))
+
+Another part of data wrangling is about data rectangling [@bryan2017], that is,
+getting diverse types of data into a data frame (specifically, a tibble). This
+is likely to be particularly challenging when you are combining data from
+different sources, including Web APIs. We'll consider this further down the road
+when we talk about lists.
+
+
+
+> Exercise
+>
+> 1)  Study the data. Learn about the measures by looking at Fair in the help tab of R studio.
+> 2)  What do the scatterplot matrices shown above tell us?
+> 3)  Can you just run a regression on it as is? Try predicting nbaffairs from the remaining 8 variables in Fair (not Fair1 or Fair2), using the same syntax in the Swiss data. Does it work? What do the results suggest?
+
+```

@@ -1,0 +1,161 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
+library(tidyverse)
+library(HistData) # for Galton data
+library(corrr) # for tidy corr matrix output
+#library(dslabs)
+#library(Ecfun)
+#library(broom) # unlist regression results into tibbles
+#library(modelr)
+library(GGally) # for scatterplot matrix
+library(Ecdat) # Econometric data incl. affairs dataset 
+```
+
+
+# from correlation to multiple regression
+
+In the previous chapters, we have learned how to summarize and visualize data. We have seen that we can summarize data using **descriptive statistics** and visualize data using **plots**.
+
+We can distinguish between analyses of just one variable (the univariate case), two variables (bivariate), and multivariate (many variables).
+
+## bivariate analysis: Galton's height data
+
+(Note that this section is excerpted directly from From <https://github.com/datasciencelabs>). [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton), a polymath and cousin of Charles Darwin, is one of the fathers of modern statistics. Galton liked to count - his motto is said to have been "whenever you can, count". He collected data on the heights of families in England, and he found that there was a strong correlation between the heights of fathers and their sons.
+
+We have access to Galton's family height data through the `HistData` package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key univariate statistics for the two variables of father and son height, each taken alone:
+
+```{r}
+data("GaltonFamilies")
+galton_heights <- GaltonFamilies %>%
+  filter(childNum == 1 & gender == "male") %>%
+  select(father, childHeight) %>%
+  rename(son = childHeight)
+galton_heights %>% 
+  summarise(mean(father), sd(father), mean(son), sd(son))
+```
+
+This **univariate** description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the **correlation** between the two variables. 
+
+```{r}
+galton_heights %>%
+  summarize(cor(father, son)) %>% 
+  round(3)
+```
+
+In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father's height, we expect the son's height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the `correlate()` function from the `corrr` package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The `fashion()` function can be used to easily clean up the output. (And the parentheses around the whole statement allows us to print out the result to the console / RMarkdown document, as well aas saving rmatrix in our environment).
+
+```{r}
+(rmatrix <- galton_heights %>% 
+  select(father, son) %>% 
+  correlate() %>% 
+  fashion(decimals = 3))
+```
+
+### correlations based on small samples are unstable: A Monte Carlo demonstration
+
+Correlations based on small samples can bounce around quite a bit. Consider what happens when, for example, we sample just 25 cases from Galton's data, and compute the correlation within this sample. Note that I begin by setting a seed for the random sequence. I repeat this 1000 times, then plot the distribution of these sample rs:
+
+```{r}
+set.seed(33458) # why do I do this?
+nTrials <- 1000
+nPerTrial <- 25
+replications <- replicate(nTrials, {
+  sample_n(galton_heights, nPerTrial, replace = TRUE) %>% # we sample with replacement here
+    summarize(r=cor(father, son)) %>% 
+    .$r
+})
+replications %>% 
+  as_tibble() %>%
+  ggplot(aes(replications)) +
+  geom_histogram(binwidth = 0.05, col = "blue", fill = "cyan")
+```
+
+These sample correlations range from `r round(min(replications),3)` to `r round(max(replications),3)`. Their average, however, at `r round(mean(replications),3)` is almost exactly that of the overall population. Often in data science, we will estimate population parameters in this way - by repeated sampling, and by studying the extent to which results are consistent across samples. More on that later.
+
+### from correlation to regression
+
+In bivariate analysis, there is often an asymmetry between the two variables - one is often considered the **predictor** (or independent variable, typically x) and the other the **response** (or dependent variable, y). In these data, we are likely to consider the father's height as the predictor and the son's height as the response. 
+
+As noted above, one way of thinking about a correlation between variables like heights of fathers (x) and sons (y), is that for every one standard deviation increase in x (father's height), we expect the son's height to increase by about $r$ times the standard deviation of y (the son's height). We can compute all of these things manually and plot the points with a regression line. (We use the pull function to extract the values from the statistics from tibbles into single values). 
+ 
+
+```{r}
+mu_x <- galton_heights |> summarise(mean(father)) |> pull()
+mu_y <- galton_heights |> summarise(mean(son)) |> pull()
+s_x <- galton_heights |> summarise(sd(father)) |> pull()
+s_y <- galton_heights |> summarise(sd(son)) |> pull()
+r <- galton_heights %>% summarize(cor(father, son))  |> pull ()
+
+m <-  r * s_y / s_x
+b <- mu_y - m*mu_x
+
+galton_heights %>% 
+  ggplot(aes(father, son)) + 
+  geom_point(alpha = 0.5) +
+  geom_abline(intercept = b, slope = m, col = "blue") 
+```
+
+Finally, if we first standardize the variables, then the regression line has intercept 0 and slope equal to the correlation $\rho$. Here, the slope, regression line, and correlation are all equal (I've made the plot square to better indicate this).
+
+```{r  fig.width = 4, fig.height = 4}
+galton_heights %>% 
+  ggplot(aes(scale(father), scale(son))) + 
+  geom_point(alpha = 0.5) +
+  geom_abline(intercept = 0, slope = r,  col = "blue") 
+```
+
+
+## multivariate data
+
+For the Galton data, we examined the relationship between two variables - one a predictor (father's height) and the other a response (son's height). In this section (drawn from Peng, Caffo, and Leek's treatment from Coursera - the Johns Hopkins Data Science Program), we will extend our analysis to consider multiple predictors of a single response or outcome variable. You may need to install the packages "UsingR", "GGally" and/or"Hmisc".
+
+We begin with a second dataset. You can learn about it by typing `?swiss` in the console. 
+
+```{r swiss data}
+data(swiss)
+str(swiss)
+```
+
+Here's a *scatterplot matrix* of the Swiss data. Look at the first column of plots (or first row of the correlations). What is the relationship between fertility and each of the other variables?
+
+```{r scatterplot matrix with ggpairs, swiss}
+# ds_theme_set()
+set.seed(0)
+ggpairs (swiss,
+        lower = list(
+            continuous = "smooth"),
+        axisLabels ="none",
+        switch = 'both')
+```
+
+Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?
+
+
+```{r multiple regression - swiss data}
+swissReg <- lm(Fertility ~ ., data=swiss)
+summary(swissReg)
+```
+
+Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed.  Here's a second dataset, the marital affairs data, which is also included in the Ecdat package.
+We'll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:
+
+```{r out.width = "100%", warning= FALSE, message = FALSE}
+Fair1 <- Fair %>% 
+  select(sex:child, nbaffairs)
+ggpairs(Fair1,  
+# if you wanted to jam all 9 vars onto one page you could do this
+#        upper = list(continuous = wrap(ggally_cor, size = 10)),
+         lower = list(continuous = 'smooth'),
+         axisLabels = "none",
+        switch = 'both')
+Fair2 <- Fair %>% 
+  select(religious:nbaffairs) 
+ggpairs(Fair2, lower = list(continuous = 'smooth'),
+           axisLabels = "none",
+           switch = 'both')
+```
+
+```{r multiple regression - affairs}
+affairReg <- lm(nbaffairs ~ ., data=Fair)
+summary(affairReg)
+```

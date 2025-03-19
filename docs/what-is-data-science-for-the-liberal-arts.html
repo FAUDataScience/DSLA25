@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-03-12" />
+<meta name="date" content="2025-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -362,6 +363,15 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="16.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>16.4</b> how many bottles of what?</a></li>
 </ul></li>
+<li class="chapter" data-level="17" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html"><i class="fa fa-check"></i><b>17</b> from correlation to multiple regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>17.1</b> bivariate analysis: Galton’s height data</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>17.1.1</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a></li>
+<li class="chapter" data-level="17.1.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-correlation-to-regression"><i class="fa fa-check"></i><b>17.1.2</b> from correlation to regression</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#multivariate-data"><i class="fa fa-check"></i><b>17.2</b> multivariate data</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -443,10 +453,10 @@ Deane, Claudia. 2024. <span>“Americans’ <span>Deepening Mistrust</span> of <
 Donoho, David. 2017. <span>“50 <span>Years</span> of <span>Data Science</span>.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
 </div>
 <div id="ref-erdelyi1974" class="csl-entry">
-Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/cs5c5q">https://doi.org/cs5c5q</a>.
+Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/10/cs5c5q">https://doi.org/10/cs5c5q</a>.
 </div>
 <div id="ref-hicks2018" class="csl-entry">
-Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/gfr5tf">https://doi.org/gfr5tf</a>.
+Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/10/gfr5tf">https://doi.org/10/gfr5tf</a>.
 </div>
 <div id="ref-isaacson2014" class="csl-entry">
 Isaacson, Walter. 2014. <em>The <span>Innovators</span>: <span>How</span> a <span>Group</span> of <span>Hackers</span>, <span>Geniuses</span>, and <span>Geeks Created</span> the <span>Digital Revolution</span></em>. <span>Simon and Schuster</span>.
@@ -461,7 +471,7 @@ Poulin, Michael J., and Claudia M. Haase. 2015. <span>“Growing to <span>Trust<
 Reinsel, David, John Gantz, and John Rydning. 2025. <span>“The <span>Digitization</span> of the <span>World</span>.”</span>
 </div>
 <div id="ref-sullivan1999" class="csl-entry">
-Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/cmthvk">https://doi.org/cmthvk</a>.
+Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/10/cmthvk">https://doi.org/10/cmthvk</a>.
 </div>
 </div>
 <div class="footnotes">
@@ -530,6 +540,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

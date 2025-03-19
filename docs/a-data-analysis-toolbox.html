@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>14 a data analysis toolbox | Data science for the liberal arts</title>
+  <meta name="description" content="14 a data analysis toolbox | Data science for the liberal arts" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="14 a data analysis toolbox | Data science for the liberal arts" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="kevinlanning/DSLA25" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="14 a data analysis toolbox | Data science for the liberal arts" />
+  
+  
+  
+
+<meta name="author" content="Kevin Lanning" />
+
+
+<meta name="date" content="2025-03-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="loops-functions-and-beyond.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-role-of-the-liberal-arts-in-data-science"><i class="fa fa-check"></i>the role of the liberal arts in data science</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>0.1</b> the incompleteness of the data science Venn diagram</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#additional-domains"><i class="fa fa-check"></i><b>0.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="0.1.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#an-additional-dimension"><i class="fa fa-check"></i><b>0.1.2</b> an additional dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>0.2</b> the importance of data science for society</a>
+<ul>
+<li class="chapter" data-level="0.2.1" data-path="part-i-introduction.html"><a href="part-i-introduction.html#training-in-the-liberal-arts---success-in-tech"><i class="fa fa-check"></i><b>0.2.1</b> training in the liberal arts -&gt; success in tech</a></li>
+<li class="chapter" data-level="0.2.2" data-path="part-i-introduction.html"><a href="part-i-introduction.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>0.2.2</b> the challenge of TMI</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="part-i-introduction.html"><a href="part-i-introduction.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>0.3</b> discussion: what are your objectives in data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> getting started</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>1.1</b> are you already a programmer and statistician?</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>1.2</b> spreadsheets - some best practices</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-machine-some-basic-tools"><i class="fa fa-check"></i><b>1.3</b> setting up your machine: some basic tools</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>1.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="1.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>1.5</b> installing R and RStudio desktop</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>2</b> what R stands for …</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>2.1</b> some key characteristics of R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>2.1.1</b> base R and packages</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>2.2</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="2.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>2.3</b> some technical characteristics</a></li>
+<li class="chapter" data-level="2.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>2.4</b> finding help</a></li>
+<li class="chapter" data-level="2.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>2.5</b> Wickham and R for Data Science 2e</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>3</b> exploring R world</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>3.1</b> go to the movies</a></li>
+<li class="chapter" data-level="3.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>3.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="3.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>3.3</b> open the box</a></li>
+<li class="chapter" data-level="3.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>3.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="3.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>3.5</b> learn to knit</a></li>
+<li class="chapter" data-level="3.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>3.6</b> older approaches</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>3.6.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="3.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>3.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a>
+<ul>
+<li class="chapter" data-level="3.7" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>3.7</b> time for hands-on experience</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>3.7.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="3.7.2" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>3.7.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="3.7.3" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>3.7.3</b> or the (ggplot2)movies package</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html#assignment"><i class="fa fa-check"></i><b>3.8</b> assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>4</b> literate programming</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>4.1</b> projects are directories</a></li>
+<li class="chapter" data-level="4.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>4.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="4.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>4.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="4.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>4.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="4.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>4.5</b> What to do when you are stuck</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>5</b> principles of data visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>5.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="5.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>5.2</b> some early graphs</a></li>
+<li class="chapter" data-level="5.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>5.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="5.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>5.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="5.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>5.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="5.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>5.6</b> the politics of data visualization</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>5.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="5.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>5.6.2</b> poor design can be a tool to deceive</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>5.7</b> the psychology of data visualization</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>5.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="5.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>5.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="5.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>5.7.3</b> visualizing uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>5.8</b> exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>5.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="5.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#addendum"><i class="fa fa-check"></i><b>5.10</b> addendum</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-notes-on-healy"><i class="fa fa-check"></i><b>5.10.1</b> some notes on Healy</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>6</b> visualization in R with ggplot</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>6.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="6.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>6.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="6.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>6.3</b> explore</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>7</b> on probability and statistics</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>7.1</b> on probability</a></li>
+<li class="chapter" data-level="7.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>7.2</b> the rules of probability</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>7.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="7.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>7.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>7.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="7.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>7.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="7.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#notes-for-next-revision"><i class="fa fa-check"></i><b>7.5</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>8</b> reproducibility and the replication crisis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>8.1</b> answers to the reproducibility crisis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>8.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>8.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
+<li class="chapter" data-level="8.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>8.1.3</b> partial answer 3: Pre-registration of your research</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>8.2</b> further readings</a></li>
+<li class="chapter" data-level="8.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>8.3</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path=""><a href="#part-part-iii-towards-data-proficiency"><i class="fa fa-check"></i>(PART) Part III Towards data proficiency</a>
+<ul>
+<li class="chapter" data-level="8.4" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>8.4</b> the structure of the tidyverse</a></li>
+<li class="chapter" data-level="8.5" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#where-should-we-eat"><i class="fa fa-check"></i><b>8.5</b> where should we eat?</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>8.5.1</b> tall and wide formats</a></li>
+<li class="chapter" data-level="8.5.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#exercises-2"><i class="fa fa-check"></i><b>8.5.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>8.6</b> more on tidy coding</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html"><i class="fa fa-check"></i><b>9</b> finding, exploring, cleaning, and combining data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#florida-educational-data"><i class="fa fa-check"></i><b>9.1</b> florida educational data</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>9.1.1</b> a digression: Slash, Windows and the world.</a></li>
+<li class="chapter" data-level="9.1.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#getting-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>9.1.2</b> getting data from our machine into R</a></li>
+<li class="chapter" data-level="9.1.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#which-ones-are-high-schools"><i class="fa fa-check"></i><b>9.1.3</b> which ones are “high schools”?</a></li>
+<li class="chapter" data-level="9.1.4" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#can-we-compute-district-county-means-from-these-data"><i class="fa fa-check"></i><b>9.1.4</b> can we compute district (county) means from these data?</a></li>
+<li class="chapter" data-level="9.1.5" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-school-enrollments"><i class="fa fa-check"></i><b>9.1.5</b> estimating school enrollments</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#combining-datasets"><i class="fa fa-check"></i><b>9.2</b> combining datasets</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets"><i class="fa fa-check"></i><b>9.2.1</b> challenges in joining datasets</a></li>
+<li class="chapter" data-level="9.2.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#some-approaches-to-fixing-the-data"><i class="fa fa-check"></i><b>9.2.2</b> some approaches to fixing the data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-the-relationship-between-economic-disadvantage-and-graduation-rates"><i class="fa fa-check"></i><b>9.2.3</b> estimating the relationship between economic disadvantage and graduation rates</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#recap-on-joining-files"><i class="fa fa-check"></i><b>9.3</b> recap / on joining files</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="applied-data-science.html"><a href="applied-data-science.html"><i class="fa fa-check"></i><b>10</b> applied data science</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="applied-data-science.html"><a href="applied-data-science.html#public-health-and-covid"><i class="fa fa-check"></i><b>10.1</b> public health and covid</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="applied-data-science.html"><a href="applied-data-science.html#covid-data-in-2025"><i class="fa fa-check"></i><b>10.1.1</b> COVID data in 2025</a></li>
+<li class="chapter" data-level="10.1.2" data-path="applied-data-science.html"><a href="applied-data-science.html#a-brief-digression-on-causality"><i class="fa fa-check"></i><b>10.1.2</b> a brief digression on causality</a></li>
+<li class="chapter" data-level="10.1.3" data-path="applied-data-science.html"><a href="applied-data-science.html#the-excess-mortality-package"><i class="fa fa-check"></i><b>10.1.3</b> the excess mortality package</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="applied-data-science.html"><a href="applied-data-science.html#other-datasets-in-and-beyond-r"><i class="fa fa-check"></i><b>10.2</b> other datasets in and beyond R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="applied-data-science.html"><a href="applied-data-science.html#makeextractcombine-your-own-data"><i class="fa fa-check"></i><b>10.2.1</b> make/extract/combine your own data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="applied-data-science.html"><a href="applied-data-science.html#keep-it-manageable"><i class="fa fa-check"></i><b>10.2.2</b> keep it manageable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>11</b> strings, factors, dates, and times</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>11.1</b> strings</a></li>
+<li class="chapter" data-level="11.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>11.2</b> factors</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>11.2.1</b> types of babies</a></li>
+<li class="chapter" data-level="11.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>11.2.2</b> types of grown-ups</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>11.3</b> dates</a></li>
+<li class="chapter" data-level="11.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>11.4</b> times</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>12</b> lists</a></li>
+<li class="chapter" data-level="13" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>13</b> loops, functions, and beyond</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>13.1</b> loops</a></li>
+<li class="chapter" data-level="13.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>13.2</b> from loop to apply to purrr::map</a></li>
+<li class="chapter" data-level="13.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>13.3</b> some examples of functions</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>13.3.1</b> preliminaries</a></li>
+<li class="chapter" data-level="13.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>13.3.2</b> the function</a></li>
+<li class="chapter" data-level="13.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>13.3.3</b> applying the function</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>13.4</b> how many bottles of what?</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="a-data-analysis-toolbox.html"><a href="a-data-analysis-toolbox.html"><i class="fa fa-check"></i><b>14</b> a data analysis toolbox</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="a-data-analysis-toolbox.html"><a href="a-data-analysis-toolbox.html#bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>14.1</b> bivariate analysis: Galton’s height data</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="a-data-analysis-toolbox.html"><a href="a-data-analysis-toolbox.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>14.1.1</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a></li>
+<li class="chapter" data-level="14.1.2" data-path="a-data-analysis-toolbox.html"><a href="a-data-analysis-toolbox.html#from-correlation-to-regression"><i class="fa fa-check"></i><b>14.1.2</b> from correlation to regression</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="a-data-analysis-toolbox.html"><a href="a-data-analysis-toolbox.html#multivariate-data"><i class="fa fa-check"></i><b>14.2</b> multivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-data-analysis-toolbox" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">14</span> a data analysis toolbox<a href="a-data-analysis-toolbox.html#a-data-analysis-toolbox" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the previous chapters, we have learned how to summarize and visualize data. We have seen that we can summarize data using <strong>descriptive statistics</strong> and visualize data using <strong>plots</strong>.</p>
+<p>We can distinguish between analyses of just one variable (the univariate case), two variables (bivariate), and multivariate (many variables).</p>
+<div id="bivariate-analysis-galtons-height-data" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> bivariate analysis: Galton’s height data<a href="a-data-analysis-toolbox.html#bivariate-analysis-galtons-height-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(Note that this section is excerpted directly from From <a href="https://github.com/datasciencelabs" class="uri">https://github.com/datasciencelabs</a>). <a href="https://en.wikipedia.org/wiki/Francis_Galton">Francis Galton</a>, a polymath and cousin of Charles Darwin, is one of the fathers of modern statistics. Galton liked to count - his motto is said to have been “whenever you can, count”. He collected data on the heights of families in England, and he found that there was a strong correlation between the heights of fathers and their sons.</p>
+<p>We have access to Galton’s family height data through the <code>HistData</code> package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key univariate statistics for the two variables of father and son height, each taken alone:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-data-analysis-toolbox.html#cb1-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GaltonFamilies&quot;</span>)</span>
+<span id="cb1-2"><a href="a-data-analysis-toolbox.html#cb1-2" tabindex="-1"></a>galton_heights <span class="ot">&lt;-</span> GaltonFamilies <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="a-data-analysis-toolbox.html#cb1-3" tabindex="-1"></a>  <span class="fu">filter</span>(childNum <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> gender <span class="sc">==</span> <span class="st">&quot;male&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="a-data-analysis-toolbox.html#cb1-4" tabindex="-1"></a>  <span class="fu">select</span>(father, childHeight) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="a-data-analysis-toolbox.html#cb1-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">son =</span> childHeight)</span>
+<span id="cb1-6"><a href="a-data-analysis-toolbox.html#cb1-6" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb1-7"><a href="a-data-analysis-toolbox.html#cb1-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(father), <span class="fu">sd</span>(father), <span class="fu">mean</span>(son), <span class="fu">sd</span>(son))</span></code></pre></div>
+<pre><code>##   mean(father) sd(father) mean(son)  sd(son)
+## 1     69.09888   2.546555  70.45475 2.557061</code></pre>
+<p>This <strong>univariate</strong> description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the <strong>correlation</strong> between the two variables.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-data-analysis-toolbox.html#cb3-1" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="a-data-analysis-toolbox.html#cb3-2" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cor</span>(father, son)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="a-data-analysis-toolbox.html#cb3-3" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##   cor(father, son)
+## 1            0.501</code></pre>
+<p>In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father’s height, we expect the son’s height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the <code>correlate()</code> function from the <code>corrr</code> package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The <code>fashion()</code> function can be used to easily clean up the output. (And the parentheses around the whole statement allows us to print out the result to the console / RMarkdown document, as well aas saving rmatrix in our environment).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-data-analysis-toolbox.html#cb5-1" tabindex="-1"></a>(rmatrix <span class="ot">&lt;-</span> galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="a-data-analysis-toolbox.html#cb5-2" tabindex="-1"></a>  <span class="fu">select</span>(father, son) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="a-data-analysis-toolbox.html#cb5-3" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="a-data-analysis-toolbox.html#cb5-4" tabindex="-1"></a>  <span class="fu">fashion</span>(<span class="at">decimals =</span> <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##     term father   son
+## 1 father         .501
+## 2    son   .501</code></pre>
+<div id="correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration" class="section level3 hasAnchor" number="14.1.1">
+<h3><span class="header-section-number">14.1.1</span> correlations based on small samples are unstable: A Monte Carlo demonstration<a href="a-data-analysis-toolbox.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Correlations based on small samples can bounce around quite a bit. Consider what happens when, for example, we sample just 25 cases from Galton’s data, and compute the correlation within this sample. Note that I begin by setting a seed for the random sequence. I repeat this 1000 times, then plot the distribution of these sample rs:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="a-data-analysis-toolbox.html#cb7-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># why do I do this?</span></span>
+<span id="cb7-2"><a href="a-data-analysis-toolbox.html#cb7-2" tabindex="-1"></a>nTrials <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb7-3"><a href="a-data-analysis-toolbox.html#cb7-3" tabindex="-1"></a>nPerTrial <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb7-4"><a href="a-data-analysis-toolbox.html#cb7-4" tabindex="-1"></a>replications <span class="ot">&lt;-</span> <span class="fu">replicate</span>(nTrials, {</span>
+<span id="cb7-5"><a href="a-data-analysis-toolbox.html#cb7-5" tabindex="-1"></a>  <span class="fu">sample_n</span>(galton_heights, nPerTrial, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># we sample with replacement here</span></span>
+<span id="cb7-6"><a href="a-data-analysis-toolbox.html#cb7-6" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">r=</span><span class="fu">cor</span>(father, son)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="a-data-analysis-toolbox.html#cb7-7" tabindex="-1"></a>    .<span class="sc">$</span>r</span>
+<span id="cb7-8"><a href="a-data-analysis-toolbox.html#cb7-8" tabindex="-1"></a>})</span>
+<span id="cb7-9"><a href="a-data-analysis-toolbox.html#cb7-9" tabindex="-1"></a>replications <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="a-data-analysis-toolbox.html#cb7-10" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="a-data-analysis-toolbox.html#cb7-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(replications)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="a-data-analysis-toolbox.html#cb7-12" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;cyan&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>These sample correlations range from -0.002 to 0.882. Their average, however, at 0.503 is almost exactly that of the overall population. Often in data science, we will estimate population parameters in this way - by repeated sampling, and by studying the extent to which results are consistent across samples. More on that later.</p>
+</div>
+<div id="from-correlation-to-regression" class="section level3 hasAnchor" number="14.1.2">
+<h3><span class="header-section-number">14.1.2</span> from correlation to regression<a href="a-data-analysis-toolbox.html#from-correlation-to-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In bivariate analysis, there is often an asymmetry between the two variables - one is often considered the <strong>predictor</strong> (or independent variable, typically x) and the other the <strong>response</strong> (or dependent variable, y). In these data, we are likely to consider the father’s height as the predictor and the son’s height as the response.</p>
+<p>As noted above, one way of thinking about a correlation between variables like heights of fathers (x) and sons (y), is that for every one standard deviation increase in x (father’s height), we expect the son’s height to increase by about <span class="math inline">\(r\)</span> times the standard deviation of y (the son’s height). We can compute all of these things manually and plot the points with a regression line. (We use the pull function to extract the values from the statistics from tibbles into single values).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-data-analysis-toolbox.html#cb8-1" tabindex="-1"></a>mu_x <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(father)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb8-2"><a href="a-data-analysis-toolbox.html#cb8-2" tabindex="-1"></a>mu_y <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">mean</span>(son)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb8-3"><a href="a-data-analysis-toolbox.html#cb8-3" tabindex="-1"></a>s_x <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">sd</span>(father)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb8-4"><a href="a-data-analysis-toolbox.html#cb8-4" tabindex="-1"></a>s_y <span class="ot">&lt;-</span> galton_heights <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="fu">sd</span>(son)) <span class="sc">|&gt;</span> <span class="fu">pull</span>()</span>
+<span id="cb8-5"><a href="a-data-analysis-toolbox.html#cb8-5" tabindex="-1"></a>r <span class="ot">&lt;-</span> galton_heights <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="fu">cor</span>(father, son))  <span class="sc">|&gt;</span> <span class="fu">pull</span> ()</span>
+<span id="cb8-6"><a href="a-data-analysis-toolbox.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="a-data-analysis-toolbox.html#cb8-7" tabindex="-1"></a>m <span class="ot">&lt;-</span>  r <span class="sc">*</span> s_y <span class="sc">/</span> s_x</span>
+<span id="cb8-8"><a href="a-data-analysis-toolbox.html#cb8-8" tabindex="-1"></a>b <span class="ot">&lt;-</span> mu_y <span class="sc">-</span> m<span class="sc">*</span>mu_x</span>
+<span id="cb8-9"><a href="a-data-analysis-toolbox.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="a-data-analysis-toolbox.html#cb8-10" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="a-data-analysis-toolbox.html#cb8-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(father, son)) <span class="sc">+</span> </span>
+<span id="cb8-12"><a href="a-data-analysis-toolbox.html#cb8-12" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="a-data-analysis-toolbox.html#cb8-13" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> b, <span class="at">slope =</span> m, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Finally, if we first standardize the variables, then the regression line has intercept 0 and slope equal to the correlation <span class="math inline">\(\rho\)</span>. Here, the slope, regression line, and correlation are all equal (I’ve made the plot square to better indicate this).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="a-data-analysis-toolbox.html#cb9-1" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="a-data-analysis-toolbox.html#cb9-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">scale</span>(father), <span class="fu">scale</span>(son))) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="a-data-analysis-toolbox.html#cb9-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="a-data-analysis-toolbox.html#cb9-4" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> r,  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-7-1.png" width="384" /></p>
+</div>
+</div>
+<div id="multivariate-data" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> multivariate data<a href="a-data-analysis-toolbox.html#multivariate-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the Galton data, we examined the relationship between two variables - one a predictor (father’s height) and the other a response (son’s height). In this section (drawn from Peng, Caffo, and Leek’s treatment from Coursera - the Johns Hopkins Data Science Program), we will extend our analysis to consider multiple predictors of a single response or outcome variable. You may need to install the packages “UsingR”, “GGally” and/or”Hmisc”.</p>
+<p>We begin with a second dataset. You can learn about it by typing <code>?swiss</code> in the console.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-data-analysis-toolbox.html#cb10-1" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb10-2"><a href="a-data-analysis-toolbox.html#cb10-2" tabindex="-1"></a><span class="fu">str</span>(swiss)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    47 obs. of  6 variables:
+##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
+##  $ Agriculture     : num  17 45.1 39.7 36.5 43.5 35.3 70.2 67.8 53.3 45.2 ...
+##  $ Examination     : int  15 6 5 12 17 9 16 14 12 16 ...
+##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
+##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
+##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...</code></pre>
+<p>Here’s a <em>scatterplot matrix</em> of the Swiss data. Look at the first column of plots (or first row of the correlations). What is the relationship between fertility and each of the other variables?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-data-analysis-toolbox.html#cb12-1" tabindex="-1"></a><span class="co"># ds_theme_set()</span></span>
+<span id="cb12-2"><a href="a-data-analysis-toolbox.html#cb12-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb12-3"><a href="a-data-analysis-toolbox.html#cb12-3" tabindex="-1"></a><span class="fu">ggpairs</span> (swiss,</span>
+<span id="cb12-4"><a href="a-data-analysis-toolbox.html#cb12-4" tabindex="-1"></a>        <span class="at">lower =</span> <span class="fu">list</span>(</span>
+<span id="cb12-5"><a href="a-data-analysis-toolbox.html#cb12-5" tabindex="-1"></a>            <span class="at">continuous =</span> <span class="st">&quot;smooth&quot;</span>),</span>
+<span id="cb12-6"><a href="a-data-analysis-toolbox.html#cb12-6" tabindex="-1"></a>        <span class="at">axisLabels =</span><span class="st">&quot;none&quot;</span>,</span>
+<span id="cb12-7"><a href="a-data-analysis-toolbox.html#cb12-7" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/scatterplot%20matrix%20with%20ggpairs,%20swiss-1.png" width="672" /></p>
+<p>Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-data-analysis-toolbox.html#cb13-1" tabindex="-1"></a>swissReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> ., <span class="at">data=</span>swiss)</span>
+<span id="cb13-2"><a href="a-data-analysis-toolbox.html#cb13-2" tabindex="-1"></a><span class="fu">summary</span>(swissReg)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Fertility ~ ., data = swiss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.2743  -5.2617   0.5032   4.1198  15.3213 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      66.91518   10.70604   6.250 1.91e-07 ***
+## Agriculture      -0.17211    0.07030  -2.448  0.01873 *  
+## Examination      -0.25801    0.25388  -1.016  0.31546    
+## Education        -0.87094    0.18303  -4.758 2.43e-05 ***
+## Catholic          0.10412    0.03526   2.953  0.00519 ** 
+## Infant.Mortality  1.07705    0.38172   2.822  0.00734 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.165 on 41 degrees of freedom
+## Multiple R-squared:  0.7067, Adjusted R-squared:  0.671 
+## F-statistic: 19.76 on 5 and 41 DF,  p-value: 5.594e-10</code></pre>
+<p>Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed. Here’s a second dataset, the marital affairs data, which is also included in the Ecdat package.
+We’ll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="a-data-analysis-toolbox.html#cb15-1" tabindex="-1"></a>Fair1 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="a-data-analysis-toolbox.html#cb15-2" tabindex="-1"></a>  <span class="fu">select</span>(sex<span class="sc">:</span>child, nbaffairs)</span>
+<span id="cb15-3"><a href="a-data-analysis-toolbox.html#cb15-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair1,  </span>
+<span id="cb15-4"><a href="a-data-analysis-toolbox.html#cb15-4" tabindex="-1"></a><span class="co"># if you wanted to jam all 9 vars onto one page you could do this</span></span>
+<span id="cb15-5"><a href="a-data-analysis-toolbox.html#cb15-5" tabindex="-1"></a><span class="co">#        upper = list(continuous = wrap(ggally_cor, size = 10)),</span></span>
+<span id="cb15-6"><a href="a-data-analysis-toolbox.html#cb15-6" tabindex="-1"></a>         <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
+<span id="cb15-7"><a href="a-data-analysis-toolbox.html#cb15-7" tabindex="-1"></a>         <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb15-8"><a href="a-data-analysis-toolbox.html#cb15-8" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-8-1.png" width="100%" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="a-data-analysis-toolbox.html#cb16-1" tabindex="-1"></a>Fair2 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="a-data-analysis-toolbox.html#cb16-2" tabindex="-1"></a>  <span class="fu">select</span>(religious<span class="sc">:</span>nbaffairs) </span>
+<span id="cb16-3"><a href="a-data-analysis-toolbox.html#cb16-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair2, <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
+<span id="cb16-4"><a href="a-data-analysis-toolbox.html#cb16-4" tabindex="-1"></a>           <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb16-5"><a href="a-data-analysis-toolbox.html#cb16-5" tabindex="-1"></a>           <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-8-2.png" width="100%" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="a-data-analysis-toolbox.html#cb17-1" tabindex="-1"></a>affairReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>Fair)</span>
+<span id="cb17-2"><a href="a-data-analysis-toolbox.html#cb17-2" tabindex="-1"></a><span class="fu">summary</span>(affairReg)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = nbaffairs ~ ., data = Fair)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.0503 -1.7226 -0.7947  0.2101 12.7036 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.87201    1.13750   5.162 3.34e-07 ***
+## sexmale      0.05409    0.30049   0.180   0.8572    
+## age         -0.05098    0.02262  -2.254   0.0246 *  
+## ym           0.16947    0.04122   4.111 4.50e-05 ***
+## childyes    -0.14262    0.35020  -0.407   0.6840    
+## religious   -0.47761    0.11173  -4.275 2.23e-05 ***
+## education   -0.01375    0.06414  -0.214   0.8303    
+## occupation   0.10492    0.08888   1.180   0.2383    
+## rate        -0.71188    0.12001  -5.932 5.09e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.095 on 592 degrees of freedom
+## Multiple R-squared:  0.1317, Adjusted R-squared:   0.12 
+## F-statistic: 11.23 on 8 and 592 DF,  p-value: 7.472e-15</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="loops-functions-and-beyond.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
