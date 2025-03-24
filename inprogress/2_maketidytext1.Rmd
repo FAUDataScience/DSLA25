@@ -1,0 +1,30 @@
+---
+title: "firstgen_tidytext"
+output: html_document
+date: "2025-02-27"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidytext)
+textsource <- read_csv("combinednonfirstgen.csv")
+```
+
+The code below uses the `tidytext` package to create a tidy text format of the data. This breaks up long strings of text into individual tokens (words) and creates a tidy data frame where each row corresponds to a single word from the original text. The `unnest_tokens` function is used for this purpose, which tokenizes the text in the `selftext` column of the data frame. The unnest_tokens function, by default, also removes punctuation and sets all words to lower case.
+
+This tall dataframe is then reduced to a set of counts. These counts are saved to CSV files for further analysis.
+
+```{r}
+tidytext <- textsource %>% 
+    unnest_tokens(word, selftext)
+cleaned_text <- tidytext %>%
+  anti_join(get_stopwords()) # for comparing the two corpora,
+# you may or may not want to include this
+counts <- cleaned_text %>%
+  count(word, sort = TRUE)
+counts |> write_csv("counts_nonfirstgen.csv")
+cleaned_text |> write_csv("cleaned_nonfirstgen.csv")
+tidytext |> write_csv("tidytext_nonfirstgen.csv")
+```

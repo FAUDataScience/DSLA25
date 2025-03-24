@@ -1,0 +1,72 @@
+---
+title: "LIWC effect sizes"
+author: "Kevin Lanning"
+date: "March 22, 2025"
+output: html_document
+---
+
+## Code for assessing LIWC effect sizes between 2 groups
+
+This uses data from my OSF page (https://osf.io/zpk84/files/osfstorage), which are downloaded to my drive prior to running. 
+Code is mostly Base R but works fine. Number of LIWC categories has increased since the original paper, so the code has been updated to reflect that.
+
+Consider filtering data by WC (word count) to remove posts with fewer than 250 words. This is done in the code below.
+
+The Bonferroni adjustment is used to correct for multiple comparisons. The number of LIWC categories is 117, so the Bonferroni p-value should be .05/117 = .000427.
+
+### Libraries and initial csv set up.
+
+```{r setup, include=FALSE}
+library(psych)
+library(tidyverse)
+library(compute.es)
+myDownloads <- ("C:/Users/the_l/OneDrive - Florida Atlantic University/DownloadsOneDrive/")
+Clintonposts<-read.csv(paste0(myDownloads,
+                              "LIWCClintonposts08011108.csv")) # |> 
+#    filter(WC > 249)
+
+Trumpposts<-read.csv(paste0(myDownloads,
+                            "LIWCTrumpposts08011108.csv"))
+BonferroniP <- (.05/117) # 117 is the number of LIWC categories
+```
+
+## Generate effect sizes for all LIWC categories.
+
+This uses the describe function from the psych package to get means, standard deviations, and sample sizes for each LIWC category. Then it computes the effect sizes and associated statistics using the mes function from the compute.es package and makes tables for the LIWC variables with the largest effects. 
+```{r}
+# simple descriptives
+CP <- Clintonposts |> 
+    select(WC:OtherP) |> 
+    describe() |>
+    select(ClintonN=n, ClintonMean = mean, ClintonSD = sd) |> 
+    round(3)
+TP <- Trumpposts |>
+    select(WC:OtherP) |> 
+    describe() |>
+    select(TrumpN=n, TrumpMean = mean, TrumpSD = sd) |> 
+    round(3)
+poststats <- CP |> 
+    bind_cols (TP)
+# effect size stats. tidy syntax fails here.
+Effects <- mes(poststats[,2], poststats[,5],
+               poststats[,3], poststats[,6],
+               poststats[,1],poststats[,4],
+               level = BonferroniP,
+               verbose = FALSE) |> 
+    select(d, l.d, u.d, pval.d)
+LIWCSummary <- poststats |> 
+    bind_cols(Effects) |>
+    write_csv("LIWCeffects.csv")
+
+LIWCSummary |> 
+    arrange(d) |> 
+    head(10) |> 
+    knitr::kable()
+
+LIWCSummary |> 
+    arrange(desc(d)) |> 
+    head(10) |> 
+    knitr::kable()
+
+
+```

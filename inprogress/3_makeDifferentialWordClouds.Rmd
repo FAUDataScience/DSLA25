@@ -1,0 +1,104 @@
+---
+title: "Make a Differential Word Cloud"
+output: html_document
+date: "2025-03-20"
+---
+
+This is adapted from my 2018 paper on Ego Level available from [OSF](https://osf.io/jw7dy/). In that paper, the groups were ordered on a continuum, here they are not. 
+
+The size of each word in the plots corresponds to its ((proportion within the group) / (total proportion)).
+
+The first chunk of the code extracts simulated text from three 'groups' of different sizes. The second chunk constructs the differential word clouds.
+```{r echo=TRUE, suppressPackageStartupMessages=TRUE, setup}
+library(randomizr)
+library(tidyverse)
+library(tidytext)
+library(wordcloud)
+```
+
+
+## Creation of simulated data to test code
+
+The corpus has three groups of different sizes.  The first group has 100 documents, the second group has 300 documents, and the third group has 600 documents. Each document has between 50 and 500 words. The words in the corpus are randomly selected from a sample of sentiment words. The code below creates a simulated corpus for testing purposes.
+```{r echo=TRUE,  warning = TRUE, simdata}
+sampledata <- read_csv(url(
+  "https://raw.githubusercontent.com/totalgood/hope/master/data/corpora/sentiment-words-DFE-785960.csv")) |> 
+    select(w1:w4) |> 
+    na.omit()
+ndocs <- 1000
+minDocLength <-  50
+maxDocLength <- 500
+doc <- vector(mode="character", length=ndocs)
+set.seed(33458)
+# get a random word from the sampledata
+getword <- function() {
+      rowid <- sample(1:nrow(sampledata), 1)
+      colid <- sample(1:ncol(sampledata), 1)
+      word<-sampledata[rowid,colid]
+      word                 
+}
+# combine words into docs
+# initialize
+docLength <- sample(minDocLength:maxDocLength,1)
+sampleCorpus <- getword()
+for (i in 1:docLength){
+      addWord<-getword()
+      sampleCorpus<-paste(sampleCorpus, addWord)
+}
+#add additional simulated documents
+for (j in 2:ndocs) {
+      docLength <-sample(minDocLength:maxDocLength,1)
+      newdoc<-getword()
+      for (i in 1:docLength-1){
+            addWord<-getword()
+            newdoc<-paste(newdoc, addWord)
+      }
+      sampleCorpus<-rbind(newdoc,sampleCorpus)
+}
+#row.names(sampleCorpus) <- NULL
+workingCorpus <- sampleCorpus |> 
+    as_tibble() |>
+    mutate(myGroups = complete_ra(N = ndocs, 
+                                  m_each = c(100,300,600),
+                                  conditions = c("sharks",
+                                                 "jets","nerds")))
+head(workingCorpus)
+```
+## Construction of the differential word cloud
+
+This takes the simulated corpus and reshjapes it to a matrix with row names (words) and counts (one column for each group). This is then re-expressed as a matrix of differential proportions. These proportions are then scaled to eliminate negative values. The `comparison.cloud` function from the `wordcloud` package is used to show the relative proportions of words in each group (in that function, the scale parameters will need to be adjusted to get the best visual representation).
+
+
+```{r}
+tidy1 <- workingCorpus |> 
+    unnest_tokens(word, V1) |> 
+    count(myGroups, word, sort = TRUE) #|>
+wideCorpus <- tidy1 |>
+    pivot_wider(names_from = myGroups, values_from = n, 
+                values_fill = 0) |> 
+    column_to_rownames(var = "word") |>
+    as.matrix(rownames = TRUE)
+groupSums<-margin.table(as.matrix(wideCorpus), 2) # Column sums
+groupProportions<- sweep(wideCorpus, 2, groupSums, "/")
+wordProportions <- margin.table(as.matrix(groupProportions), 1) # Row sums
+rawProportions<- sweep(groupProportions, 1, wordProportions, "/")
+
+scaledProportions <- 50 + (10 * scale(rawProportions))
+document_tm_mat <- 50 + (10*scaledProportions)
+
+
+comparison.cloud(document_tm_mat,
+#       scale = c(2.25,1.25),
+        scale = c(1.75,.5),
+        max.words=50,
+        random.order=FALSE,
+        rot.per = 0,
+#       colors=myPalette,
+#       colors= c("blue","red", "green"),
+        use.r.layout=FALSE,
+        family="sans",
+        title.size=1)
+   
+
+```
+

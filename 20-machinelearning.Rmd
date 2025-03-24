@@ -10,7 +10,7 @@ library(tidymodels)
 
 In the last few chapters, we have considered linear and logistic regression and k-nearest neighbor analysis as tools for prediction and classification. We've shown how to split the data into training, test and (in some cases) validation samples, then how to assess the robustness or accuracy of a model on these new datasets. We've also considered measures such as R-squared, overall accuracy, and area under the ROC as measures of validity.
 
-These ideas and techniques form a starting point for the study of *machine learning*. My approach is drawn largely from @james2013a, which is available freely on the web and includes links to additional materials and R-based exercises for those who would like to study this further.
+These ideas and techniques form a starting point for the study of *machine learning*. My approach is drawn largely from @james2013, which is available freely on the web and includes links to additional materials and R-based exercises for those who would like to study this further.
 
 ## supervised versus unsupervised
 
@@ -20,9 +20,9 @@ In both the Swiss and the Fair problems, we had a known outcome (fertility, infi
 
 There is a second type of problem in which we don't have an outcome, which would guide or supervise our model. Without an outcome or criterion, we must rely on the internal structure of the data. These are considered **unsupervised** problems. Methods used to address unsupervised problems include cluster analysis (of which there are many subtypes), component analysis, and exploratory factor analysis.
 
-In the unsupervised approach, objectives include finding unknown patterns, developing a set of types (or a taxonomy), and assessing the dimensionality of a latent set of variables. In psychology, a focal problems involves assessing the factor structure of personality (if you have taken introductory psychology, you are likely familiar with the five-factor or Big Five model of personality). The unsupervised approach is also used to solve problems of community detection in the study of social and scientific networks (see Figure 20.1, from @lanning2017a). I think that questions about dimensionality and internal structure can be compelling [@lanning1994; @lanning1996; @lanning2009], but I will not consider them further here.
+In the unsupervised approach, objectives include finding unknown patterns, developing a set of types (or a taxonomy), and assessing the dimensionality of a latent set of variables. In psychology, a focal problems involves assessing the factor structure of personality (if you have taken introductory psychology, you are likely familiar with the five-factor or Big Five model of personality). The unsupervised approach is also used to solve problems of community detection in the study of social and scientific networks (see Figure 20.1, from @lanning2017). I think that questions about dimensionality and internal structure can be compelling [@lanning1994; @lanning1996; @lanning2009], but I will not consider them further here.
 
-![Figure 20.1. Part of the structure of personality research. From @lanning2017a](images/SoniaFigure.PNG)
+![Figure 20.1. Part of the structure of personality research. From @lanning2017](images/SoniaFigure.PNG)
 
 ## prediction versus classification
 
@@ -109,7 +109,7 @@ In the second problem, you are looking to hire a group of commercial jet pilots.
 
 We can think of problems such as the grad school problem in a regression framework, while the pilot problem is instead a decision tree or "multiple cutoff" model. Very simple decision trees, including "fast and frugal trees," can be useful tools both to describe how people decide and how they might make better decisions [@phillips2017].
 
-In machine learning problems, there may be hundreds or thousands of predictors (features). The logic of decision trees is extended in techniques including bootstrap aggregation or **bagging** (in which a large number of trees are considered, then averaged), and **random forests** (which sequentially examines subsets of predictors in an effort to increase the reliability of predictions). These models are often predictively useful, but can be complex and difficult to interpret. Chapter 8 of [@james2013a] goes into more detail on these methods.
+In machine learning problems, there may be hundreds or thousands of predictors (features). The logic of decision trees is extended in techniques including bootstrap aggregation or **bagging** (in which a large number of trees are considered, then averaged), and **random forests** (which sequentially examines subsets of predictors in an effort to increase the reliability of predictions). These models are often predictively useful, but can be complex and difficult to interpret. Chapter 8 of [@james2013] goes into more detail on these methods.
 
 Two additional methods bear mention: **Support vector machines (SVM)** are classifiers which attempt to find optimal margins (hyperplanes) between two or more sets of criteria. Finally, **neural networks** are models which typically include multiple layers (akin to biological neurons) each of which can be activated based on the sum of the inputs of the prior layer. The chain of prediction from input (pixel) to output ("chihuahua") is not a simple forward path, rather, errors of prediction are used to tune weights of intermediate layers in a process known as **backpropagation.** Artificial neural networks are, at present, the most important set of techniques in artificial intelligence problems including image, speech, and even taste recognition.
 
