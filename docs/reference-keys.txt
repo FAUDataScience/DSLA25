@@ -1,4 +1,5 @@
 tab:unnamed-chunk-78
+tab:unnamed-chunk-89
 what-is-data-science-for-the-liberal-arts
 the-incompleteness-of-the-data-science-venn-diagram
 additional-domains
@@ -155,3 +156,14 @@ bias-versus-variability
 resampling-beyond-test-training-and-validation-samples
 compensatory-versus-non-compensatory-problems
 a-postscript-the-tidymodels-packages
+working-with-text
+federal-workers
+getting-text-off-of-the-web
+some-initial-observations
+preprocessing
+comparing-the-words-and-stems
+construction-of-differential-word-clouds
+bigrams
+categories-of-words
+code-for-assessing-liwc-effect-sizes-between-2-groups
+exercise-what-would-you-do-next

@@ -1,0 +1,334 @@
+```{r, include=FALSE, message = FALSE }
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(tidyverse)
+library(tidyjson) # for reading in JSON files
+library(jsonlite)
+library(tidytext) # tidyverse-adjacent text analysis 
+library(SnowballC) # for word stemming
+library(wordcloud) # for comparison cloud
+library(psych) # for descriptives
+library(compute.es) # for quick effect size estimates
+library(kableExtra) # for tables
+```
+
+# working with text
+
+In this chapter, I consider some rudimentary approaches to exploratory text analysis using R, leading to the creation of comparison word-clouds from single words and two-word strings (bigrams). In addition, I summarise texts by categories, and create tables to describe differences in categories of language use. This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work that may be very time-consuming.
+
+To explore text analysis, I consider an example from a contemporary issue, based on an analysis of Reddit data.[^21-workingwithtext-1]
+
+[^21-workingwithtext-1]: Reddit is an electronic discussion board or website which is structured as a set of communities or subreddits; each subreddit includes posts, and, typically, submitted by users (redditors).
+
+## Federal workers
+
+On March 19, 2025, the *New York Times* ran an article with the title "[*Will I Lose My Job?’ Federal Workers Flock to Reddit for Answers*](https://www.nytimes.com/2025/03/19/technology/reddit-va-federal-workers.html?unlocked_article_code=1.6k4.hnKX.dQvNDEhfhgcl&smid=url-share)*."* The gist of the article was that US Federal Workers, facing job insecurity in the opening days of President Donald Trump's second term, were using the *r/fedworkers* subreddit to connect with others and communicate their anxieties, concerns, and strategies.
+
+But did they, though? Is there evidence that the r/*fedworkers* subreddit was being used in these ways? In the analysis that follows, I will examine posts to the community (comments may be considered separately) for the period from January 1, 2024 through March 24, 2025.
+
+We'll consider the following:
+
+-   What specific words differentiate Trump era posts (since his second inauguration in January 2025) from those from the Biden era (prior to the November 2024 election)? For this, we'll rely primarily on visualizations, in particular, differential word clouds of single words and bigrams.
+
+-   What categories of speech differentiate the two epochs? For this, we'll use a proprietary tool, *Linguistic Inquiry and Word Count.* LIWC is a widely used measure for extracting grammatical, social, and psychological variables from text [LIWC; @boyd2022]. We'll generate tables for the LIWC categories and examine the effect size and statistical significance of these differences.
+
+This approach can optionally be extended to additional comparisons, including:
+
+-   Are similar results obtained when we examine comments rather than posts? (Here, we would compare Trump-era words and categories with Biden-era words and categories).
+
+-   How are comments and posts different from each other? (Here, we could compare words and categories for r/fedworkers posts with words and categories for r/fedworkers comments)
+
+-   Does the content of posts (or comments) between the election and the inaugural more closely resemble that of the Biden era (as Biden was still president) or the coming Trump administration?
+
+In order to address these questions, we'll briefly touch on some auxiliary technical questions as well, including:
+
+-   Should I 'stem' words prior to analysis? That is, should I treat terms such as (donut and donuts) as the same word or as different? How about (go and going)?
+
+-   A similar question can be asked about case - should all characters be set to lowercase? That is, should (I'm and i'm) be treated as the same? How about (DOGE and doge)?
+
+-   Should I include common stop words (*a*, *and*, *if*, *or*, *me*) in my analysis, or disregard them?
+
+## getting text off of the web
+
+Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I take a set of posts that I have already downloaded.
+
+We initially look at a very small set of data - 100 lines - both to make sure the code works and, if it does, to make an initial determination about what fields are of interest. The file is large, so it will ultimately be read in through streaming rather than all-at-once, hence the readLines -\> stream_in syntax.
+
+```{r}
+posts <- readLines(
+    "data/r_fednews_posts.jsonl")[1:100]
+a1 <- stream_in(textConnection(
+     gsub("\\n","", posts))) 
+glimpse(a1)
+```
+
+Only a few columns are of interest to us. We select those columns in the next chunk, for a sample of 10000 posts. We also take note of how long it takes to read a sample of this size by noting start-time, end.time, and the difference between these. Finally we make the date-time field (created_utc) field "human readable."
+
+```{r}
+posts <- readLines(
+    "data/r_fednews_posts.jsonl")[1:10000]
+start.time <- Sys.time()
+a1 <- stream_in(textConnection(
+     gsub("\\n","", posts))) |> 
+     select(author, title, selftext, id, link_flair_text,
+            num_comments, ups, downs, subreddit, created_utc) |> 
+     mutate (date = (as_datetime(created_utc))) |> 
+     select(-created_utc)
+end.time <- Sys.time()
+(end.time - start.time)
+```
+
+Looks good - the date/time field is clean, the columns are those that we want, and it only took a few seconds to read in 10,000 posts. Let's read them all in, then take a look at a small random sample - 10 - of the texts of the posts.
+
+```{r}
+posts <- readLines(
+    "data/r_fednews_posts.jsonl")
+start.time <- Sys.time()
+a1 <- stream_in(textConnection(
+     gsub("\\n","", posts))) |> 
+     select(author, title, selftext, id, link_flair_text,
+            num_comments, score, subreddit, created_utc) |> 
+     mutate (date = (as_datetime(created_utc))) |> 
+     select(-created_utc)
+end.time <- Sys.time()
+(end.time - start.time)
+set.seed(33458)
+a1 |> select (selftext) |> slice_sample(n=10)
+```
+
+These 59651 posts include all of those which were available for the period from January 1, 2024 through March 24, 2025.
+
+## some initial observations
+
+There are a few interesting properties of the data:
+
+1.  One is that it appears that many of the posts have been removed, including 4 out of this (very small) sample of 10. It would be interesting to compare the proportion of deleted posts to this subreddit with those of other subreddits during the same period. (I would anticipate that this proportion is much higher in this subreddit, likely because of fears of retribution that may or may not be warranted). We should keep in mind that the removed or deleted posts are unlikely to be a random sample of posts on the subreddit - they may be more angry, more polarized, and/or more easily de-anonymized. We should return to this when we consider our results. For now, we will filter out the removed posts.
+
+    a.  *One way to examine this empirically would be to examine the 'titles' field. The removed posts still include titles, so the nature of the removed posts in comparison with the non-removed posts could be examined by using the "compare words and categories" approach on the title fields of the two sets.*
+
+The second is that there are, at least in this small sample, a lot of abbreviations and acronyms - including *ACA*, *IRA*, *USDA*, *FPAC*, *NTEU*, *CFPB*, *HQ*, and *EAP*. Often, at this point in an analysis of text, we would reformat the text so that all words were lowercase (with the *tolower*) function. We'll instead modify this a bit - retaining capitalization when a token is in ALL CAPS (and is more than a single character like "I" or "A") - and making into lowercase otherwise.
+
+## preprocessing
+
+In this next chunk, we create a new variable called 'epoch,' with three values, *Biden* (during the Biden presidency, but before the November election, *Lameduck* (the period between the election and Trump's second inauguration), and *Trump*. We treat the 'lameduck' period separately because, although Biden was President, Trump, and concerns about the coming Trump presidency, was dominant on the airwaves. In these initial comparisons, we'll exclude that lameduck period from analysis
+
+We also take the content of the posts and unravel them, with one line per word (so that a post which had 100 words would be 100 lines in the new, tidy datafile). Call this file tidyCorpus0 (a *corpus* is a body of text).
+
+We then selectively set the text to lowercase (retaining uppercase only when a multi-character token, or word, is in ALL CAPS). This gives us tidyCorpus1.
+
+We also remove stopwords from the text in order to simplify and shorten the texts; acknowledging that there are often good reasons not to do this [@lanning2018, @pennebaker2014]. We'll remove numbers from the text in the same step. Call this file tidyCorpus2.
+
+Finally, we stem the text, reducing each word to its common stem, using the SnowballC library. This gives is tidyCorpus3. If we were to stem the text, we would move ahead with this file rather than tidyCorpus2. For more on stemming, please consider Hvitfeldt and Slige[-@hvitfeldt2021], which is available online.
+
+```{r}
+set.seed(33458)
+a2 <- a1 |> filter (selftext != "[removed]") |> 
+    mutate (epoch = case_when (
+        date < "2024-11-06 00:00:00" ~ "Biden",
+        date > "2025-01-20 12:00:00" ~ "Trump",
+        TRUE ~ "Lameduck"
+    ))
+tidyCorpus0 <- a2 |> 
+    unnest_tokens(word, selftext, to_lower = FALSE)
+tidyCorpus1 <- tidyCorpus0 |> 
+    mutate (word = case_when(
+# if changing a word to uppercase has no effect ...
+        (toupper(word) == word) & 
+# amd the word is more than 1 character long, keep it as is
+            nchar(word) > 1 ~ word,
+# else change it to lowercase
+        TRUE ~ tolower(word)))
+
+# tidyCorpus2 gets rid of numbers and removes stop words
+tidyCorpus2 <- tidyCorpus1 |> 
+    anti_join(stop_words) |> 
+    mutate(word = gsub(x = word, 
+                       pattern = "[0-9]+|[[:punct:]]|\\(.*\\)",
+                       replacement = "")) |> 
+    filter (word != "")
+
+# tidyCorpus3 takes the additional step of stemming the data
+tidyCorpus3 <- tidyCorpus2 |> 
+  mutate(word = wordStem(word))
+```
+
+## comparing the words and stems
+
+We reduce each of the the three tidy *corpora* (bodies of text) to simple frequency tables
+
+```{r}
+nwordsCorpus0 <- tidyCorpus0 |> count (word) |> nrow()
+nwordsCorpus1 <- tidyCorpus1 |> count (word) |> nrow()
+nwordsCorpus2 <- tidyCorpus2 |> count (word) |> nrow()
+nwordsCorpus3 <- tidyCorpus3 |> count (word) |> nrow()
+```
+
+Whereas there were 58154 words in the initial data, this drops to 49447 when we (mostly) represent all words as lower case. It drops further to 41586 when we remove numbers and stop words, and finally to 29338 when we stem the data.
+
+## Construction of differential word clouds
+
+We first take the corpus and reshape it to a matrix with row names (words) and counts (one column for each group).
+
+```{r}
+wideCorpus2 <- tidyCorpus2 |>
+    filter (epoch != "Lameduck") |> 
+    count(epoch, word, sort = TRUE) |> 
+    pivot_wider(names_from = epoch, values_from = n, 
+                values_fill = 0) |> 
+    column_to_rownames(var = "word") |>
+# filter out words that don't appear at least a few times in each group
+# and also removes words that are too rare to be useful for comparison
+    mutate (mincount = pmin(Biden, Trump)) |> 
+    filter (mincount > 4) |> 
+    select (-mincount) |> 
+    as.matrix(rownames = TRUE)  
+head(wideCorpus2,5)
+```
+
+The `comparison.cloud` function from the `wordcloud` package is used to show the greatest relative proportions of words in each group (in that function, the scale parameters will need to be adjusted to get the best visual representation).
+
+```{r}
+comparison.cloud(wideCorpus2,
+        scale = c(1.5,.5),
+        max.words=100,
+        random.order=FALSE,
+        rot.per = 0,
+        use.r.layout=FALSE,
+        family="sans",
+        title.size=1)
+```
+
+Many of the words which appear disproportionately in the Trump corpus (*employees, https, federal, government)* appear relatively neutral in emotional tone, although there are also terms such as *fired* and *resignation* here. On the Biden side, the abbreviation *GS* (for General Schedule, describing the level of various positions in civil service), together with *position, job, HR, step, hours*, and *supervisor* indicates that most posts refer to employment issues.
+
+Interesting, but perhaps less than we might have expected. Will an analysis of two-word strings (bigrams) provide more insight?
+
+## bigrams
+
+The comparison cloud illustrates differences in single-word occurrences between the Biden and Trump epochs in r/fedworkers. Here, we repeat the analysis, investigating two-word strings. Note that in order to remove stopwords and numbers, we fist combine adjacent words (tokens) into bigrams, then separate these into pairs of adjacent words, filter on each of these adjacent words, and rejoin them.
+
+```{r}
+tidyBigrams <- a2 |> 
+    filter (epoch != "Lameduck") |> 
+    unnest_tokens(bigram, selftext, token = "ngrams", n = 2) |> 
+    separate(bigram,c("word1", "word2"), sep = " ") |> 
+    anti_join(stop_words, by = join_by("word1" == "word")) |> 
+    anti_join(stop_words, by = join_by("word2" == "word")) |> 
+    mutate(word1 = gsub(x = word1, 
+                       pattern = "[0-9]+|[[:punct:]]|\\(.*\\)",
+                       replacement = "")) |> 
+    mutate(word2 = gsub(x = word2, 
+                       pattern = "[0-9]+|[[:punct:]]|\\(.*\\)",
+                       replacement = "")) |> 
+    drop_na() |> 
+    filter (word1 != "") |> 
+    filter (word2 != "") |> 
+    unite(bigram, word1, word2, sep = " ")
+bigramCounts <- tidyBigrams |>     
+    count(epoch, bigram, sort = TRUE) |> 
+    pivot_wider(names_from = epoch, values_from = n, 
+                values_fill = 0) |> 
+    column_to_rownames(var = "bigram") |>
+    as.matrix(rownames = TRUE) 
+comparison.cloud(bigramCounts,
+        scale = c(1.5,.5),
+        max.words=100,
+        random.order=FALSE,
+        rot.per = 0,
+        use.r.layout=FALSE,
+        family="sans",
+        title.size=1)
+
+```
+
+Here, the language of the two epochs comes into clearer focus, with phrases such as *deferred resignation* characterizing the Trump epoch and the relatively benign *pay period* characterizing the Biden period.
+
+## categories of words
+
+In my own research, I rely on a proprietary tool, *Linguistic Inquiry and Word Count.* Though LIWC can be run within R on a machine that has the license for the software, here I run the program externally, then reimport it into R.
+
+```{r}
+write_csv(a2, "data/fedworkersposts.csv")
+# we run LIWC outside of R here. 
+# the code is run on the raw data files
+fedworkersLIWC <- read_csv("data/fedworkersLIWC.csv")
+```
+
+## Code for assessing LIWC effect sizes between 2 groups
+
+There are many measures, or categories, in LIWC. In order to assess the statistical significance of differecnces between the Biden and Trump epochs on LIWC, the simplest approach is to adjust for the number of comparisons using the Bonferroni correction. The number of LIWC categories is 117, so the Bonferroni p-value should be .05/117 = .000427.
+
+This chunk uses three different libraries describe function from the psych package to get means, standard deviations, and sample sizes for each LIWC category. Then it computes the effect sizes and associated statistics using the mes function from the compute.es package and makes tables for the LIWC variables with the largest effects.
+
+```{r}
+BonferroniP <- (.05/117) # 117 is the number of LIWC categories# simple descriptives
+
+BidenEpoch <- fedworkersLIWC |> 
+    filter (epoch == "Biden") |> 
+    select(WC:OtherP) |> 
+    describe() |> # from the psych package
+    select(BidenN=n, BidenM = mean, BidenSD = sd) |> 
+    round(2)
+TrumpEpoch <- fedworkersLIWC |>
+    filter (epoch == "Trump") |> 
+    select(WC:OtherP) |> 
+    describe() |>
+    select(TrumpN=n, TrumpM = mean, TrumpSD = sd) |> 
+    round(2)
+poststats <- BidenEpoch |> 
+    bind_cols (TrumpEpoch)
+# from the compare.es package.
+Effects <- mes(poststats[,2], 
+               poststats[,5],
+               poststats[,3], 
+               poststats[,6],
+               poststats[,1],poststats[,4],
+               level = BonferroniP,
+               verbose = FALSE) |> 
+    select(d, l.d, u.d, pval.d)
+LIWCSummary <- poststats |> 
+    bind_cols(Effects) |>
+    select(-BidenN, -TrumpN) |> 
+    write_csv("data/LIWCeffects.csv")
+
+Nsignificant <- Effects |> 
+    mutate (sig = case_when (pval.d < BonferroniP ~ 1,
+                             TRUE ~ 0)) |> 
+    summarise(sum = sum(sig)) |> 
+    as.numeric()
+BidenN <- min(poststats$BidenN)
+TrumpN <- min(poststats$TrumpN)
+LIWCSummary |> 
+    slice_max(d, n = 10) |> 
+    kable(caption = "LIWC categories in r/fedworkers most associated with the Biden era") |> 
+    kable_styling() %>%
+    add_footnote(paste0(
+        "Note: BidenNs >= ",
+        min(poststats$BidenN),
+        " TrumpNs >= ",
+        min(poststats$TrumpN)))
+LIWCSummary |> 
+    slice_min(d, n = 10) |> 
+    kable(caption = "LIWC categories in r/fedworkers most associated with the Trump era") |> 
+    kable_styling() %>%
+    add_footnote(paste0(
+        "Note: BidenNs >= ",
+        min(poststats$BidenN),
+        " TrumpNs >= ",
+        min(poststats$TrumpN)))
+        
+LIWCSummary |> 
+    arrange(desc(d)) |> 
+    head(10) |> 
+    kable()
+
+
+```
+
+There are just over 19000 posts in the (roughly four month long) Trump epoch, and just over 9000 in the (roughly ten months long) Biden epoch. Judging from the number of posts, the *r/fedworkers* subreddit has been substantially more active since the Trump presidency began.
+
+In comparisons of the two "epochs," the LIWC categories which were particularly characteristic of the Biden posts included *Authentic,* a summary variable indicating apparent honesty or genuineness, and *I*, including first-person singular pronouns [@boyd2022]. For each of these, the effect size (difference in standard deviations between the two distributions), was more than .5, indicating a moderate effect. The LIWC categories which were particularly characteristic of the Trump posts included *Clout,* a summary category of words associated with leadership or status, followed by *Culture,* which includes language about politics, technology, and ethnicity, and *we*, second-person singular pronouns)*.* The shift from the first-person singular to plural is what we might expect in a community of individuals subjectively under siege. Altogether, of the 117 LIWC Categories, 98 showed a statistically significant difference between the two epochs.
+
+These analyses support the argument presented in the *Times* article referenced above, including that the r/*fedworkers* subreddit had grown, in the Trump epoch, into a supportive community (shift from *i* to *we*), in which workers were sharing anxieties (LIWC categories such as *emo_neg* and *tone_neg*).
+
+## exercise: what would you do next?
+
+This has been a brief introduction of how to work with text from Reddit. If you were to work with these data, what would you do next? If you were to work with another dataset, what would it look like, what would you expect to find, and how would you study it?

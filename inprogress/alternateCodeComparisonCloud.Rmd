@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+output: html_document
+date: "2025-03-29"
+---
+alternate code for comparison clouds
+
+{r}
+
+```{r}
+wideCorpus3 <- tidyCorpus2 |>
+    filter (epoch != "Lameduck") |> 
+    count(epoch, word, sort = TRUE) |> 
+    pivot_wider(names_from = epoch, values_from = n, 
+                values_fill = 0) |> 
+    column_to_rownames(var = "word") |>
+# filter out words that don't appear at least a few times in each group
+# and also removes words that are too rare to be useful for comparison
+    mutate (mincount = pmin(Biden, Trump)) |> 
+    filter (mincount > 4) |> 
+    select (-mincount) |> 
+    as.matrix(rownames = TRUE)  
+groupSums<-margin.table(as.matrix(wideCorpus3), 2) # Column sums
+groupProportions<- sweep(wideCorpus3, 2, groupSums, "/")
+wordProportions <- margin.table(as.matrix(groupProportions), 1) # Row sums
+rawProportions<- sweep(groupProportions, 2, wordProportions, "/")
+scaledProportions <- 50 + (10 * scale(rawProportions)) 
+
+
+wordcloud::comparison.cloud(wideCorpus3,#scaledProportions,
+#       scale = c(2.25,1.25),
+        scale = c(2,.5),
+        max.words=100,
+        random.order=FALSE,
+        rot.per = 0,
+#       colors=myPalette,
+#       colors= c("blue","red", "green"),
+        use.r.layout=FALSE,
+#        family="sans",
+        title.size=1)
+```

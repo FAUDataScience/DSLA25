@@ -23,14 +23,14 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-03-24" />
+<meta name="date" content="2025-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"/>
+<link rel="prev" href="working-with-text.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -414,6 +415,19 @@ div.csl-indent {
 <li class="chapter" data-level="20.5" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#compensatory-versus-non-compensatory-problems"><i class="fa fa-check"></i><b>20.5</b> compensatory versus non-compensatory problems</a></li>
 <li class="chapter" data-level="20.6" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#a-postscript-the-tidymodels-packages"><i class="fa fa-check"></i><b>20.6</b> a postscript: The Tidymodels packages</a></li>
 </ul></li>
+<li class="chapter" data-level="21" data-path="working-with-text.html"><a href="working-with-text.html"><i class="fa fa-check"></i><b>21</b> working with text</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="working-with-text.html"><a href="working-with-text.html#federal-workers"><i class="fa fa-check"></i><b>21.1</b> Federal workers</a></li>
+<li class="chapter" data-level="21.2" data-path="working-with-text.html"><a href="working-with-text.html#getting-text-off-of-the-web"><i class="fa fa-check"></i><b>21.2</b> getting text off of the web</a></li>
+<li class="chapter" data-level="21.3" data-path="working-with-text.html"><a href="working-with-text.html#some-initial-observations"><i class="fa fa-check"></i><b>21.3</b> some initial observations</a></li>
+<li class="chapter" data-level="21.4" data-path="working-with-text.html"><a href="working-with-text.html#preprocessing"><i class="fa fa-check"></i><b>21.4</b> preprocessing</a></li>
+<li class="chapter" data-level="21.5" data-path="working-with-text.html"><a href="working-with-text.html#comparing-the-words-and-stems"><i class="fa fa-check"></i><b>21.5</b> comparing the words and stems</a></li>
+<li class="chapter" data-level="21.6" data-path="working-with-text.html"><a href="working-with-text.html#construction-of-differential-word-clouds"><i class="fa fa-check"></i><b>21.6</b> Construction of differential word clouds</a></li>
+<li class="chapter" data-level="21.7" data-path="working-with-text.html"><a href="working-with-text.html#bigrams"><i class="fa fa-check"></i><b>21.7</b> bigrams</a></li>
+<li class="chapter" data-level="21.8" data-path="working-with-text.html"><a href="working-with-text.html#categories-of-words"><i class="fa fa-check"></i><b>21.8</b> categories of words</a></li>
+<li class="chapter" data-level="21.9" data-path="working-with-text.html"><a href="working-with-text.html#code-for-assessing-liwc-effect-sizes-between-2-groups"><i class="fa fa-check"></i><b>21.9</b> Code for assessing LIWC effect sizes between 2 groups</a></li>
+<li class="chapter" data-level="21.10" data-path="working-with-text.html"><a href="working-with-text.html#exercise-what-would-you-do-next"><i class="fa fa-check"></i><b>21.10</b> exercise: what would you do next?</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -443,10 +457,13 @@ Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>Ameri
 Baker, Monya. 2016. <span>“Is There a Reproducibility Crisis?”</span> <em>Nature</em> 533: 26.
 </div>
 <div class="csl-entry">
-Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/cff2">https://doi.org/cff2</a>.
+Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/10/cff2">https://doi.org/10/cff2</a>.
 </div>
 <div class="csl-entry">
 Blumenthal, Arthur L. 1975. <span>“A Reappraisal of <span>Wilhelm Wundt</span>.”</span> <em>American Psychologist</em> 30 (11): 1081.
+</div>
+<div class="csl-entry">
+Boyd, Ryan L, Ashwini Ashokkumar, Sarah Seraj, and James W Pennebaker. 2022. <span>“The Development and Psychometric Properties of LIWC-22.”</span> <em>Austin, TX: University of Texas at Austin</em> 10: 1–47.
 </div>
 <div class="csl-entry">
 Broman, Karl W., and Kara H. Woo. 2018. <span>“Data <span>Organization</span> in <span>Spreadsheets</span>.”</span> <em>The American Statistician</em> 72 (1): 2–10. <a href="https://doi.org/10.1080/00031305.2017.1375989">https://doi.org/10.1080/00031305.2017.1375989</a>.
@@ -458,7 +475,7 @@ Buckheit, Jonathan B., and David L. Donoho. 1995. <span>“Wavelab and Reproduci
 Cleveland, William S., and Robert McGill. 1985. <span>“Graphical <span>Perception</span> and <span>Graphical Methods</span> for <span>Analyzing Scientific Data</span>.”</span> <em>Science, New Series</em> 229 (4716): 828–33. <a href="https://www.jstor.org/stable/1695272">https://www.jstor.org/stable/1695272</a>.
 </div>
 <div class="csl-entry">
-Cox, Jonathan, and Michael Lindell. 2013. <span>“Visualizing Uncertainty in Predicted Hurricane Tracks.”</span> <em>International Journal for Uncertainty Quantification</em> 3 (2). <a href="https://doi.org/gjjsfw">https://doi.org/gjjsfw</a>.
+Cox, Jonathan, and Michael Lindell. 2013. <span>“Visualizing Uncertainty in Predicted Hurricane Tracks.”</span> <em>International Journal for Uncertainty Quantification</em> 3 (2). <a href="https://doi.org/10/gjjsfw">https://doi.org/10/gjjsfw</a>.
 </div>
 <div class="csl-entry">
 Deane, Claudia. 2024. <span>“Americans’ <span>Deepening Mistrust</span> of <span>Institutions</span>.”</span>
@@ -467,10 +484,10 @@ Deane, Claudia. 2024. <span>“Americans’ <span>Deepening Mistrust</span> of <
 Donoho, David. 2017. <span>“50 <span>Years</span> of <span>Data Science</span>.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
 </div>
 <div class="csl-entry">
-Donoho, David L. 2010. <span>“An Invitation to Reproducible Computational Research.”</span> <em>Biostatistics</em> 11 (3): 385–88. <a href="https://doi.org/bxwkns">https://doi.org/bxwkns</a>.
+Donoho, David L. 2010. <span>“An Invitation to Reproducible Computational Research.”</span> <em>Biostatistics</em> 11 (3): 385–88. <a href="https://doi.org/10/bxwkns">https://doi.org/10/bxwkns</a>.
 </div>
 <div class="csl-entry">
-Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/cs5c5q">https://doi.org/cs5c5q</a>.
+Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/10/cs5c5q">https://doi.org/10/cs5c5q</a>.
 </div>
 <div class="csl-entry">
 Gandrud, Christopher. 2013. <em>Reproducible <span>Research</span> with <span>R</span> and <span>R Studio</span></em>. CRC Press.
@@ -485,10 +502,10 @@ Hastie, Reid, and Robyn M Dawes. 2010. <em>Rational Choice in an Uncertain World
 Healy, Kieran. 2017. <span>“Data Visualization for Social Science: <span>A</span> Practical Introduction with r and Ggplot2.”</span>
 </div>
 <div class="csl-entry">
-Henrich, Joseph, Steven J. Heine, and Ara Norenzayan. 2010. <span>“The Weirdest People in the World?”</span> <em>Behavioral and Brain Sciences</em> 33 (2-3): 61–83. <a href="https://doi.org/c9j35b">https://doi.org/c9j35b</a>.
+Henrich, Joseph, Steven J. Heine, and Ara Norenzayan. 2010. <span>“The Weirdest People in the World?”</span> <em>Behavioral and Brain Sciences</em> 33 (2-3): 61–83. <a href="https://doi.org/10/c9j35b">https://doi.org/10/c9j35b</a>.
 </div>
 <div class="csl-entry">
-Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/gfr5tf">https://doi.org/gfr5tf</a>.
+Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/10/gfr5tf">https://doi.org/10/gfr5tf</a>.
 </div>
 <div class="csl-entry">
 Hornik, Kurt, and The R Core Team. 2022. <span>“R <span>FAQ</span>: <span>The Comprehensive R Archive Network</span>.”</span>
@@ -497,7 +514,10 @@ Hornik, Kurt, and The R Core Team. 2022. <span>“R <span>FAQ</span>: <span>The 
 Hullman, Jessica, Paul Resnick, and Eytan Adar. 2015. <span>“Hypothetical <span>Outcome Plots Outperform Error Bars</span> and <span>Violin Plots</span> for <span>Inferences</span> about <span>Reliability</span> of <span>Variable Ordering</span>.”</span> Edited by Elena Papaleo. <em>PLOS ONE</em> 10 (11): e0142444. <a href="https://doi.org/10.1371/journal.pone.0142444">https://doi.org/10.1371/journal.pone.0142444</a>.
 </div>
 <div class="csl-entry">
-Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/chhf6b">https://doi.org/chhf6b</a>.
+Hvitfeldt, Emil, and Julia Silge. 2021. <em>Supervised Machine Learning for Text Analysis in <span>R</span></em>. <span>Chapman and Hall/CRC</span>.
+</div>
+<div class="csl-entry">
+Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/10/chhf6b">https://doi.org/10/chhf6b</a>.
 </div>
 <div class="csl-entry">
 Isaacson, Walter. 2014. <em>The <span>Innovators</span>: <span>How</span> a <span>Group</span> of <span>Hackers</span>, <span>Geniuses</span>, and <span>Geeks Created</span> the <span>Digital Revolution</span></em>. <span>Simon and Schuster</span>.
@@ -518,13 +538,13 @@ Kumar, Devinder, Alexander Wong, and Graham W Taylor. 2017. <span>“Explaining 
 Lakatos, Imre. 1969. <span>“Falsification and the Methodology of Scientific Research Programmes.”</span> <em>Criticism and the Growth of Knowledge. Cambridge University Press: Cambridge</em>.
 </div>
 <div class="csl-entry">
-Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span class="nocase">Non-normative Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/fv4hh5">https://doi.org/fv4hh5</a>.
+Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span class="nocase">Non-normative Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/10/fv4hh5">https://doi.org/10/fv4hh5</a>.
 </div>
 <div class="csl-entry">
-———. 1994. <span>“Dimensionality of <span>Observer Ratings</span> on the <span class="nocase">California Adult Q-set</span>.”</span> <em>Journal of Personality and Social Psychology</em> 67 (July): 151–60. <a href="https://doi.org/drnkvm">https://doi.org/drnkvm</a>.
+———. 1994. <span>“Dimensionality of <span>Observer Ratings</span> on the <span class="nocase">California Adult Q-set</span>.”</span> <em>Journal of Personality and Social Psychology</em> 67 (July): 151–60. <a href="https://doi.org/10/drnkvm">https://doi.org/10/drnkvm</a>.
 </div>
 <div class="csl-entry">
-———. 1996. <span>“Robustness Is Not Dimensionality: <span>On</span> the Sensitivity of Component Comparability Coefficients to Sample Size.”</span> <em>Multivariate Behavioral Research</em> 31 (1): 33–46. <a href="https://doi.org/dt6gb3">https://doi.org/dt6gb3</a>.
+———. 1996. <span>“Robustness Is Not Dimensionality: <span>On</span> the Sensitivity of Component Comparability Coefficients to Sample Size.”</span> <em>Multivariate Behavioral Research</em> 31 (1): 33–46. <a href="https://doi.org/10/dt6gb3">https://doi.org/10/dt6gb3</a>.
 </div>
 <div class="csl-entry">
 ———. 2017. <span>“What Is the Relationship Between <span>‘Personality’</span> and <span>‘Social’</span> Psychologies? <span>Network</span>, Community, and Whole Text Analyses of the Structure of Contemporary Scholarship.”</span> <em>Collabra: Psychology</em> 3 (1): 8.
@@ -533,19 +553,19 @@ Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishin
 ———. 2018. <span>“Data Visualizations in Personality and Social Psychology: <span>Challenges</span> in Representing Taxonomic, Community, and Developmental Structures.”</span> <em>Association of Psychological Science Annual Convention, San Francisco, May 25.</em>
 </div>
 <div class="csl-entry">
-Lanning, Kevin, and Ari Rosenberg. 2009. <span>“The Dimensionality of <span>American</span> Political Attitudes: Tensions Between Equality and Freedom in the Wake of <span>September</span> 11.”</span> <em>Behavioral Sciences of Terrorism and Political Aggression</em> 1 (2): 84–100. <a href="https://doi.org/fckr37">https://doi.org/fckr37</a>.
+Lanning, Kevin, and Ari Rosenberg. 2009. <span>“The Dimensionality of <span>American</span> Political Attitudes: Tensions Between Equality and Freedom in the Wake of <span>September</span> 11.”</span> <em>Behavioral Sciences of Terrorism and Political Aggression</em> 1 (2): 84–100. <a href="https://doi.org/10/fckr37">https://doi.org/10/fckr37</a>.
 </div>
 <div class="csl-entry">
-Leek, Jeffrey T, and Roger D Peng. 2015. <span>“Statistics: <span>P</span> Values Are Just the Tip of the Iceberg.”</span> <em>Nature</em> 520 (7549): 612. <a href="https://doi.org/gfb8jm">https://doi.org/gfb8jm</a>.
+Leek, Jeffrey T, and Roger D Peng. 2015. <span>“Statistics: <span>P</span> Values Are Just the Tip of the Iceberg.”</span> <em>Nature</em> 520 (7549): 612. <a href="https://doi.org/10/gfb8jm">https://doi.org/10/gfb8jm</a>.
 </div>
 <div class="csl-entry">
-Loevinger, Jane. 1957. <span>“Objective <span>Tests</span> as <span>Instruments</span> of <span>Psychological Theory</span>.”</span> <em>Psychological Reports</em> 3 (3): 635–94. <a href="https://doi.org/b27jpk">https://doi.org/b27jpk</a>.
+Loevinger, Jane. 1957. <span>“Objective <span>Tests</span> as <span>Instruments</span> of <span>Psychological Theory</span>.”</span> <em>Psychological Reports</em> 3 (3): 635–94. <a href="https://doi.org/10/b27jpk">https://doi.org/10/b27jpk</a>.
 </div>
 <div class="csl-entry">
 McShane, Blakeley B., David Gal, Andrew Gelman, Christian Robert, and Jennifer L. Tackett. 2017. <span>“Abandon <span>Statistical Significance</span>.”</span> <em>arXiv:1709.07588 [Stat]</em>, September. <a href="https://arxiv.org/abs/1709.07588">https://arxiv.org/abs/1709.07588</a>.
 </div>
 <div class="csl-entry">
-Miguel, Edward, Colin Camerer, Katherine Casey, Joshua Cohen, Kevin M Esterling, Alan Gerber, Rachel Glennerster, et al. 2014. <span>“Promoting Transparency in Social Science Research.”</span> <em>Science</em> 343 (6166): 30–31. <a href="https://doi.org/gdrcpz">https://doi.org/gdrcpz</a>.
+Miguel, Edward, Colin Camerer, Katherine Casey, Joshua Cohen, Kevin M Esterling, Alan Gerber, Rachel Glennerster, et al. 2014. <span>“Promoting Transparency in Social Science Research.”</span> <em>Science</em> 343 (6166): 30–31. <a href="https://doi.org/10/gdrcpz">https://doi.org/10/gdrcpz</a>.
 </div>
 <div class="csl-entry">
 Munafò, Marcus R., Brian A. Nosek, Dorothy V. M. Bishop, Katherine S. Button, Christopher D. Chambers, Nathalie Percie du Sert, Uri Simonsohn, Eric-Jan Wagenmakers, Jennifer J. Ware, and John P. A. Ioannidis. 2017. <span>“A Manifesto for Reproducible Science.”</span> <em>Nature Human Behaviour</em> 1 (1): 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a>.
@@ -554,13 +574,16 @@ Munafò, Marcus R., Brian A. Nosek, Dorothy V. M. Bishop, Katherine S. Button, C
 Ondaatje, Michael, and Walter Murch. 2002. <em>The Conversations: <span>Walter Murch</span> and the Art of Editing Film</em>. A&amp;C Black.
 </div>
 <div class="csl-entry">
-Open Science Collaboration. 2015. <span>“Estimating the Reproducibility of Psychological Science.”</span> <em>Science</em> 349 (6251): aac4716–16. <a href="https://doi.org/68c">https://doi.org/68c</a>.
+Open Science Collaboration. 2015. <span>“Estimating the Reproducibility of Psychological Science.”</span> <em>Science</em> 349 (6251): aac4716–16. <a href="https://doi.org/10/68c">https://doi.org/10/68c</a>.
 </div>
 <div class="csl-entry">
 Peng, Roger. 2018. <span>“Teaching r to New Users - from Tapply to the Tidyverse.”</span>
 </div>
 <div class="csl-entry">
 Peng, Roger D. 2014. <em>R <span>Programming</span> for <span>Data Science</span></em>.
+</div>
+<div class="csl-entry">
+Pennebaker, James W., Cindy K. Chung, Joey Frazee, Gary M. Lavergne, and David I. Beaver. 2014. <span>“When <span>Small Words Foretell Academic Success</span>: <span>The Case</span> of <span>College Admissions Essays</span>.”</span> Edited by Qiyong Gong. <em>PLoS ONE</em> 9 (12): e115844. <a href="https://doi.org/10/f6z8q5">https://doi.org/10/f6z8q5</a>.
 </div>
 <div class="csl-entry">
 Phillips, Nathaniel D., Hansjörg Neth, Jan K. Woike, and Wolfgang Gaissmaier. 2017. <span>“<span>FFTrees</span>: <span>A</span> Toolbox to Create, Visualize, and Evaluate Fast-and-Frugal Decision Trees.”</span> <em>Judgment and Decision Making</em> 12 (4): 344–68.
@@ -572,31 +595,31 @@ Poulin, Michael J., and Claudia M. Haase. 2015. <span>“Growing to <span>Trust<
 Reinsel, David, John Gantz, and John Rydning. 2025. <span>“The <span>Digitization</span> of the <span>World</span>.”</span>
 </div>
 <div class="csl-entry">
-Slovic, Paul, David Zionts, Andrew K Woods, Ryan Goodman, and Derek Jinks. 2013. <span>“Psychic Numbing and Mass Atrocity.”</span> <em>The Behavioral Foundations of Public Policy</em>, 126–42. <a href="https://doi.org/gk4945">https://doi.org/gk4945</a>.
+Slovic, Paul, David Zionts, Andrew K Woods, Ryan Goodman, and Derek Jinks. 2013. <span>“Psychic Numbing and Mass Atrocity.”</span> <em>The Behavioral Foundations of Public Policy</em>, 126–42. <a href="https://doi.org/10/gk4945">https://doi.org/10/gk4945</a>.
 </div>
 <div class="csl-entry">
-Sternberg, Robert J. 1999. <span>“The Theory of Successful Intelligence.”</span> <em>Review of General Psychology</em> 3 (4): 292–316. <a href="https://doi.org/cqrkxh">https://doi.org/cqrkxh</a>.
+Sternberg, Robert J. 1999. <span>“The Theory of Successful Intelligence.”</span> <em>Review of General Psychology</em> 3 (4): 292–316. <a href="https://doi.org/10/cqrkxh">https://doi.org/10/cqrkxh</a>.
 </div>
 <div class="csl-entry">
-Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/cmthvk">https://doi.org/cmthvk</a>.
+Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/10/cmthvk">https://doi.org/10/cmthvk</a>.
 </div>
 <div class="csl-entry">
-Szucs, Denes, and John Ioannidis. 2017. <span>“When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.”</span> <em>Frontiers in Human Neuroscience</em> 11: 390. <a href="https://doi.org/gc6vws">https://doi.org/gc6vws</a>.
+Szucs, Denes, and John Ioannidis. 2017. <span>“When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.”</span> <em>Frontiers in Human Neuroscience</em> 11: 390. <a href="https://doi.org/10/gc6vws">https://doi.org/10/gc6vws</a>.
 </div>
 <div class="csl-entry">
-Thies, Justus, Michael Zollhöfer, Matthias Nießner, Levi Valgaerts, Marc Stamminger, and Christian Theobalt. 2015. <span>“Real-Time Expression Transfer for Facial Reenactment.”</span> <em>ACM Trans. Graph.</em> 34 (6): 183–81. <a href="https://doi.org/f7wqz7">https://doi.org/f7wqz7</a>.
+Thies, Justus, Michael Zollhöfer, Matthias Nießner, Levi Valgaerts, Marc Stamminger, and Christian Theobalt. 2015. <span>“Real-Time Expression Transfer for Facial Reenactment.”</span> <em>ACM Trans. Graph.</em> 34 (6): 183–81. <a href="https://doi.org/10/f7wqz7">https://doi.org/10/f7wqz7</a>.
 </div>
 <div class="csl-entry">
 Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Cheshire, CT: Graphics Press.
 </div>
 <div class="csl-entry">
-Tukey, John W. 1962. <span>“The Future of Data Analysis.”</span> <em>The Annals of Mathematical Statistics</em> 33 (1): 1–67. <a href="https://doi.org/d48nqg">https://doi.org/d48nqg</a>.
+Tukey, John W. 1962. <span>“The Future of Data Analysis.”</span> <em>The Annals of Mathematical Statistics</em> 33 (1): 1–67. <a href="https://doi.org/10/d48nqg">https://doi.org/10/d48nqg</a>.
 </div>
 <div class="csl-entry">
 ———. 1977. <span>“<span>EDA</span>: <span>Exploratory</span> Data Analysis.”</span> <em>Reading, Mass</em>.
 </div>
 <div class="csl-entry">
-Tversky, Amos, and Daniel Kahneman. 1974. <span>“Judgment Under <span>Uncertainty</span>: <span>Heuristics</span> and <span>Biases</span>.”</span> <em>Science</em> 185 (4157): 1124–31. <a href="https://doi.org/gwh">https://doi.org/gwh</a>.
+Tversky, Amos, and Daniel Kahneman. 1974. <span>“Judgment Under <span>Uncertainty</span>: <span>Heuristics</span> and <span>Biases</span>.”</span> <em>Science</em> 185 (4157): 1124–31. <a href="https://doi.org/10/gwh">https://doi.org/10/gwh</a>.
 </div>
 <div class="csl-entry">
 Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
@@ -623,12 +646,13 @@ Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for 
 
 
 
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-text.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
