@@ -156,7 +156,7 @@ bias-versus-variability
 resampling-beyond-test-training-and-validation-samples
 compensatory-versus-non-compensatory-problems
 a-postscript-the-tidymodels-packages
-working-with-text
+working-with-text-a-case-study
 federal-workers
 getting-text-off-of-the-web
 some-initial-observations

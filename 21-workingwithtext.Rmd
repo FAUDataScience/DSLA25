@@ -11,19 +11,21 @@ library(compute.es) # for quick effect size estimates
 library(kableExtra) # for tables
 ```
 
-# working with text
+# working with text: a case study
 
-In this chapter, I consider some rudimentary approaches to exploratory text analysis using R, leading to the creation of comparison word-clouds from single words and two-word strings (bigrams). In addition, I summarise texts by categories, and create tables to describe differences in categories of language use. This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work that may be very time-consuming.
-
-To explore text analysis, I consider an example from a contemporary issue, based on an analysis of Reddit data.[^21-workingwithtext-1]
+In this chapter, I present a rudimentary case study in which a contemporary issue is explored using R. I examine Reddit[^21-workingwithtext-1] data, create comparison word-clouds from single words and two-word strings (bigrams), and consider the results of an external proprietary tool for examining categories of language. The chapter is based on the tidy approach to text analysis, for which a clear and thorough introduction has been provided in two books by Silge and her colleagues, each of which is available online [@silge2017, @hvitfeldt2021].
 
 [^21-workingwithtext-1]: Reddit is an electronic discussion board or website which is structured as a set of communities or subreddits; each subreddit includes posts, and, typically, submitted by users (redditors).
 
-## Federal workers
+A word of warning: This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work that may be very time-consuming.
 
-On March 19, 2025, the *New York Times* ran an article with the title "[*Will I Lose My Job?’ Federal Workers Flock to Reddit for Answers*](https://www.nytimes.com/2025/03/19/technology/reddit-va-federal-workers.html?unlocked_article_code=1.6k4.hnKX.dQvNDEhfhgcl&smid=url-share)*."* The gist of the article was that US Federal Workers, facing job insecurity in the opening days of President Donald Trump's second term, were using the *r/fedworkers* subreddit to connect with others and communicate their anxieties, concerns, and strategies.
+## federal workers
 
-But did they, though? Is there evidence that the r/*fedworkers* subreddit was being used in these ways? In the analysis that follows, I will examine posts to the community (comments may be considered separately) for the period from January 1, 2024 through March 24, 2025.
+On March 19, 2025, the *New York Times* ran an article with the title "[*Will I Lose My Job?’ Federal Workers Flock to Reddit for Answers*](https://www.nytimes.com/2025/03/19/technology/reddit-va-federal-workers.html?unlocked_article_code=1.6k4.hnKX.dQvNDEhfhgcl&smid=url-share)*."* The gist of the article was that US Federal workers, facing job insecurity in the opening days of President Trump's second term, were using the *r/fedworkers* subreddit to connect with others and communicate their anxieties, concerns, and strategies.
+
+But did they, though? Is there evidence that the r/*fedworkers* subreddit was being used in these ways? In the analysis that follows, I will examine posts[^21-workingwithtext-2] to the community for the period from January 1, 2024 through March 24, 2025.
+
+[^21-workingwithtext-2]: The selection of posts rather than comments is somewhat arbitrary; one reason for examining posts is that the simple number of comments in the period under study would be relatively unwieldy.
 
 We'll consider the following:
 
@@ -33,7 +35,7 @@ We'll consider the following:
 
 This approach can optionally be extended to additional comparisons, including:
 
--   Are similar results obtained when we examine comments rather than posts? (Here, we would compare Trump-era words and categories with Biden-era words and categories).
+-   Are similar results obtained when we examine comments rather than posts? (Here, we could compare Trump-era words and categories with Biden-era words and categories).
 
 -   How are comments and posts different from each other? (Here, we could compare words and categories for r/fedworkers posts with words and categories for r/fedworkers comments)
 
@@ -41,21 +43,20 @@ This approach can optionally be extended to additional comparisons, including:
 
 In order to address these questions, we'll briefly touch on some auxiliary technical questions as well, including:
 
--   Should I 'stem' words prior to analysis? That is, should I treat terms such as (donut and donuts) as the same word or as different? How about (go and going)?
+-   Should we 'stem' words prior to analysis? That is, should we treat terms such as (*donut* and *donuts*) as the same word or as different? How about (*go* and *going*)?
 
--   A similar question can be asked about case - should all characters be set to lowercase? That is, should (I'm and i'm) be treated as the same? How about (DOGE and doge)?
+-   A similar question can be asked about case - should all characters be set to lowercase? That is, should (*I'm* and *i'm*) be treated as the same? How about (*DOGE* and *doge*)?
 
--   Should I include common stop words (*a*, *and*, *if*, *or*, *me*) in my analysis, or disregard them?
+-   Should we include common stop words (*a*, *and*, *if*, *or*, *me*) in our analysis, or disregard them?
 
 ## getting text off of the web
 
-Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I take a set of posts that I have already downloaded.
+Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I begin with a set of posts that I have already downloaded.
 
 We initially look at a very small set of data - 100 lines - both to make sure the code works and, if it does, to make an initial determination about what fields are of interest. The file is large, so it will ultimately be read in through streaming rather than all-at-once, hence the readLines -\> stream_in syntax.
 
 ```{r}
-posts <- readLines(
-    "data/r_fednews_posts.jsonl")[1:100]
+posts <- read_lines("data/r_fednews_posts.jsonl", n_max = 100)
 a1 <- stream_in(textConnection(
      gsub("\\n","", posts))) 
 glimpse(a1)
@@ -64,8 +65,7 @@ glimpse(a1)
 Only a few columns are of interest to us. We select those columns in the next chunk, for a sample of 10000 posts. We also take note of how long it takes to read a sample of this size by noting start-time, end.time, and the difference between these. Finally we make the date-time field (created_utc) field "human readable."
 
 ```{r}
-posts <- readLines(
-    "data/r_fednews_posts.jsonl")[1:10000]
+posts <- read_lines("data/r_fednews_posts.jsonl", n_max = 10000)
 start.time <- Sys.time()
 a1 <- stream_in(textConnection(
      gsub("\\n","", posts))) |> 
@@ -80,8 +80,7 @@ end.time <- Sys.time()
 Looks good - the date/time field is clean, the columns are those that we want, and it only took a few seconds to read in 10,000 posts. Let's read them all in, then take a look at a small random sample - 10 - of the texts of the posts.
 
 ```{r}
-posts <- readLines(
-    "data/r_fednews_posts.jsonl")
+posts <- read_lines("data/r_fednews_posts.jsonl")
 start.time <- Sys.time()
 a1 <- stream_in(textConnection(
      gsub("\\n","", posts))) |> 
@@ -331,4 +330,4 @@ These analyses support the argument presented in the *Times* article referenced 
 
 ## exercise: what would you do next?
 
-This has been a brief introduction of how to work with text from Reddit. If you were to work with these data, what would you do next? If you were to work with another dataset, what would it look like, what would you expect to find, and how would you study it?
+This chapter has provided a brief example of how to work with text from Reddit. If you were to work with these data, what would you do next? If you were to work with another dataset, what would it look like, what would you expect to find, and how would you study it?
