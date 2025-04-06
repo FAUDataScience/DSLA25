@@ -1,0 +1,308 @@
+---
+title: "Bibliometric I"
+author: "Kevin Lanning"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+#  word_document: default
+#  pdf_document: default
+---
+
+# case study: the network structure of computational social science
+
+Bibliometric networks are models of the structure of scholarly disciplines. There are a variety of methods to developing such networks. We'll use an approach which is both simple and powerful, and that is to examine shared references or *bibliographic couplings.* In such a network, papers will be strongly linked if they have many references in common, and distant from each other when they share no or few references.
+
+We begin with a collection of records of research articles that we have downloaded from the Web of Science, using the phrase "computational social science" as a search term. (A [video on YouTube](https://youtu.be/qD8Q08k2trs?si=n_59vdW8NXqI7mWR) illustrates each step of this process).
+
+[A second video](https://youtu.be/cSi7-WzDkzM?si=o4UoRVIKESe3_Djt) accompanies the code below, which was originally developed for the Summer Institute of Computational Social Science held in Jupiter, Florida in 2023.
+
+The code begins with the needed libraries.
+
+```{r setupbib, message=FALSE}
+#if needed, install.packages("")
+library(tidyverse)
+library(kableExtra) # for tables / requires install from github 2023
+library(bibliometrix) # for generating network from bib data & reducing to one mode
+#library(qgraph)  # for drawing simple graphs
+library(tidygraph) # for representing graphs as matrices of nodes/edges
+library(igraph) # needed by tidygraph
+library(ggraph) 
+```
+
+We begin with a dataframe consisting of a list of records downloaded from the Web of Science. (These are all papers which included the phrase 'computational social science,' as downloaded on 6/5/2023. The data include a 'source' field and a set of cited references as well as a bunch of other fields (metadata).
+
+```{r initialDF}
+# for large jobs, set to TRUE to run this on only one reference file
+debugging <- FALSE
+dataDir <- "data/CompSocSci2023"
+filenames <- list.files(dataDir, pattern = "*.txt", 
+                        full.names = TRUE)
+if (debugging == TRUE) {filenames = filenames[1]}
+biblioDF <- data.frame(as.list(filenames)) %>% 
+    convert2df()
+biblioDF %>%  
+    rownames_to_column("source") %>% 
+    select(source,CR) %>% 
+    head(1) %>% 
+    kable(caption = "Cited refs in one document") %>% 
+    kable_styling()
+```
+
+### from citation network to structural network
+
+A citation network is a type of two-mode or bipartite network which consists of source papers, referenced papers, and the directed edges which link a subset of these. Here's a fragment of our citation network, first as a list of citations (edges), then as a graph showing links between the two types of vertices or nodes (i.e., source papers in red, cited papers in green). Notice that the edges are directed (e.g., Hox 2017 cites Lazer 2014).
+
+```{r}
+# illustration of a small fragment of the citation network
+someSources <- biblioDF %>% 
+# take the first four sources
+    slice (1:4)
+
+smallBiblioDF <- someSources %>% 
+# make them into a rectangular source * citation matrix
+    cocMatrix(Field = "CR", sep = ";") %>% 
+    as.matrix() %>% 
+# then a list of edges
+    reshape2::melt() %>% 
+    filter (value > 0) %>% 
+    rename(source = 1, citation = 2) %>% 
+    select(-value) %>% 
+    group_by(citation) %>% 
+# then choose only papers cited more than once
+    filter(n()>1) %>% 
+    ungroup
+
+smallBiblioDF %>% 
+    kable (caption = "A small citation network: 
+           Edge list of papers cited > 1 time in four sources in CSS") %>% 
+    kable_styling()
+
+# plotted using qgraph
+smallgraph <- smallBiblioDF %>%
+    qgraph::qgraph(labels = T, 
+           label.cex = 4,
+           vTrans = 30,
+           border.color = "white",
+           edge.width = 4,
+           color = c(2,2,2,2,3,3,3,3,3,3,3,3,3),
+           title = "A small citation network: Common cites among four papers")
+```
+
+The two-mode citation network can be collapsed to one of two one-mode networks. A co-citation network is one which extracts citations (green nodes), and links them based on the number of times that they are cited by the same authors. We will look instead at *bibliometric couplings,* or links between the (pink) source papers. This will be a single mode, weighted, undirected network, with source papers as vertices and the number of shared references as edge weights. Here's a graph showing the collapsed network based on just the papers cited above:
+
+```{r fromtwotoone}
+smallOneModeMatrix <- biblioNetwork(someSources, analysis = "coupling", 
+                           network = "references", 
+                           sep = ";") %>% 
+# Normalize adjusts weights; Salton algorithm takes shared refs / product of geometric means of n refs. This is what I have always done.
+    normalizeSimilarity(type = "salton") %>%
+    as.matrix() %>% 
+    round(2)
+diag(smallOneModeMatrix) <- 0
+smallOneModeMatrix %>% 
+    kable(caption = "A small structural network: Matrix showing shared references among 4 papers") %>% 
+    kable_styling()
+```
+
+
+Based on the structure of shared references, Baltar and Hox *appear* to be quite different, distant from each other. (But don't trust the result too much - small networks like this aren't particularly stable). Regardless, this is a beginning of an understanding of the structure of scholarship in computational social science.
+
+### looking at the whole citation network
+
+The bibliometrix package can quickly give summary statistics for citation networks. Here are some characteristics of the entire set of papers.
+
+```{r}
+twoModeStats <- biblioAnalysis(biblioDF)#, sep = ";")
+twoModeSummary <- twoModeStats |> 
+  summary() # summary returns a list. look at it.
+twoModeSummary |> 
+  pluck(1) |> 
+  unlist() |> 
+  kable(
+    caption = "Citation network: Key features") %>%  
+    kable_styling() 
+```
+
+Here's a manually-constructed table of the "most cited journals."
+
+```{r}
+sourceJournals <- biblioDF %>% 
+    citations(field = "article", sep = ";") %>% 
+# output of above is a list... pluck gets the first element
+# which is a table of sources
+    pluck(3) %>%
+    as_tibble() %>%
+    rename(CitedJournal = 1) 
+
+sourceJournals %>% 
+    count(CitedJournal) %>% 
+    arrange(desc(n)) %>% 
+    head(10) %>% 
+    kable (caption = "Most cited journals in Comp Soc Sci") %>% 
+    kable_styling()
+```
+
+#### the need to inspect/clean data
+
+One drawback of bibliometrix and packages like it is that they remove us somewhat from the data. Here, 'NA' is the third most common source of papers. We look more closely at these records to see if there is a problem. Here's one way...
+
+```{r}
+# there are no papers where the cited field is empty or NA
+# so this gets us nowhere
+# sourceJournals %>% 
+#        filter(CitedJournal == "" |
+#               CitedJournal == "NA" )
+set.seed(33458)
+countsonly <- sourceJournals %>% 
+    group_by(CitedJournal) %>% 
+    count(CitedJournal) 
+countNA <- countsonly %>% 
+    filter(is.na(CitedJournal)) %>% 
+    as_tibble %>% 
+    select(n) %>% 
+    as.integer()
+sources <- sourceJournals %>% 
+    left_join(countsonly)
+biblioDF %>% 
+    citations(field = "article", sep = ";") %>% 
+    pluck(1) %>% 
+    as_tibble() %>% 
+    bind_cols(sources) %>% 
+    rename(papercites = 2, journalcites = 4) %>% 
+    filter(journalcites == countNA) %>% 
+    select(CR) %>% 
+    sample_n(20) %>% 
+    kable (caption = "Random sample of references with source journal coded as NA") %>% 
+    kable_styling()
+```
+
+These NA appear to be mostly detritus, cites to anonymous sources, etc. There are better ways of cleaning the data (including restricting the set of papers to articles and reviews), but we'll ignore these for now.
+
+### the structural network: Centrality and community structure
+
+We now reduce the two mode network to a one-mode for the whole dataset, normalizing the edge weights as before, and setting the diagonal entries to 0.
+
+We then use the tidygraph package to compute several measures of centrality and community structure.
+
+```{r}
+# random seed to ensure reproducible results
+# esp for centrality and community analyses
+set.seed(33458)
+oneModeMatrix <- biblioNetwork(biblioDF, 
+                            analysis = "coupling", 
+                            network = "references", 
+                            sep = ";") %>% 
+    normalizeSimilarity(type = "salton") %>%
+    as.matrix()  
+
+str(oneModeMatrix)
+# save it as a graph for igraph/tidygraph
+oneModeGraph <- oneModeMatrix %>% 
+    graph_from_adjacency_matrix(mode = "undirected", 
+                                diag = FALSE,
+                                weighted = TRUE)
+# tidygraph allows us to look at graphs
+# as data frames of nodes and edges
+tidyBibGraph <- oneModeGraph %>% 
+    as_tbl_graph() %>% 
+# we activate nodes to assign new measures for each node
+    activate(nodes) %>% 
+    mutate(centralPR = centrality_pagerank(weights = weight)) %>% 
+    mutate(nodePRRank = rank(-centralPR)) %>% 
+#    mutate(centralWD = centrality_degree(weights = weight)) %>% 
+    mutate(central0D = centrality_degree(weights = NULL)) %>% 
+    mutate(communityLouv = group_louvain(weights = weight)) %>% 
+    mutate(group = as.factor(group_louvain())) %>% 
+#    mutate(communityWalk = group_walktrap(weights = weight)) %>% 
+    mutate(ID = row_number()) 
+
+edgeList <- tidyBibGraph %>% 
+    activate(edges) %>% 
+    as_tibble()
+nodeList <- tidyBibGraph %>% 
+    activate(nodes) %>% 
+    as_tibble()
+```
+
+### visualizing the network
+
+I use ggraph to try a few visualizations within R - it plays nicely with tidygraph. In the first visualization, all but the 22 isolates are plotted. It suggests that there is a community structure, but nothing beyond this.
+
+```{r}
+nNodesToPlot <- 794
+minEdgeWeightToPlot <- .00001
+library (ggraph)
+tidyBibGraph %>% 
+    activate(nodes) %>% 
+    filter(central0D > 0) %>% 
+    filter(nodePRRank < nNodesToPlot) %>% 
+    activate(edges) %>% 
+    filter(weight > minEdgeWeightToPlot) %>% 
+  ggraph(layout = 'stress')  +
+  geom_edge_link(alpha = .1) +  
+  geom_node_point(aes(size = (centralPR),
+                      color = as.factor(communityLouv))) +
+#  geom_node_label(aes(label = name,
+#                      color = as.factor(communityLouv))) +
+     theme(legend.position = "none")
+```
+
+In the second plot, I show just the top 20 nodes, but also include labels for these.
+
+```{r}
+nNodesToPlot <- 20
+minEdgeWeightToPlot <- .05
+tidyBibGraph %>% 
+    activate(nodes) %>% 
+    filter(nodePRRank < nNodesToPlot) %>% 
+    activate(edges) %>% 
+    filter(weight > minEdgeWeightToPlot) %>% 
+  ggraph(layout = 'stress')  +
+  geom_edge_link(alpha = .1) +  
+  geom_node_point(aes(size = (centralPR),
+                      color = as.factor(communityLouv))) +
+  geom_node_label(aes(label = name,
+                      color = as.factor(communityLouv))) +
+     theme(legend.position = "none")
+```
+
+The graph shows papers in four communities, three of which are represented by just one or two papers. Note that some of the papers are odd - a book review, for example.
+
+```{r}
+nodeInfo <- biblioDF %>% 
+    mutate(ID = row_number()) %>% 
+    select(AB, TI, DE, ID, J9) %>% 
+# ID is a text field of keywords in the bib data
+# I combine it with the other text fields, then
+# create a new ID of text number to combine with
+# the node centrality etc
+    mutate(alltext = paste(TI, AB, DE, ID, sep = " ")) %>% 
+    select(-AB, -DE, -ID) %>% 
+    mutate(ID = row_number()) 
+allNodeInfo <- nodeList %>% 
+#    filter(nodePRRank < 21) %>% 
+    left_join(nodeInfo, by = 'ID')
+
+nodeList %>% 
+    filter(nodePRRank < 21) %>% 
+    left_join(nodeInfo) %>% 
+    select (name, nodePRRank, communityLouv, TI) %>% 
+    arrange(communityLouv, nodePRRank) %>% 
+    kable(caption = "Top papers in CSS by PR and community") %>% 
+    kable_styling()
+
+```
+
+### exploring the communities
+
+One way to see and understand this community structure is to explore the datausing an interactive network tool (Gephi). In order to do this, we'll write the nodes and edges to disk in two separate writes.
+
+Another way to understand the communities is to compare the language of different communities, using the combined text fields. That is explored in a second r markdown script; CSS2_NetworkToText.Rmd.
+
+```{r}
+allNodeInfo %>% 
+  write_csv(file.path(dataDir, "CSSNodesText.csv"))
+edgeList %>% 
+  rename(source = from, target = to) %>% 
+  write_csv(file.path(dataDir, "CSSEdges.csv"))
+```

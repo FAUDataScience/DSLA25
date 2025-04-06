@@ -1,4 +1,4 @@
-```{r setup21, include=FALSE, message = FALSE}
+```{r setup20, include=FALSE, message = FALSE}
 library(tidyverse)
 library(Ecdat) # for Swiss data
 library(rpart) # for decision trees

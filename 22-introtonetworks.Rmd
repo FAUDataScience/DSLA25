@@ -1,0 +1,59 @@
+```{r setup22, include=FALSE, message = FALSE}
+```
+
+# an introduction to networks
+
+*"No man is an island,\
+entire of itself;\
+every man is a piece of the continent,\
+a part of the main."*
+
+-John Donne.
+
+Networks are everywhere. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism [@apicella2012], kidney donations [@nikzad2021], and obesity [@christakis2007] can be understood, in part, as network phenomena.
+
+Networks can be nested. The internet can be seen as a network of machines linked by cables and various cellular and satellite technologies. Social network applications such as *X* and Instagram operate within these networks, and your own network of acquaintances
+
+In this chapter, we briefly introduce some key network concepts. We then consider how network structures can be examined and understood in the tidyverse. In the next chapter, we will consider a case study in network analysis, examining a *bibliometric* network structure of a scholarly discipline.
+
+## key network concepts
+
+Networks involve two types of objects **nodes** (or vertices) and **edges** (or links). Networks may be directed or undirected. Edges in a **directed** network might describe relationships such as *likes, follows,* *has heard of, cites,* or *clicks on.* We can represent them by arrows between nodes.
+
+Edges in an **undirected** network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as *are siblings, are allies, know each other, are married, have been cited by the same source,* and *have both been exposed to.* We represent undirected networks by lines without arrowheads.
+
+Unrequited love is a directed relationship, requited or reciprocal love can be modeled as undirected one.
+
+**Paths** are series of connected edges between nodes.
+
+Networks may be **unsigned** (only positive links) or **signed** (with positive and negative links).
+
+In some networks, there is just one type of node. In addition to these **single-mode networks**, we will also encounter **bipartite (two-mode) networks**. A network of enrollments, for example, might include two types of nodes (e.g., classes and students). Edges in such a network describe relationships such as *is enrolled in*. In **bipartite networks,** there can only be links between different types of nodes (so classes can't be enrolled in classes for example).
+
+### a simple example: networks and balance theory
+
+> Consider an undirected, signed network consisting of just three nodes and the edges between them. The nodes might represent, for example, persons [@harary1959] or countries [@estrada2019]. Relationships between the nodes might include things such as *gets along with/does not get along with, trusts/doesn't trust,* etc.
+>
+> For networks (graphs) such as these, what can we say about the case where there are three negative edges? Two? One? Zero? Which ones seem to 'make sense' and might be expected to be stable over time?
+>
+> A recent [*NY Times* article](https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html) illustrates how the complex geopolitical situation in the contemporary Middle East can be modeled using a simple signed network.
+
+### centrality
+
+Within networks, nodes differ in **centrality,** connectedness, or importance. There are different measures and types of centrality - for example, the number (**degree**) of a node describes its number of connections. (In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by 'followers' and 'is following', respectively). Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and **PageRank**, may be thought of as recursive. Here, a node is central or important to the extent that the nodes it is linked to are also central or important. PageRank was the original foundation of modern search engines which steer you towards (hopefully) relevant results - the "Page" in PageRank is Larry Page, one of the founders (with Surgey Brin) of Google[@page1999].
+
+### components and communities
+
+Networks vary in their size (e.g., big vs small), number of components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively objective and clear, communities in networks are often fuzzy or difficult to discern - in much the same way as constellations in the night sky.
+
+Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a "top-down" approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure. Alternatively, we can use a bottom-up approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as **cliques.** In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated below.
+
+### another example: it's a small world
+
+> Consider a bipartite network in which there are two types of nodes, students and classes. Edges are present when a student is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? [@milgram1967].
+
+In data science, it's generally easiest to begin with very small datasets and to work towards bigger ones. With networks, this isn't always the case, because very small networks may be structurally more complex than larger ones.
+
+### static and dynamic networks
+
+Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is **contagion** - not just of diseases, but also of emotions [@kelly2016] and a range of socially desirable and undesirable phenomena [@christakis2013]. Another phenomena seen in dynamic networks is **preferential attachment** in which the most important nodes become still more important over time [@watts2004]. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, the technology has brought us in the contemporary age.
