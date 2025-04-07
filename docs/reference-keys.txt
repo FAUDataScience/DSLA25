@@ -165,7 +165,7 @@ compensatory-versus-non-compensatory-problems
 a-postscript-the-tidymodels-packages
 working-with-text-a-case-study
 federal-workers
-getting-text-off-of-the-web
+finding-reddit-data
 some-initial-observations
 preprocessing
 comparing-the-words-and-stems

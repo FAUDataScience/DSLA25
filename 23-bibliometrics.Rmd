@@ -1,12 +1,13 @@
----
-title: "Bibliometric I"
-author: "Kevin Lanning"
-date: "`r Sys.Date()`"
-output:
-  html_document: default
-#  word_document: default
-#  pdf_document: default
----
+```{r setupbib, message=FALSE}
+#if needed, install.packages("")
+library(tidyverse)
+library(kableExtra) # for tables 
+library(bibliometrix) # for generating network from bib data & reducing to one mode
+#library(qgraph)  # for drawing simple graphs
+library(tidygraph) # for representing graphs as matrices of nodes/edges
+library(igraph) # needed by tidygraph
+library(ggraph) 
+```
 
 # case study: the network structure of computational social science
 
@@ -16,20 +17,7 @@ We begin with a collection of records of research articles that we have download
 
 [A second video](https://youtu.be/cSi7-WzDkzM?si=o4UoRVIKESe3_Djt) accompanies the code below, which was originally developed for the Summer Institute of Computational Social Science held in Jupiter, Florida in 2023.
 
-The code begins with the needed libraries.
-
-```{r setupbib, message=FALSE}
-#if needed, install.packages("")
-library(tidyverse)
-library(kableExtra) # for tables / requires install from github 2023
-library(bibliometrix) # for generating network from bib data & reducing to one mode
-#library(qgraph)  # for drawing simple graphs
-library(tidygraph) # for representing graphs as matrices of nodes/edges
-library(igraph) # needed by tidygraph
-library(ggraph) 
-```
-
-We begin with a dataframe consisting of a list of records downloaded from the Web of Science. (These are all papers which included the phrase 'computational social science,' as downloaded on 6/5/2023. The data include a 'source' field and a set of cited references as well as a bunch of other fields (metadata).
+After loading the needed libraries, we begin with a dataframe consisting of a list of records downloaded from the Web of Science. These are all papers which included the phrase 'computational social science,' as downloaded on 6/5/2023. The data include a 'source' field and a set of cited references as well as a bunch of other fields (metadata).
 
 ```{r initialDF}
 # for large jobs, set to TRUE to run this on only one reference file

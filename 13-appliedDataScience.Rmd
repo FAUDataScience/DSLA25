@@ -101,3 +101,5 @@ Finally, you might want to **combine multiple datasets**, such as county-level h
 ### keep it manageable
 
 Proceed with caution - many of these datasets are likely to be quite large (for example, analyses of images) and/or in formats that for now are too challenging (JSON). I encourage you to stick with data that are available in a .csv format and that don't have more than, say, a million data points (e.g., 50,000 observations \* 20 variables).
+
+***todo: move this chapter to just before text analysis; begins a new section on applied data science and computational social***

@@ -86,3 +86,5 @@ c2 <- mod[['model']]
 Lists are, in a sense, containers. A single bracket gives us the wrapper as well as what is inside; the double bracket extracts only the inner element.
 
 Lists can be challenging, but they are necessary in a world where data is complexly structured. The R package purrr, a core part of the tidyverse, includes functions which simplify working with lists; to learn more, there is a tutorial [here](https://jennybc.github.io/purrr-tutorial/index.html), and an overview of the package (with a cheatsheet) [here](https://purrr.tidyverse.org/). Lists are also discussed in Chapter 23 of R4DS 2e.
+
+***todo: additional iscussion of purrr; review***

@@ -1,7 +1,3 @@
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
 ```{r setup21, include=FALSE, message = FALSE }
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 library(tidyverse)
@@ -17,11 +13,12 @@ library(kableExtra) # for tables
 
 # working with text: a case study
 
-In this chapter, I present a rudimentary case study in which a contemporary issue is explored using R. I examine Reddit[^21-workingwithtext-1] data, create comparison word-clouds from single words and two-word strings (bigrams), and consider the results of an external proprietary tool for examining categories of language. The chapter is based on the tidy approach to text analysis, for which a clear and thorough introduction has been provided in two books by Silge and her colleagues, each of which is available online [@silge2017, @hvitfeldt2021].
+In this chapter, I present a rudimentary case study in which a contemporary issue is explored using R. I examine Reddit[^21-workingwithtext-1] data, create comparison word-clouds from single words and two-word strings (bigrams), and consider the results of an external proprietary tool for examining categories of language. The chapter is based on the tidy approach to text analysis, for which a clear and thorough introduction has been provided in two books by Silge and her colleagues, each of which is available online 
+[@silge2017, @hvitfeldt2021].
 
 [^21-workingwithtext-1]: Reddit is an electronic discussion board or website which is structured as a set of communities or subreddits; each subreddit includes posts, and, typically, submitted by users (redditors).
 
-A word of warning: This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work that may be very time-consuming.
+A word of warning: This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work is typically very time-consuming.
 
 ## federal workers
 
@@ -53,7 +50,7 @@ In order to address these questions, we'll briefly touch on some auxiliary techn
 
 -   Should we include common stop words (*a*, *and*, *if*, *or*, *me*) in our analysis, or disregard them?
 
-## getting text off of the web
+## finding Reddit data
 
 Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I begin with a set of posts that I have already downloaded.
 
