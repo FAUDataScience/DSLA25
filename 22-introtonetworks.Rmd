@@ -1,4 +1,7 @@
 ```{r setup22, include=FALSE, message = FALSE}
+library(tidygraph)
+library(cowplot)
+library(ggraph)
 ```
 
 # an introduction to networks
@@ -40,20 +43,58 @@ In some networks, there is just one type of node. In addition to these **single-
 
 ### centrality
 
-Within networks, nodes differ in **centrality,** connectedness, or importance. There are different measures and types of centrality - for example, the number (**degree**) of a node describes its number of connections. (In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by 'followers' and 'is following', respectively). Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and **PageRank**, may be thought of as recursive. Here, a node is central or important to the extent that the nodes it is linked to are also central or important. PageRank was the original foundation of modern search engines which steer you towards (hopefully) relevant results - the "Page" in PageRank is Larry Page, one of the founders (with Surgey Brin) of Google[@page1999].
+Within networks, nodes differ in **centrality,** connectedness, or importance. There are different measures and types of centrality - for example, the number (**degree**) of a node describes its number of connections. In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by 'followers' and 'is following', respectively.
+
+Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and **PageRank**, are *recursive*. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The "Page" in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Surgey Brin) of Google [@page1999].
 
 ### components and communities
 
-Networks vary in their size (e.g., big vs small), number of components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively objective and clear, communities in networks are often fuzzy or difficult to discern - in much the same way as constellations in the night sky.
+Networks vary in their size (e.g., big vs small), number of discrete components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively unambiguous, communities in networks are often fuzzy or difficult to discern, in much the same way that constellations in the night sky might seem arbitrarily 'drawn.'
 
-Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a "top-down" approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure. Alternatively, we can use a bottom-up approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as **cliques.** In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated previously in Figure 20.1.
+Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a "top-down" approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure.
+
+Alternatively, we can use a "bottom-up" approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as **cliques.** In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated previously in Figure 20.1.
 
 ### another example: it's a small world
 
-> Consider a bipartite network in which there are two types of nodes, students and classes. Edges are present when a student is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? [@milgram1967].
+> Consider a bipartite network in which there are two types of nodes, students and classes. An edge in this network represents a particular student who is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? [@milgram1967].
 
 In data science, it's generally easiest to begin with very small datasets and to work towards bigger ones. With networks, this isn't always the case, because very small networks may be structurally more complex than larger ones.
 
 ### static and dynamic networks
 
-Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is **contagion** - not just of diseases, but also of emotions [@kelly2016] and a range of socially desirable and undesirable phenomena [@christakis2013]. Another phenomena seen in dynamic networks is **preferential attachment** in which the most important nodes become still more important over time [@watts2004]. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, the technology has brought us in the contemporary age.
+Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is **contagion** - not just of diseases, but also of emotions [@kelly2016] and a range of socially desirable and undesirable phenomena [@christakis2013]. Another phenomena seen in dynamic networks is **preferential attachment** in which the most important nodes become still more important over time [@watts2004].
+
+Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products 'go viral' while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of the digital age.
+
+```{r}
+
+ba <- play_barabasi_albert(n = 3, power = 1, 
+                           appeal_zero = 0, growth = 1, 
+                           directed = FALSE) |> 
+  ggraph(layout = "kk") +
+  geom_node_point(aes(size = 1, color = "BLUE")) +
+  geom_edge_link(alpha = 0.5) +
+  theme_graph() +
+  theme(legend.position = "none")
+bb <- play_barabasi_albert(n = 10, power = 1, 
+                           appeal_zero = 0, growth = 1, 
+                           directed = FALSE) |> 
+  ggraph(layout = "kk") +
+  geom_node_point(aes(size = 1, color = "BLUE")) +
+  geom_edge_link(alpha = 0.5) +
+  theme_graph() +
+  theme(legend.position = "none")
+bc <- play_barabasi_albert(n = 20, power = 1, 
+                           appeal_zero = 0, growth = 1, 
+                           directed = FALSE) |> 
+  ggraph(layout = "kk") +
+  geom_node_point(aes(size = 1, color = "BLUE")) +
+  geom_edge_link(alpha = 0.5) +
+  theme_graph() +
+  theme(legend.position = "none")
+plot_grid (ba, bb, bc,
+         nrow = 1, ncol = 3) +
+  draw_figure_label("Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)")
+```
+

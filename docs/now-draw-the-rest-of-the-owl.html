@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-04-07" />
+<meta name="date" content="2025-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -446,6 +446,17 @@ div.csl-indent {
 <li class="chapter" data-level="23.0.4" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#visualizing-the-network"><i class="fa fa-check"></i><b>23.0.4</b> visualizing the network</a></li>
 <li class="chapter" data-level="23.0.5" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#exploring-the-communities"><i class="fa fa-check"></i><b>23.0.5</b> exploring the communities</a></li>
 </ul></li>
+<li class="chapter" data-level="24" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html"><i class="fa fa-check"></i><b>24</b> some ethical concerns for the data scientist</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#ethics-and-personality-harvesting"><i class="fa fa-check"></i><b>24.1</b> ethics and personality harvesting</a></li>
+<li class="chapter" data-level="24.2" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-law-of-unintended-consequences"><i class="fa fa-check"></i><b>24.2</b> the law of unintended consequences</a></li>
+<li class="chapter" data-level="24.3" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#your-privacy-is-my-concern"><i class="fa fa-check"></i><b>24.3</b> your privacy is my concern</a></li>
+<li class="chapter" data-level="24.4" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#who-should-hold-the-digital-keys"><i class="fa fa-check"></i><b>24.4</b> who should hold the digital keys?</a></li>
+<li class="chapter" data-level="24.5" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#contact-tracing-and-covid-19"><i class="fa fa-check"></i><b>24.5</b> contact-tracing and COVID-19</a></li>
+<li class="chapter" data-level="24.6" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-digital-divide"><i class="fa fa-check"></i><b>24.6</b> the digital divide</a></li>
+<li class="chapter" data-level="24.7" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#still-more-case-studies"><i class="fa fa-check"></i><b>24.7</b> still more case studies</a></li>
+<li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -498,13 +509,13 @@ div.csl-indent {
 ##  $ prop: num [1:1924665] 0.0724 0.0267 0.0205 0.0199 0.0179 ...</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="now-draw-the-rest-of-the-owl.html#cb5-1" tabindex="-1"></a>babynames <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##    year sex   name       n       prop
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;      &lt;dbl&gt;
-## 1  2013 F     Miles     13 0.00000676
-## 2  1895 F     Luttie     5 0.0000202 
-## 3  1992 F     Takeia     8 0.00000399
-## 4  1989 F     Kadija    10 0.00000502
-## 5  1977 M     Orland     7 0.00000409</code></pre>
+##    year sex   name        n       prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
+## 1  2014 F     Hafsah     23 0.0000118 
+## 2  1978 F     Abi         7 0.00000426
+## 3  2000 F     Amala       7 0.00000351
+## 4  1975 F     Jene       15 0.00000961
+## 5  1932 F     Alfreda   103 0.0000931</code></pre>
 </div>
 <div id="or-the-ggplot2movies-package" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> or the (ggplot2)movies package<a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -542,11 +553,11 @@ div.csl-indent {
 <pre><code>## # A tibble: 5 × 24
 ##   title      year length budget rating votes    r1    r2    r3    r4    r5    r6
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 Goodbye …  1998     40 NA        8.7     6   0     0     0     0     0     0  
-## 2 No Ordin…  1994     90 NA        4     101  14.5   4.5   4.5   4.5   4.5  14.5
-## 3 Rennie&#39;s…  2001    103 NA        4.8   142   4.5   4.5   0     4.5  14.5   4.5
-## 4 Netherbe…  2004      5  3  e3    4.2    19  14.5   0     0     0     0     0  
-## 5 Pitch Bl…  2000    112  2.3e7    6.7 18522   4.5   4.5   4.5   4.5   4.5  14.5
+## 1 To Have …  2000     13     NA    6.6    26   0     0     4.5   4.5   0    14.5
+## 2 Molokai,…  1959    104     NA    2.2    11  24.5   4.5   0     0     4.5  14.5
+## 3 Freudy C…  1964      6     NA    5.9    19   4.5   0    14.5  14.5  14.5  24.5
+## 4 Dogpound…  1975     98     NA    6.3    33   4.5   0     4.5   4.5   4.5  14.5
+## 5 Hostage …  2001     87     NA    5.1    42   4.5   4.5   4.5  14.5  34.5  14.5
 ## # ℹ 12 more variables: r7 &lt;dbl&gt;, r8 &lt;dbl&gt;, r9 &lt;dbl&gt;, r10 &lt;dbl&gt;, mpaa &lt;chr&gt;,
 ## #   Action &lt;int&gt;, Animation &lt;int&gt;, Comedy &lt;int&gt;, Drama &lt;int&gt;,
 ## #   Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</code></pre>
