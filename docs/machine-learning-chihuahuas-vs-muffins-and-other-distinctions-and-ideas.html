@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-04-09" />
+<meta name="date" content="2025-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -520,19 +520,19 @@ div.csl-indent {
 <h2><span class="header-section-number">20.4</span> bias versus variability<a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#bias-versus-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If you read further about machine learning, you are likely to encounter the phrase “bias-variability tradeoff.” You may remember that, in our initial analyses of the Swiss fertility data, we discussed how reducing the number of observations increases the fit of the model on the (training) data - and that, ultimately, the fit of the model would become perfect when we reduce the number of observations to the number of variables in the model.</p>
 <p>Here, we construct two independent samples, each with 9 subjects.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb223-1" tabindex="-1"></a><span class="fu">data</span>(Fair)</span>
-<span id="cb223-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb223-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb223-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb223-3" tabindex="-1"></a>FairSample1 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">9</span>)</span>
-<span id="cb223-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb223-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">94611</span>)</span>
-<span id="cb223-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb223-5" tabindex="-1"></a>FairSample2 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-1" tabindex="-1"></a><span class="fu">data</span>(Fair)</span>
+<span id="cb225-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb225-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-3" tabindex="-1"></a>FairSample1 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">9</span>)</span>
+<span id="cb225-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">94611</span>)</span>
+<span id="cb225-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-5" tabindex="-1"></a>FairSample2 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">9</span>)</span></code></pre></div>
 <p>In the following chunk, we run a regression analysis witin each of these samples, predicting the number of affairs from the 9 predictors (including the intercept).</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-1" tabindex="-1"></a>affairReg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>FairSample1)</span>
-<span id="cb224-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-2" tabindex="-1"></a>affairReg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>FairSample2)</span>
-<span id="cb224-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-3" tabindex="-1"></a></span>
-<span id="cb224-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-4" tabindex="-1"></a>R21 <span class="ot">&lt;-</span> <span class="fu">summary</span>(affairReg1)<span class="sc">$</span>r.squared</span>
-<span id="cb224-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-5" tabindex="-1"></a>R22 <span class="ot">&lt;-</span> <span class="fu">summary</span>(affairReg2)<span class="sc">$</span>r.squared</span>
-<span id="cb224-6"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-6" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">c</span>(<span class="at">sample1 =</span> R21, <span class="at">sample2 =</span> R22)) <span class="sc">%&gt;%</span> </span>
-<span id="cb224-7"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb224-7" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;R^2 from two small samples&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-1" tabindex="-1"></a>affairReg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>FairSample1)</span>
+<span id="cb226-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-2" tabindex="-1"></a>affairReg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>FairSample2)</span>
+<span id="cb226-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-3" tabindex="-1"></a></span>
+<span id="cb226-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-4" tabindex="-1"></a>R21 <span class="ot">&lt;-</span> <span class="fu">summary</span>(affairReg1)<span class="sc">$</span>r.squared</span>
+<span id="cb226-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-5" tabindex="-1"></a>R22 <span class="ot">&lt;-</span> <span class="fu">summary</span>(affairReg2)<span class="sc">$</span>r.squared</span>
+<span id="cb226-6"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-6" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">c</span>(<span class="at">sample1 =</span> R21, <span class="at">sample2 =</span> R22)) <span class="sc">%&gt;%</span> </span>
+<span id="cb226-7"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb226-7" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;R^2 from two small samples&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-78">Table 20.1: </span>R^2 from two small samples</caption>
 <thead>
@@ -548,14 +548,14 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-1" tabindex="-1"></a><span class="fu">names</span>(affairReg1[[<span class="st">&quot;coefficients&quot;</span>]]) <span class="sc">%&gt;%</span> </span>
-<span id="cb225-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-2" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="fu">round</span>(affairReg1[[<span class="st">&quot;coefficients&quot;</span>]], <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb225-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-3" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="fu">round</span>(affairReg2[[<span class="st">&quot;coefficients&quot;</span>]], <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb225-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb225-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">variable =</span> <span class="dv">1</span>, </span>
-<span id="cb225-6"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-6" tabindex="-1"></a>           <span class="at">sample1 =</span> <span class="dv">2</span>, </span>
-<span id="cb225-7"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-7" tabindex="-1"></a>           <span class="at">sample2 =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb225-8"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb225-8" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Regression coefficients from two small samples&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-1" tabindex="-1"></a><span class="fu">names</span>(affairReg1[[<span class="st">&quot;coefficients&quot;</span>]]) <span class="sc">%&gt;%</span> </span>
+<span id="cb227-2"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-2" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="fu">round</span>(affairReg1[[<span class="st">&quot;coefficients&quot;</span>]], <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb227-3"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-3" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="fu">round</span>(affairReg2[[<span class="st">&quot;coefficients&quot;</span>]], <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb227-4"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb227-5"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">variable =</span> <span class="dv">1</span>, </span>
+<span id="cb227-6"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-6" tabindex="-1"></a>           <span class="at">sample1 =</span> <span class="dv">2</span>, </span>
+<span id="cb227-7"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-7" tabindex="-1"></a>           <span class="at">sample2 =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb227-8"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#cb227-8" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Regression coefficients from two small samples&quot;</span>) </span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-78">Table 20.1: </span>Regression coefficients from two small samples</caption>
 <thead>

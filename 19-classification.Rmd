@@ -38,6 +38,7 @@ testFair2 <- testFair %>%
     select(-nbaffairs, -affairYN)
 model2 <- lm(rootAffair ~ .,
              data = trainFair2)
+summary(model2)
 predictTrain <- predict(model2, trainFair, 
                         type = "response")
 ```

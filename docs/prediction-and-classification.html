@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-04-09" />
+<meta name="date" content="2025-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -499,42 +499,68 @@ div.csl-indent {
 <span id="cb160-16"><a href="prediction-and-classification.html#cb160-16" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>nbaffairs, <span class="sc">-</span>affairYN)</span>
 <span id="cb160-17"><a href="prediction-and-classification.html#cb160-17" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(rootAffair <span class="sc">~</span> .,</span>
 <span id="cb160-18"><a href="prediction-and-classification.html#cb160-18" tabindex="-1"></a>             <span class="at">data =</span> trainFair2)</span>
-<span id="cb160-19"><a href="prediction-and-classification.html#cb160-19" tabindex="-1"></a>predictTrain <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, trainFair, </span>
-<span id="cb160-20"><a href="prediction-and-classification.html#cb160-20" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<span id="cb160-19"><a href="prediction-and-classification.html#cb160-19" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rootAffair ~ ., data = trainFair2)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.6655 -0.4923 -0.2180  0.1444  2.7593 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.974758   0.385662   5.120 5.03e-07 ***
+## sexmale     -0.045067   0.106127  -0.425   0.6713    
+## age         -0.014193   0.007835  -1.812   0.0709 .  
+## ym           0.038914   0.013901   2.799   0.0054 ** 
+## childyes     0.027497   0.116926   0.235   0.8142    
+## religious   -0.090619   0.038503  -2.354   0.0191 *  
+## education   -0.018241   0.021963  -0.831   0.4068    
+## occupation   0.061293   0.030904   1.983   0.0481 *  
+## rate        -0.265213   0.042161  -6.291 9.39e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8224 on 352 degrees of freedom
+## Multiple R-squared:  0.1783, Adjusted R-squared:  0.1597 
+## F-statistic: 9.549 on 8 and 352 DF,  p-value: 5.595e-12</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="prediction-and-classification.html#cb162-1" tabindex="-1"></a>predictTrain <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, trainFair, </span>
+<span id="cb162-2"><a href="prediction-and-classification.html#cb162-2" tabindex="-1"></a>                        <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <p>To maximise overall prediction, we will create a threshold equal to the actual proportion of people who don’t have affairs in our sample:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="prediction-and-classification.html#cb161-1" tabindex="-1"></a>(threshold <span class="ot">&lt;-</span> <span class="fu">mean</span>(trainFair<span class="sc">$</span>affairYN))</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="prediction-and-classification.html#cb163-1" tabindex="-1"></a>(threshold <span class="ot">&lt;-</span> <span class="fu">mean</span>(trainFair<span class="sc">$</span>affairYN))</span></code></pre></div>
 <pre><code>## [1] 0.2548476</code></pre>
 <p>This is equal to both the mean of our predicted scores (above) and the mean of our actual scores, and, because this is a dichotomous variable, the proportion of people in the sample who have affairs. We’ll predict that if a person has a predicted score more than this we’ll predict that s/he will be unfaithful, else we will “PredictOK.” Then we will create a <em>confusion matrix,</em> to compare our correct predictions (PredictOK and affairYN = 1, Predictunfaithful and affairYN = 0) with the remainder.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="prediction-and-classification.html#cb163-1" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTrain <span class="sc">&gt;</span> threshold,</span>
-<span id="cb163-2"><a href="prediction-and-classification.html#cb163-2" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
-<span id="cb163-3"><a href="prediction-and-classification.html#cb163-3" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, trainFair<span class="sc">$</span>affairYN))</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="prediction-and-classification.html#cb165-1" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTrain <span class="sc">&gt;</span> threshold,</span>
+<span id="cb165-2"><a href="prediction-and-classification.html#cb165-2" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
+<span id="cb165-3"><a href="prediction-and-classification.html#cb165-3" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, trainFair<span class="sc">$</span>affairYN))</span></code></pre></div>
 <pre><code>##                    
 ## classification        0   1
 ##   PredictOK         107  18
 ##   Predictunfaithful 162  74</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="prediction-and-classification.html#cb165-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="prediction-and-classification.html#cb167-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## [1] 181</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="prediction-and-classification.html#cb167-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="prediction-and-classification.html#cb169-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 180</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="prediction-and-classification.html#cb169-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="prediction-and-classification.html#cb171-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
 <pre><code>## [1] 0.501385</code></pre>
 <div id="applying-the-model-to-the-test-data" class="section level3 hasAnchor" number="19.1.1">
 <h3><span class="header-section-number">19.1.1</span> applying the model to the test data<a href="prediction-and-classification.html#applying-the-model-to-the-test-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We shouldn’t trust these results, though, because the model is based on the same data that it is tested upon. Now we will apply the model to the test data. With the linear regression model above, we examined ‘shrinkage’ in the overall R-square. Here, we can assess shrinkage in terms of the percent of erroneous classifications.</p>
 <p>Typically (but not invariably), the percent of accurate classifications will decline, especially if the model is a complex one with many variables or if the number of observations is low.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="prediction-and-classification.html#cb171-1" tabindex="-1"></a>predictTest <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, testFair, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb171-2"><a href="prediction-and-classification.html#cb171-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
-<span id="cb171-3"><a href="prediction-and-classification.html#cb171-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
-<span id="cb171-4"><a href="prediction-and-classification.html#cb171-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="prediction-and-classification.html#cb173-1" tabindex="-1"></a>predictTest <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, testFair, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb173-2"><a href="prediction-and-classification.html#cb173-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
+<span id="cb173-3"><a href="prediction-and-classification.html#cb173-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
+<span id="cb173-4"><a href="prediction-and-classification.html#cb173-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
 <pre><code>##                    
 ## classification        0   1
 ##   PredictOK          73   9
 ##   Predictunfaithful 109  49</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="prediction-and-classification.html#cb173-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="prediction-and-classification.html#cb175-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## [1] 122</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="prediction-and-classification.html#cb175-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="prediction-and-classification.html#cb177-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 118</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="prediction-and-classification.html#cb177-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="prediction-and-classification.html#cb179-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
 <pre><code>## [1] 0.5083333</code></pre>
 <p>On the test data, we are correct 51 percent of the time. This describes our <em>out of sample risk.</em></p>
 </div>
@@ -542,35 +568,35 @@ div.csl-indent {
 <h3><span class="header-section-number">19.1.2</span> changing our decision threshold<a href="prediction-and-classification.html#changing-our-decision-threshold" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In many decision problems, there is an asymmetry in the cost of different types of errors: if you are foraging for mushrooms, for example, an error of the form (you decide its safe and it is poisonous) is more costly than the converse (you decide its poisonous and it is safe).</p>
 <p>This may be true in the present example as well. Consider someone who is looking for a spouse, but is really averse to the idea of getting hurt by an affair. That person might feel like the cost of marrying an unfaithful person is much greater than the cost of not marrying a faithful one. So we adjust the threshold downwards:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="prediction-and-classification.html#cb179-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
-<span id="cb179-2"><a href="prediction-and-classification.html#cb179-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
-<span id="cb179-3"><a href="prediction-and-classification.html#cb179-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
-<span id="cb179-4"><a href="prediction-and-classification.html#cb179-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="prediction-and-classification.html#cb181-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb181-2"><a href="prediction-and-classification.html#cb181-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
+<span id="cb181-3"><a href="prediction-and-classification.html#cb181-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
+<span id="cb181-4"><a href="prediction-and-classification.html#cb181-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
 <pre><code>##                    
 ## classification        0   1
 ##   PredictOK          27   3
 ##   Predictunfaithful 155  55</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="prediction-and-classification.html#cb181-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="prediction-and-classification.html#cb183-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## [1] 82</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="prediction-and-classification.html#cb183-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span>  b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="prediction-and-classification.html#cb185-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span>  b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 158</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="prediction-and-classification.html#cb185-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="prediction-and-classification.html#cb187-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
 <pre><code>## [1] 0.3416667</code></pre>
 <p>The “overall accuracy” - that is, number of correct classifications - drops. But that’s not what we are really interested in, rather, we are interested in minimizing hurt.</p>
 <p>Here’s another example: Someone who is very lonely might feel the opposite, and be willing to accept greater substantially greater risk.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="prediction-and-classification.html#cb187-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
-<span id="cb187-2"><a href="prediction-and-classification.html#cb187-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
-<span id="cb187-3"><a href="prediction-and-classification.html#cb187-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
-<span id="cb187-4"><a href="prediction-and-classification.html#cb187-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="prediction-and-classification.html#cb189-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb189-2"><a href="prediction-and-classification.html#cb189-2" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold,</span>
+<span id="cb189-3"><a href="prediction-and-classification.html#cb189-3" tabindex="-1"></a>                         <span class="st">&quot;Predictunfaithful&quot;</span>, <span class="st">&quot;PredictOK&quot;</span>)</span>
+<span id="cb189-4"><a href="prediction-and-classification.html#cb189-4" tabindex="-1"></a>(b <span class="ot">&lt;-</span> <span class="fu">table</span>(classification, testFair<span class="sc">$</span>affairYN))</span></code></pre></div>
 <pre><code>##                    
 ## classification        0   1
 ##   PredictOK         111  21
 ##   Predictunfaithful  71  37</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="prediction-and-classification.html#cb189-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="prediction-and-classification.html#cb191-1" tabindex="-1"></a>(correct <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## [1] 148</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="prediction-and-classification.html#cb191-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="prediction-and-classification.html#cb193-1" tabindex="-1"></a>(errors <span class="ot">&lt;-</span> b[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> b[<span class="dv">2</span>,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>## [1] 92</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="prediction-and-classification.html#cb193-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="prediction-and-classification.html#cb195-1" tabindex="-1"></a>(accuracy <span class="ot">&lt;-</span> correct<span class="sc">/</span>(correct <span class="sc">+</span> errors))</span></code></pre></div>
 <pre><code>## [1] 0.6166667</code></pre>
 <p>Prediction is higher here - but not much higher than it would be if we raised the threshold even further, and just assumed that everyone can be trusted. Then, our error rate would be 25 percent. When overall predictability is low, it’s often the case that you can maximize correct predictions by simply predicting that everyone will be in the most popular category. Predicting rare events, such as suicides, is particularly difficult.</p>
 </div>
@@ -583,16 +609,16 @@ div.csl-indent {
 <li>hit rate ~ sensitivity ~ (“no affair” | no affair)</li>
 <li>correct rejection ~ specificity ~ (“affair” | affair)</li>
 </ul>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="prediction-and-classification.html#cb195-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
-<span id="cb195-2"><a href="prediction-and-classification.html#cb195-2" tabindex="-1"></a><span class="co"># syntax for classification in caret is a little different</span></span>
-<span id="cb195-3"><a href="prediction-and-classification.html#cb195-3" tabindex="-1"></a><span class="co"># (the labels for the actual and predicted scores have to be the same)</span></span>
-<span id="cb195-4"><a href="prediction-and-classification.html#cb195-4" tabindex="-1"></a><span class="co">#classification &lt;- ifelse(predictTest &gt; threshold,</span></span>
-<span id="cb195-5"><a href="prediction-and-classification.html#cb195-5" tabindex="-1"></a><span class="co">#                         &quot;Predictunfaithful&quot;, &quot;PredictOK&quot;)</span></span>
-<span id="cb195-6"><a href="prediction-and-classification.html#cb195-6" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold, <span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb195-7"><a href="prediction-and-classification.html#cb195-7" tabindex="-1"></a><span class="co"># caret package (newest) requires explicit matching of factors</span></span>
-<span id="cb195-8"><a href="prediction-and-classification.html#cb195-8" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(classification)</span>
-<span id="cb195-9"><a href="prediction-and-classification.html#cb195-9" tabindex="-1"></a>testFair<span class="sc">$</span>affairYN <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(testFair<span class="sc">$</span>affairYN)</span>
-<span id="cb195-10"><a href="prediction-and-classification.html#cb195-10" tabindex="-1"></a><span class="fu">confusionMatrix</span>(classification, testFair<span class="sc">$</span>affairYN)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="prediction-and-classification.html#cb197-1" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> .<span class="dv">5</span></span>
+<span id="cb197-2"><a href="prediction-and-classification.html#cb197-2" tabindex="-1"></a><span class="co"># syntax for classification in caret is a little different</span></span>
+<span id="cb197-3"><a href="prediction-and-classification.html#cb197-3" tabindex="-1"></a><span class="co"># (the labels for the actual and predicted scores have to be the same)</span></span>
+<span id="cb197-4"><a href="prediction-and-classification.html#cb197-4" tabindex="-1"></a><span class="co">#classification &lt;- ifelse(predictTest &gt; threshold,</span></span>
+<span id="cb197-5"><a href="prediction-and-classification.html#cb197-5" tabindex="-1"></a><span class="co">#                         &quot;Predictunfaithful&quot;, &quot;PredictOK&quot;)</span></span>
+<span id="cb197-6"><a href="prediction-and-classification.html#cb197-6" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(predictTest <span class="sc">&gt;</span> threshold, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb197-7"><a href="prediction-and-classification.html#cb197-7" tabindex="-1"></a><span class="co"># caret package (newest) requires explicit matching of factors</span></span>
+<span id="cb197-8"><a href="prediction-and-classification.html#cb197-8" tabindex="-1"></a>classification <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(classification)</span>
+<span id="cb197-9"><a href="prediction-and-classification.html#cb197-9" tabindex="-1"></a>testFair<span class="sc">$</span>affairYN <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(testFair<span class="sc">$</span>affairYN)</span>
+<span id="cb197-10"><a href="prediction-and-classification.html#cb197-10" tabindex="-1"></a><span class="fu">confusionMatrix</span>(classification, testFair<span class="sc">$</span>affairYN)</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -624,11 +650,11 @@ div.csl-indent {
 <div id="rocs-and-auc" class="section level3 hasAnchor" number="19.1.4">
 <h3><span class="header-section-number">19.1.4</span> ROCs and AUC<a href="prediction-and-classification.html#rocs-and-auc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Each of these decision thresholds describes the performance of a model at a particular point. We can combine the thresholds and plot them in Receiver Operating Characteristic (ROC) curves. The area under the curve (AUC) is a great measure of model accuracy, in that it summarizes how effective a classifier is across all possible thresholds.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="prediction-and-classification.html#cb197-1" tabindex="-1"></a><span class="co"># fig.width and fig.height specified to get square plots</span></span>
-<span id="cb197-2"><a href="prediction-and-classification.html#cb197-2" tabindex="-1"></a><span class="co"># colAUC function gets stats etc</span></span>
-<span id="cb197-3"><a href="prediction-and-classification.html#cb197-3" tabindex="-1"></a>AUCModel <span class="ot">&lt;-</span> <span class="fu">colAUC</span>(predictTest, testFair[[<span class="st">&quot;affairYN&quot;</span>]], <span class="at">plotROC =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="prediction-and-classification.html#cb199-1" tabindex="-1"></a><span class="co"># fig.width and fig.height specified to get square plots</span></span>
+<span id="cb199-2"><a href="prediction-and-classification.html#cb199-2" tabindex="-1"></a><span class="co"># colAUC function gets stats etc</span></span>
+<span id="cb199-3"><a href="prediction-and-classification.html#cb199-3" tabindex="-1"></a>AUCModel <span class="ot">&lt;-</span> <span class="fu">colAUC</span>(predictTest, testFair[[<span class="st">&quot;affairYN&quot;</span>]], <span class="at">plotROC =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/0414model1ROC-1.png" width="480" /></p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="prediction-and-classification.html#cb198-1" tabindex="-1"></a>AUCModel</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="prediction-and-classification.html#cb200-1" tabindex="-1"></a>AUCModel</span></code></pre></div>
 <pre><code>##              [,1]
 ## 0 vs. 1 0.6662562</code></pre>
 </div>
@@ -645,39 +671,39 @@ div.csl-indent {
 <div id="application-the-affairs-data" class="section level3 hasAnchor" number="19.2.1">
 <h3><span class="header-section-number">19.2.1</span> application: the affairs data<a href="prediction-and-classification.html#application-the-affairs-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Begin by loading the affairs data from last time. Using the same seed (33458) means that the same set of training and test cases will be extracted as in the prior analysis</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="prediction-and-classification.html#cb200-1" tabindex="-1"></a><span class="fu">data</span>(Fair)</span>
-<span id="cb200-2"><a href="prediction-and-classification.html#cb200-2" tabindex="-1"></a><span class="co"># one change here: Note the bidirectional pipe to simplify code</span></span>
-<span id="cb200-3"><a href="prediction-and-classification.html#cb200-3" tabindex="-1"></a><span class="co"># use only when you are sure that your file update is ok</span></span>
-<span id="cb200-4"><a href="prediction-and-classification.html#cb200-4" tabindex="-1"></a>Fair <span class="sc">%&lt;&gt;%</span> <span class="co"># &lt;- Fair %&gt;% </span></span>
-<span id="cb200-5"><a href="prediction-and-classification.html#cb200-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">affairYN =</span></span>
-<span id="cb200-6"><a href="prediction-and-classification.html#cb200-6" tabindex="-1"></a><span class="co"># nbaffairs is set up as a factor</span></span>
-<span id="cb200-7"><a href="prediction-and-classification.html#cb200-7" tabindex="-1"></a><span class="co"># to allow confusionmatrix to run</span></span>
-<span id="cb200-8"><a href="prediction-and-classification.html#cb200-8" tabindex="-1"></a>               <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(nbaffairs <span class="sc">&gt;</span> <span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb200-9"><a href="prediction-and-classification.html#cb200-9" tabindex="-1"></a><span class="co"># unlike the lm and glm commands, knn will not automatically create our dummy # variables for us. so we need to do this manually.</span></span>
-<span id="cb200-10"><a href="prediction-and-classification.html#cb200-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sexMale =</span> <span class="fu">ifelse</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-11"><a href="prediction-and-classification.html#cb200-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">childyes =</span> <span class="fu">ifelse</span>(child <span class="sc">==</span> <span class="st">&quot;no&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb200-12"><a href="prediction-and-classification.html#cb200-12" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>(<span class="fu">c</span>(sex,child,nbaffairs)))</span>
-<span id="cb200-13"><a href="prediction-and-classification.html#cb200-13" tabindex="-1"></a></span>
-<span id="cb200-14"><a href="prediction-and-classification.html#cb200-14" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb200-15"><a href="prediction-and-classification.html#cb200-15" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Fair)</span>
-<span id="cb200-16"><a href="prediction-and-classification.html#cb200-16" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.6</span><span class="sc">*</span>n), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb200-17"><a href="prediction-and-classification.html#cb200-17" tabindex="-1"></a><span class="co"># create training and test samples</span></span>
-<span id="cb200-18"><a href="prediction-and-classification.html#cb200-18" tabindex="-1"></a>trainFair <span class="ot">&lt;-</span> Fair[trainIndex ,]</span>
-<span id="cb200-19"><a href="prediction-and-classification.html#cb200-19" tabindex="-1"></a>testFair <span class="ot">&lt;-</span> Fair[<span class="sc">-</span>trainIndex ,]</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="prediction-and-classification.html#cb202-1" tabindex="-1"></a><span class="fu">data</span>(Fair)</span>
+<span id="cb202-2"><a href="prediction-and-classification.html#cb202-2" tabindex="-1"></a><span class="co"># one change here: Note the bidirectional pipe to simplify code</span></span>
+<span id="cb202-3"><a href="prediction-and-classification.html#cb202-3" tabindex="-1"></a><span class="co"># use only when you are sure that your file update is ok</span></span>
+<span id="cb202-4"><a href="prediction-and-classification.html#cb202-4" tabindex="-1"></a>Fair <span class="sc">%&lt;&gt;%</span> <span class="co"># &lt;- Fair %&gt;% </span></span>
+<span id="cb202-5"><a href="prediction-and-classification.html#cb202-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">affairYN =</span></span>
+<span id="cb202-6"><a href="prediction-and-classification.html#cb202-6" tabindex="-1"></a><span class="co"># nbaffairs is set up as a factor</span></span>
+<span id="cb202-7"><a href="prediction-and-classification.html#cb202-7" tabindex="-1"></a><span class="co"># to allow confusionmatrix to run</span></span>
+<span id="cb202-8"><a href="prediction-and-classification.html#cb202-8" tabindex="-1"></a>               <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(nbaffairs <span class="sc">&gt;</span> <span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb202-9"><a href="prediction-and-classification.html#cb202-9" tabindex="-1"></a><span class="co"># unlike the lm and glm commands, knn will not automatically create our dummy # variables for us. so we need to do this manually.</span></span>
+<span id="cb202-10"><a href="prediction-and-classification.html#cb202-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">sexMale =</span> <span class="fu">ifelse</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb202-11"><a href="prediction-and-classification.html#cb202-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">childyes =</span> <span class="fu">ifelse</span>(child <span class="sc">==</span> <span class="st">&quot;no&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb202-12"><a href="prediction-and-classification.html#cb202-12" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>(<span class="fu">c</span>(sex,child,nbaffairs)))</span>
+<span id="cb202-13"><a href="prediction-and-classification.html#cb202-13" tabindex="-1"></a></span>
+<span id="cb202-14"><a href="prediction-and-classification.html#cb202-14" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb202-15"><a href="prediction-and-classification.html#cb202-15" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(Fair)</span>
+<span id="cb202-16"><a href="prediction-and-classification.html#cb202-16" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.6</span><span class="sc">*</span>n), <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb202-17"><a href="prediction-and-classification.html#cb202-17" tabindex="-1"></a><span class="co"># create training and test samples</span></span>
+<span id="cb202-18"><a href="prediction-and-classification.html#cb202-18" tabindex="-1"></a>trainFair <span class="ot">&lt;-</span> Fair[trainIndex ,]</span>
+<span id="cb202-19"><a href="prediction-and-classification.html#cb202-19" tabindex="-1"></a>testFair <span class="ot">&lt;-</span> Fair[<span class="sc">-</span>trainIndex ,]</span></code></pre></div>
 <p>To run a k-nearest neighbor analysis, we need three inputs: our predictors in the training data, our predictors in the test data, and our outcome/classes in the training data.</p>
 <p>Here, as in the regression analysis in the last chapter, we can generate a confusion matrix to assess the accuracy of prediction:</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="prediction-and-classification.html#cb201-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb201-2"><a href="prediction-and-classification.html#cb201-2" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair <span class="sc">%&gt;%</span></span>
-<span id="cb201-3"><a href="prediction-and-classification.html#cb201-3" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb201-4"><a href="prediction-and-classification.html#cb201-4" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair <span class="sc">%&gt;%</span></span>
-<span id="cb201-5"><a href="prediction-and-classification.html#cb201-5" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb201-6"><a href="prediction-and-classification.html#cb201-6" tabindex="-1"></a>knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
-<span id="cb201-7"><a href="prediction-and-classification.html#cb201-7" tabindex="-1"></a>             testPredictors, <span class="co"># test data</span></span>
-<span id="cb201-8"><a href="prediction-and-classification.html#cb201-8" tabindex="-1"></a>             trainFair<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
-<span id="cb201-9"><a href="prediction-and-classification.html#cb201-9" tabindex="-1"></a>             <span class="dv">1</span> <span class="co"># number of neighbors</span></span>
-<span id="cb201-10"><a href="prediction-and-classification.html#cb201-10" tabindex="-1"></a>             )</span>
-<span id="cb201-11"><a href="prediction-and-classification.html#cb201-11" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair<span class="sc">$</span>affairYN)</span>
-<span id="cb201-12"><a href="prediction-and-classification.html#cb201-12" tabindex="-1"></a>b</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="prediction-and-classification.html#cb203-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb203-2"><a href="prediction-and-classification.html#cb203-2" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair <span class="sc">%&gt;%</span></span>
+<span id="cb203-3"><a href="prediction-and-classification.html#cb203-3" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb203-4"><a href="prediction-and-classification.html#cb203-4" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair <span class="sc">%&gt;%</span></span>
+<span id="cb203-5"><a href="prediction-and-classification.html#cb203-5" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb203-6"><a href="prediction-and-classification.html#cb203-6" tabindex="-1"></a>knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
+<span id="cb203-7"><a href="prediction-and-classification.html#cb203-7" tabindex="-1"></a>             testPredictors, <span class="co"># test data</span></span>
+<span id="cb203-8"><a href="prediction-and-classification.html#cb203-8" tabindex="-1"></a>             trainFair<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
+<span id="cb203-9"><a href="prediction-and-classification.html#cb203-9" tabindex="-1"></a>             <span class="dv">1</span> <span class="co"># number of neighbors</span></span>
+<span id="cb203-10"><a href="prediction-and-classification.html#cb203-10" tabindex="-1"></a>             )</span>
+<span id="cb203-11"><a href="prediction-and-classification.html#cb203-11" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair<span class="sc">$</span>affairYN)</span>
+<span id="cb203-12"><a href="prediction-and-classification.html#cb203-12" tabindex="-1"></a>b</span></code></pre></div>
 <pre><code>## Confusion Matrix and Statistics
 ## 
 ##           Reference
@@ -705,7 +731,7 @@ div.csl-indent {
 ##                                           
 ##        &#39;Positive&#39; Class : 0               
 ## </code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="prediction-and-classification.html#cb203-1" tabindex="-1"></a>b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="prediction-and-classification.html#cb205-1" tabindex="-1"></a>b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span></code></pre></div>
 <pre><code>## [1] 0.7041667</code></pre>
 </div>
 <div id="from-one-doppelganger-to-many" class="section level3 hasAnchor" number="19.2.2">
@@ -736,40 +762,40 @@ div.csl-indent {
 <div id="back-to-the-affairs-data" class="section level3 hasAnchor" number="19.2.4">
 <h3><span class="header-section-number">19.2.4</span> Back to the affairs data<a href="prediction-and-classification.html#back-to-the-affairs-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To test a range of values, we can first set up our knn analysis as a function (compare this code with the code in the prior section).</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="prediction-and-classification.html#cb205-1" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair <span class="sc">%&gt;%</span></span>
-<span id="cb205-2"><a href="prediction-and-classification.html#cb205-2" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb205-3"><a href="prediction-and-classification.html#cb205-3" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair <span class="sc">%&gt;%</span></span>
-<span id="cb205-4"><a href="prediction-and-classification.html#cb205-4" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb205-5"><a href="prediction-and-classification.html#cb205-5" tabindex="-1"></a>knnFairdata <span class="ot">&lt;-</span> <span class="cf">function</span> (k) {</span>
-<span id="cb205-6"><a href="prediction-and-classification.html#cb205-6" tabindex="-1"></a>    <span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb205-7"><a href="prediction-and-classification.html#cb205-7" tabindex="-1"></a>    knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
-<span id="cb205-8"><a href="prediction-and-classification.html#cb205-8" tabindex="-1"></a>                 testPredictors, <span class="co"># test data</span></span>
-<span id="cb205-9"><a href="prediction-and-classification.html#cb205-9" tabindex="-1"></a>                 trainFair<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
-<span id="cb205-10"><a href="prediction-and-classification.html#cb205-10" tabindex="-1"></a>                 k <span class="co"># number of neighbors</span></span>
-<span id="cb205-11"><a href="prediction-and-classification.html#cb205-11" tabindex="-1"></a>                 )</span>
-<span id="cb205-12"><a href="prediction-and-classification.html#cb205-12" tabindex="-1"></a>    b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair<span class="sc">$</span>affairYN)</span>
-<span id="cb205-13"><a href="prediction-and-classification.html#cb205-13" tabindex="-1"></a>    b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span>
-<span id="cb205-14"><a href="prediction-and-classification.html#cb205-14" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="prediction-and-classification.html#cb207-1" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair <span class="sc">%&gt;%</span></span>
+<span id="cb207-2"><a href="prediction-and-classification.html#cb207-2" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb207-3"><a href="prediction-and-classification.html#cb207-3" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair <span class="sc">%&gt;%</span></span>
+<span id="cb207-4"><a href="prediction-and-classification.html#cb207-4" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb207-5"><a href="prediction-and-classification.html#cb207-5" tabindex="-1"></a>knnFairdata <span class="ot">&lt;-</span> <span class="cf">function</span> (k) {</span>
+<span id="cb207-6"><a href="prediction-and-classification.html#cb207-6" tabindex="-1"></a>    <span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb207-7"><a href="prediction-and-classification.html#cb207-7" tabindex="-1"></a>    knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
+<span id="cb207-8"><a href="prediction-and-classification.html#cb207-8" tabindex="-1"></a>                 testPredictors, <span class="co"># test data</span></span>
+<span id="cb207-9"><a href="prediction-and-classification.html#cb207-9" tabindex="-1"></a>                 trainFair<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
+<span id="cb207-10"><a href="prediction-and-classification.html#cb207-10" tabindex="-1"></a>                 k <span class="co"># number of neighbors</span></span>
+<span id="cb207-11"><a href="prediction-and-classification.html#cb207-11" tabindex="-1"></a>                 )</span>
+<span id="cb207-12"><a href="prediction-and-classification.html#cb207-12" tabindex="-1"></a>    b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair<span class="sc">$</span>affairYN)</span>
+<span id="cb207-13"><a href="prediction-and-classification.html#cb207-13" tabindex="-1"></a>    b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span>
+<span id="cb207-14"><a href="prediction-and-classification.html#cb207-14" tabindex="-1"></a>}</span></code></pre></div>
 <p>We run the function on k = 1 and k = 2 to test it:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="prediction-and-classification.html#cb206-1" tabindex="-1"></a><span class="fu">knnFairdata</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="prediction-and-classification.html#cb208-1" tabindex="-1"></a><span class="fu">knnFairdata</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7041667</code></pre>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="prediction-and-classification.html#cb208-1" tabindex="-1"></a><span class="fu">knnFairdata</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="prediction-and-classification.html#cb210-1" tabindex="-1"></a><span class="fu">knnFairdata</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6958333</code></pre>
 <p>Now we can apply it to as many as 100 values of k, using the purrr::map command:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="prediction-and-classification.html#cb210-1" tabindex="-1"></a>kAccuracy <span class="ot">&lt;-</span> (<span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,knnFairdata)) <span class="sc">%&gt;%</span> <span class="co"># map the knnFunction onto numbers 1-100</span></span>
-<span id="cb210-2"><a href="prediction-and-classification.html#cb210-2" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span>  <span class="co"># then a tibble so we can do a quick plot</span></span>
-<span id="cb210-3"><a href="prediction-and-classification.html#cb210-3" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Accuracy =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb210-4"><a href="prediction-and-classification.html#cb210-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">k =</span> <span class="fu">seq_along</span>(Accuracy))</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="prediction-and-classification.html#cb212-1" tabindex="-1"></a>kAccuracy <span class="ot">&lt;-</span> (<span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,knnFairdata)) <span class="sc">%&gt;%</span> <span class="co"># map the knnFunction onto numbers 1-100</span></span>
+<span id="cb212-2"><a href="prediction-and-classification.html#cb212-2" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span>  <span class="co"># then a tibble so we can do a quick plot</span></span>
+<span id="cb212-3"><a href="prediction-and-classification.html#cb212-3" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Accuracy =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb212-4"><a href="prediction-and-classification.html#cb212-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">k =</span> <span class="fu">seq_along</span>(Accuracy))</span></code></pre></div>
 <p>We can graph this, using the syntax from the beginning of the class:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="prediction-and-classification.html#cb211-1" tabindex="-1"></a>kAccuracy <span class="sc">%&gt;%</span> </span>
-<span id="cb211-2"><a href="prediction-and-classification.html#cb211-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(k, Accuracy)) <span class="sc">+</span><span class="co">#%&gt;% </span></span>
-<span id="cb211-3"><a href="prediction-and-classification.html#cb211-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb211-4"><a href="prediction-and-classification.html#cb211-4" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Overall accuracy for varying levels of k&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="prediction-and-classification.html#cb213-1" tabindex="-1"></a>kAccuracy <span class="sc">%&gt;%</span> </span>
+<span id="cb213-2"><a href="prediction-and-classification.html#cb213-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(k, Accuracy)) <span class="sc">+</span><span class="co">#%&gt;% </span></span>
+<span id="cb213-3"><a href="prediction-and-classification.html#cb213-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb213-4"><a href="prediction-and-classification.html#cb213-4" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;Overall accuracy for varying levels of k&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="prediction-and-classification.html#cb212-1" tabindex="-1"></a><span class="co"># This pulls out the maximum accuracy, and the value of k for which it occurs:</span></span>
-<span id="cb212-2"><a href="prediction-and-classification.html#cb212-2" tabindex="-1"></a>(ka <span class="ot">&lt;-</span> <span class="fu">which.max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="prediction-and-classification.html#cb214-1" tabindex="-1"></a><span class="co"># This pulls out the maximum accuracy, and the value of k for which it occurs:</span></span>
+<span id="cb214-2"><a href="prediction-and-classification.html#cb214-2" tabindex="-1"></a>(ka <span class="ot">&lt;-</span> <span class="fu">which.max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
 <pre><code>## [1] 33</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="prediction-and-classification.html#cb214-1" tabindex="-1"></a>(kb <span class="ot">&lt;-</span> <span class="fu">max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="prediction-and-classification.html#cb216-1" tabindex="-1"></a>(kb <span class="ot">&lt;-</span> <span class="fu">max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
 <pre><code>## [1] 0.7583333</code></pre>
 </div>
 <div id="avoiding-capitalization-on-chance-again" class="section level3 hasAnchor" number="19.2.5">
@@ -778,44 +804,44 @@ div.csl-indent {
 <p>Would this hold if we used a different random split? Remember, here, we have tested not one model, but 100 of them, then chosen the best one. The peak in the curve at 33 may well be due to chance characteristics of the test data.</p>
 <p>We could address this empirically using one of several techniques. One approach is to have a third independent sample on which to test the accuracy of prediction at k = 33. This would require the separate validation sample that was introduced in the last chapter.</p>
 <p>In the following block, I resplit the Fair data, using proportions of 60%, 30%, 10%. These values are likely not optimal given the (relatively small) size of the Fair data, but will work to illustrate the approach:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="prediction-and-classification.html#cb216-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb216-2"><a href="prediction-and-classification.html#cb216-2" tabindex="-1"></a>threeWaySplit <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size =</span> <span class="fu">nrow</span>(Fair),</span>
-<span id="cb216-3"><a href="prediction-and-classification.html#cb216-3" tabindex="-1"></a>                        <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>,<span class="fl">0.3</span>,<span class="fl">0.1</span>),</span>
-<span id="cb216-4"><a href="prediction-and-classification.html#cb216-4" tabindex="-1"></a>                        <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb216-5"><a href="prediction-and-classification.html#cb216-5" tabindex="-1"></a>trainFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">1</span>,]</span>
-<span id="cb216-6"><a href="prediction-and-classification.html#cb216-6" tabindex="-1"></a>testFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">2</span>,]</span>
-<span id="cb216-7"><a href="prediction-and-classification.html#cb216-7" tabindex="-1"></a>validFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">3</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="prediction-and-classification.html#cb218-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb218-2"><a href="prediction-and-classification.html#cb218-2" tabindex="-1"></a>threeWaySplit <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size =</span> <span class="fu">nrow</span>(Fair),</span>
+<span id="cb218-3"><a href="prediction-and-classification.html#cb218-3" tabindex="-1"></a>                        <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>,<span class="fl">0.3</span>,<span class="fl">0.1</span>),</span>
+<span id="cb218-4"><a href="prediction-and-classification.html#cb218-4" tabindex="-1"></a>                        <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb218-5"><a href="prediction-and-classification.html#cb218-5" tabindex="-1"></a>trainFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">1</span>,]</span>
+<span id="cb218-6"><a href="prediction-and-classification.html#cb218-6" tabindex="-1"></a>testFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">2</span>,]</span>
+<span id="cb218-7"><a href="prediction-and-classification.html#cb218-7" tabindex="-1"></a>validFair2 <span class="ot">&lt;-</span> Fair[threeWaySplit <span class="sc">==</span> <span class="dv">3</span>,]</span></code></pre></div>
 <p>I tweak my function here to use the new data, then run it 100 times as before.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="prediction-and-classification.html#cb217-1" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair2 <span class="sc">%&gt;%</span></span>
-<span id="cb217-2"><a href="prediction-and-classification.html#cb217-2" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb217-3"><a href="prediction-and-classification.html#cb217-3" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair2 <span class="sc">%&gt;%</span></span>
-<span id="cb217-4"><a href="prediction-and-classification.html#cb217-4" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
-<span id="cb217-5"><a href="prediction-and-classification.html#cb217-5" tabindex="-1"></a>knnFairdata2 <span class="ot">&lt;-</span> <span class="cf">function</span> (k) {</span>
-<span id="cb217-6"><a href="prediction-and-classification.html#cb217-6" tabindex="-1"></a>    <span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb217-7"><a href="prediction-and-classification.html#cb217-7" tabindex="-1"></a>    knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
-<span id="cb217-8"><a href="prediction-and-classification.html#cb217-8" tabindex="-1"></a>             testPredictors, <span class="co"># test data</span></span>
-<span id="cb217-9"><a href="prediction-and-classification.html#cb217-9" tabindex="-1"></a>             trainFair2<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
-<span id="cb217-10"><a href="prediction-and-classification.html#cb217-10" tabindex="-1"></a>             k <span class="co"># number of neighbors</span></span>
-<span id="cb217-11"><a href="prediction-and-classification.html#cb217-11" tabindex="-1"></a>             )</span>
-<span id="cb217-12"><a href="prediction-and-classification.html#cb217-12" tabindex="-1"></a>    b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair2<span class="sc">$</span>affairYN)</span>
-<span id="cb217-13"><a href="prediction-and-classification.html#cb217-13" tabindex="-1"></a>    b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span>
-<span id="cb217-14"><a href="prediction-and-classification.html#cb217-14" tabindex="-1"></a>}</span>
-<span id="cb217-15"><a href="prediction-and-classification.html#cb217-15" tabindex="-1"></a>kAccuracy <span class="ot">&lt;-</span> (<span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,knnFairdata2)) <span class="sc">%&gt;%</span> <span class="co"># map the knnFunction onto numbers 1-100</span></span>
-<span id="cb217-16"><a href="prediction-and-classification.html#cb217-16" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span>  <span class="co"># then a tibble so we can do a quick plot</span></span>
-<span id="cb217-17"><a href="prediction-and-classification.html#cb217-17" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Accuracy=</span>value) <span class="sc">%&gt;%</span> </span>
-<span id="cb217-18"><a href="prediction-and-classification.html#cb217-18" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">k =</span> <span class="fu">seq_along</span>(Accuracy))</span>
-<span id="cb217-19"><a href="prediction-and-classification.html#cb217-19" tabindex="-1"></a>(ka2 <span class="ot">&lt;-</span> <span class="fu">which.max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="prediction-and-classification.html#cb219-1" tabindex="-1"></a>trainPredictors <span class="ot">&lt;-</span> trainFair2 <span class="sc">%&gt;%</span></span>
+<span id="cb219-2"><a href="prediction-and-classification.html#cb219-2" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb219-3"><a href="prediction-and-classification.html#cb219-3" tabindex="-1"></a>testPredictors <span class="ot">&lt;-</span> testFair2 <span class="sc">%&gt;%</span></span>
+<span id="cb219-4"><a href="prediction-and-classification.html#cb219-4" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>affairYN)</span>
+<span id="cb219-5"><a href="prediction-and-classification.html#cb219-5" tabindex="-1"></a>knnFairdata2 <span class="ot">&lt;-</span> <span class="cf">function</span> (k) {</span>
+<span id="cb219-6"><a href="prediction-and-classification.html#cb219-6" tabindex="-1"></a>    <span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb219-7"><a href="prediction-and-classification.html#cb219-7" tabindex="-1"></a>    knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainPredictors, <span class="co"># training data</span></span>
+<span id="cb219-8"><a href="prediction-and-classification.html#cb219-8" tabindex="-1"></a>             testPredictors, <span class="co"># test data</span></span>
+<span id="cb219-9"><a href="prediction-and-classification.html#cb219-9" tabindex="-1"></a>             trainFair2<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
+<span id="cb219-10"><a href="prediction-and-classification.html#cb219-10" tabindex="-1"></a>             k <span class="co"># number of neighbors</span></span>
+<span id="cb219-11"><a href="prediction-and-classification.html#cb219-11" tabindex="-1"></a>             )</span>
+<span id="cb219-12"><a href="prediction-and-classification.html#cb219-12" tabindex="-1"></a>    b<span class="ot">&lt;-</span><span class="fu">confusionMatrix</span>(knnAffair, testFair2<span class="sc">$</span>affairYN)</span>
+<span id="cb219-13"><a href="prediction-and-classification.html#cb219-13" tabindex="-1"></a>    b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]]</span>
+<span id="cb219-14"><a href="prediction-and-classification.html#cb219-14" tabindex="-1"></a>}</span>
+<span id="cb219-15"><a href="prediction-and-classification.html#cb219-15" tabindex="-1"></a>kAccuracy <span class="ot">&lt;-</span> (<span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,knnFairdata2)) <span class="sc">%&gt;%</span> <span class="co"># map the knnFunction onto numbers 1-100</span></span>
+<span id="cb219-16"><a href="prediction-and-classification.html#cb219-16" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span>  <span class="co"># then a tibble so we can do a quick plot</span></span>
+<span id="cb219-17"><a href="prediction-and-classification.html#cb219-17" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Accuracy=</span>value) <span class="sc">%&gt;%</span> </span>
+<span id="cb219-18"><a href="prediction-and-classification.html#cb219-18" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">k =</span> <span class="fu">seq_along</span>(Accuracy))</span>
+<span id="cb219-19"><a href="prediction-and-classification.html#cb219-19" tabindex="-1"></a>(ka2 <span class="ot">&lt;-</span> <span class="fu">which.max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="prediction-and-classification.html#cb219-1" tabindex="-1"></a>(kb2 <span class="ot">&lt;-</span> <span class="fu">max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="prediction-and-classification.html#cb221-1" tabindex="-1"></a>(kb2 <span class="ot">&lt;-</span> <span class="fu">max</span>(kAccuracy<span class="sc">$</span>Accuracy))</span></code></pre></div>
 <pre><code>## [1] 0.7802198</code></pre>
 <p>So here, on the (contaminated) test data, the maximum predictability occurs at k = 15, with an overall accuracy of 0.7802198. We apply this back to the validation data by pulling the knn code out of the function, and running it just once against the validation data:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="prediction-and-classification.html#cb221-1" tabindex="-1"></a>knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainFair2[,<span class="sc">-</span><span class="dv">7</span>], <span class="co"># training data</span></span>
-<span id="cb221-2"><a href="prediction-and-classification.html#cb221-2" tabindex="-1"></a>             validFair2[,<span class="sc">-</span><span class="dv">7</span>], <span class="co"># VALIDATION data</span></span>
-<span id="cb221-3"><a href="prediction-and-classification.html#cb221-3" tabindex="-1"></a>             trainFair2<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
-<span id="cb221-4"><a href="prediction-and-classification.html#cb221-4" tabindex="-1"></a>             ka2 <span class="co"># number of neighbors</span></span>
-<span id="cb221-5"><a href="prediction-and-classification.html#cb221-5" tabindex="-1"></a>             )</span>
-<span id="cb221-6"><a href="prediction-and-classification.html#cb221-6" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(knnAffair, validFair2<span class="sc">$</span>affairYN)</span>
-<span id="cb221-7"><a href="prediction-and-classification.html#cb221-7" tabindex="-1"></a>(kb3 <span class="ot">&lt;-</span> b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="prediction-and-classification.html#cb223-1" tabindex="-1"></a>knnAffair <span class="ot">&lt;-</span> <span class="fu">knn</span>(trainFair2[,<span class="sc">-</span><span class="dv">7</span>], <span class="co"># training data</span></span>
+<span id="cb223-2"><a href="prediction-and-classification.html#cb223-2" tabindex="-1"></a>             validFair2[,<span class="sc">-</span><span class="dv">7</span>], <span class="co"># VALIDATION data</span></span>
+<span id="cb223-3"><a href="prediction-and-classification.html#cb223-3" tabindex="-1"></a>             trainFair2<span class="sc">$</span>affairYN, <span class="co"># class</span></span>
+<span id="cb223-4"><a href="prediction-and-classification.html#cb223-4" tabindex="-1"></a>             ka2 <span class="co"># number of neighbors</span></span>
+<span id="cb223-5"><a href="prediction-and-classification.html#cb223-5" tabindex="-1"></a>             )</span>
+<span id="cb223-6"><a href="prediction-and-classification.html#cb223-6" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(knnAffair, validFair2<span class="sc">$</span>affairYN)</span>
+<span id="cb223-7"><a href="prediction-and-classification.html#cb223-7" tabindex="-1"></a>(kb3 <span class="ot">&lt;-</span> b[[<span class="st">&quot;overall&quot;</span>]][[<span class="st">&quot;Accuracy&quot;</span>]])</span></code></pre></div>
 <pre><code>## [1] 0.703125</code></pre>
 <p>The overall predictability using the k-nearest neighbor analysis on the clean validation data, is now 0.703125.</p>
 <p>You might note that in our two splits of the Fair data - the two-way split of 60% Training and 40% Test, and the three-way split of 60% Training, 30% Test, 10% Validation, we got two different solutions to the question of the ‘optimal k’ (i.e., 33 and 15). With larger sample sizes, these values would be more stable.</p>
