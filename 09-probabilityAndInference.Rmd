@@ -116,4 +116,4 @@ Wainer's third example of statistical illiteracy is the failure to appreciate re
 
 ## notes for next revision
 
-This chapter should include a mnore explicit treatment of Bayes theorem as well as a demonstration of empirically generated probability distributions.
+This chapter should include a mnore explicit treatment of Bayes theorem as well as a demonstration of empirically generated probability distributions. Show how to generate random variables, random splits...

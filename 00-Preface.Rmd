@@ -25,7 +25,13 @@ There are a number of different approaches to teaching data science for the libe
 
 **R**
 
-In a recent informal survey of introductory data science courses, I saw a pretty even split between those which begin with Python and those which begin with the statistical programming language R. This difference corresponds, very loosely, to the split noted above: Computer science based approaches to data science are frequently grounded in Python, while statistics-based approaches are generally grounded in R. Our course, like those for most of the syllabi and courses linked above, will be based in R.
+About ten years ago, in an informal survey of introductory data science courses, I found a pretty even split between those which began with Python and those which began with the statistical programming language R. This difference corresponds, very loosely, to the split noted above: Computer science based approaches to data science were frequently grounded in Python, while statistics-based approaches were generally grounded in R.
+
+Today, the picture is a little different: Python is increasing in popularity. Schools including Berkeley and Harvard have shifted largely (but not entirely) away from R towards Python in training undergraduates. But R is still taught as a first course or in certificate programs at [Harvard](https://pll.harvard.edu/course/data-science-r-basics), [Oxford](https://www.lifelong-learning.ox.ac.uk/courses/an-introduction-to-programming-in-r), and [Johns Hopkins](https://www.coursera.org/specializations/jhu-data-science).
+
+Python is used more than R in industry, but R remains popular in academic settings, particularly in areas like epidemiology/public health and psychology. R is generally easier than Python for those who have some statistics but no programming, and Python is easier for those who have some programming but limited statistics. Literacy in R is a valuable skill for those planning on applying to graduate study in disciplines including behavioral sciences (psychology, economics), social sciences (anthropology, political science, public policy), and some health sciences (nursing and public health).
+
+Our course will be based in R.
 
 **Reproducible science**
 
@@ -41,7 +47,7 @@ There are plenty of data sources for us to examine, and we'll consider existing 
 
 **A few tools**
 
-One feature of Data Science is that it is changing rapidly. The tools, methods, data sources, and ethical concerns that face us in 2025 are different from those which shaped the field just one or two years ago.
+One feature of Data Science is that it is changing rapidly. The tools, methods, data sources, and ethical concerns that face us today are different from those which shaped the field just one or two years ago.
 
 In fields that are undergoing rapid change, there is some trade-off between building expertise with existing (older) tools and trying the newer approaches. Partly because I want to equip you with skills which will not be obsolete, partly because some of these new approaches promise more accessibility, elegance, and/or power, and partly because of my own interest in staying current, we'll be using some of the latest packages and programs.
 
@@ -49,7 +55,7 @@ In the last few years, I've shifted the class from the standard R dialect (as I 
 
 We'll explore different approaches to learning R syntax, including the [learnr](https://rstudio.github.io/learnr/) package, [Swirl](https://swirlstats.com/), and DataCamp.
 
-In the past, I've recommended using dedicated markdown editors such as [Typora](https://typora.io/) and [Obsidian](https://obsidian.md/). While I still think that these are worth considering for some text-editing and note-taking applications, we'll do our work instead with the editor in the latest variant of RStudio on our laptops, as this allows WYSIWIG (what you see is what you get) formatting of documents - such as this one - that are intended as "publication-ready" texts.
+In the past, I've recommended using dedicated markdown editors such as [Obsidian](https://obsidian.md/). While I still think that these are worth considering for some text-editing and note-taking applications, we'll do our work instead with the editor in the latest variant of RStudio on our laptops, as this allows WYSIWIG (what you see is what you get) formatting of documents - such as this one - that are intended as "publication-ready" texts.
 
 We'll use, and explore the advantages and disadvantages, of spreadsheets such as Excel or Google Sheets as well.
 

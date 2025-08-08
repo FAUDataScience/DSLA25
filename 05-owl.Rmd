@@ -6,7 +6,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # now draw the rest of the owl
 
-![Fig 5.1: Draw the rest of the owl.](images/InkedrCr9A_LI.jpg)
+![*Draw the rest of the owl.*](images/InkedrCr9A_LI.jpg)
 
 In the prior chapter, you explored several different sources for learning how to code in R. Now it's time to explore other approaches. Take a break from reading, and spend some time coding and consolidating, reviewing tutorials, or playing with data.
 

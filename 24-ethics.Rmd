@@ -81,3 +81,11 @@ In the European Union, the [General Data Protection Regulation (GDPR)](https://g
 ❏ Do we test and monitor for model drift to ensure our software remains fair over time?
 
 ❏ Do we have a plan to protect and secure user data?
+
+## technology, change, and risk
+
+A *zero-sum enterprise* (or game) is one in which for every winner and for every gain, there is a loser and loss, and vice-versa. Gambling is zero-sum. So too is speculation in bitcoin and other cryptocurrencies. Innovations in science and industry are not zero-sum, for new inventions and methods can lead to change in the bottom line. Human interaction is also often not zero-sum, for they can lead to synergies of feeling and cognition, the blossoming of friendship and love and the creation of new knowledge through dialog and collaboration.
+
+When we think of these non-zero-sum games, we are likely to think of these scenarios where there is progress, or an overall gain as when a new construction material leads to the production of better and cheaper homes and shelters to improve the human condition. But it can also be negative, as when the invention of a new herbicide leads to the production of dioxins and related toxins.
+
+Data science is a non-zero-sum game. As previously discussed, it is a relatively easy to combine two datasets in new ways to create new knowledge. But the cost of this knowledge may be great.

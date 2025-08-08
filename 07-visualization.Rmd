@@ -22,13 +22,13 @@ Visual displays of information reach back to prehistoric times; modern graphs da
 
 > "... spatial dimensions were used to represent nonspatial, quantitative, idiographic, empirical data. Although it now seems natural to represent, for example, rising and falling imports over time as a rising and falling line, it does not seem to have been done before that time and was quite an accomplishment. Notably, in addition to the statistical line chart, Playfair at one fell swoop single-handedly invented most of the remaining forms of the statistical graphic repertoire used today-the bar chart and histogram, the surface chart, and the circle diagram or "pie chart" [@wainer1981].
 
-![*Fig 7.1: Playfair's 1786 analysis of trade deficits*](images/playfair1786.PNG)
+![*Playfair's 1786 analysis of trade deficits*](images/playfair1786.PNG)
 
 ------------------------------------------------------------------------
 
 The most celebrated early graph is that of [Minard](https://datavizblog.com/2013/05/30/dataviz-history-charles-minards-flow-map-of-napoleons-russian-campaign-of-1812-polotsk-smolensk-and-on-to-borodino/):
 
-![*Fig 7.2: Minard's display of Napoleon's catastrophic assault on Moscow, 1812*](images/minard1812.PNG)
+![*Minard's display of Napoleon's catastrophic assault on Moscow, 1812*](images/minard1812.PNG)
 
 The visualization depicts the size, latitude, and longitude of Napoleon's army as they moved towards (tan line) then away (black line) from Moscow; temperature during the retreat is plotted as well. Further, vertical lines linking the temperature display to the number of troops indicate the often perilous river crossings which further decimated Napoleon's troops). [Cheng (2014)](https://robots.thoughtbot.com/analyzing-minards-visualization-of-napoleons-1812-march) decomposes the graph and provides some simpler visualizations; she also provides the following background:
 
@@ -62,11 +62,11 @@ Tufte [-@tufte2001] describes **Graphical Excellence**: Graphs should, among oth
 
 On a cold morning in January, 1986, Space Shuttle Challenger lifted off from Cape Canaveral. Because of the cold weather, engineers at Morton Thiokol, who designed the rocket boosters, considered the possibility that the O-rings which sealed joints on the rockets would be too hard and brittle to prevent the release of potentially explosive fuel. They examined the relation between temperature and o-ring damage on prior flights, using the following visualization:
 
-![*Figure 7.3: What Morton Thiokol engineers saw prior to deciding to launch the Challenger Space Shuttle in January, 1986*](images/mortonthiokolChallenger.PNG)
+![*What Morton Thiokol engineers saw prior to deciding to launch the Challenger Space Shuttle in January, 1986*](images/mortonthiokolChallenger.PNG)
 
 What, if anything, can we see here? The graphic was chaotic and poorly designed; if the engineers had wanted to systematically explore the relation between o-ring damage and temperature they could have removed the rockets and arranged them on a single axis by liftoff-temperature rather on several rows by liftoff-date. Here's what they would have seen:
 
-![*Figure 7.4: What the engineers could have seen, perhaps, with a better graph*.](images/tufteChallenger.PNG)
+![*What the engineers could have seen, perhaps, with a better graph*.](images/tufteChallenger.PNG)
 
 The forecast for the morning of the launch was far colder than that for prior launches, and within the set of prior launches a clear relationship between temperature and o-ring damage is evident. But the Challenger did launch, exploding shortly after takeoff, killing the seven astronauts on board. With a clearer display of the data, the Challenger launch would likely have been postponed [@tufte2001].
 
@@ -78,7 +78,7 @@ Poorly designed graphs don't just confuse rocket scientists. They reach us, misl
 
 ### poor design can be a tool to deceive
 
-![*Figure 7.7: Trump as "the first datavis President" ([Meeks, 2019](https://datastori.es/152-year-in-review-2019/#t=1:15:06.516)).*](images/trumpDorian.jpg)
+![*Trump as "the first datavis President"* ([Meeks, 2019](https://datastori.es/152-year-in-review-2019/#t=1:15:06.516)).](images/trumpDorian.jpg)
 
 The apps on our smartphones and electronic devices are meticulously designed to maintain our attention. They are largely successful, but, for many of us, made it more difficult to read in depth (Wu, *The Attention Merchants*). With information all around us demanding our attention, visual representations of data have become particularly important. The data visualization is, increasingly, not just a supplement to the story, but the story itself. When this premise is coupled with the idea that the truth is malleable, the product of what our leaders say rather than empirical statements of fact, we approach a dangerous situation, one in which real threats are misrepresented and lives are again endangered.
 
@@ -88,7 +88,7 @@ Presenting information in self-promoting ways includes so-called "Sharpie-gate,"
 
 Speaking of America, consider the following:
 
-![*Figure 7.8: Chernoff's too-clever faces*](images/Chernoff.PNG)
+![*Chernoff's too-clever faces*](images/Chernoff.PNG)
 
 In this figure, from Wainer [-@wainer1981], Chernoff's faces are used to represent multivariate data. The display is loosely based on the (psychological) premise that, from infancy, we are inordinately sensitive to facial features. Consequently, the most powerful, effective, or informative data displays should manipulate facial features. Does this graph succeed? Why or why not? Would an updated model, based on richer, more complex, and more realistic simulations of facial expressions [@thies2015] be more successful?
 
@@ -100,19 +100,19 @@ The first is from the late Hans Rosling, and summarizes a chunk of the Gapminder
 
 [![](https://img.youtube.com/vi/jbkSRLYSojo/0.jpg)](https://youtu.be/jbkSRLYSojo)
 
-*Video 7.9: Rosling and social progress*
+*Rosling and social progress*
 
 The second is from Kim Rees and her ex-colleagues at [Periscopic](https://periscopic.com/) (Rees is now at CapitalOne). For me, it's an important graphic because it tries to overcome what has been called "psychic numbing" - we are sensitive to the individual case, but lose our perspective when faced with large-scale tragedies, so that effectively the more lives lost... the less we care [@slovic2013].
 
 [![](https://img.youtube.com/vi/8R8UOjMy-5k/0.jpg)](https://youtu.be/8R8UOjMy-5k)
 
-*Video 7.10: Rees and stolen years*
+*Rees and stolen years*
 
 ### telling the truth when the truth is unclear
 
 We live in an uncertain world, and a major challenge in data visualization is how to convey this uncertainty in a way that people understand readily. Examples of this are familiar. Here in Florida, projected hurricane paths are frequently represented by a "cone of uncertainty" surrounding a single track. An alternative approach is to use a display which shows a distribution of possible tracks.
 
-![*Figure 7.11: Two approaches to displaying hurricane paths*](https://i1.wp.com/datastori.es/wp-content/uploads/2019/01/02.jpg?w=650&h=434)
+![*Two approaches to displaying hurricane paths*](https://i1.wp.com/datastori.es/wp-content/uploads/2019/01/02.jpg?w=650&h=434)
 
 ### visualizing uncertainty
 
@@ -128,7 +128,7 @@ Please consider each of the following data visualizations.
 
 ### Smartphone sales {.unnumbered}
 
-![*Figure 7.12: Which smartphone manufacturers are doing well?*](images/badgraph.PNG)
+![*Which smartphone manufacturers are doing well?*](images/badgraph.PNG)
 
 > Look at the smartphone sales visualization for just a moment, as if you might while reading something else on another screen, or as your ten-year old little sister might look at it, or most of your classmates in high school, or the average person you might see at a rest stop on the Florida Turnpike. What does the graph tell them?
 >
@@ -140,7 +140,7 @@ Please consider each of the following data visualizations.
 
 ### Stand your ground {.unnumbered}
 
-![*Figure 7.13: Does "stand your ground" make us safer?*](images/standyourground.jpg)
+![*Does "stand your ground" make us safer?*](images/standyourground.jpg)
 
 > *Again -*
 >
@@ -154,7 +154,7 @@ Please consider each of the following data visualizations.
 
 ### Big businesses {.unnumbered}
 
-![*Figure 7.14: Voronoi's "Top 50 Most Profitable Companies"*](images/voronoi.jpg)
+![*Voronoi's "Top 50 Most Profitable Companies"*](images/voronoi.jpg)
 
 > Finally, What does this visualization tell you at first glance?
 >
@@ -170,6 +170,6 @@ Please consider each of the following data visualizations.
 
 If you'd like to learn more, Tufte [-@tufte2001] and his other books are beautiful and thought provoking. Cleveland [-@cleveland1985] examines graphs from a more rigorous psychological and empirical viewpoint. The Data Stories podcasts are often excellent, despite the challenge of an auditory medium for visual display ([especially the episode on Hans Rosling](http://datastori.es/92-a-tribute-to-hans-rosling/)). And Healy[-@healy2017] provides a comprehensive introduction that, in essence, provides the basis for a semester-long course based in the ggplot2 package in R that we will be working with in the next chapter [@wickham2023].
 
-## addendum
+## notes for next revision
 
-### some notes on Healy
+add some notes on Healy

@@ -12,13 +12,13 @@ the-incompleteness-of-the-data-science-venn-diagram
 additional-domains
 an-additional-dimension
 the-importance-of-data-science-for-society
-training-in-the-liberal-arts---success-in-tech
+intelligence-artificial-intelligence-ai-and-careers
 the-challenge-of-tmi
 discussion-what-are-your-objectives-in-data-science
 getting-started
 are-you-already-a-programmer-and-statistician
 spreadsheets---some-best-practices
-setting-up-your-machine-some-basic-tools
+setting-up-your-laptop-some-basic-tools
 a-modified-15-minute-rule
 installing-r-and-rstudio-desktop
 what-r-stands-for
@@ -65,8 +65,7 @@ telling-the-truth-when-the-truth-is-unclear
 visualizing-uncertainty
 exercises
 further-reading-and-resources
-addendum
-some-notes-on-healy
+notes-for-next-revision
 visualization-in-r-with-ggplot
 a-picture-words-numbers
 read-wickhams-opening-chapter
@@ -79,14 +78,14 @@ keeping-conditional-probabilities-straight
 exercises-1
 continuous-probability-distributions
 dangerous-equations
-notes-for-next-revision
+notes-for-next-revision-1
 reproducibility-and-the-replication-crisis
 answers-to-the-reproducibility-crisis
 partial-answer-1-tweak-or-abandon-nhst
 partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks
 partial-answer-3-pre-registration-of-your-research
 further-readings
-notes-for-next-revision-1
+notes-for-next-revision-2
 wrangling-and-tidying
 the-structure-of-the-tidyverse
 where-should-we-eat
@@ -197,3 +196,4 @@ contact-tracing-and-covid-19
 the-digital-divide
 still-more-case-studies
 some-potential-remedies
+technology-change-and-risk

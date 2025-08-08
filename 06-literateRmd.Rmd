@@ -12,7 +12,7 @@ You should save your work in *projects.* These isolate your data and scripts int
 
 There are two reasons I begin with 'projects:' The first is that students who are new to coding will often struggle to find their datasets and code on their personal machines; having a project directory makes things easier. The second is that , down the road, it's likely that you will be working on R for different things in parallel - for this and another class, for this class and your thesis, or perhaps for two distinct types of analysis within your thesis.
 
-![Fig 6.1: Left panel: Files pane in RStudio for this manuscript. Right panel: Menu showing some other recent projects.](images/CompositScreenGrab.png)
+![*Left panel: Files pane in RStudio for this manuscript. Right panel: Menu showing some other recent projects.*](images/CompositScreenGrab.png)
 
 When you open up an R project, you'll be in the right directory, with the relevant files (and only the relevant files) at your fingertips in the files pane. It is yet another way in which the notion of 'tidiness' facilitates our work.
 

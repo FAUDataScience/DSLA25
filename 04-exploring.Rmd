@@ -95,4 +95,4 @@ Finally, you might consider the text and videos from the Coursera R class. Most 
 
 [![Roger Peng](https://img.youtube.com/vi/wy0h1f5awRI/0.jpg)](https://youtu.be/wy0h1f5awRI).
 
-*Video 4.1: Roger Peng introducing R*
+*Roger Peng introducing R*
