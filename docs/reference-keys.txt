@@ -34,6 +34,7 @@ go-into-the-clouds
 open-the-box
 go-to-datacamp
 learn-to-knit
+read-another-introductory-book
 older-approaches
 using-swirl
 readingwatching-roger-pengs-text-andor-videos

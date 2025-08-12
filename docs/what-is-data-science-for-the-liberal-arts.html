@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-08" />
+<meta name="date" content="2025-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -211,10 +212,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
 <li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
 <li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
-<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.6</b> older approaches</a>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read another introductory book</a></li>
+<li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.6.1</b> <strong>using Swirl</strong></a></li>
-<li class="chapter" data-level="4.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+<li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.7.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.7.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
@@ -509,9 +511,18 @@ div.csl-indent {
 <p>Communication, collaboration, and citizenship are each associated with the concept of trust. Trust is an important social good because it is associated with both individual well being <span class="citation">(<a href="#ref-poulin2015">Poulin and Haase 2015</a>)</span> and the stability of democratic institutions <span class="citation">(<a href="#ref-sullivan1999">Sullivan and Transue 1999</a>)</span>. But interpersonal and institutional trust, including trust in science, have declined in recent years <span class="citation">(<a href="#ref-deane2024">Deane 2024</a>)</span>. The decline in trust in science has been exacerbated by the so-called reproducibility (or replication) crisis, in which many scientific results initially characterized as “statistically significant” have been found not to hold up under scrutiny, that is, aren’t reproducible. The reasons for the reproducibility crisis are many and contentious, but there is substantial consensus that one path towards better science involves the public sharing of methods and data. A second path towards better and more trustworthy science involves the use of larger datasets: With large datasets, effects are more stable and “statistical significance” is rarely a concern. Other indices, such as measures of accuracy and effect size are typically of primary interest. Data science, with its tools for reproducible analysis and its use of big data sets, can make science more trustworthy and improve the quality of our lives.</p>
 <div id="intelligence-artificial-intelligence-ai-and-careers" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> intelligence, artificial intelligence (AI), and careers<a href="what-is-data-science-for-the-liberal-arts.html#intelligence-artificial-intelligence-ai-and-careers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>It is difficult to predict the consequences of advances in AI for career selection. Some areas are likely to be impacted by AI more than others, but because AI is still in its infancy, we can only speculate. But one way to approach this question is to begin by considering what constitutes “intelligence.” According to <span class="citation">Robert J. Sternberg (<a href="#ref-sternberg2018intelligence">2018</a>)</span>, intelligence can be thought of as having three components. One of these is <strong>Analytical Intelligence</strong>, which includes things like planning, reasoning, acquiring knowledge, and problem solving. A second part is <strong>Creative Intelligence</strong>, which includes both the ability to deal with novel situations effectively, and the ability to “automatize” or efficiently execute familiar tasks. The third is <strong>Practical or Contextual Intelligence</strong>, which includes the ability to adapt to new environments.</p>
-<p>AI engines or agents (or simply AIs) are, for now at least, effective at only some of these. They are better than humans at knowledge acquisition, logical reasoning and some kinds of problem solving. All of these are parts of Analytical Intelligence. They are also better than us at one part of Sternberg’s Creative Intelligence: They excel at many types of automatized routines. On the other hand, they are likely to struggle with novel situations. (An oversimplified example: Imagine an AI agent that has been programmed to know how to converse with a cafeteria worker, a professor, a sibling, a romantic partner, and a roommate. Said AI now faces a police officer after being pulled over for speeding. What aspects of each situation generalize?). AIs also fail at practical intelligence, including not just the question of how to adapt to a new environment, but also how to choose an environment altogether. Should AI go to the bowling alley, library, a party, or back to its room? What should it do when it gets there and encounters … something weird?</p>
-<p>So. My desktop AI (Microsoft Copilot 365 Version 19.2508.31121.0) tells me that these strengths and weaknesses, understood in the context of Sternberg’s theory, make AI ideal for things like “Data Analysis, Financial modeling, Diagnostics, Scheduling and logistics, and Repetitive administrative tasks.” The first and last of these are core parts of data science, but not the whole of it. AI struggles (again, according to Copilot), with “Leadership and strategic decision-making, Counseling, therapy, and social work, Cross-cultural negotiation, [and] Artistic innovation requiring deep emotional resonance.” Careers that are likely to grow include creative professions (design, storytelling), human-centered roles (coaching, diplomacy), and also hybrid roles, that is, “Professionals who use AI tools to enhance their work (e.g., data-informed decision-makers).” Kind of like I did in this paragraph.</p>
+<p>It is difficult to predict the consequences of advances in AI for career selection. Some areas are likely to be impacted by AI more than others, but because AI is still in its infancy, we can only speculate. But one way to approach this question is to begin by considering what constitutes “intelligence.” According to <span class="citation">Robert J. Sternberg (<a href="#ref-sternberg2018intelligence">2018</a>)</span>, intelligence can be thought of as having three components. One of these is <strong>Analytical Intelligence</strong>, which includes things like planning, reasoning, acquiring knowledge, and problem solving. A second is <strong>Creative Intelligence</strong>, which includes both the ability to deal with novel situations effectively, and the ability to “automatize” or efficiently execute familiar tasks. The third is <strong>Practical or Contextual Intelligence</strong>, which includes the ability to adapt to new environments.</p>
+<p>AI engines or agents (or simply AIs) are, for now at least, effective at only some of these. They are better than humans at knowledge acquisition, logical reasoning and some kinds of problem solving. All of these are parts of Analytical Intelligence. They are also better than us at one part of Sternberg’s Creative Intelligence: They excel at many types of automatized routines.</p>
+<p>Beyond this, they struggle. My desktop AI (Microsoft Copilot 365 Version 19.2508.31121.0) tells me that the strengths of AI, understood in the context of Sternberg’s theory, make it ideal for things like “Data Analysis, Financial modeling, Diagnostics, Scheduling and logistics, and Repetitive administrative tasks.” The first and last of these are core parts of data science, but not the whole of it. AI struggles (again, according to Copilot), with “Leadership and strategic decision-making, Counseling, therapy, and social work, Cross-cultural negotiation, [and] Artistic innovation requiring deep emotional resonance.” Careers that are likely to grow include creative professions (design, storytelling), human-centered roles (coaching, diplomacy), and also hybrid roles, that is, “Professionals who use AI tools to enhance their work (e.g., data-informed decision-makers).”</p>
+<p>All of this should be taken with a grain of salt. Today’s AI capabilities are quite limited compared to what they will be a year from now, and the AI that you and I might use on our desktops is, in all likelihood, a simple version of what is already available to large-scale users.</p>
+<blockquote>
+<p>The Broadway musical <em>Maybe Happy Ending</em> is about Oliver, an embodied AI described as a “helperbot.” Oliver might have been built on a model that synthesized millions of interactions between butlers and their employers, secretaries and bosses, assistants and supervisors. Oliver was an ideal servant, one who anticipated his owner’s needs consistently, promptly and sensitively.</p>
+<p>I won’t spoil it for you, but <em>Maybe Happy Ending</em> can be seen as portraying the challenges AI agents face, and how Artificial Intelligence is different from human intelligence. In Sternberg’s (2018) terms, Oliver struggles not just with the question of how to adapt to a new environment, but also how to choose an environment altogether. What should it do when it encounters problems for which it has simply no frame of reference?</p>
+</blockquote>
+<div class="float">
+<img src="images/helperbot.jpg" alt="Darren Criss as Oliver in Maybe Happy Ending" />
+<div class="figcaption">Darren Criss as Oliver in <em>Maybe Happy Ending</em></div>
+</div>
 </div>
 <div id="the-challenge-of-tmi" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> the challenge of TMI<a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi" class="anchor-section" aria-label="Anchor link to header"></a></h3>

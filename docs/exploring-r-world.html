@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-08" />
+<meta name="date" content="2025-08-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -211,10 +212,11 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
 <li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
 <li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
-<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.6</b> older approaches</a>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read another introductory book</a></li>
+<li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.6.1</b> <strong>using Swirl</strong></a></li>
-<li class="chapter" data-level="4.6.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.6.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+<li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.7.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.7.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
@@ -478,7 +480,7 @@ div.csl-indent {
 <p>There are many sources for learning the basics of R. A few of these follow. Please <strong>spend at least 180 mins exploring at least two of the following.</strong> Be prepared to discuss your progress next class: You will be asked which source(s) you used, what you struggled with, what questions you have, and what you would recommend to your classmates. <strong>Hint:</strong> If you find the material too challenging, remember the 15 minute rule, take a break away from your machine and other screens, clear your head, then try a different approach.</p>
 <div id="go-to-the-movies" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> go to the movies<a href="exploring-r-world.html#go-to-the-movies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>About seven years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction <a href="https://idc9.github.io/stor390/notes/getting_started/getting_started.html">here</a>.</p>
+<p>About nine years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction <a href="https://idc9.github.io/stor390/notes/getting_started/getting_started.html">here</a>.</p>
 <p>You can consider his report from the standpoint of style (formatting, organization), coding (how he did this), data (the part of the IMDB data he is looking at), and his results (plots of distributions and relationships).</p>
 <p>Do you have any questions about the movie data? How might you ask these?</p>
 <p>A minimal amount of sleuthing - a click on the STOR 390 link at the top of the page, then a quick scroll - reveals that “all of [Carmichael’s] course material is on the github repo” - or repository.</p>
@@ -515,13 +517,17 @@ date: &quot;1/12/2025&quot;
 output: html_document
 ---</code></pre>
 <p>Go ahead and click on the clever “knit” icon in the bar just above the source window to create a sample document. You’ll need to save the file with a new name, then R will finally create an HTML (Hyper Text Markdown Language ) page. Compare the R Markdown document (your code) with the result (the HTML).</p>
-<p>The second chapter of <a href="https://socviz.co/">Healy’s online book about Data visualizations</a> provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the <a href="https://r4ds.had.co.nz/index.html">Wickham and Grolemund text</a> <span class="citation">(<a href="#ref-healy2017">Healy 2017</a>; <a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. We’ll be discussing R Markdown (and its cousin Quarto) in Chapter 6.</p>
+<p>The second chapter of <a href="https://socviz.co/">Healy’s online book about Data visualizations</a> provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the <a href="https://r4ds.hadley.nz/index.html">Wickham et al. text</a> <span class="citation">(<a href="#ref-healy2017">Healy 2017</a>; <a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>. We’ll be discussing R Markdown (and its cousin Quarto) in Chapter 6.</p>
 </div>
-<div id="older-approaches" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> older approaches<a href="exploring-r-world.html#older-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="read-another-introductory-book" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> read another introductory book<a href="exploring-r-world.html#read-another-introductory-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In addition to the Wickham text and the Baumer et al. <a href="https://mdsr-book.github.io/mdsr3e/">Modern Data Science with R</a> book, one more warrants study: ModernDive (v2), aka <a href="https://moderndive.com/v2/index.html">Statistical Inference via Data Science</a> is a new introduction to R and data science authored by Chester Ismay, Albert Kim, and Arturo Valdivia. It’s contents largely parallel those in Wickham and Baumer; if you decide to read all or part of it, please let me know what you think.</p>
+</div>
+<div id="older-approaches" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> older approaches<a href="exploring-r-world.html#older-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I, like thousands of others, learned R in the process of completing the Johns Hopkins <a href="https://jhudatascience.org/courses.html">Data Science Specialization</a> offered through <a href="https://www.coursera.org/">Coursera</a>. The sequence can be challenging, but their introduction to R used an accessible, interactive R package called <em>Swirl.</em> You can read about swirl (“learn R in R”) at <a href="https://swirlstats.com/" class="uri">https://swirlstats.com/</a>.</p>
-<div id="using-swirl" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> <strong>using Swirl</strong><a href="exploring-r-world.html#using-swirl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="using-swirl" class="section level3 hasAnchor" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> <strong>using Swirl</strong><a href="exploring-r-world.html#using-swirl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After loading R (and opening R studio), you will get to the Swirl lessons with the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Install the Swirl package on your computer (you only need to do this once). Type the following into your console window in R studio (typically left hand side of your screen or lower left)</li>
@@ -548,8 +554,8 @@ output: html_document
 </blockquote>
 <p>Answer no… then do another lesson.</p>
 </div>
-<div id="readingwatching-roger-pengs-text-andor-videos" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> reading/watching Roger Peng’s text and/or videos<a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="readingwatching-roger-pengs-text-andor-videos" class="section level3 hasAnchor" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> reading/watching Roger Peng’s text and/or videos<a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, you might consider the text and videos from the Coursera R class. Most of the material from that class can be found in Roger Peng’s <span class="citation">(<a href="#ref-peng2014">2014</a>)</span> text, a slightly updated version of which can be found <a href="https://bookdown.org/rdpeng/rprogdatascience/">here</a>. The videos in the series may be found in this <a href="https://www.youtube.com/watch?v=wy0h1f5awRI&amp;list=PL_bgmYHGITt-8Noh1fZpxTHJ-GrBb626R">playlist</a>. Here’s an introduction:</p>
 <p><a href="https://youtu.be/wy0h1f5awRI"><img src="https://img.youtube.com/vi/wy0h1f5awRI/0.jpg" alt="Roger Peng" /></a>.</p>
 <p><em>Roger Peng introducing R</em></p>
