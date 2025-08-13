@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-11" />
+<meta name="date" content="2025-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -457,6 +457,11 @@ div.csl-indent {
 <li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
 <li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
 </ul></li>
+<li class="chapter" data-level="25" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>25</b> exercises etc.</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="exercises-etc..html"><a href="exercises-etc..html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
+<li class="chapter" data-level="25.2" data-path="exercises-etc..html"><a href="exercises-etc..html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -499,7 +504,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="literate-programming.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb11-2"><a href="literate-programming.html#cb11-2" tabindex="-1"></a>file1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/datawithN.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 10 Columns: 4
-## ── Column specification ─────────────────────────────
+## ── Column specification ───────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): gender
 ## dbl (3): id, age, N
@@ -515,7 +520,7 @@ div.csl-indent {
 ## $ gender &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, NA, &quot;M&quot;, &quot;F&quot;</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="literate-programming.html#cb15-1" tabindex="-1"></a>file2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/datawithES.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 10 Columns: 4
-## ── Column specification ─────────────────────────────
+## ── Column specification ───────────
 ## Delimiter: &quot;,&quot;
 ## chr (1): gender
 ## dbl (3): id, age, ES

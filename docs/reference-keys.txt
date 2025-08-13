@@ -198,3 +198,6 @@ the-digital-divide
 still-more-case-studies
 some-potential-remedies
 technology-change-and-risk
+exercises-etc.
+generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet
+now-look-at-your-data-in-the-spreadsheet

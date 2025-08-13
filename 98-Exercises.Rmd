@@ -1,17 +1,17 @@
 ---
 output: html_document
-date: "2025-01-07"
+date: "2025-08-13"
 ---
 
 # exercises etc.
 
 ## generating correlated data (GPA and SAT) and putting it in a Google Sheet
 
-It's simple to generate a single random variable, but we often want to examine data for several variables that might be correlated. The MVRnorm function, in the MASS package, does this.
+It's simple to generate a single random variable, but we often want to examine data for several variables that are correlated. The MVRnorm function, in the MASS package, does this.
 
 We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).
 
-We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet.
+We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive 
 
 ```{r makegooglesheet, include=TRUE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -50,8 +50,8 @@ hsdata <- MASS::mvrnorm(n = nrows,
 hsdata <- names %>% 
     bind_cols(hsdata) %>% 
     arrange(FirstName) 
-gs4_create(name="RandomHSGPASAT",
-           sheets = hsdata)
+#gs4_create(name="RandomHSGPASAT",
+ #          sheets = hsdata)
 slice(hsdata, 1:3)
 ```
 
