@@ -34,13 +34,11 @@ R does not stand for '[**arggh**](https://www.urbandictionary.com/define.php?ter
 
 But R does stand for **rewarding**. A language is a way of thinking about the world, and this is true for computer languages as well. You'll be challenged by its complexity, its idiosyncracy, its alien logic. But you will succeed, and you will find that you can do things that you did not believe possible.
 
-## some key characteristics of R
-
 ### base R and packages
 
 R is a programming language. It can be seen as including two parts, a simple core (Base R) and a large number of additional packages. These packages (libraries) are customized add-ons which simplify certain tasks, such as text analysis. There are, at this writing, 21,861 available packages on the CRAN package repository (as well as additional useful packages that, for one reason or another, do not appear on CRAN. Packages on CRAN are partially indexed by "task view pages." The [task view page for natural language processing](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html) or text analysis includes, at this writing, over 60 separate packages.
 
-So how do you choose, and where do you begin? For our purposes, we will start with the curated list of packages which jointly comprise the tidyverse [@wickham2019], which is effectively a dialect of R.
+So how do you choose, and where do you begin? For our purposes, we will start with the curated list of packages which jointly comprise the tidyverse [@wickham2019], which is effectively a dialect of R. You can learn more about the tidyverse and its place in data science in the [introduction to the Wickham text](https://r4ds.hadley.nz/intro.html)[@wickham2023].
 
 To download the tidyverse package from the 'net, open RStudio, find the 'console' window on the left side of your screen, and enter the command followed by \<enter\> or \<return\>
 
@@ -77,9 +75,3 @@ Here, as in the real world, there is an etiquette for help-seeking which is base
 Finally, to get a sense of the power and versatility of R Markdown documents, you might explore this [tutorial](https://rmarkdown.rstudio.com/lesson-1.html). Note that, if you want to work interactively with the tutorial, you will need to first sign up for an account on RStudio cloud. Go to [posit.cloud](https://posit.cloud), click on "learn more" in the "Free" column, then sign up.
 
 When you encounter obstacles, remember the 15-minute rule.
-
-## Wickham and R for Data Science 2e
-
-The introduction to the Wickham text [@wickham2023] provides both a framework for his approach and a brief introduction to the tidyverse.
-
-Please read it now.

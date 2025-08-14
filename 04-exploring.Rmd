@@ -61,7 +61,7 @@ Go ahead and click on the clever "knit" icon in the bar just above the source wi
 
 The second chapter of [Healy's online book about Data visualizations](https://socviz.co/) provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the [Wickham et al. text](https://r4ds.hadley.nz/index.html) [@healy2017; @wickham2023]. We'll be discussing R Markdown (and its cousin Quarto) in Chapter 6.
 
-## read another introductory book
+## read (parts of) another introductory book
 
 In addition to the Wickham text and the Baumer et al. [Modern Data Science with R](https://mdsr-book.github.io/mdsr3e/) book, one more warrants study: ModernDive (v2), aka [Statistical Inference via Data Science](https://moderndive.com/v2/index.html) is a new introduction to R and data science authored by Chester Ismay, Albert Kim, and Arturo Valdivia. It's contents largely parallel those in Wickham and Baumer; if you decide to read all or part of it, please let me know what you think.
 
