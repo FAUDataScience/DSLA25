@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-13" />
+<meta name="date" content="2025-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,9 +59,8 @@
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -71,7 +70,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -196,14 +195,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>3.1</b> some key characteristics of R</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.1.1</b> base R and packages</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.2</b> cha-cha-cha-changes</a></li>
-<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.3</b> some technical characteristics</a></li>
-<li class="chapter" data-level="3.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.4</b> finding help</a></li>
-<li class="chapter" data-level="3.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>3.5</b> Wickham and R for Data Science 2e</a></li>
+<li class="chapter" data-level="3.0.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.0.1</b> base R and packages</a></li>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.1</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.2</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.3</b> finding help</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
 <ul>
@@ -212,7 +207,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
 <li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
 <li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
-<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read another introductory book</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-parts-of-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read (parts of) another introductory book</a></li>
 <li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
 <ul>
 <li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
@@ -457,10 +452,15 @@ div.csl-indent {
 <li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
 <li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>25</b> exercises etc.</a>
+<li class="chapter" data-level="25" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="exercises-etc..html"><a href="exercises-etc..html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
-<li class="chapter" data-level="25.2" data-path="exercises-etc..html"><a href="exercises-etc..html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.1" data-path="exercises-3.html"><a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
+<li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.3" data-path="exercises-3.html"><a href="exercises-3.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.3</b> using AI to help us here</a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
+<li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -500,44 +500,36 @@ div.csl-indent {
 <p>R might stand for <strong>relatively high level</strong>. Programming languages can be described along a continuum from high to low level, the former (like R) are more accessible to humans, the latter (like assembly language) more accessible to machines. Python, Java, and C++ are all more towards the middle of this continuum.</p>
 <p>R does not stand for ‘<a href="https://www.urbandictionary.com/define.php?term=ARGH"><strong>arggh</strong></a>,’ although you may proclaim this in frustration (‘arggh, why can’t I get this to work?) or, perhaps, in satisfaction (’arggh, matey, that be a clever way of doing this’).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 <p>But R does stand for <strong>rewarding</strong>. A language is a way of thinking about the world, and this is true for computer languages as well. You’ll be challenged by its complexity, its idiosyncracy, its alien logic. But you will succeed, and you will find that you can do things that you did not believe possible.</p>
-<div id="some-key-characteristics-of-r" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> some key characteristics of R<a href="what-r-stands-for.html#some-key-characteristics-of-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="base-r-and-packages" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> base R and packages<a href="what-r-stands-for.html#base-r-and-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="base-r-and-packages" class="section level3 hasAnchor" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> base R and packages<a href="what-r-stands-for.html#base-r-and-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R is a programming language. It can be seen as including two parts, a simple core (Base R) and a large number of additional packages. These packages (libraries) are customized add-ons which simplify certain tasks, such as text analysis. There are, at this writing, 21,861 available packages on the CRAN package repository (as well as additional useful packages that, for one reason or another, do not appear on CRAN. Packages on CRAN are partially indexed by “task view pages.” The <a href="https://cran.r-project.org/web/views/NaturalLanguageProcessing.html">task view page for natural language processing</a> or text analysis includes, at this writing, over 60 separate packages.</p>
-<p>So how do you choose, and where do you begin? For our purposes, we will start with the curated list of packages which jointly comprise the tidyverse <span class="citation">(<a href="#ref-wickham2019">Wickham et al. 2019</a>)</span>, which is effectively a dialect of R.</p>
+<p>So how do you choose, and where do you begin? For our purposes, we will start with the curated list of packages which jointly comprise the tidyverse <span class="citation">(<a href="#ref-wickham2019">Wickham et al. 2019</a>)</span>, which is effectively a dialect of R. You can learn more about the tidyverse and its place in data science in the <a href="https://r4ds.hadley.nz/intro.html">introduction to the Wickham text</a><span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span>.</p>
 <p>To download the tidyverse package from the ‘net, open RStudio, find the ’console’ window on the left side of your screen, and enter the command followed by &lt;enter&gt; or &lt;return&gt;</p>
 <blockquote>
 <p>install.packages(“tidyverse”)</p>
 </blockquote>
 </div>
-</div>
-<div id="cha-cha-cha-changes" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> cha-cha-cha-changes<a href="what-r-stands-for.html#cha-cha-cha-changes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="cha-cha-cha-changes" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> cha-cha-cha-changes<a href="what-r-stands-for.html#cha-cha-cha-changes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R is constantly changing, not just in the proliferation of packages, but also in the organization of the R community. While R is free and open source, RStudio is a commercial product. The company (and website) that develops the RStudio IDE is undergoing a name change (from RStudio to Posit). This is motivated, in part, by the need to make the RStudio platform more welcoming for other languages including Python.</p>
 <p>Similarly, the R markdown programming language is slowly being replaced with newer, and ultimately more capable, software called Quarto. Quarto is back-compatible with R markdown, but can be used with other languages including Python as well. A description of the differences between R markdown and Quarto may be found <a href="https://quarto.org/docs/faq/rmarkdown.html">here</a>. For our purposes, you can treat Quarto files (.qmd suffix) as R markdown files (.rmd), and vice-versa.</p>
 <p>One more change: Posit (the company) is developing a new IDE called ‘Positron.’ Positron may ultimately be a more useful environment for data science than the RStudio IDE, but it is in the beta testing stage at this writing. The RStudio environment, and the Rmarkdown documents that are produced within it, will continue to be available, and widely used, for the foreseeable future.</p>
 </div>
-<div id="some-technical-characteristics" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> some technical characteristics<a href="what-r-stands-for.html#some-technical-characteristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="some-technical-characteristics" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> some technical characteristics<a href="what-r-stands-for.html#some-technical-characteristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R is an object-oriented language - one conceptually organized around objects and data rather than actions and logic.</p>
 <p>In R, at the most basic or atomic level, “objects” include characters, real numbers, integers, complex numbers, and logicals.</p>
 <p>These atomic objects may be combined into vectors, which generally include objects of the same type [one kind of object, ‘lists,’ is an exception to this; <span class="citation">R. D. Peng (<a href="#ref-peng2014">2014</a>)</span>]. Vectors can be further combined into data frames, which are two-dimensional tables or arrays. A <em>tibble</em> is a particular type of data frame which is used in the tidyverse. Tibbles are, in some ways, handier to work with than other data frames. We’ll be working extensively with data frames in general, and tibbles in particular, as we move forward.</p>
 <p>Objects have attributes. Attributes of R include such things as name, dimensions (for vectors and arrays), class (that’s the type of object described in the previous paragraph), length, etc.</p>
 <p>Real world data sets are messy, and frequently have missing values. In R, missing values may be represented by NA (not available) or NaN (not a number, implying an undefined or impossible value).</p>
 </div>
-<div id="finding-help" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> finding help<a href="what-r-stands-for.html#finding-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="finding-help" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> finding help<a href="what-r-stands-for.html#finding-help" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>One does not simply ‘learn R.’ Unlike, say, learning to ride a bicycle, fry an egg, or drive a car with a manual transmission, learning R is not a discrete accomplishment that one can be said to have mastered and from which one then moves on. Rather, R is an evolving, open system of applications and tools which is so vast that there is always more that one can achieve, new lessons that one can learn. And, the complexity of R syntax is such that, for almost all of us, we will need help for coding on any non-trivial task.</p>
 <p>For us, the key ideas in “looking for help” will include not just the tools on the RStudio IDE, but also (a) using Google searches wisely, (b) judicious use of AI assistance, and (c) reaching out to your classmates and instructor.</p>
 <p>Here, as in the real world, there is an etiquette for help-seeking which is based on consideration. Your search for help should begin by making sure that others will encounter the same result, then by stripping the problem down to its essence. Once you have reduced the problem to this minimal, reproducible essence, you will often be able to spot the problem yourself - and, if not, you will make it easier for others to help you. There is an R package (reprex) which will likely facilitate this, but I haven’t tried it yet. <a href="https://www.tidyverse.org/help/">Here</a> is a good introduction.</p>
 <p>Finally, to get a sense of the power and versatility of R Markdown documents, you might explore this <a href="https://rmarkdown.rstudio.com/lesson-1.html">tutorial</a>. Note that, if you want to work interactively with the tutorial, you will need to first sign up for an account on RStudio cloud. Go to <a href="https://posit.cloud">posit.cloud</a>, click on “learn more” in the “Free” column, then sign up.</p>
 <p>When you encounter obstacles, remember the 15-minute rule.</p>
-</div>
-<div id="wickham-and-r-for-data-science-2e" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Wickham and R for Data Science 2e<a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The introduction to the Wickham text <span class="citation">(<a href="#ref-wickham2023">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> provides both a framework for his approach and a brief introduction to the tidyverse.</p>
-<p>Please read it now.</p>
 
 </div>
 </div>

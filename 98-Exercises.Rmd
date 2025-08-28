@@ -1,9 +1,8 @@
----
-output: html_document
-date: "2025-08-13"
----
+```{r exercises, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-# exercises etc.
+# exercises
 
 ## generating correlated data (GPA and SAT) and putting it in a Google Sheet
 
@@ -11,15 +10,16 @@ It's simple to generate a single random variable, but we often want to examine d
 
 We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).
 
-We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive 
+We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive.
 
 ```{r makegooglesheet, include=TRUE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
-# library(MASS) the whole library is not loaded because of dplyr::select 
-library(randomNames)
-library(googlesheets4)
+library(babynames) # for set of first names
+library(randomNames) # for initial set of last names
+library(googlesheets4) # to read and write to Google sheets
+
 set.seed(33458) # for reproducibility
 correlation <- 0.4
 nrows <- 1000
@@ -60,3 +60,70 @@ slice(hsdata, 1:3)
 In this [spreadsheet](https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing), what are the means for GPA and SAT? What are the standard deviations? what is the difference between 'sort range' and 'sort sheet' in Google Sheets?
 
 What do you think about the randomnames package? Do the names appear "representative" (of what)? If you wanted to generate a more representative sample of names, how might you proceed?
+
+## using AI to help us here
+
+Our intuitions about the idiosyncratic nature of names in the randomNames package is supported (not necessarily confirmed) by MS Copilot, which notes that "the randomNames package in R samples from a uniform distribution, which doesn't reflect real-world name frequencies." 
+
+For first names, one solution is to use the babynames data, and then to weight the probability of including the name in our sample by the actual frequency in (some) population: 
+
+```{r}
+
+# load babynames and Filter for a specific year or range
+names_data <- babynames %>%
+  filter(year >= 2000) %>%
+  group_by(name) %>%
+  summarise(freq = sum(n)) %>%
+  ungroup()
+
+# Sample names with probability proportional to frequency
+set.seed(33458)
+sampled_first_names <- sample(names_data$name, size = nrows, replace = TRUE, prob = names_data$freq) |> 
+    as_tibble() |> 
+    rename(NewFirstName = 1)
+slice(sampled_first_names, 1:10)
+```
+
+
+### for last names, it's a little bit trickier
+
+For last names, we'll also use census data.  There's not an R package that has these, but there is Census data that is available in a zip file.  It's described at https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf. There are two files that are available - the top 1000 names, and then a (much longer) file of all names that occur more than 100 times. We'll use the latter. **Why do we do this?**
+
+Our approach to downloading a zip file directly into R follows: First, we specify a temporary file, then download the zip file into it. Then we unzip this and save it in a subdirectory called 'data.' Finally, we read it into R:
+
+```{r}
+temp_zip_file <- tempfile(fileext = ".zip")
+sourcefile <- "https://www2.census.gov/topics/genealogy/2010surnames/names.zip"
+download.file(sourcefile, destfile = temp_zip_file, mode = "wb")
+unzip(temp_zip_file, files = "Names_2010Census.csv", exdir = "data")
+surnames <- read.csv("data/Names_2010Census.csv") |>
+    arrange(rank)
+slice(surnames, 1:10)
+```
+
+### cleaning these up
+
+In the lastname data, there's a problem. Some 10% of the names in the data - presumably rare ones - are replaced with "ALL OTHER NAMES." We'll just filter these out. 
+
+Finally, we combine the new NewFirstName and NewLastName with our original HS data. We also replace the SHOUTING (uppercase) in the NewLastName variable with Title Case:
+
+**Did we do this right? Any other issues? How might you have done this better?**
+
+```{r}
+
+surnames <- read.csv("data/Names_2010Census.csv") |>
+    filter(name != "ALL OTHER NAMES")
+slice(surnames, 1:10)
+# then pull out a weighted sample of last names
+sampled_last_names <- sample(surnames$name, size = nrows, 
+                            replace = TRUE, prob = surnames$count) |> 
+    as_tibble() |> 
+    rename(NewLastName = 1)
+
+hsdata2 <- hsdata |>
+    bind_cols(sampled_first_names) |> 
+    bind_cols(sampled_last_names) |> 
+    mutate(NewLastName = stringr::str_to_title(NewLastName))
+slice(hsdata2, 1:10)
+
+```

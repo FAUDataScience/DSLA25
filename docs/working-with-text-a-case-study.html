@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-13" />
+<meta name="date" content="2025-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -59,9 +59,8 @@
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -71,7 +70,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -196,14 +195,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-key-characteristics-of-r"><i class="fa fa-check"></i><b>3.1</b> some key characteristics of R</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.1.1</b> base R and packages</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.2</b> cha-cha-cha-changes</a></li>
-<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.3</b> some technical characteristics</a></li>
-<li class="chapter" data-level="3.4" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.4</b> finding help</a></li>
-<li class="chapter" data-level="3.5" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#wickham-and-r-for-data-science-2e"><i class="fa fa-check"></i><b>3.5</b> Wickham and R for Data Science 2e</a></li>
+<li class="chapter" data-level="3.0.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.0.1</b> base R and packages</a></li>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.1</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.2</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.3</b> finding help</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
 <ul>
@@ -212,7 +207,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
 <li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
 <li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
-<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read another introductory book</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-parts-of-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read (parts of) another introductory book</a></li>
 <li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
 <ul>
 <li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
@@ -457,10 +452,15 @@ div.csl-indent {
 <li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
 <li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="exercises-etc..html"><a href="exercises-etc..html"><i class="fa fa-check"></i><b>25</b> exercises etc.</a>
+<li class="chapter" data-level="25" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="exercises-etc..html"><a href="exercises-etc..html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
-<li class="chapter" data-level="25.2" data-path="exercises-etc..html"><a href="exercises-etc..html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.1" data-path="exercises-3.html"><a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
+<li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.3" data-path="exercises-3.html"><a href="exercises-3.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.3</b> using AI to help us here</a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
+<li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -643,7 +643,7 @@ div.csl-indent {
 <pre><code>##  Found 500 records... Found 1000 records... Found 1500 records... Found 2000 records... Found 2500 records... Found 3000 records... Found 3500 records... Found 4000 records... Found 4500 records... Found 5000 records... Found 5500 records... Found 6000 records... Found 6500 records... Found 7000 records... Found 7500 records... Found 8000 records... Found 8500 records... Found 9000 records... Found 9500 records... Found 10000 records... Imported 10000 records. Simplifying...</code></pre>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="working-with-text-a-case-study.html#cb234-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb234-2"><a href="working-with-text-a-case-study.html#cb234-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
-<pre><code>## Time difference of 11.25622 secs</code></pre>
+<pre><code>## Time difference of 8.633666 secs</code></pre>
 <p>Looks good - the date/time field is clean, the columns are those that we want, and it only took a few seconds to read in 10,000 posts. Let’s read them all in, then take a look at a small random sample - 10 - of the texts of the posts.</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="working-with-text-a-case-study.html#cb236-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>)</span>
 <span id="cb236-2"><a href="working-with-text-a-case-study.html#cb236-2" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
@@ -656,7 +656,7 @@ div.csl-indent {
 <pre><code>##  Found 500 records... Found 1000 records... Found 1500 records... Found 2000 records... Found 2500 records... Found 3000 records... Found 3500 records... Found 4000 records... Found 4500 records... Found 5000 records... Found 5500 records... Found 6000 records... Found 6500 records... Found 7000 records... Found 7500 records... Found 8000 records... Found 8500 records... Found 9000 records... Found 9500 records... Found 10000 records... Found 10500 records... Found 11000 records... Found 11500 records... Found 12000 records... Found 12500 records... Found 13000 records... Found 13500 records... Found 14000 records... Found 14500 records... Found 15000 records... Found 15500 records... Found 16000 records... Found 16500 records... Found 17000 records... Found 17500 records... Found 18000 records... Found 18500 records... Found 19000 records... Found 19500 records... Found 20000 records... Found 20500 records... Found 21000 records... Found 21500 records... Found 22000 records... Found 22500 records... Found 23000 records... Found 23500 records... Found 24000 records... Found 24500 records... Found 25000 records... Found 25500 records... Found 26000 records... Found 26500 records... Found 27000 records... Found 27500 records... Found 28000 records... Found 28500 records... Found 29000 records... Found 29500 records... Found 30000 records... Found 30500 records... Found 31000 records... Found 31500 records... Found 32000 records... Found 32500 records... Found 33000 records... Found 33500 records... Found 34000 records... Found 34500 records... Found 35000 records... Found 35500 records... Found 36000 records... Found 36500 records... Found 37000 records... Found 37500 records... Found 38000 records... Found 38500 records... Found 39000 records... Found 39500 records... Found 40000 records... Found 40500 records... Found 41000 records... Found 41500 records... Found 42000 records... Found 42500 records... Found 43000 records... Found 43500 records... Found 44000 records... Found 44500 records... Found 45000 records... Found 45500 records... Found 46000 records... Found 46500 records... Found 47000 records... Found 47500 records... Found 48000 records... Found 48500 records... Found 49000 records... Found 49500 records... Found 50000 records... Found 50500 records... Found 51000 records... Found 51500 records... Found 52000 records... Found 52500 records... Found 53000 records... Found 53500 records... Found 54000 records... Found 54500 records... Found 55000 records... Found 55500 records... Found 56000 records... Found 56500 records... Found 57000 records... Found 57500 records... Found 58000 records... Found 58500 records... Found 59000 records... Found 59500 records... Found 59651 records... Imported 59651 records. Simplifying...</code></pre>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="working-with-text-a-case-study.html#cb238-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb238-2"><a href="working-with-text-a-case-study.html#cb238-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
-<pre><code>## Time difference of 3.487072 mins</code></pre>
+<pre><code>## Time difference of 2.69014 mins</code></pre>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="working-with-text-a-case-study.html#cb240-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
 <span id="cb240-2"><a href="working-with-text-a-case-study.html#cb240-2" tabindex="-1"></a>a1 <span class="sc">|&gt;</span> <span class="fu">select</span> (selftext) <span class="sc">|&gt;</span> <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          selftext

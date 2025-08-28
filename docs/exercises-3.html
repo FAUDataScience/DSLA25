@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>25 exercises | Data science for the liberal arts</title>
+  <meta name="description" content="25 exercises | Data science for the liberal arts" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="25 exercises | Data science for the liberal arts" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="kevinlanning/DSLA25" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="25 exercises | Data science for the liberal arts" />
+  
+  
+  
+
+<meta name="author" content="Kevin Lanning" />
+
+
+<meta name="date" content="2025-08-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="some-ethical-concerns-for-the-data-scientist.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-role-of-the-liberal-arts-in-data-science"><i class="fa fa-check"></i>the role of the liberal arts in data science</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> what is “data science for the liberal arts?”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.1</b> the incompleteness of the data science Venn diagram</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#additional-domains"><i class="fa fa-check"></i><b>1.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#an-additional-dimension"><i class="fa fa-check"></i><b>1.1.2</b> an additional dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>1.2</b> the importance of data science for society</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#intelligence-artificial-intelligence-ai-and-careers"><i class="fa fa-check"></i><b>1.2.1</b> intelligence, artificial intelligence (AI), and careers</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>1.2.2</b> the challenge of TMI</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>1.3</b> discussion: what are your objectives in data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> getting started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>2.1</b> are you already a programmer and statistician?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>2.2</b> spreadsheets - some best practices</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-laptop-some-basic-tools"><i class="fa fa-check"></i><b>2.3</b> setting up your laptop: some basic tools</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>2.5</b> installing R and RStudio desktop</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.0.1</b> base R and packages</a></li>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.1</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.2</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.3</b> finding help</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>4.1</b> go to the movies</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>4.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
+<li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-parts-of-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read (parts of) another introductory book</a></li>
+<li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.7.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.7.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
+<li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>6.1</b> projects are directories</a></li>
+<li class="chapter" data-level="6.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>6.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="6.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>6.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="6.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>6.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="6.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>6.5</b> What to do when you are stuck</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>7</b> principles of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>7.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>7.2</b> some early graphs</a></li>
+<li class="chapter" data-level="7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>7.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="7.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>7.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="7.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>7.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="7.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>7.6</b> the politics of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>7.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="7.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>7.6.2</b> poor design can be a tool to deceive</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>7.7</b> the psychology of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>7.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="7.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>7.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="7.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>7.7.3</b> visualizing uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>7.8</b> exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#notes-for-next-revision"><i class="fa fa-check"></i><b>7.10</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>9</b> on probability and statistics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>9.1</b> on probability</a></li>
+<li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>9.5</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>10.1</b> answers to the reproducibility crisis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>10.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>10.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
+<li class="chapter" data-level="10.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>10.1.3</b> partial answer 3: Pre-registration of your research</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>10.2</b> further readings</a></li>
+<li class="chapter" data-level="10.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-2"><i class="fa fa-check"></i><b>10.3</b> notes for next revision</a></li>
+</ul></li>
+<li class="part"><span><b>I Part III Towards data proficiency</b></span></li>
+<li class="chapter" data-level="11" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html"><i class="fa fa-check"></i><b>11</b> wrangling and tidying</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>11.1</b> the structure of the tidyverse</a></li>
+<li class="chapter" data-level="11.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#where-should-we-eat"><i class="fa fa-check"></i><b>11.2</b> where should we eat?</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>11.2.1</b> tall and wide formats</a></li>
+<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-2"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>11.3</b> more on tidy coding</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html"><i class="fa fa-check"></i><b>12</b> finding, exploring, cleaning, and combining data</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#florida-educational-data"><i class="fa fa-check"></i><b>12.1</b> florida educational data</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>12.1.1</b> a digression: Slash, Windows and the world.</a></li>
+<li class="chapter" data-level="12.1.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#getting-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>12.1.2</b> getting data from our machine into R</a></li>
+<li class="chapter" data-level="12.1.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#which-ones-are-high-schools"><i class="fa fa-check"></i><b>12.1.3</b> which ones are “high schools”?</a></li>
+<li class="chapter" data-level="12.1.4" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#can-we-compute-district-county-means-from-these-data"><i class="fa fa-check"></i><b>12.1.4</b> can we compute district (county) means from these data?</a></li>
+<li class="chapter" data-level="12.1.5" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-school-enrollments"><i class="fa fa-check"></i><b>12.1.5</b> estimating school enrollments</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#combining-datasets"><i class="fa fa-check"></i><b>12.2</b> combining datasets</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets"><i class="fa fa-check"></i><b>12.2.1</b> challenges in joining datasets</a></li>
+<li class="chapter" data-level="12.2.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#some-approaches-to-fixing-the-data"><i class="fa fa-check"></i><b>12.2.2</b> some approaches to fixing the data</a></li>
+<li class="chapter" data-level="12.2.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-the-relationship-between-economic-disadvantage-and-graduation-rates"><i class="fa fa-check"></i><b>12.2.3</b> estimating the relationship between economic disadvantage and graduation rates</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#recap-on-joining-files"><i class="fa fa-check"></i><b>12.3</b> recap / on joining files</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="applied-data-science.html"><a href="applied-data-science.html"><i class="fa fa-check"></i><b>13</b> applied data science</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="applied-data-science.html"><a href="applied-data-science.html#public-health-and-covid"><i class="fa fa-check"></i><b>13.1</b> public health and covid</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="applied-data-science.html"><a href="applied-data-science.html#covid-data-in-2025"><i class="fa fa-check"></i><b>13.1.1</b> COVID data in 2025</a></li>
+<li class="chapter" data-level="13.1.2" data-path="applied-data-science.html"><a href="applied-data-science.html#a-brief-digression-on-causality"><i class="fa fa-check"></i><b>13.1.2</b> a brief digression on causality</a></li>
+<li class="chapter" data-level="13.1.3" data-path="applied-data-science.html"><a href="applied-data-science.html#the-excess-mortality-package"><i class="fa fa-check"></i><b>13.1.3</b> the excess mortality package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="applied-data-science.html"><a href="applied-data-science.html#other-datasets-in-and-beyond-r"><i class="fa fa-check"></i><b>13.2</b> other datasets in and beyond R</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="applied-data-science.html"><a href="applied-data-science.html#makeextractcombine-your-own-data"><i class="fa fa-check"></i><b>13.2.1</b> make/extract/combine your own data</a></li>
+<li class="chapter" data-level="13.2.2" data-path="applied-data-science.html"><a href="applied-data-science.html#keep-it-manageable"><i class="fa fa-check"></i><b>13.2.2</b> keep it manageable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>14</b> strings, factors, dates, and times</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>14.1</b> strings</a></li>
+<li class="chapter" data-level="14.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>14.2</b> factors</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>14.2.1</b> types of babies</a></li>
+<li class="chapter" data-level="14.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>14.2.2</b> types of grown-ups</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>14.3</b> dates</a></li>
+<li class="chapter" data-level="14.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>14.4</b> times</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>15</b> lists</a></li>
+<li class="chapter" data-level="16" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>16</b> loops, functions, and beyond</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>16.1</b> loops</a></li>
+<li class="chapter" data-level="16.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>16.2</b> from loop to apply to purrr::map</a></li>
+<li class="chapter" data-level="16.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>16.3</b> some examples of functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>16.3.1</b> preliminaries</a></li>
+<li class="chapter" data-level="16.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>16.3.2</b> the function</a></li>
+<li class="chapter" data-level="16.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>16.3.3</b> applying the function</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>16.4</b> how many bottles of what?</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html"><i class="fa fa-check"></i><b>17</b> from correlation to multiple regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>17.1</b> bivariate analysis: Galton’s height data</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>17.1.1</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a></li>
+<li class="chapter" data-level="17.1.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-correlation-to-regression"><i class="fa fa-check"></i><b>17.1.2</b> from correlation to regression</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#multivariate-data"><i class="fa fa-check"></i><b>17.2</b> multivariate data</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="cross-validation.html"><a href="cross-validation.html"><i class="fa fa-check"></i><b>18</b> cross-validation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="cross-validation.html"><a href="cross-validation.html#revisiting-the-affairs-data"><i class="fa fa-check"></i><b>18.1</b> revisiting the affairs data</a></li>
+<li class="chapter" data-level="18.2" data-path="cross-validation.html"><a href="cross-validation.html#avoiding-capitalizing-on-chance"><i class="fa fa-check"></i><b>18.2</b> avoiding capitalizing on chance</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="cross-validation.html"><a href="cross-validation.html#splitting-the-data-into-training-and-test-subsamples"><i class="fa fa-check"></i><b>18.2.1</b> splitting the data into training and test subsamples</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="cross-validation.html"><a href="cross-validation.html#an-example-of-cross-validated-linear-regression"><i class="fa fa-check"></i><b>18.3</b> an example of cross-validated linear regression</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="cross-validation.html"><a href="cross-validation.html#applying-logistic-regression-analysis-to-the-training-data"><i class="fa fa-check"></i><b>18.3.1</b> applying logistic regression analysis to the training data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html"><i class="fa fa-check"></i><b>19</b> prediction and classification</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-regression-to-classification-selection-of-a-threshold"><i class="fa fa-check"></i><b>19.1</b> from regression to classification: selection of a threshold</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#applying-the-model-to-the-test-data"><i class="fa fa-check"></i><b>19.1.1</b> applying the model to the test data</a></li>
+<li class="chapter" data-level="19.1.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#changing-our-decision-threshold"><i class="fa fa-check"></i><b>19.1.2</b> changing our decision threshold</a></li>
+<li class="chapter" data-level="19.1.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#more-confusion"><i class="fa fa-check"></i><b>19.1.3</b> more confusion</a></li>
+<li class="chapter" data-level="19.1.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#rocs-and-auc"><i class="fa fa-check"></i><b>19.1.4</b> ROCs and AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#another-approach-to-classification-k-nearest-neighbor"><i class="fa fa-check"></i><b>19.2</b> another approach to classification: k-nearest neighbor</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#application-the-affairs-data"><i class="fa fa-check"></i><b>19.2.1</b> application: the affairs data</a></li>
+<li class="chapter" data-level="19.2.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-one-doppelganger-to-many"><i class="fa fa-check"></i><b>19.2.2</b> from one doppelganger to many</a></li>
+<li class="chapter" data-level="19.2.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-bayesian-classifier"><i class="fa fa-check"></i><b>19.2.3</b> the Bayesian classifier</a></li>
+<li class="chapter" data-level="19.2.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#back-to-the-affairs-data"><i class="fa fa-check"></i><b>19.2.4</b> Back to the affairs data</a></li>
+<li class="chapter" data-level="19.2.5" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#avoiding-capitalization-on-chance-again"><i class="fa fa-check"></i><b>19.2.5</b> avoiding capitalization on chance (again)</a></li>
+<li class="chapter" data-level="19.2.6" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-multinomial-case"><i class="fa fa-check"></i><b>19.2.6</b> the multinomial case</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><i class="fa fa-check"></i><b>20</b> machine learning: chihuahuas vs muffins, and other distinctions and ideas</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#supervised-versus-unsupervised"><i class="fa fa-check"></i><b>20.1</b> supervised versus unsupervised</a></li>
+<li class="chapter" data-level="20.2" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#prediction-versus-classification"><i class="fa fa-check"></i><b>20.2</b> prediction versus classification</a></li>
+<li class="chapter" data-level="20.3" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#understanding-versus-prediction"><i class="fa fa-check"></i><b>20.3</b> understanding versus prediction</a></li>
+<li class="chapter" data-level="20.4" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#bias-versus-variability"><i class="fa fa-check"></i><b>20.4</b> bias versus variability</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#resampling-beyond-test-training-and-validation-samples"><i class="fa fa-check"></i><b>20.4.1</b> resampling: beyond test, training, and validation samples</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#compensatory-versus-non-compensatory-problems"><i class="fa fa-check"></i><b>20.5</b> compensatory versus non-compensatory problems</a></li>
+<li class="chapter" data-level="20.6" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#a-postscript-the-tidymodels-packages"><i class="fa fa-check"></i><b>20.6</b> a postscript: The Tidymodels packages</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html"><i class="fa fa-check"></i><b>21</b> working with text: a case study</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#federal-workers"><i class="fa fa-check"></i><b>21.1</b> federal workers</a></li>
+<li class="chapter" data-level="21.2" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#finding-reddit-data"><i class="fa fa-check"></i><b>21.2</b> finding Reddit data</a></li>
+<li class="chapter" data-level="21.3" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#some-initial-observations"><i class="fa fa-check"></i><b>21.3</b> some initial observations</a></li>
+<li class="chapter" data-level="21.4" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#preprocessing"><i class="fa fa-check"></i><b>21.4</b> preprocessing</a></li>
+<li class="chapter" data-level="21.5" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#comparing-the-words-and-stems"><i class="fa fa-check"></i><b>21.5</b> comparing the words and stems</a></li>
+<li class="chapter" data-level="21.6" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#construction-of-differential-word-clouds"><i class="fa fa-check"></i><b>21.6</b> Construction of differential word clouds</a></li>
+<li class="chapter" data-level="21.7" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#bigrams"><i class="fa fa-check"></i><b>21.7</b> bigrams</a></li>
+<li class="chapter" data-level="21.8" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#categories-of-words"><i class="fa fa-check"></i><b>21.8</b> categories of words</a></li>
+<li class="chapter" data-level="21.9" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#code-for-assessing-liwc-effect-sizes-between-2-groups"><i class="fa fa-check"></i><b>21.9</b> Code for assessing LIWC effect sizes between 2 groups</a></li>
+<li class="chapter" data-level="21.10" data-path="working-with-text-a-case-study.html"><a href="working-with-text-a-case-study.html#exercise-what-would-you-do-next"><i class="fa fa-check"></i><b>21.10</b> exercise: what would you do next?</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html"><i class="fa fa-check"></i><b>22</b> an introduction to networks</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#key-network-concepts"><i class="fa fa-check"></i><b>22.1</b> key network concepts</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory"><i class="fa fa-check"></i><b>22.1.1</b> a simple example: networks and balance theory</a></li>
+<li class="chapter" data-level="22.1.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#centrality"><i class="fa fa-check"></i><b>22.1.2</b> centrality</a></li>
+<li class="chapter" data-level="22.1.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#components-and-communities"><i class="fa fa-check"></i><b>22.1.3</b> components and communities</a></li>
+<li class="chapter" data-level="22.1.4" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#another-example-its-a-small-world"><i class="fa fa-check"></i><b>22.1.4</b> another example: it’s a small world</a></li>
+<li class="chapter" data-level="22.1.5" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#static-and-dynamic-networks"><i class="fa fa-check"></i><b>22.1.5</b> static and dynamic networks</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html"><i class="fa fa-check"></i><b>23</b> case study: the network structure of computational social science</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#from-citation-network-to-structural-network"><i class="fa fa-check"></i><b>23.0.1</b> from citation network to structural network</a></li>
+<li class="chapter" data-level="23.0.2" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#looking-at-the-whole-citation-network"><i class="fa fa-check"></i><b>23.0.2</b> looking at the whole citation network</a></li>
+<li class="chapter" data-level="23.0.3" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#the-structural-network-centrality-and-community-structure"><i class="fa fa-check"></i><b>23.0.3</b> the structural network: Centrality and community structure</a></li>
+<li class="chapter" data-level="23.0.4" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#visualizing-the-network"><i class="fa fa-check"></i><b>23.0.4</b> visualizing the network</a></li>
+<li class="chapter" data-level="23.0.5" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#exploring-the-communities"><i class="fa fa-check"></i><b>23.0.5</b> exploring the communities</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html"><i class="fa fa-check"></i><b>24</b> some ethical concerns for the data scientist</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#ethics-and-personality-harvesting"><i class="fa fa-check"></i><b>24.1</b> ethics and personality harvesting</a></li>
+<li class="chapter" data-level="24.2" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-law-of-unintended-consequences"><i class="fa fa-check"></i><b>24.2</b> the law of unintended consequences</a></li>
+<li class="chapter" data-level="24.3" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#your-privacy-is-my-concern"><i class="fa fa-check"></i><b>24.3</b> your privacy is my concern</a></li>
+<li class="chapter" data-level="24.4" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#who-should-hold-the-digital-keys"><i class="fa fa-check"></i><b>24.4</b> who should hold the digital keys?</a></li>
+<li class="chapter" data-level="24.5" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#contact-tracing-and-covid-19"><i class="fa fa-check"></i><b>24.5</b> contact-tracing and COVID-19</a></li>
+<li class="chapter" data-level="24.6" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-digital-divide"><i class="fa fa-check"></i><b>24.6</b> the digital divide</a></li>
+<li class="chapter" data-level="24.7" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#still-more-case-studies"><i class="fa fa-check"></i><b>24.7</b> still more case studies</a></li>
+<li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
+<li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="exercises-3.html"><a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a></li>
+<li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.2</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.3" data-path="exercises-3.html"><a href="exercises-3.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.3</b> using AI to help us here</a>
+<ul>
+<li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
+<li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercises-3" class="section level1 hasAnchor" number="25">
+<h1><span class="header-section-number">25</span> exercises<a href="exercises-3.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet" class="section level2 hasAnchor" number="25.1">
+<h2><span class="header-section-number">25.1</span> generating correlated data (GPA and SAT) and putting it in a Google Sheet<a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It’s simple to generate a single random variable, but we often want to examine data for several variables that are correlated. The MVRnorm function, in the MASS package, does this.</p>
+<p>We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).</p>
+<p>We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="exercises-3.html#cb272-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb272-2"><a href="exercises-3.html#cb272-2" tabindex="-1"></a></span>
+<span id="cb272-3"><a href="exercises-3.html#cb272-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb272-4"><a href="exercises-3.html#cb272-4" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># for set of first names</span></span>
+<span id="cb272-5"><a href="exercises-3.html#cb272-5" tabindex="-1"></a><span class="fu">library</span>(randomNames) <span class="co"># for initial set of last names</span></span>
+<span id="cb272-6"><a href="exercises-3.html#cb272-6" tabindex="-1"></a><span class="fu">library</span>(googlesheets4) <span class="co"># to read and write to Google sheets</span></span>
+<span id="cb272-7"><a href="exercises-3.html#cb272-7" tabindex="-1"></a></span>
+<span id="cb272-8"><a href="exercises-3.html#cb272-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb272-9"><a href="exercises-3.html#cb272-9" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb272-10"><a href="exercises-3.html#cb272-10" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb272-11"><a href="exercises-3.html#cb272-11" tabindex="-1"></a></span>
+<span id="cb272-12"><a href="exercises-3.html#cb272-12" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">randomNames</span>(nrows, <span class="at">which.names =</span> <span class="st">&quot;first&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb272-13"><a href="exercises-3.html#cb272-13" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">randomNames</span>(nrows, </span>
+<span id="cb272-14"><a href="exercises-3.html#cb272-14" tabindex="-1"></a>                          <span class="at">which.names =</span> <span class="st">&quot;last&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb272-15"><a href="exercises-3.html#cb272-15" tabindex="-1"></a>       <span class="fu">rename</span> (<span class="at">FirstName =</span> <span class="dv">1</span>, <span class="at">LastName =</span> <span class="dv">2</span>)</span>
+<span id="cb272-16"><a href="exercises-3.html#cb272-16" tabindex="-1"></a></span>
+<span id="cb272-17"><a href="exercises-3.html#cb272-17" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> nrows, </span>
+<span id="cb272-18"><a href="exercises-3.html#cb272-18" tabindex="-1"></a>                <span class="at">mu =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="dv">0</span>),</span>
+<span id="cb272-19"><a href="exercises-3.html#cb272-19" tabindex="-1"></a>                <span class="at">Sigma =</span> <span class="fu">matrix</span>(</span>
+<span id="cb272-20"><a href="exercises-3.html#cb272-20" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="dv">1</span>, correlation, correlation, <span class="dv">1</span>),</span>
+<span id="cb272-21"><a href="exercises-3.html#cb272-21" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb272-22"><a href="exercises-3.html#cb272-22" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb272-23"><a href="exercises-3.html#cb272-23" tabindex="-1"></a>    <span class="fu">select</span> (<span class="at">gpa =</span> <span class="dv">1</span>, <span class="at">sat =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb272-24"><a href="exercises-3.html#cb272-24" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="dv">500</span> <span class="sc">+</span> (<span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(sat, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb272-25"><a href="exercises-3.html#cb272-25" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">round</span>(gpa, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb272-26"><a href="exercises-3.html#cb272-26" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="fu">case_when</span>(</span>
+<span id="cb272-27"><a href="exercises-3.html#cb272-27" tabindex="-1"></a>        gpa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb272-28"><a href="exercises-3.html#cb272-28" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="fl">4.5</span> <span class="sc">~</span> <span class="fl">4.5</span>,</span>
+<span id="cb272-29"><a href="exercises-3.html#cb272-29" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> gpa)) <span class="sc">%&gt;%</span> </span>
+<span id="cb272-30"><a href="exercises-3.html#cb272-30" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb272-31"><a href="exercises-3.html#cb272-31" tabindex="-1"></a>        sat <span class="sc">&lt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="dv">200</span>,</span>
+<span id="cb272-32"><a href="exercises-3.html#cb272-32" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">~</span> <span class="dv">800</span>,</span>
+<span id="cb272-33"><a href="exercises-3.html#cb272-33" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> sat))</span>
+<span id="cb272-34"><a href="exercises-3.html#cb272-34" tabindex="-1"></a></span>
+<span id="cb272-35"><a href="exercises-3.html#cb272-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
+<span id="cb272-36"><a href="exercises-3.html#cb272-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
+<span id="cb272-37"><a href="exercises-3.html#cb272-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) </span>
+<span id="cb272-38"><a href="exercises-3.html#cb272-38" tabindex="-1"></a><span class="co">#gs4_create(name=&quot;RandomHSGPASAT&quot;,</span></span>
+<span id="cb272-39"><a href="exercises-3.html#cb272-39" tabindex="-1"></a> <span class="co">#          sheets = hsdata)</span></span>
+<span id="cb272-40"><a href="exercises-3.html#cb272-40" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   FirstName LastName    gpa   sat
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 Aaliyah   Guttadore  0.72   510
+## 2 Aaqil     Beltran    2.72   400
+## 3 Aaqil     Robbe      0.75   400</code></pre>
+</div>
+<div id="now-look-at-your-data-in-the-spreadsheet" class="section level2 hasAnchor" number="25.2">
+<h2><span class="header-section-number">25.2</span> now look at your data in the spreadsheet<a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this <a href="https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing">spreadsheet</a>, what are the means for GPA and SAT? What are the standard deviations? what is the difference between ‘sort range’ and ‘sort sheet’ in Google Sheets?</p>
+<p>What do you think about the randomnames package? Do the names appear “representative” (of what)? If you wanted to generate a more representative sample of names, how might you proceed?</p>
+</div>
+<div id="using-ai-to-help-us-here" class="section level2 hasAnchor" number="25.3">
+<h2><span class="header-section-number">25.3</span> using AI to help us here<a href="exercises-3.html#using-ai-to-help-us-here" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Our intuitions about the idiosyncratic nature of names in the randomNames package is supported (not necessarily confirmed) by MS Copilot, which notes that “the randomNames package in R samples from a uniform distribution, which doesn’t reflect real-world name frequencies.”</p>
+<p>For first names, one solution is to use the babynames data, and then to weight the probability of including the name in our sample by the actual frequency in (some) population:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="exercises-3.html#cb274-1" tabindex="-1"></a><span class="co"># load babynames and Filter for a specific year or range</span></span>
+<span id="cb274-2"><a href="exercises-3.html#cb274-2" tabindex="-1"></a>names_data <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
+<span id="cb274-3"><a href="exercises-3.html#cb274-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb274-4"><a href="exercises-3.html#cb274-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb274-5"><a href="exercises-3.html#cb274-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb274-6"><a href="exercises-3.html#cb274-6" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb274-7"><a href="exercises-3.html#cb274-7" tabindex="-1"></a></span>
+<span id="cb274-8"><a href="exercises-3.html#cb274-8" tabindex="-1"></a><span class="co"># Sample names with probability proportional to frequency</span></span>
+<span id="cb274-9"><a href="exercises-3.html#cb274-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb274-10"><a href="exercises-3.html#cb274-10" tabindex="-1"></a>sampled_first_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(names_data<span class="sc">$</span>name, <span class="at">size =</span> nrows, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> names_data<span class="sc">$</span>freq) <span class="sc">|&gt;</span> </span>
+<span id="cb274-11"><a href="exercises-3.html#cb274-11" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb274-12"><a href="exercises-3.html#cb274-12" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewFirstName =</span> <span class="dv">1</span>)</span>
+<span id="cb274-13"><a href="exercises-3.html#cb274-13" tabindex="-1"></a><span class="fu">slice</span>(sampled_first_names, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 1
+##    NewFirstName
+##    &lt;chr&gt;       
+##  1 Tea         
+##  2 Emma        
+##  3 Olivia      
+##  4 Noemi       
+##  5 Ruger       
+##  6 Madelyn     
+##  7 Jeffrey     
+##  8 Caleb       
+##  9 Audrey      
+## 10 Elizabeth</code></pre>
+<div id="for-last-names-its-a-little-bit-trickier" class="section level3 hasAnchor" number="25.3.1">
+<h3><span class="header-section-number">25.3.1</span> for last names, it’s a little bit trickier<a href="exercises-3.html#for-last-names-its-a-little-bit-trickier" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For last names, we’ll also use census data. There’s not an R package that has these, but there is Census data that is available in a zip file. It’s described at <a href="https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf" class="uri">https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf</a>. There are two files that are available - the top 1000 names, and then a (much longer) file of all names that occur more than 100 times. We’ll use the latter. <strong>Why do we do this?</strong></p>
+<p>Our approach to downloading a zip file directly into R follows: First, we specify a temporary file, then download the zip file into it. Then we unzip this and save it in a subdirectory called ‘data.’ Finally, we read it into R:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="exercises-3.html#cb276-1" tabindex="-1"></a>temp_zip_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.zip&quot;</span>)</span>
+<span id="cb276-2"><a href="exercises-3.html#cb276-2" tabindex="-1"></a>sourcefile <span class="ot">&lt;-</span> <span class="st">&quot;https://www2.census.gov/topics/genealogy/2010surnames/names.zip&quot;</span></span>
+<span id="cb276-3"><a href="exercises-3.html#cb276-3" tabindex="-1"></a><span class="fu">download.file</span>(sourcefile, <span class="at">destfile =</span> temp_zip_file, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb276-4"><a href="exercises-3.html#cb276-4" tabindex="-1"></a><span class="fu">unzip</span>(temp_zip_file, <span class="at">files =</span> <span class="st">&quot;Names_2010Census.csv&quot;</span>, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb276-5"><a href="exercises-3.html#cb276-5" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb276-6"><a href="exercises-3.html#cb276-6" tabindex="-1"></a>    <span class="fu">arrange</span>(rank)</span>
+<span id="cb276-7"><a href="exercises-3.html#cb276-7" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##               name rank    count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
+## 1  ALL OTHER NAMES    0 29312001  9936.97      9936.97    66.65     8.53   7.97    0.86      2.32       13.67
+## 2            SMITH    1  2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
+## 3          JOHNSON    2  1932812   655.24      1483.42    58.97    34.63   0.54    0.94      2.56        2.36
+## 4         WILLIAMS    3  1625252   550.97      2034.39    45.75    47.68   0.46    0.82      2.81        2.49
+## 5            BROWN    4  1437026   487.16      2521.56    57.95     35.6   0.51    0.87      2.55        2.52
+## 6            JONES    5  1425470   483.24      3004.80    55.19    38.48   0.44       1      2.61        2.29
+## 7           GARCIA    6  1166120   395.32      3400.12     5.38     0.45   1.41    0.47      0.26       92.03
+## 8           MILLER    7  1161437   393.74      3793.86    84.11    10.76   0.54    0.66      1.77        2.17
+## 9            DAVIS    8  1116357   378.45      4172.31     62.2     31.6   0.49    0.82      2.45        2.44
+## 10       RODRIGUEZ    9  1094924   371.19      4543.50     4.75     0.54   0.57    0.18      0.18       93.77</code></pre>
+</div>
+<div id="cleaning-these-up" class="section level3 hasAnchor" number="25.3.2">
+<h3><span class="header-section-number">25.3.2</span> cleaning these up<a href="exercises-3.html#cleaning-these-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the lastname data, there’s a problem. Some 10% of the names in the data - presumably rare ones - are replaced with “ALL OTHER NAMES.” We’ll just filter these out.</p>
+<p>Finally, we combine the new NewFirstName and NewLastName with our original HS data. We also replace the SHOUTING (uppercase) in the NewLastName variable with Title Case:</p>
+<p><strong>Did we do this right? Any other issues? How might you have done this better?</strong></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="exercises-3.html#cb278-1" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb278-2"><a href="exercises-3.html#cb278-2" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">!=</span> <span class="st">&quot;ALL OTHER NAMES&quot;</span>)</span>
+<span id="cb278-3"><a href="exercises-3.html#cb278-3" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##         name rank   count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
+## 1      SMITH    1 2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
+## 2    JOHNSON    2 1932812   655.24      1483.42    58.97    34.63   0.54    0.94      2.56        2.36
+## 3   WILLIAMS    3 1625252   550.97      2034.39    45.75    47.68   0.46    0.82      2.81        2.49
+## 4      BROWN    4 1437026   487.16      2521.56    57.95     35.6   0.51    0.87      2.55        2.52
+## 5      JONES    5 1425470   483.24      3004.80    55.19    38.48   0.44       1      2.61        2.29
+## 6     GARCIA    6 1166120   395.32      3400.12     5.38     0.45   1.41    0.47      0.26       92.03
+## 7     MILLER    7 1161437   393.74      3793.86    84.11    10.76   0.54    0.66      1.77        2.17
+## 8      DAVIS    8 1116357   378.45      4172.31     62.2     31.6   0.49    0.82      2.45        2.44
+## 9  RODRIGUEZ    9 1094924   371.19      4543.50     4.75     0.54   0.57    0.18      0.18       93.77
+## 10  MARTINEZ   10 1060159   359.40      4902.90     5.28     0.49    0.6    0.51      0.22       92.91</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="exercises-3.html#cb280-1" tabindex="-1"></a><span class="co"># then pull out a weighted sample of last names</span></span>
+<span id="cb280-2"><a href="exercises-3.html#cb280-2" tabindex="-1"></a>sampled_last_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(surnames<span class="sc">$</span>name, <span class="at">size =</span> nrows, </span>
+<span id="cb280-3"><a href="exercises-3.html#cb280-3" tabindex="-1"></a>                            <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> surnames<span class="sc">$</span>count) <span class="sc">|&gt;</span> </span>
+<span id="cb280-4"><a href="exercises-3.html#cb280-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb280-5"><a href="exercises-3.html#cb280-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewLastName =</span> <span class="dv">1</span>)</span>
+<span id="cb280-6"><a href="exercises-3.html#cb280-6" tabindex="-1"></a></span>
+<span id="cb280-7"><a href="exercises-3.html#cb280-7" tabindex="-1"></a>hsdata2 <span class="ot">&lt;-</span> hsdata <span class="sc">|&gt;</span></span>
+<span id="cb280-8"><a href="exercises-3.html#cb280-8" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_first_names) <span class="sc">|&gt;</span> </span>
+<span id="cb280-9"><a href="exercises-3.html#cb280-9" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_last_names) <span class="sc">|&gt;</span> </span>
+<span id="cb280-10"><a href="exercises-3.html#cb280-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">NewLastName =</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>(NewLastName))</span>
+<span id="cb280-11"><a href="exercises-3.html#cb280-11" tabindex="-1"></a><span class="fu">slice</span>(hsdata2, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 6
+##    FirstName LastName    gpa   sat NewFirstName NewLastName
+##    &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      
+##  1 Aaliyah   Guttadore  0.72   510 Tea          Macdonald  
+##  2 Aaqil     Beltran    2.72   400 Emma         Tornberg   
+##  3 Aaqil     Robbe      0.75   400 Olivia       Pedraja    
+##  4 Aaron     Taylor     3.93   470 Noemi        Carter     
+##  5 Aaron     Baca       3.5    610 Ruger        Roberts    
+##  6 Aaron     Johnston   2      360 Madelyn      Alicea     
+##  7 Aasim     Warner     4.43   600 Jeffrey      Tucker     
+##  8 Aasima    Kim        3.41   430 Caleb        Anderson   
+##  9 Aasima    Lee        4.46   440 Audrey       Medina     
+## 10 Aasiya    Dillard    3.57   450 Elizabeth    Vazquez</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="some-ethical-concerns-for-the-data-scientist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
