@@ -1,8 +1,8 @@
----
-title: "99-MoreExercises"
-output: html_document
-date: "2025-08-28"
----
+```{r more examples, include=FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# More exercises
+
 ## Getting data from a package like MDSR
 ```{r}
 library(tidyverse)

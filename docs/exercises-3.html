@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>25 exercises | 99-MoreExercises</title>
-  <meta name="description" content="25 exercises | 99-MoreExercises" />
+  <title>25 exercises | Data science for the liberal arts</title>
+  <meta name="description" content="25 exercises | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="25 exercises | 99-MoreExercises" />
+  <meta property="og:title" content="25 exercises | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="25 exercises | 99-MoreExercises" />
+  <meta name="twitter:title" content="25 exercises | Data science for the liberal arts" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-08-28" />
+<meta name="date" content="2025-09-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="some-ethical-concerns-for-the-data-scientist.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="more-exercises.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -462,7 +462,10 @@ div.csl-indent {
 <li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
 <li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
 </ul></li>
-<li class="chapter" data-level="25.4" data-path="exercises-3.html"><a href="exercises-3.html#getting-data-from-a-package-like-mdsr"><i class="fa fa-check"></i><b>25.4</b> Getting data from a package like MDSR</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="more-exercises.html"><a href="more-exercises.html"><i class="fa fa-check"></i><b>26</b> More exercises</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="more-exercises.html"><a href="more-exercises.html#getting-data-from-a-package-like-mdsr"><i class="fa fa-check"></i><b>26.1</b> Getting data from a package like MDSR</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -474,7 +477,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">99-MoreExercises</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
           </h1>
         </div>
 
@@ -640,16 +643,6 @@ div.csl-indent {
 
 </div>
 </div>
-<div id="getting-data-from-a-package-like-mdsr" class="section level2 hasAnchor" number="25.4">
-<h2><span class="header-section-number">25.4</span> Getting data from a package like MDSR<a href="exercises-3.html#getting-data-from-a-package-like-mdsr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="exercises-3.html#cb283-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb283-2"><a href="exercises-3.html#cb283-2" tabindex="-1"></a><span class="fu">library</span>(mdsr)</span>
-<span id="cb283-3"><a href="exercises-3.html#cb283-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;mdsr&quot;</span>)</span>
-<span id="cb283-4"><a href="exercises-3.html#cb283-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> x<span class="sc">$</span>results <span class="sc">|&gt;</span> </span>
-<span id="cb283-5"><a href="exercises-3.html#cb283-5" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb283-6"><a href="exercises-3.html#cb283-6" tabindex="-1"></a>    <span class="fu">select</span>(Item, Title)</span></code></pre></div>
-
-</div>
 </div>
             </section>
 
@@ -657,7 +650,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="some-ethical-concerns-for-the-data-scientist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="more-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -202,4 +202,5 @@ now-look-at-your-data-in-the-spreadsheet
 using-ai-to-help-us-here
 for-last-names-its-a-little-bit-trickier
 cleaning-these-up
+more-exercises
 getting-data-from-a-package-like-mdsr

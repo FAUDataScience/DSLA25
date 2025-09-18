@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>22 an introduction to networks | Data science for the liberal arts</title>
-  <meta name="description" content="22 an introduction to networks | Data science for the liberal arts" />
+  <title>26 More exercises | Data science for the liberal arts</title>
+  <meta name="description" content="26 More exercises | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta property="og:title" content="26 More exercises | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta name="twitter:title" content="26 More exercises | Data science for the liberal arts" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="working-with-text-a-case-study.html"/>
-<link rel="next" href="case-study-the-network-structure-of-computational-social-science.html"/>
+<link rel="prev" href="exercises-3.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -485,125 +485,17 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="an-introduction-to-networks" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">22</span> an introduction to networks<a href="an-introduction-to-networks.html#an-introduction-to-networks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>“No man is an island,<br />
-entire of itself;<br />
-every man is a piece of the continent,<br />
-a part of the main.”</em></p>
-<p>-John Donne.</p>
-<p>Networks are everywhere. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism <span class="citation">(<a href="#ref-apicella2012">Apicella et al. 2012</a>)</span>, kidney donations <span class="citation">(<a href="#ref-nikzad2021">Nikzad et al. 2021</a>)</span>, and obesity <span class="citation">(<a href="#ref-christakis2007">Christakis and Fowler 2007</a>)</span> can be understood, in part, as network phenomena.</p>
-<p>Networks can be nested. The internet can be seen as a network of machines linked by cables and various cellular and satellite technologies. Social network applications such as <em>X</em> and Instagram operate within these networks, and your own network of acquaintances</p>
-<p>In this chapter, we briefly introduce some key network concepts. We then consider how network structures can be examined and understood in the tidyverse. In the next chapter, we will consider a case study in network analysis, examining a <em>bibliometric</em> network structure of a scholarly discipline.</p>
-<div id="key-network-concepts" class="section level2 hasAnchor" number="22.1">
-<h2><span class="header-section-number">22.1</span> key network concepts<a href="an-introduction-to-networks.html#key-network-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Networks involve two types of objects <strong>nodes</strong> (or vertices) and <strong>edges</strong> (or links). Networks may be directed or undirected. Edges in a <strong>directed</strong> network might describe relationships such as <em>likes, follows,</em> <em>has heard of, cites,</em> or <em>clicks on.</em> We can represent them by arrows between nodes.</p>
-<p>Edges in an <strong>undirected</strong> network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as <em>are siblings, are allies, know each other, are married, have been cited by the same source,</em> and <em>have both been exposed to.</em> We represent undirected networks by lines without arrowheads.</p>
-<p>Unrequited love is a directed relationship, requited or reciprocal love can be modeled as undirected one.</p>
-<p><strong>Paths</strong> are series of connected edges between nodes.</p>
-<p>Networks may be <strong>unsigned</strong> (only positive links) or <strong>signed</strong> (with positive and negative links).</p>
-<p>In some networks, there is just one type of node. In addition to these <strong>single-mode networks</strong>, we will also encounter <strong>bipartite (two-mode) networks</strong>. A network of enrollments, for example, might include two types of nodes (e.g., classes and students). Edges in such a network describe relationships such as <em>is enrolled in</em>. In <strong>bipartite networks,</strong> there can only be links between different types of nodes (so classes can’t be enrolled in classes for example).</p>
-<div id="a-simple-example-networks-and-balance-theory" class="section level3 hasAnchor" number="22.1.1">
-<h3><span class="header-section-number">22.1.1</span> a simple example: networks and balance theory<a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<blockquote>
-<p>Consider an undirected, signed network consisting of just three nodes and the edges between them. The nodes might represent, for example, persons <span class="citation">(<a href="#ref-harary1959">Harary 1959</a>)</span> or countries <span class="citation">(<a href="#ref-estrada2019">Estrada 2019</a>)</span>. Relationships between the nodes might include things such as <em>gets along with/does not get along with, trusts/doesn’t trust,</em> etc.</p>
-<p>For networks (graphs) such as these, what can we say about the case where there are three negative edges? Two? One? Zero? Which ones seem to ‘make sense’ and might be expected to be stable over time?</p>
-<p>A recent <a href="https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html"><em>NY Times</em> article</a> illustrates how the complex geopolitical situation in the contemporary Middle East can be modeled using a simple signed network.</p>
-</blockquote>
-</div>
-<div id="centrality" class="section level3 hasAnchor" number="22.1.2">
-<h3><span class="header-section-number">22.1.2</span> centrality<a href="an-introduction-to-networks.html#centrality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Within networks, nodes differ in <strong>centrality,</strong> connectedness, or importance. There are different measures and types of centrality - for example, the number (<strong>degree</strong>) of a node describes its number of connections. In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by ‘followers’ and ‘is following’, respectively.</p>
-<p>Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and <strong>PageRank</strong>, are <em>recursive</em>. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The “Page” in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Surgey Brin) of Google <span class="citation">(<a href="#ref-page1999">Page et al. 1999</a>)</span>.</p>
-</div>
-<div id="components-and-communities" class="section level3 hasAnchor" number="22.1.3">
-<h3><span class="header-section-number">22.1.3</span> components and communities<a href="an-introduction-to-networks.html#components-and-communities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Networks vary in their size (e.g., big vs small), number of discrete components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively unambiguous, communities in networks are often fuzzy or difficult to discern, in much the same way that constellations in the night sky might seem arbitrarily ‘drawn.’</p>
-<p>Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a “top-down” approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure.</p>
-<p>Alternatively, we can use a “bottom-up” approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as <strong>cliques.</strong> In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated previously in Figure 20.1.</p>
-</div>
-<div id="another-example-its-a-small-world" class="section level3 hasAnchor" number="22.1.4">
-<h3><span class="header-section-number">22.1.4</span> another example: it’s a small world<a href="an-introduction-to-networks.html#another-example-its-a-small-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<blockquote>
-<p>Consider a bipartite network in which there are two types of nodes, students and classes. An edge in this network represents a particular student who is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? <span class="citation">(<a href="#ref-milgram1967">Milgram 1967</a>)</span>.</p>
-</blockquote>
-<p>In data science, it’s generally easiest to begin with very small datasets and to work towards bigger ones. With networks, this isn’t always the case, because very small networks may be structurally more complex than larger ones.</p>
-</div>
-<div id="static-and-dynamic-networks" class="section level3 hasAnchor" number="22.1.5">
-<h3><span class="header-section-number">22.1.5</span> static and dynamic networks<a href="an-introduction-to-networks.html#static-and-dynamic-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is <strong>contagion</strong> - not just of diseases, but also of emotions <span class="citation">(<a href="#ref-kelly2016">Kelly, Iannone, and McCarty 2016</a>)</span> and a range of socially desirable and undesirable phenomena <span class="citation">(<a href="#ref-christakis2013">Christakis and Fowler 2013</a>)</span>. Another phenomena seen in dynamic networks is <strong>preferential attachment</strong> in which the most important nodes become still more important over time <span class="citation">(<a href="#ref-watts2004">Watts 2004</a>)</span>.</p>
-<p>Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products ‘go viral’ while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of the digital age.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="an-introduction-to-networks.html#cb253-1" tabindex="-1"></a>ba <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-2"><a href="an-introduction-to-networks.html#cb253-2" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-3"><a href="an-introduction-to-networks.html#cb253-3" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-4"><a href="an-introduction-to-networks.html#cb253-4" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-5"><a href="an-introduction-to-networks.html#cb253-5" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-6"><a href="an-introduction-to-networks.html#cb253-6" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-7"><a href="an-introduction-to-networks.html#cb253-7" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-8"><a href="an-introduction-to-networks.html#cb253-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-9"><a href="an-introduction-to-networks.html#cb253-9" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-10"><a href="an-introduction-to-networks.html#cb253-10" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-11"><a href="an-introduction-to-networks.html#cb253-11" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-12"><a href="an-introduction-to-networks.html#cb253-12" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-13"><a href="an-introduction-to-networks.html#cb253-13" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-14"><a href="an-introduction-to-networks.html#cb253-14" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-15"><a href="an-introduction-to-networks.html#cb253-15" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-16"><a href="an-introduction-to-networks.html#cb253-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-17"><a href="an-introduction-to-networks.html#cb253-17" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-18"><a href="an-introduction-to-networks.html#cb253-18" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-19"><a href="an-introduction-to-networks.html#cb253-19" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-20"><a href="an-introduction-to-networks.html#cb253-20" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-21"><a href="an-introduction-to-networks.html#cb253-21" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-22"><a href="an-introduction-to-networks.html#cb253-22" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-23"><a href="an-introduction-to-networks.html#cb253-23" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-24"><a href="an-introduction-to-networks.html#cb253-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-25"><a href="an-introduction-to-networks.html#cb253-25" tabindex="-1"></a><span class="fu">plot_grid</span> (ba, bb, bc,</span>
-<span id="cb253-26"><a href="an-introduction-to-networks.html#cb253-26" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb253-27"><a href="an-introduction-to-networks.html#cb253-27" tabindex="-1"></a>  <span class="fu">draw_figure_label</span>(<span class="st">&quot;Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<div id="more-exercises" class="section level1 hasAnchor" number="26">
+<h1><span class="header-section-number">26</span> More exercises<a href="more-exercises.html#more-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="getting-data-from-a-package-like-mdsr" class="section level2 hasAnchor" number="26.1">
+<h2><span class="header-section-number">26.1</span> Getting data from a package like MDSR<a href="more-exercises.html#getting-data-from-a-package-like-mdsr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="more-exercises.html#cb283-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb283-2"><a href="more-exercises.html#cb283-2" tabindex="-1"></a><span class="fu">library</span>(mdsr)</span>
+<span id="cb283-3"><a href="more-exercises.html#cb283-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;mdsr&quot;</span>)</span>
+<span id="cb283-4"><a href="more-exercises.html#cb283-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> x<span class="sc">$</span>results <span class="sc">|&gt;</span> </span>
+<span id="cb283-5"><a href="more-exercises.html#cb283-5" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb283-6"><a href="more-exercises.html#cb283-6" tabindex="-1"></a>    <span class="fu">select</span>(Item, Title)</span></code></pre></div>
 
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="an-introduction-to-networks.html#cb254-1" tabindex="-1"></a><span class="co">#if needed, install.packages(&quot;&quot;)</span></span>
-<span id="cb254-2"><a href="an-introduction-to-networks.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb254-3"><a href="an-introduction-to-networks.html#cb254-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for tables </span></span>
-<span id="cb254-4"><a href="an-introduction-to-networks.html#cb254-4" tabindex="-1"></a><span class="fu">library</span>(bibliometrix) <span class="co"># for generating network from bib data &amp; reducing to one mode</span></span>
-<span id="cb254-5"><a href="an-introduction-to-networks.html#cb254-5" tabindex="-1"></a><span class="co">#library(qgraph)  # for drawing simple graphs</span></span>
-<span id="cb254-6"><a href="an-introduction-to-networks.html#cb254-6" tabindex="-1"></a><span class="fu">library</span>(tidygraph) <span class="co"># for representing graphs as matrices of nodes/edges</span></span>
-<span id="cb254-7"><a href="an-introduction-to-networks.html#cb254-7" tabindex="-1"></a><span class="fu">library</span>(igraph) <span class="co"># needed by tidygraph</span></span>
-<span id="cb254-8"><a href="an-introduction-to-networks.html#cb254-8" tabindex="-1"></a><span class="fu">library</span>(ggraph) </span></code></pre></div>
-</div>
-</div>
-</div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-apicella2012" class="csl-entry">
-Apicella, Coren L., Frank W. Marlowe, James H. Fowler, and Nicholas A. Christakis. 2012. <span>“Social Networks and Cooperation in Hunter-Gatherers.”</span> <em>Nature</em> 481 (7382): 497–501. <a href="https://doi.org/10/fz3v4v">https://doi.org/10/fz3v4v</a>.
-</div>
-<div id="ref-christakis2007" class="csl-entry">
-Christakis, Nicholas A., and James H. Fowler. 2007. <span>“The Spread of Obesity in a Large Social Network over 32 Years.”</span> <em>N Engl J Med</em> 357: 3709. <a href="https://doi.org/10/dmrgt6">https://doi.org/10/dmrgt6</a>.
-</div>
-<div id="ref-christakis2013" class="csl-entry">
-———. 2013. <span>“Social Contagion Theory: Examining Dynamic Social Networks and Human Behavior.”</span> <em>Statistics in Medicine</em> 32 (4): 556–77. <a href="https://doi.org/10/ck2j">https://doi.org/10/ck2j</a>.
-</div>
-<div id="ref-estrada2019" class="csl-entry">
-Estrada, Ernesto. 2019. <span>“Rethinking Structural Balance in Signed Social Networks.”</span> <em>Discrete Applied Mathematics</em> 268 (September): 70–90. <a href="https://doi.org/10.1016/j.dam.2019.04.019">https://doi.org/10.1016/j.dam.2019.04.019</a>.
-</div>
-<div id="ref-harary1959" class="csl-entry">
-Harary, Frank. 1959. <span>“On the Measurement of Structural Balance.”</span> <em>Behavioral Science</em> 4 (4): 316–23. <a href="https://doi.org/10/cp9nfp">https://doi.org/10/cp9nfp</a>.
-</div>
-<div id="ref-kelly2016" class="csl-entry">
-Kelly, Janice R., Nicole E. Iannone, and Megan K. McCarty. 2016. <span>“Emotional Contagion of Anger Is Automatic: An Evolutionary Explanation.”</span> <em>British Journal of Social Psychology</em> 55 (1): 182–91. <a href="https://doi.org/10/gf6mn3">https://doi.org/10/gf6mn3</a>.
-</div>
-<div id="ref-milgram1967" class="csl-entry">
-Milgram, Stanley. 1967. <span>“The Small World Problem.”</span> <em>Psychology Today</em> 2 (1): 6067.
-</div>
-<div id="ref-nikzad2021" class="csl-entry">
-Nikzad, Afshin, Mohammad Akbarpour, Michael A. Rees, and Alvin E. Roth. 2021. <span>“Global Kidney Chains.”</span> <em>Proceedings of the National Academy of Sciences of the United States of America</em> 118 (36): e2106652118. <a href="https://doi.org/10.1073/pnas.2106652118">https://doi.org/10.1073/pnas.2106652118</a>.
-</div>
-<div id="ref-page1999" class="csl-entry">
-Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“The PageRank Citation Ranking: Bringing Order to the Web.”</span>
-</div>
-<div id="ref-watts2004" class="csl-entry">
-Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <span>Networks</span>.”</span> <em>Annual Review of Sociology</em> 3: 243–70. <a href="https://www.jstor.org/stable/29737693">https://www.jstor.org/stable/29737693</a>.
 </div>
 </div>
             </section>
@@ -611,8 +503,8 @@ Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <
           </div>
         </div>
       </div>
-<a href="working-with-text-a-case-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="case-study-the-network-structure-of-computational-social-science.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
