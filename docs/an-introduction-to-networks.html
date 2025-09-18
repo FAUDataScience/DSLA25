@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>22 an introduction to networks | Data science for the liberal arts</title>
-  <meta name="description" content="22 an introduction to networks | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <title>22 an introduction to networks | 99-MoreExercises</title>
+  <meta name="description" content="22 an introduction to networks | 99-MoreExercises" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta property="og:title" content="22 an introduction to networks | 99-MoreExercises" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta name="twitter:title" content="22 an introduction to networks | 99-MoreExercises" />
   
   
   
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -461,6 +462,7 @@ div.csl-indent {
 <li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
 <li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
 </ul></li>
+<li class="chapter" data-level="25.4" data-path="exercises-3.html"><a href="exercises-3.html#getting-data-from-a-package-like-mdsr"><i class="fa fa-check"></i><b>25.4</b> Getting data from a package like MDSR</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -472,7 +474,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">99-MoreExercises</a>
           </h1>
         </div>
 
@@ -528,43 +530,43 @@ a part of the main.”</em></p>
 <h3><span class="header-section-number">22.1.5</span> static and dynamic networks<a href="an-introduction-to-networks.html#static-and-dynamic-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is <strong>contagion</strong> - not just of diseases, but also of emotions <span class="citation">(<a href="#ref-kelly2016">Kelly, Iannone, and McCarty 2016</a>)</span> and a range of socially desirable and undesirable phenomena <span class="citation">(<a href="#ref-christakis2013">Christakis and Fowler 2013</a>)</span>. Another phenomena seen in dynamic networks is <strong>preferential attachment</strong> in which the most important nodes become still more important over time <span class="citation">(<a href="#ref-watts2004">Watts 2004</a>)</span>.</p>
 <p>Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products ‘go viral’ while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of the digital age.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="an-introduction-to-networks.html#cb252-1" tabindex="-1"></a>ba <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb252-2"><a href="an-introduction-to-networks.html#cb252-2" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb252-3"><a href="an-introduction-to-networks.html#cb252-3" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb252-4"><a href="an-introduction-to-networks.html#cb252-4" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb252-5"><a href="an-introduction-to-networks.html#cb252-5" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb252-6"><a href="an-introduction-to-networks.html#cb252-6" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb252-7"><a href="an-introduction-to-networks.html#cb252-7" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb252-8"><a href="an-introduction-to-networks.html#cb252-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb252-9"><a href="an-introduction-to-networks.html#cb252-9" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb252-10"><a href="an-introduction-to-networks.html#cb252-10" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb252-11"><a href="an-introduction-to-networks.html#cb252-11" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb252-12"><a href="an-introduction-to-networks.html#cb252-12" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb252-13"><a href="an-introduction-to-networks.html#cb252-13" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb252-14"><a href="an-introduction-to-networks.html#cb252-14" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb252-15"><a href="an-introduction-to-networks.html#cb252-15" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb252-16"><a href="an-introduction-to-networks.html#cb252-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb252-17"><a href="an-introduction-to-networks.html#cb252-17" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb252-18"><a href="an-introduction-to-networks.html#cb252-18" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb252-19"><a href="an-introduction-to-networks.html#cb252-19" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb252-20"><a href="an-introduction-to-networks.html#cb252-20" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb252-21"><a href="an-introduction-to-networks.html#cb252-21" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb252-22"><a href="an-introduction-to-networks.html#cb252-22" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb252-23"><a href="an-introduction-to-networks.html#cb252-23" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb252-24"><a href="an-introduction-to-networks.html#cb252-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb252-25"><a href="an-introduction-to-networks.html#cb252-25" tabindex="-1"></a><span class="fu">plot_grid</span> (ba, bb, bc,</span>
-<span id="cb252-26"><a href="an-introduction-to-networks.html#cb252-26" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb252-27"><a href="an-introduction-to-networks.html#cb252-27" tabindex="-1"></a>  <span class="fu">draw_figure_label</span>(<span class="st">&quot;Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="an-introduction-to-networks.html#cb253-1" tabindex="-1"></a>ba <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
+<span id="cb253-2"><a href="an-introduction-to-networks.html#cb253-2" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
+<span id="cb253-3"><a href="an-introduction-to-networks.html#cb253-3" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb253-4"><a href="an-introduction-to-networks.html#cb253-4" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-5"><a href="an-introduction-to-networks.html#cb253-5" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="an-introduction-to-networks.html#cb253-6" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb253-7"><a href="an-introduction-to-networks.html#cb253-7" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
+<span id="cb253-8"><a href="an-introduction-to-networks.html#cb253-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb253-9"><a href="an-introduction-to-networks.html#cb253-9" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
+<span id="cb253-10"><a href="an-introduction-to-networks.html#cb253-10" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
+<span id="cb253-11"><a href="an-introduction-to-networks.html#cb253-11" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb253-12"><a href="an-introduction-to-networks.html#cb253-12" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-13"><a href="an-introduction-to-networks.html#cb253-13" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb253-14"><a href="an-introduction-to-networks.html#cb253-14" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb253-15"><a href="an-introduction-to-networks.html#cb253-15" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
+<span id="cb253-16"><a href="an-introduction-to-networks.html#cb253-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb253-17"><a href="an-introduction-to-networks.html#cb253-17" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
+<span id="cb253-18"><a href="an-introduction-to-networks.html#cb253-18" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
+<span id="cb253-19"><a href="an-introduction-to-networks.html#cb253-19" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb253-20"><a href="an-introduction-to-networks.html#cb253-20" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-21"><a href="an-introduction-to-networks.html#cb253-21" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb253-22"><a href="an-introduction-to-networks.html#cb253-22" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb253-23"><a href="an-introduction-to-networks.html#cb253-23" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
+<span id="cb253-24"><a href="an-introduction-to-networks.html#cb253-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb253-25"><a href="an-introduction-to-networks.html#cb253-25" tabindex="-1"></a><span class="fu">plot_grid</span> (ba, bb, bc,</span>
+<span id="cb253-26"><a href="an-introduction-to-networks.html#cb253-26" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb253-27"><a href="an-introduction-to-networks.html#cb253-27" tabindex="-1"></a>  <span class="fu">draw_figure_label</span>(<span class="st">&quot;Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="an-introduction-to-networks.html#cb253-1" tabindex="-1"></a><span class="co">#if needed, install.packages(&quot;&quot;)</span></span>
-<span id="cb253-2"><a href="an-introduction-to-networks.html#cb253-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb253-3"><a href="an-introduction-to-networks.html#cb253-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for tables </span></span>
-<span id="cb253-4"><a href="an-introduction-to-networks.html#cb253-4" tabindex="-1"></a><span class="fu">library</span>(bibliometrix) <span class="co"># for generating network from bib data &amp; reducing to one mode</span></span>
-<span id="cb253-5"><a href="an-introduction-to-networks.html#cb253-5" tabindex="-1"></a><span class="co">#library(qgraph)  # for drawing simple graphs</span></span>
-<span id="cb253-6"><a href="an-introduction-to-networks.html#cb253-6" tabindex="-1"></a><span class="fu">library</span>(tidygraph) <span class="co"># for representing graphs as matrices of nodes/edges</span></span>
-<span id="cb253-7"><a href="an-introduction-to-networks.html#cb253-7" tabindex="-1"></a><span class="fu">library</span>(igraph) <span class="co"># needed by tidygraph</span></span>
-<span id="cb253-8"><a href="an-introduction-to-networks.html#cb253-8" tabindex="-1"></a><span class="fu">library</span>(ggraph) </span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="an-introduction-to-networks.html#cb254-1" tabindex="-1"></a><span class="co">#if needed, install.packages(&quot;&quot;)</span></span>
+<span id="cb254-2"><a href="an-introduction-to-networks.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb254-3"><a href="an-introduction-to-networks.html#cb254-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for tables </span></span>
+<span id="cb254-4"><a href="an-introduction-to-networks.html#cb254-4" tabindex="-1"></a><span class="fu">library</span>(bibliometrix) <span class="co"># for generating network from bib data &amp; reducing to one mode</span></span>
+<span id="cb254-5"><a href="an-introduction-to-networks.html#cb254-5" tabindex="-1"></a><span class="co">#library(qgraph)  # for drawing simple graphs</span></span>
+<span id="cb254-6"><a href="an-introduction-to-networks.html#cb254-6" tabindex="-1"></a><span class="fu">library</span>(tidygraph) <span class="co"># for representing graphs as matrices of nodes/edges</span></span>
+<span id="cb254-7"><a href="an-introduction-to-networks.html#cb254-7" tabindex="-1"></a><span class="fu">library</span>(igraph) <span class="co"># needed by tidygraph</span></span>
+<span id="cb254-8"><a href="an-introduction-to-networks.html#cb254-8" tabindex="-1"></a><span class="fu">library</span>(ggraph) </span></code></pre></div>
 </div>
 </div>
 </div>

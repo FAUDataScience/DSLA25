@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 finding, exploring, cleaning, and combining data | Data science for the liberal arts</title>
-  <meta name="description" content="12 finding, exploring, cleaning, and combining data | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <title>12 finding, exploring, cleaning, and combining data | 99-MoreExercises</title>
+  <meta name="description" content="12 finding, exploring, cleaning, and combining data | 99-MoreExercises" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 finding, exploring, cleaning, and combining data | Data science for the liberal arts" />
+  <meta property="og:title" content="12 finding, exploring, cleaning, and combining data | 99-MoreExercises" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 finding, exploring, cleaning, and combining data | Data science for the liberal arts" />
+  <meta name="twitter:title" content="12 finding, exploring, cleaning, and combining data | 99-MoreExercises" />
   
   
   
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -461,6 +462,7 @@ div.csl-indent {
 <li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
 <li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
 </ul></li>
+<li class="chapter" data-level="25.4" data-path="exercises-3.html"><a href="exercises-3.html#getting-data-from-a-package-like-mdsr"><i class="fa fa-check"></i><b>25.4</b> Getting data from a package like MDSR</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -472,7 +474,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">99-MoreExercises</a>
           </h1>
         </div>
 
@@ -596,8 +598,9 @@ div.csl-indent {
 <span id="cb42-16"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-17"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-18"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-18" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_place =</span> <span class="fu">str_remove</span>(school_place,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 192 rows [8, 18, 21, 22, 24, 26, 32, 33, 44, 46,
-## 47, 49, 53, 57, 59, 60, 62, 67, 73, 81, ...].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 192 rows [8,
+## 18, 21, 22, 24, 26, 32, 33, 44, 46, 47, 49, 53, 57, 59, 60, 62, 67,
+## 73, 81, ...].</code></pre>
 <p>When we run this chunk, we get a warning. What is it about? Is it ok?</p>
 </div>
 </div>
@@ -622,8 +625,8 @@ div.csl-indent {
 <pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
 ## ℹ Row 38 of `x` matches multiple rows in `y`.
 ## ℹ Row 187 of `y` matches multiple rows in `x`.
-## ℹ If a many-to-many relationship is expected, set `relationship = &quot;many-to-many&quot;` to silence this
-##   warning.</code></pre>
+## ℹ If a many-to-many relationship is expected, set `relationship =
+##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
 <p>But when we do this, we get another warning message. Why is it there?</p>
 <div id="challenges-in-joining-datasets" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> challenges in joining datasets<a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -756,7 +759,8 @@ div.csl-indent {
 <span id="cb51-11"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-11" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">width =</span> <span class="st">&quot;14em&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb51-12"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-12" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## Joining with `by = join_by(district_name)`
-## Correlation computed with • Method: &#39;pearson&#39; • Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
+## Correlation computed with • Method: &#39;pearson&#39; • Missing treated
+## using: &#39;pairwise.complete.obs&#39;</code></pre>
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>

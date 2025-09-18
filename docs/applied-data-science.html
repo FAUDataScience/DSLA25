@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13 applied data science | Data science for the liberal arts</title>
-  <meta name="description" content="13 applied data science | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <title>13 applied data science | 99-MoreExercises</title>
+  <meta name="description" content="13 applied data science | 99-MoreExercises" />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13 applied data science | Data science for the liberal arts" />
+  <meta property="og:title" content="13 applied data science | 99-MoreExercises" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13 applied data science | Data science for the liberal arts" />
+  <meta name="twitter:title" content="13 applied data science | 99-MoreExercises" />
   
   
   
@@ -59,8 +59,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -70,7 +71,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -461,6 +462,7 @@ div.csl-indent {
 <li class="chapter" data-level="25.3.1" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.3.1</b> for last names, it’s a little bit trickier</a></li>
 <li class="chapter" data-level="25.3.2" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.3.2</b> cleaning these up</a></li>
 </ul></li>
+<li class="chapter" data-level="25.4" data-path="exercises-3.html"><a href="exercises-3.html#getting-data-from-a-package-like-mdsr"><i class="fa fa-check"></i><b>25.4</b> Getting data from a package like MDSR</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -472,7 +474,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">99-MoreExercises</a>
           </h1>
         </div>
 
@@ -548,16 +550,23 @@ div.csl-indent {
 <pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
 <pre><code>## Overall death rate is 10.5.</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="applied-data-science.html#cb61-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the excessmort package.
+##   Please report the issue to the authors.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning
+## was generated.</code></pre>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="applied-data-science.html#cb62-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
-<span id="cb62-2"><a href="applied-data-science.html#cb62-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb62-3"><a href="applied-data-science.html#cb62-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="applied-data-science.html#cb63-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="applied-data-science.html#cb63-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-3"><a href="applied-data-science.html#cb63-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
 <pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
 ## the model is not recommended with less than five years of data. Consider
 ## setting include.trend = FALSE.</code></pre>
 <pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
 <pre><code>## Overall death rate is 7.33.</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="applied-data-science.html#cb66-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="applied-data-science.html#cb67-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
 </div>
 </div>
