@@ -2,7 +2,6 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # More exercises
-
 ## Getting data from a package like MDSR
 ```{r}
 library(tidyverse)

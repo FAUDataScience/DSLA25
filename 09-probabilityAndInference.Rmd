@@ -24,47 +24,47 @@ The personal origins of probability estimates should become less important as we
 
 Here's an introduction to the principles of probability. These are presented, with examples and code, in this [R markdown document](https://github.com/datasciencelabs/2020/blob/master/06_probability/01_discrete-probability.Rmd) at Harvard's datasciencelabs repository:
 
-> **I. For any event A, 0 \<= P (A) \<= 1**
+> **I. For any event A, 0 \<= P(A) \<= 1**
 >
-> **II. Let S be the sample space, or set of all possible outcomes. Then P(S) = 1, and P (not S) = 0.**
+> **II. Let S be the sample space, or set of all possible outcomes. Then P(S) = 1, and P(not S) = 0.**
 >
-> **III. If P (A and B) = 0, then P (A or B) = P (A) + P (B).**
+> **III. If P(A and B) = 0, then P(A or B) = P(A) + P(B).**
 >
-> **IV. P (A\|B) = P (A and B)/ P (B)**
+> **IV. P(A\|B) = P(A and B)/ P(B)**
 
 Principle III applies for **mutually exclusive** events, such as A = you are in class this morning, B = you are at the beach this morning. For mutually exclusive (disjoint, disjunctive) events, the union is the sum of the two events. This is called the addition rule for disjoint events.
 
 A different rule applies for events that are **mutually independent**, such as (A = I toss a coin and it lands on 'Heads') and (B = it will rain tomorrow). What we mean by independent is that our estimates of the probability of one don't change based on the state of the other - your estimate of the likelihood of rain shouldn't depend on my coin flip. Here, you multiply rather than add:
 
-> **If P (A\|B) = P (A), then P (A and B) = P (A) P (B).**
+> **If P (A\|B) = P (A), then P (A and B) = P(A) P(B).**
 
 In words - if the probability of A given B equals the probability of A, then the probability of both A and B equals the probability of A times the probability of B.
 
 This **multiplication rule** is handy for estimating the probability of an outcome that happens following a chain of independent events, such as the probability that the next eight times I toss a coin it will land on "tails" every time:
 
-> P (TTTTTTTT) = P (T) P (T) P (T) P (T) P (T) P (T) P (T) P (T). = .58 = 1/256.
+> P (TTTTTTTT) = P(T) P(T) P(T) P(T) P(T) P(T) P(T) P(T). = .58 = 1/256.
 
-Many sets of events are neither disjoint nor independent, so we need more general ways of thinking about pairs of events. For most of us, Venn diagrams are useful to think about combining probabilities. The **union or P (A U B)** describes the probability that A, B, or both of these will occur. Here, you will use the **general addition rule:**
+Many sets of events are neither disjoint nor independent, so we need more general ways of thinking about pairs of events. For most of us, Venn diagrams are useful to think about combining probabilities. The **union or P(A U B)** describes the probability that A, B, or both of these will occur. Here, you will use the **general addition rule:**
 
-> **P (A or B) = P (A) + P (B) - P (A and B)**
+> **P(A or B) = P(A) + P(B) - P(A and B)**
 
 (the probability of A or B is the probability of A plus the probability of B minus the probability of both A and B).
 
-For the **intersection or P (A ∩ B)**, we need to consider **conditional probabilities**. Think of the probability of two events sequentially: First, what's the probability of A? Second, what's the probability of B, given that A has occurred? Multiply these to get the likelihood of A and B:
+For the **intersection or P(A ∩ B)**, we need to consider **conditional probabilities**. Think of the probability of two events sequentially: First, what's the probability of A? Second, what's the probability of B, given that A has occurred? Multiply these to get the likelihood of A and B:
 
-> **P (A and B) = P (A) P (B\|A).**
+> **P(A and B) = P(A) P(B\|A).**
 
 *Example: The probability of you and your roommate both getting mononucleosis equals the probability of your getting mono times the probability that your roommate gets it, given that you have it also.*
 
 This is the **general multiplication rule**. In this abstract example, the order is irrelevant. To estimate the likelihood of A and B, we could as easily take the probability of B, and multiply it by the conditional probability of A given B
 
-> **P (A and B) = P (B) P (A\|B).**
+> **P(A and B) = P(B) P(A\|B).**
 
 *Use the mono example again. What are A and B here? Does it still make sense? When might P (B\|A) make more sense than P (A\|B)?*
 
 We are often interested in estimating conditional probabilities, in which case we'll use the same equation, but solve instead for P (A\|B). This leads us back to principle IV:
 
-> **IV. P (A\|B) = P (A and B)/ P (B)**
+> **IV. P(A\|B) = P (A and B)/ P(B)**
 
 ### keeping conditional probabilities straight
 
@@ -72,31 +72,36 @@ In general, P (B\|A) and P (A\|B) are not equivalent.
 
 Here, one could use a Venn diagram to model this asymmetry. There are several R packages for doing this, including Venn and VennDiagram.
 
-### exercises
+#### exercise 9.1
 
-> **Exercise 9.1.** In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
+> In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
 
 ![](images/FloridaCar.jpg)
 
-> Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these are Dodge Chargers.
+> Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these (or 1% of all cars) are Dodge Chargers.
 >
-> a)  On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., p(FHP cruiser \| Dodge Charger)?
+> a)  On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., P(FHP cruiser \| Dodge Charger)?
 >
-> b)  If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (p(FHP cruiser \| Dodge Charger)?
+> b)  If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (P(FHP cruiser \| Dodge Charger)?
 >
-> c)  Provide a reasonable estimate of this additional value, then compute (p(FHP cruiser \| Dodge Charger).
+> c)  Provide a reasonable estimate of this additional value, then compute (P(FHP cruiser \| Dodge Charger).
 >
-> d)  Working with your own numbers, what is p(Dodge Charger \| FHP cruiser)?
+> d)  Working with your own numbers, what is P(Dodge Charger \| FHP cruiser)?
 >
 > e)  How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?
->
-> **Exercise 9.2.**
->
-> a)  Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.
->
-> b)  Use R to generate your Venn Diagram.
->
-> c)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
+
+
+#### **exercise 9.2**
+
+a)  Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.
+
+b)  Use R to generate your Venn Diagram.
+
+c)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
+
+### Venn diagrams should generally be asymmetrical
+
+Answers to this exercise are at the end of the book. There are two points to these exercises. The first is that Venn diagrams should often be asymmetrical. The second is that problems about probability are often easier if we draw Venn diagrams.
 
 ## continuous probability distributions
 
@@ -113,7 +118,3 @@ Wainer cites three specific examples of important, yet widely misunderstood, sta
 For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.
 
 Wainer's third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change [@hastie2010].
-
-## notes for next revision
-
-This chapter should include a mnore explicit treatment of Bayes theorem as well as a demonstration of empirically generated probability distributions. Show how to generate random variables, random splits...

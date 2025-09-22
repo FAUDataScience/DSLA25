@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>22 an introduction to networks | Prereqs and coreqs as sets of eligible students</title>
-  <meta name="description" content="22 an introduction to networks | Prereqs and coreqs as sets of eligible students" />
+  <title>25 exercises | Prereqs and coreqs as sets of eligible students</title>
+  <meta name="description" content="25 exercises | Prereqs and coreqs as sets of eligible students" />
   <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="22 an introduction to networks | Prereqs and coreqs as sets of eligible students" />
+  <meta property="og:title" content="25 exercises | Prereqs and coreqs as sets of eligible students" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="22 an introduction to networks | Prereqs and coreqs as sets of eligible students" />
+  <meta name="twitter:title" content="25 exercises | Prereqs and coreqs as sets of eligible students" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="working-with-text-a-case-study.html"/>
-<link rel="next" href="case-study-the-network-structure-of-computational-social-science.html"/>
+<link rel="prev" href="some-ethical-concerns-for-the-data-scientist.html"/>
+<link rel="next" href="more-exercises.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -490,134 +490,256 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="an-introduction-to-networks" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">22</span> an introduction to networks<a href="an-introduction-to-networks.html#an-introduction-to-networks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>“No man is an island,<br />
-entire of itself;<br />
-every man is a piece of the continent,<br />
-a part of the main.”</em></p>
-<p>-John Donne.</p>
-<p>Networks are everywhere. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism <span class="citation">(<a href="#ref-apicella2012">Apicella et al. 2012</a>)</span>, kidney donations <span class="citation">(<a href="#ref-nikzad2021">Nikzad et al. 2021</a>)</span>, and obesity <span class="citation">(<a href="#ref-christakis2007">Christakis and Fowler 2007</a>)</span> can be understood, in part, as network phenomena.</p>
-<p>Networks can be nested. The internet can be seen as a network of machines linked by cables and various cellular and satellite technologies. Social network applications such as <em>X</em> and Instagram operate within these networks, and your own network of acquaintances</p>
-<p>In this chapter, we briefly introduce some key network concepts. We then consider how network structures can be examined and understood in the tidyverse. In the next chapter, we will consider a case study in network analysis, examining a <em>bibliometric</em> network structure of a scholarly discipline.</p>
-<div id="key-network-concepts" class="section level2 hasAnchor" number="22.1">
-<h2><span class="header-section-number">22.1</span> key network concepts<a href="an-introduction-to-networks.html#key-network-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Networks involve two types of objects <strong>nodes</strong> (or vertices) and <strong>edges</strong> (or links). Networks may be directed or undirected. Edges in a <strong>directed</strong> network might describe relationships such as <em>likes, follows,</em> <em>has heard of, cites,</em> or <em>clicks on.</em> We can represent them by arrows between nodes.</p>
-<p>Edges in an <strong>undirected</strong> network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as <em>are siblings, are allies, know each other, are married, have been cited by the same source,</em> and <em>have both been exposed to.</em> We represent undirected networks by lines without arrowheads.</p>
-<p>Unrequited love is a directed relationship, requited or reciprocal love can be modeled as undirected one.</p>
-<p><strong>Paths</strong> are series of connected edges between nodes.</p>
-<p>Networks may be <strong>unsigned</strong> (only positive links) or <strong>signed</strong> (with positive and negative links).</p>
-<p>In some networks, there is just one type of node. In addition to these <strong>single-mode networks</strong>, we will also encounter <strong>bipartite (two-mode) networks</strong>. A network of enrollments, for example, might include two types of nodes (e.g., classes and students). Edges in such a network describe relationships such as <em>is enrolled in</em>. In <strong>bipartite networks,</strong> there can only be links between different types of nodes (so classes can’t be enrolled in classes for example).</p>
-<div id="a-simple-example-networks-and-balance-theory" class="section level3 hasAnchor" number="22.1.1">
-<h3><span class="header-section-number">22.1.1</span> a simple example: networks and balance theory<a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="exercises-2" class="section level1 hasAnchor" number="25">
+<h1><span class="header-section-number">25</span> exercises<a href="exercises-2.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet" class="section level2 hasAnchor" number="25.1">
+<h2><span class="header-section-number">25.1</span> generating correlated data (GPA and SAT) and putting it in a Google Sheet<a href="exercises-2.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It’s simple to generate a single random variable, but we often want to examine data for several variables that are correlated. The MVRnorm function, in the MASS package, does this.</p>
+<p>We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).</p>
+<p>We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="exercises-2.html#cb273-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb273-2"><a href="exercises-2.html#cb273-2" tabindex="-1"></a></span>
+<span id="cb273-3"><a href="exercises-2.html#cb273-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb273-4"><a href="exercises-2.html#cb273-4" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># for set of first names</span></span>
+<span id="cb273-5"><a href="exercises-2.html#cb273-5" tabindex="-1"></a><span class="fu">library</span>(randomNames) <span class="co"># for initial set of last names</span></span>
+<span id="cb273-6"><a href="exercises-2.html#cb273-6" tabindex="-1"></a><span class="fu">library</span>(googlesheets4) <span class="co"># to read and write to Google sheets</span></span>
+<span id="cb273-7"><a href="exercises-2.html#cb273-7" tabindex="-1"></a></span>
+<span id="cb273-8"><a href="exercises-2.html#cb273-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb273-9"><a href="exercises-2.html#cb273-9" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb273-10"><a href="exercises-2.html#cb273-10" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb273-11"><a href="exercises-2.html#cb273-11" tabindex="-1"></a></span>
+<span id="cb273-12"><a href="exercises-2.html#cb273-12" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">randomNames</span>(nrows, <span class="at">which.names =</span> <span class="st">&quot;first&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb273-13"><a href="exercises-2.html#cb273-13" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">randomNames</span>(nrows, </span>
+<span id="cb273-14"><a href="exercises-2.html#cb273-14" tabindex="-1"></a>                          <span class="at">which.names =</span> <span class="st">&quot;last&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb273-15"><a href="exercises-2.html#cb273-15" tabindex="-1"></a>       <span class="fu">rename</span> (<span class="at">FirstName =</span> <span class="dv">1</span>, <span class="at">LastName =</span> <span class="dv">2</span>)</span>
+<span id="cb273-16"><a href="exercises-2.html#cb273-16" tabindex="-1"></a></span>
+<span id="cb273-17"><a href="exercises-2.html#cb273-17" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> nrows, </span>
+<span id="cb273-18"><a href="exercises-2.html#cb273-18" tabindex="-1"></a>                <span class="at">mu =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="dv">0</span>),</span>
+<span id="cb273-19"><a href="exercises-2.html#cb273-19" tabindex="-1"></a>                <span class="at">Sigma =</span> <span class="fu">matrix</span>(</span>
+<span id="cb273-20"><a href="exercises-2.html#cb273-20" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="dv">1</span>, correlation, correlation, <span class="dv">1</span>),</span>
+<span id="cb273-21"><a href="exercises-2.html#cb273-21" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-22"><a href="exercises-2.html#cb273-22" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb273-23"><a href="exercises-2.html#cb273-23" tabindex="-1"></a>    <span class="fu">select</span> (<span class="at">gpa =</span> <span class="dv">1</span>, <span class="at">sat =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-24"><a href="exercises-2.html#cb273-24" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="dv">500</span> <span class="sc">+</span> (<span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(sat, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-25"><a href="exercises-2.html#cb273-25" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">round</span>(gpa, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb273-26"><a href="exercises-2.html#cb273-26" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="fu">case_when</span>(</span>
+<span id="cb273-27"><a href="exercises-2.html#cb273-27" tabindex="-1"></a>        gpa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb273-28"><a href="exercises-2.html#cb273-28" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="fl">4.5</span> <span class="sc">~</span> <span class="fl">4.5</span>,</span>
+<span id="cb273-29"><a href="exercises-2.html#cb273-29" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> gpa)) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-30"><a href="exercises-2.html#cb273-30" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb273-31"><a href="exercises-2.html#cb273-31" tabindex="-1"></a>        sat <span class="sc">&lt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="dv">200</span>,</span>
+<span id="cb273-32"><a href="exercises-2.html#cb273-32" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">~</span> <span class="dv">800</span>,</span>
+<span id="cb273-33"><a href="exercises-2.html#cb273-33" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> sat))</span>
+<span id="cb273-34"><a href="exercises-2.html#cb273-34" tabindex="-1"></a></span>
+<span id="cb273-35"><a href="exercises-2.html#cb273-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
+<span id="cb273-36"><a href="exercises-2.html#cb273-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-37"><a href="exercises-2.html#cb273-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) </span>
+<span id="cb273-38"><a href="exercises-2.html#cb273-38" tabindex="-1"></a><span class="co">#gs4_create(name=&quot;RandomHSGPASAT&quot;,</span></span>
+<span id="cb273-39"><a href="exercises-2.html#cb273-39" tabindex="-1"></a> <span class="co">#          sheets = hsdata)</span></span>
+<span id="cb273-40"><a href="exercises-2.html#cb273-40" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   FirstName LastName    gpa   sat
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 Aaliyah   Guttadore  0.72   510
+## 2 Aaqil     Beltran    2.72   400
+## 3 Aaqil     Robbe      0.75   400</code></pre>
+<div id="now-look-at-your-data-in-the-spreadsheet" class="section level3 hasAnchor" number="25.1.1">
+<h3><span class="header-section-number">25.1.1</span> now look at your data in the spreadsheet<a href="exercises-2.html#now-look-at-your-data-in-the-spreadsheet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this <a href="https://docs.google.com/spreadsheets/d/19BTya9N8_qyJLy8V27sefhxnV912WeilRLeX2zAUL-c/edit?usp=sharing">spreadsheet</a>, what are the means for GPA and SAT? What are the standard deviations? what is the difference between ‘sort range’ and ‘sort sheet’ in Google Sheets?</p>
+<p>What do you think about the randomnames package? Do the names appear “representative” (of what)? If you wanted to generate a more representative sample of names, how might you proceed?</p>
+</div>
+<div id="using-ai-to-help-us-here" class="section level3 hasAnchor" number="25.1.2">
+<h3><span class="header-section-number">25.1.2</span> using AI to help us here<a href="exercises-2.html#using-ai-to-help-us-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our intuitions about the idiosyncratic nature of names in the randomNames package is supported (not necessarily confirmed) by MS Copilot, which notes that “the randomNames package in R samples from a uniform distribution, which doesn’t reflect real-world name frequencies.”</p>
+<p>For first names, one solution is to use the babynames data, and then to weight the probability of including the name in our sample by the actual frequency in (some) population:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="exercises-2.html#cb275-1" tabindex="-1"></a><span class="co"># load babynames and Filter for a specific year or range</span></span>
+<span id="cb275-2"><a href="exercises-2.html#cb275-2" tabindex="-1"></a>names_data <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
+<span id="cb275-3"><a href="exercises-2.html#cb275-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb275-4"><a href="exercises-2.html#cb275-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb275-5"><a href="exercises-2.html#cb275-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb275-6"><a href="exercises-2.html#cb275-6" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb275-7"><a href="exercises-2.html#cb275-7" tabindex="-1"></a></span>
+<span id="cb275-8"><a href="exercises-2.html#cb275-8" tabindex="-1"></a><span class="co"># Sample names with probability proportional to frequency</span></span>
+<span id="cb275-9"><a href="exercises-2.html#cb275-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb275-10"><a href="exercises-2.html#cb275-10" tabindex="-1"></a>sampled_first_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(names_data<span class="sc">$</span>name, <span class="at">size =</span> nrows, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> names_data<span class="sc">$</span>freq) <span class="sc">|&gt;</span> </span>
+<span id="cb275-11"><a href="exercises-2.html#cb275-11" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb275-12"><a href="exercises-2.html#cb275-12" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewFirstName =</span> <span class="dv">1</span>)</span>
+<span id="cb275-13"><a href="exercises-2.html#cb275-13" tabindex="-1"></a><span class="fu">slice</span>(sampled_first_names, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 1
+##    NewFirstName
+##    &lt;chr&gt;       
+##  1 Tea         
+##  2 Emma        
+##  3 Olivia      
+##  4 Noemi       
+##  5 Ruger       
+##  6 Madelyn     
+##  7 Jeffrey     
+##  8 Caleb       
+##  9 Audrey      
+## 10 Elizabeth</code></pre>
+</div>
+<div id="for-last-names-its-a-little-bit-trickier" class="section level3 hasAnchor" number="25.1.3">
+<h3><span class="header-section-number">25.1.3</span> for last names, it’s a little bit trickier<a href="exercises-2.html#for-last-names-its-a-little-bit-trickier" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For last names, we’ll also use census data. There’s not an R package that has these, but there is Census data that is available in a zip file. It’s described at <a href="https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf" class="uri">https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf</a>. There are two files that are available - the top 1000 names, and then a (much longer) file of all names that occur more than 100 times. We’ll use the latter. <strong>Why do we do this?</strong></p>
+<p>Our approach to downloading a zip file directly into R follows: First, we specify a temporary file, then download the zip file into it. Then we unzip this and save it in a subdirectory called ‘data.’ Finally, we read it into R:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="exercises-2.html#cb277-1" tabindex="-1"></a>temp_zip_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.zip&quot;</span>)</span>
+<span id="cb277-2"><a href="exercises-2.html#cb277-2" tabindex="-1"></a>sourcefile <span class="ot">&lt;-</span> <span class="st">&quot;https://www2.census.gov/topics/genealogy/2010surnames/names.zip&quot;</span></span>
+<span id="cb277-3"><a href="exercises-2.html#cb277-3" tabindex="-1"></a><span class="fu">download.file</span>(sourcefile, <span class="at">destfile =</span> temp_zip_file, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb277-4"><a href="exercises-2.html#cb277-4" tabindex="-1"></a><span class="fu">unzip</span>(temp_zip_file, <span class="at">files =</span> <span class="st">&quot;Names_2010Census.csv&quot;</span>, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb277-5"><a href="exercises-2.html#cb277-5" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb277-6"><a href="exercises-2.html#cb277-6" tabindex="-1"></a>    <span class="fu">arrange</span>(rank)</span>
+<span id="cb277-7"><a href="exercises-2.html#cb277-7" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##               name rank    count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
+## 1  ALL OTHER NAMES    0 29312001  9936.97      9936.97    66.65     8.53   7.97    0.86      2.32       13.67
+## 2            SMITH    1  2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
+## 3          JOHNSON    2  1932812   655.24      1483.42    58.97    34.63   0.54    0.94      2.56        2.36
+## 4         WILLIAMS    3  1625252   550.97      2034.39    45.75    47.68   0.46    0.82      2.81        2.49
+## 5            BROWN    4  1437026   487.16      2521.56    57.95     35.6   0.51    0.87      2.55        2.52
+## 6            JONES    5  1425470   483.24      3004.80    55.19    38.48   0.44       1      2.61        2.29
+## 7           GARCIA    6  1166120   395.32      3400.12     5.38     0.45   1.41    0.47      0.26       92.03
+## 8           MILLER    7  1161437   393.74      3793.86    84.11    10.76   0.54    0.66      1.77        2.17
+## 9            DAVIS    8  1116357   378.45      4172.31     62.2     31.6   0.49    0.82      2.45        2.44
+## 10       RODRIGUEZ    9  1094924   371.19      4543.50     4.75     0.54   0.57    0.18      0.18       93.77</code></pre>
+</div>
+<div id="cleaning-these-up" class="section level3 hasAnchor" number="25.1.4">
+<h3><span class="header-section-number">25.1.4</span> cleaning these up<a href="exercises-2.html#cleaning-these-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the lastname data, there’s a problem. Some 10% of the names in the data - presumably rare ones - are replaced with “ALL OTHER NAMES.” We’ll just filter these out.</p>
+<p>Finally, we combine the new NewFirstName and NewLastName with our original HS data. We also replace the SHOUTING (uppercase) in the NewLastName variable with Title Case:</p>
+<p><strong>Did we do this right? Any other issues? How might you have done this better?</strong></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="exercises-2.html#cb279-1" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb279-2"><a href="exercises-2.html#cb279-2" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">!=</span> <span class="st">&quot;ALL OTHER NAMES&quot;</span>)</span>
+<span id="cb279-3"><a href="exercises-2.html#cb279-3" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##         name rank   count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
+## 1      SMITH    1 2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
+## 2    JOHNSON    2 1932812   655.24      1483.42    58.97    34.63   0.54    0.94      2.56        2.36
+## 3   WILLIAMS    3 1625252   550.97      2034.39    45.75    47.68   0.46    0.82      2.81        2.49
+## 4      BROWN    4 1437026   487.16      2521.56    57.95     35.6   0.51    0.87      2.55        2.52
+## 5      JONES    5 1425470   483.24      3004.80    55.19    38.48   0.44       1      2.61        2.29
+## 6     GARCIA    6 1166120   395.32      3400.12     5.38     0.45   1.41    0.47      0.26       92.03
+## 7     MILLER    7 1161437   393.74      3793.86    84.11    10.76   0.54    0.66      1.77        2.17
+## 8      DAVIS    8 1116357   378.45      4172.31     62.2     31.6   0.49    0.82      2.45        2.44
+## 9  RODRIGUEZ    9 1094924   371.19      4543.50     4.75     0.54   0.57    0.18      0.18       93.77
+## 10  MARTINEZ   10 1060159   359.40      4902.90     5.28     0.49    0.6    0.51      0.22       92.91</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="exercises-2.html#cb281-1" tabindex="-1"></a><span class="co"># then pull out a weighted sample of last names</span></span>
+<span id="cb281-2"><a href="exercises-2.html#cb281-2" tabindex="-1"></a>sampled_last_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(surnames<span class="sc">$</span>name, <span class="at">size =</span> nrows, </span>
+<span id="cb281-3"><a href="exercises-2.html#cb281-3" tabindex="-1"></a>                            <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> surnames<span class="sc">$</span>count) <span class="sc">|&gt;</span> </span>
+<span id="cb281-4"><a href="exercises-2.html#cb281-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb281-5"><a href="exercises-2.html#cb281-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewLastName =</span> <span class="dv">1</span>)</span>
+<span id="cb281-6"><a href="exercises-2.html#cb281-6" tabindex="-1"></a></span>
+<span id="cb281-7"><a href="exercises-2.html#cb281-7" tabindex="-1"></a>hsdata2 <span class="ot">&lt;-</span> hsdata <span class="sc">|&gt;</span></span>
+<span id="cb281-8"><a href="exercises-2.html#cb281-8" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_first_names) <span class="sc">|&gt;</span> </span>
+<span id="cb281-9"><a href="exercises-2.html#cb281-9" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_last_names) <span class="sc">|&gt;</span> </span>
+<span id="cb281-10"><a href="exercises-2.html#cb281-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">NewLastName =</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>(NewLastName))</span>
+<span id="cb281-11"><a href="exercises-2.html#cb281-11" tabindex="-1"></a><span class="fu">slice</span>(hsdata2, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 6
+##    FirstName LastName    gpa   sat NewFirstName NewLastName
+##    &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      
+##  1 Aaliyah   Guttadore  0.72   510 Tea          Macdonald  
+##  2 Aaqil     Beltran    2.72   400 Emma         Tornberg   
+##  3 Aaqil     Robbe      0.75   400 Olivia       Pedraja    
+##  4 Aaron     Taylor     3.93   470 Noemi        Carter     
+##  5 Aaron     Baca       3.5    610 Ruger        Roberts    
+##  6 Aaron     Johnston   2      360 Madelyn      Alicea     
+##  7 Aasim     Warner     4.43   600 Jeffrey      Tucker     
+##  8 Aasima    Kim        3.41   430 Caleb        Anderson   
+##  9 Aasima    Lee        4.46   440 Audrey       Medina     
+## 10 Aasiya    Dillard    3.57   450 Elizabeth    Vazquez</code></pre>
+</div>
+</div>
+<div id="categorical-probability-and-venn-diagrams" class="section level2 hasAnchor" number="25.2">
+<h2><span class="header-section-number">25.2</span> categorical probability and Venn diagrams<a href="exercises-2.html#categorical-probability-and-venn-diagrams" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dodge-chargers-and-fhp-cruisers" class="section level4 hasAnchor" number="25.2.0.1">
+<h4><span class="header-section-number">25.2.0.1</span> Dodge Chargers and FHP Cruisers<a href="exercises-2.html#dodge-chargers-and-fhp-cruisers" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <blockquote>
-<p>Consider an undirected, signed network consisting of just three nodes and the edges between them. The nodes might represent, for example, persons <span class="citation">(<a href="#ref-harary1959">Harary 1959</a>)</span> or countries <span class="citation">(<a href="#ref-estrada2019">Estrada 2019</a>)</span>. Relationships between the nodes might include things such as <em>gets along with/does not get along with, trusts/doesn’t trust,</em> etc.</p>
-<p>For networks (graphs) such as these, what can we say about the case where there are three negative edges? Two? One? Zero? Which ones seem to ‘make sense’ and might be expected to be stable over time?</p>
-<p>A recent <a href="https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html"><em>NY Times</em> article</a> illustrates how the complex geopolitical situation in the contemporary Middle East can be modeled using a simple signed network.</p>
+<p>In 2024, the Florida Highway Patrol won a national competition for “best looking cruiser.” The winning car was a Dodge Charger.</p>
 </blockquote>
-</div>
-<div id="centrality" class="section level3 hasAnchor" number="22.1.2">
-<h3><span class="header-section-number">22.1.2</span> centrality<a href="an-introduction-to-networks.html#centrality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Within networks, nodes differ in <strong>centrality,</strong> connectedness, or importance. There are different measures and types of centrality - for example, the number (<strong>degree</strong>) of a node describes its number of connections. In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by ‘followers’ and ‘is following’, respectively.</p>
-<p>Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and <strong>PageRank</strong>, are <em>recursive</em>. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The “Page” in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Surgey Brin) of Google <span class="citation">(<a href="#ref-page1999">Page et al. 1999</a>)</span>.</p>
-</div>
-<div id="components-and-communities" class="section level3 hasAnchor" number="22.1.3">
-<h3><span class="header-section-number">22.1.3</span> components and communities<a href="an-introduction-to-networks.html#components-and-communities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Networks vary in their size (e.g., big vs small), number of discrete components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively unambiguous, communities in networks are often fuzzy or difficult to discern, in much the same way that constellations in the night sky might seem arbitrarily ‘drawn.’</p>
-<p>Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a “top-down” approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure.</p>
-<p>Alternatively, we can use a “bottom-up” approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as <strong>cliques.</strong> In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated previously in Figure 20.1.</p>
-</div>
-<div id="another-example-its-a-small-world" class="section level3 hasAnchor" number="22.1.4">
-<h3><span class="header-section-number">22.1.4</span> another example: it’s a small world<a href="an-introduction-to-networks.html#another-example-its-a-small-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/FloridaCar.jpg" /></p>
 <blockquote>
-<p>Consider a bipartite network in which there are two types of nodes, students and classes. An edge in this network represents a particular student who is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? <span class="citation">(<a href="#ref-milgram1967">Milgram 1967</a>)</span>.</p>
+<p>Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these (or 1% of all cars) are Dodge Chargers.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., P(FHP cruiser | Dodge Charger)?</p></li>
+<li><p>If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (P(FHP cruiser | Dodge Charger)?</p></li>
+<li><p>Provide a reasonable estimate of this additional value, then compute (P(FHP cruiser | Dodge Charger).</p></li>
+<li><p>Working with your own numbers, what is P(Dodge Charger | FHP cruiser)?</p></li>
+<li><p>How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?</p></li>
+</ol>
 </blockquote>
-<p>In data science, it’s generally easiest to begin with very small datasets and to work towards bigger ones. With networks, this isn’t always the case, because very small networks may be structurally more complex than larger ones.</p>
+<p>Let A = P(FHP cruiser) B = P(Dodge Charger)</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>“not yet.”</p></li>
+<li><p>Rule 4 gives us P(A|B) = P(A and B)/P(B)<br />
+We have P(B) = .01 (80,000 / 8,000,000). We don’t have P(A and B): We need to know how many FHP Dodge Chargers there are out of the 8 million cars in Florida.</p></li>
+<li><p>We will estimate the number of FHP Dodge Chargers as 800, or .0001 of the cars on the road.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a><br />
+So, P(A|B) = P(A and B)/P(B) = .0001/.01 = .01.<br />
+That is, 1% of the Dodge Chargers on the road are FHP.</p></li>
+<li><p>Here, we want the reverse probability P(B|A) [p(Dodge Charger | FHP cruiser)].<br />
+We can use rule 4 again, just flipping around A and B:<br />
+P(B|A) = P(A and B) / P(A) - but we first need to know the number of FHP Cruisers. This is the other missing number. We’ll estimate 1,600.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a><br />
+So P(A) = 1,600/8,000,000 = .0002<br />
+So, P(B|A) = P(A and B)/P(A) = .0001/.0002 = .5.<br />
+That is, half of 1% of the FHP cars on the road are Dodge Chargers.</p></li>
+<li><p>Actually, we have been working with the number of registered cars - not the number that’s likely to be on the road at a given time. For this, FHP cruisers would need to be on the road with the same frequency as other vehicles - I’m guessing that they aren’t.</p></li>
+</ol>
 </div>
-<div id="static-and-dynamic-networks" class="section level3 hasAnchor" number="22.1.5">
-<h3><span class="header-section-number">22.1.5</span> static and dynamic networks<a href="an-introduction-to-networks.html#static-and-dynamic-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is <strong>contagion</strong> - not just of diseases, but also of emotions <span class="citation">(<a href="#ref-kelly2016">Kelly, Iannone, and McCarty 2016</a>)</span> and a range of socially desirable and undesirable phenomena <span class="citation">(<a href="#ref-christakis2013">Christakis and Fowler 2013</a>)</span>. Another phenomena seen in dynamic networks is <strong>preferential attachment</strong> in which the most important nodes become still more important over time <span class="citation">(<a href="#ref-watts2004">Watts 2004</a>)</span>.</p>
-<p>Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products ‘go viral’ while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of the digital age.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="an-introduction-to-networks.html#cb253-1" tabindex="-1"></a>ba <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-2"><a href="an-introduction-to-networks.html#cb253-2" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-3"><a href="an-introduction-to-networks.html#cb253-3" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-4"><a href="an-introduction-to-networks.html#cb253-4" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-5"><a href="an-introduction-to-networks.html#cb253-5" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-6"><a href="an-introduction-to-networks.html#cb253-6" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-7"><a href="an-introduction-to-networks.html#cb253-7" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-8"><a href="an-introduction-to-networks.html#cb253-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-9"><a href="an-introduction-to-networks.html#cb253-9" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-10"><a href="an-introduction-to-networks.html#cb253-10" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-11"><a href="an-introduction-to-networks.html#cb253-11" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-12"><a href="an-introduction-to-networks.html#cb253-12" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-13"><a href="an-introduction-to-networks.html#cb253-13" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-14"><a href="an-introduction-to-networks.html#cb253-14" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-15"><a href="an-introduction-to-networks.html#cb253-15" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-16"><a href="an-introduction-to-networks.html#cb253-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-17"><a href="an-introduction-to-networks.html#cb253-17" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb253-18"><a href="an-introduction-to-networks.html#cb253-18" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb253-19"><a href="an-introduction-to-networks.html#cb253-19" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb253-20"><a href="an-introduction-to-networks.html#cb253-20" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb253-21"><a href="an-introduction-to-networks.html#cb253-21" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb253-22"><a href="an-introduction-to-networks.html#cb253-22" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb253-23"><a href="an-introduction-to-networks.html#cb253-23" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb253-24"><a href="an-introduction-to-networks.html#cb253-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb253-25"><a href="an-introduction-to-networks.html#cb253-25" tabindex="-1"></a><span class="fu">plot_grid</span> (ba, bb, bc,</span>
-<span id="cb253-26"><a href="an-introduction-to-networks.html#cb253-26" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb253-27"><a href="an-introduction-to-networks.html#cb253-27" tabindex="-1"></a>  <span class="fu">draw_figure_label</span>(<span class="st">&quot;Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<div id="asymmetrical-venn-diagrams-in-r" class="section level4 hasAnchor" number="25.2.0.2">
+<h4><span class="header-section-number">25.2.0.2</span> <strong>(Asymmetrical) Venn Di</strong>agrams in R<a href="exercises-2.html#asymmetrical-venn-diagrams-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Problems about probability are often easier if we draw Venn diagrams.</p>
+<blockquote>
+<ol style="list-style-type: lower-alpha">
+<li><p>Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.</p></li>
+<li><p>Use R to generate your Venn Diagram.</p></li>
+<li><p>Look at your figure. In general, if P(A|B) &lt; P(B|A), what must be true of the relationship of P(A) to P(B)?</p></li>
+</ol>
+</blockquote>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="exercises-2.html#cb283-1" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb283-2"><a href="exercises-2.html#cb283-2" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
+<span id="cb283-3"><a href="exercises-2.html#cb283-3" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
+<span id="cb283-4"><a href="exercises-2.html#cb283-4" tabindex="-1"></a></span>
+<span id="cb283-5"><a href="exercises-2.html#cb283-5" tabindex="-1"></a></span>
+<span id="cb283-6"><a href="exercises-2.html#cb283-6" tabindex="-1"></a><span class="co"># Create first Venn diagram</span></span>
+<span id="cb283-7"><a href="exercises-2.html#cb283-7" tabindex="-1"></a>venn1 <span class="ot">&lt;-</span> <span class="fu">draw.pairwise.venn</span>(</span>
+<span id="cb283-8"><a href="exercises-2.html#cb283-8" tabindex="-1"></a>  <span class="at">area1 =</span> <span class="dv">80000</span>,</span>
+<span id="cb283-9"><a href="exercises-2.html#cb283-9" tabindex="-1"></a>  <span class="at">area2 =</span> <span class="dv">1600</span>,</span>
+<span id="cb283-10"><a href="exercises-2.html#cb283-10" tabindex="-1"></a>  <span class="at">cross.area =</span> <span class="dv">800</span>,</span>
+<span id="cb283-11"><a href="exercises-2.html#cb283-11" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;Charger&quot;</span>, <span class="st">&quot;FHP&quot;</span>),</span>
+<span id="cb283-12"><a href="exercises-2.html#cb283-12" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;gray&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb283-13"><a href="exercises-2.html#cb283-13" tabindex="-1"></a>  <span class="at">lty =</span> <span class="st">&quot;blank&quot;</span>,</span>
+<span id="cb283-14"><a href="exercises-2.html#cb283-14" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">1</span>,<span class="co">#1.5,</span></span>
+<span id="cb283-15"><a href="exercises-2.html#cb283-15" tabindex="-1"></a>  <span class="at">cat.cex =</span> <span class="dv">1</span>,</span>
+<span id="cb283-16"><a href="exercises-2.html#cb283-16" tabindex="-1"></a>  <span class="at">cat.pos =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb283-17"><a href="exercises-2.html#cb283-17" tabindex="-1"></a>  <span class="at">cat.dist =</span> <span class="fl">0.05</span>,</span>
+<span id="cb283-18"><a href="exercises-2.html#cb283-18" tabindex="-1"></a>  <span class="at">ind =</span> <span class="cn">FALSE</span></span>
+<span id="cb283-19"><a href="exercises-2.html#cb283-19" tabindex="-1"></a>)</span>
+<span id="cb283-20"><a href="exercises-2.html#cb283-20" tabindex="-1"></a></span>
+<span id="cb283-21"><a href="exercises-2.html#cb283-21" tabindex="-1"></a><span class="co"># To print Venn1, you need to wrap the figure using the grid package. The push and popViewport commands set the margins so it works right.</span></span>
+<span id="cb283-22"><a href="exercises-2.html#cb283-22" tabindex="-1"></a><span class="fu">grid.newpage</span>()</span>
+<span id="cb283-23"><a href="exercises-2.html#cb283-23" tabindex="-1"></a><span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.9</span>, <span class="at">height =</span> <span class="fl">0.9</span>))</span>
+<span id="cb283-24"><a href="exercises-2.html#cb283-24" tabindex="-1"></a><span class="fu">grid.draw</span>(venn1)</span>
+<span id="cb283-25"><a href="exercises-2.html#cb283-25" tabindex="-1"></a><span class="fu">popViewport</span>()</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/Venn1-1.png" width="288" /></p>
+<blockquote>
+<p>Here, P(A|B) is 800/1600 or .5, and P(B|A) is 800/80000 or .01.</p>
+<p>If the base rate of A is greater than that of B, and there is at least some overlap, then P(A|B) &gt; P(B|A).</p>
+</blockquote>
 
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="an-introduction-to-networks.html#cb254-1" tabindex="-1"></a><span class="co">#if needed, install.packages(&quot;&quot;)</span></span>
-<span id="cb254-2"><a href="an-introduction-to-networks.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb254-3"><a href="an-introduction-to-networks.html#cb254-3" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for tables </span></span>
-<span id="cb254-4"><a href="an-introduction-to-networks.html#cb254-4" tabindex="-1"></a><span class="fu">library</span>(bibliometrix) <span class="co"># for generating network from bib data &amp; reducing to one mode</span></span>
-<span id="cb254-5"><a href="an-introduction-to-networks.html#cb254-5" tabindex="-1"></a><span class="co">#library(qgraph)  # for drawing simple graphs</span></span>
-<span id="cb254-6"><a href="an-introduction-to-networks.html#cb254-6" tabindex="-1"></a><span class="fu">library</span>(tidygraph) <span class="co"># for representing graphs as matrices of nodes/edges</span></span>
-<span id="cb254-7"><a href="an-introduction-to-networks.html#cb254-7" tabindex="-1"></a><span class="fu">library</span>(igraph) <span class="co"># needed by tidygraph</span></span>
-<span id="cb254-8"><a href="an-introduction-to-networks.html#cb254-8" tabindex="-1"></a><span class="fu">library</span>(ggraph) </span></code></pre></div>
 </div>
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-apicella2012" class="csl-entry">
-Apicella, Coren L., Frank W. Marlowe, James H. Fowler, and Nicholas A. Christakis. 2012. <span>“Social Networks and Cooperation in Hunter-Gatherers.”</span> <em>Nature</em> 481 (7382): 497–501. <a href="https://doi.org/10/fz3v4v">https://doi.org/10/fz3v4v</a>.
-</div>
-<div id="ref-christakis2007" class="csl-entry">
-Christakis, Nicholas A., and James H. Fowler. 2007. <span>“The Spread of Obesity in a Large Social Network over 32 Years.”</span> <em>N Engl J Med</em> 357: 3709. <a href="https://doi.org/10/dmrgt6">https://doi.org/10/dmrgt6</a>.
-</div>
-<div id="ref-christakis2013" class="csl-entry">
-———. 2013. <span>“Social Contagion Theory: Examining Dynamic Social Networks and Human Behavior.”</span> <em>Statistics in Medicine</em> 32 (4): 556–77. <a href="https://doi.org/10/ck2j">https://doi.org/10/ck2j</a>.
-</div>
-<div id="ref-estrada2019" class="csl-entry">
-Estrada, Ernesto. 2019. <span>“Rethinking Structural Balance in Signed Social Networks.”</span> <em>Discrete Applied Mathematics</em> 268 (September): 70–90. <a href="https://doi.org/10.1016/j.dam.2019.04.019">https://doi.org/10.1016/j.dam.2019.04.019</a>.
-</div>
-<div id="ref-harary1959" class="csl-entry">
-Harary, Frank. 1959. <span>“On the Measurement of Structural Balance.”</span> <em>Behavioral Science</em> 4 (4): 316–23. <a href="https://doi.org/10/cp9nfp">https://doi.org/10/cp9nfp</a>.
-</div>
-<div id="ref-kelly2016" class="csl-entry">
-Kelly, Janice R., Nicole E. Iannone, and Megan K. McCarty. 2016. <span>“Emotional Contagion of Anger Is Automatic: An Evolutionary Explanation.”</span> <em>British Journal of Social Psychology</em> 55 (1): 182–91. <a href="https://doi.org/10/gf6mn3">https://doi.org/10/gf6mn3</a>.
-</div>
-<div id="ref-milgram1967" class="csl-entry">
-Milgram, Stanley. 1967. <span>“The Small World Problem.”</span> <em>Psychology Today</em> 2 (1): 6067.
-</div>
-<div id="ref-nikzad2021" class="csl-entry">
-Nikzad, Afshin, Mohammad Akbarpour, Michael A. Rees, and Alvin E. Roth. 2021. <span>“Global Kidney Chains.”</span> <em>Proceedings of the National Academy of Sciences of the United States of America</em> 118 (36): e2106652118. <a href="https://doi.org/10.1073/pnas.2106652118">https://doi.org/10.1073/pnas.2106652118</a>.
-</div>
-<div id="ref-page1999" class="csl-entry">
-Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“The PageRank Citation Ranking: Bringing Order to the Web.”</span>
-</div>
-<div id="ref-watts2004" class="csl-entry">
-Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <span>Networks</span>.”</span> <em>Annual Review of Sociology</em> 3: 243–70. <a href="https://www.jstor.org/stable/29737693">https://www.jstor.org/stable/29737693</a>.
-</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>Microsoft Copilot estimates this number as between 100 and 300. Claude estimates 800 to 1200. The midpoints of these are 200 and 1000; we’ll guess 800 (600 might be better, but 800 makes the math easier here, and we are really speculating).<a href="exercises-2.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Claude (“1,400-1,600”) and CoPilot (“several thousand”) are in relative agreement here.<a href="exercises-2.html#fnref7" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="working-with-text-a-case-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="case-study-the-network-structure-of-computational-social-science.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="some-ethical-concerns-for-the-data-scientist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="more-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
