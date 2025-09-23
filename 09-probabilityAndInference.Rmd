@@ -90,7 +90,6 @@ Here, one could use a Venn diagram to model this asymmetry. There are several R 
 >
 > e)  How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?
 
-
 #### **exercise 9.2**
 
 a)  Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.
