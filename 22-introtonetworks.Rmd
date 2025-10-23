@@ -97,4 +97,3 @@ plot_grid (ba, bb, bc,
          nrow = 1, ncol = 3) +
   draw_figure_label("Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)")
 ```
-

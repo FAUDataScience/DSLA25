@@ -162,7 +162,9 @@ bias-versus-variability
 resampling-beyond-test-training-and-validation-samples
 compensatory-versus-non-compensatory-problems
 a-postscript-the-tidymodels-packages
-working-with-text-a-case-study
+working-with-text
+overview-of-key-topics-in-text-analysis
+a-case-study
 federal-workers
 finding-reddit-data
 some-initial-observations
@@ -206,3 +208,4 @@ cleaning-these-up
 categorical-probability-and-venn-diagrams
 dodge-chargers-and-fhp-cruisers
 asymmetrical-venn-diagrams-in-r
+tab:unnamed-chunk-10

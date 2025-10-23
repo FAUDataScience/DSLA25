@@ -11,16 +11,43 @@ library(compute.es) # for quick effect size estimates
 library(kableExtra) # for tables
 ```
 
-# working with text: a case study
+# working with text
 
-In this chapter, I present a rudimentary case study in which a contemporary issue is explored using R. I examine Reddit[^21-workingwithtext-1] data, create comparison word-clouds from single words and two-word strings (bigrams), and consider the results of an external proprietary tool for examining categories of language. The chapter is based on the tidy approach to text analysis, for which a clear and thorough introduction has been provided in two books by Silge and her colleagues, each of which is available online 
-[@silge2017, @hvitfeldt2021].
+This chapter includes two parts: A (brief) overview and a (longer) case study which serves as an example.
+
+## overview of key topics in text analysis
+
+1)  We can represent a body of text (a corpus) as a string of words (or, more generally, tokens), using the tidytext package. See the "[introduction to tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html)" for more. (<https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html>). [Jane Austen, Sentiment analysis, Word frequencies, bag-of-words, stop words].
+
+    *exercise: re. stop words, consider how we might remedy the "miss is not negative" problem.*
+
+    There is more in the [Silge & Robinson book](https://www.tidytextmining.com/).
+
+2)  Dictionaries are an extension of [sentiment analysis](https://rpubs.com/confrench33/text_analysis_R).
+
+3)  Word clouds can be built from tables of word frequencies.
+
+4)  [Hamilton](https://info2950.infosci.cornell.edu/tutorials/text-mining-hamilton.html) project
+
+5)  Challenges in text analysis include problems in [character encoding](https://sicss.io/2020/materials/day3-text-analysis/basic-text-analysis/rmarkdown/Basic_Text_Analysis_in_R.html). Decisions must be made about stop-words (whether or not to exclude them), and units of analysis (words, bigrams, etc. as units of speech; chapters, speakers, etc. as 'corpora' which you might compare).
+
+6)  Limitations of this approach include negation.
+
+7)  Another example looks at [Topic modeling](https://juliasilge.com/blog/taylor-swift/) in Taylor Swift lyrics.
+
+8)  In my own work, I've looked at such things as comparing scholarly texts, looking at words associated with stages of personality development, and analyzing the contents of Reddit posts.
+
+9)  The nature of LLMs, inferring meaning from context.
+
+## a case study
+
+In this chapter, I present a rudimentary case study in which a contemporary issue is explored using R. I examine Reddit[^21-workingwithtext-1] data, create comparison word-clouds from single words and two-word strings (bigrams), and consider the results of an external proprietary tool for examining categories of language. The chapter is based on the tidy approach to text analysis, for which a clear and thorough introduction has been provided in two books by Silge and her colleagues, each of which is available online [@silge2017, @hvitfeldt2021].
 
 [^21-workingwithtext-1]: Reddit is an electronic discussion board or website which is structured as a set of communities or subreddits; each subreddit includes posts, and, typically, submitted by users (redditors).
 
 A word of warning: This chapter is light on the grunt work of data wrangling and preprocessing, which were introduced in Chapter 14. Keep in mind that that work is typically very time-consuming.
 
-## federal workers
+### federal workers
 
 On March 19, 2025, the *New York Times* ran an article with the title "[*Will I Lose My Job?’ Federal Workers Flock to Reddit for Answers*](https://www.nytimes.com/2025/03/19/technology/reddit-va-federal-workers.html?unlocked_article_code=1.6k4.hnKX.dQvNDEhfhgcl&smid=url-share)*."* The gist of the article was that US Federal workers, facing job insecurity in the opening days of President Trump's second term, were using the *r/fedworkers* subreddit to connect with others and communicate their anxieties, concerns, and strategies.
 
@@ -50,7 +77,7 @@ In order to address these questions, we'll briefly touch on some auxiliary techn
 
 -   Should we include common stop words (*a*, *and*, *if*, *or*, *me*) in our analysis, or disregard them?
 
-## finding Reddit data
+### finding Reddit data
 
 Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I begin with a set of posts that I have already downloaded.
 
@@ -97,7 +124,7 @@ a1 |> select (selftext) |> slice_sample(n=10)
 
 These 59651 posts include all of those which were available for the period from January 1, 2024 through March 24, 2025.
 
-## some initial observations
+### some initial observations
 
 There are a few interesting properties of the data:
 
@@ -107,7 +134,7 @@ There are a few interesting properties of the data:
 
 The second is that there are, at least in this small sample, a lot of abbreviations and acronyms - including *ACA*, *IRA*, *USDA*, *FPAC*, *NTEU*, *CFPB*, *HQ*, and *EAP*. Often, at this point in an analysis of text, we would reformat the text so that all words were lowercase (with the *tolower*) function. We'll instead modify this a bit - retaining capitalization when a token is in ALL CAPS (and is more than a single character like "I" or "A") - and making into lowercase otherwise.
 
-## preprocessing
+### preprocessing
 
 In this next chunk, we create a new variable called 'epoch,' with three values, *Biden* (during the Biden presidency, but before the November election, *Lameduck* (the period between the election and Trump's second inauguration), and *Trump*. We treat the 'lameduck' period separately because, although Biden was President, Trump, and concerns about the coming Trump presidency, was dominant on the airwaves. In these initial comparisons, we'll exclude that lameduck period from analysis
 
@@ -151,7 +178,7 @@ tidyCorpus3 <- tidyCorpus2 |>
   mutate(word = wordStem(word))
 ```
 
-## comparing the words and stems
+### comparing the words and stems
 
 We reduce each of the the three tidy *corpora* (bodies of text) to simple frequency tables
 
@@ -164,7 +191,7 @@ nwordsCorpus3 <- tidyCorpus3 |> count (word) |> nrow()
 
 Whereas there were 58154 words in the initial data, this drops to 49447 when we (mostly) represent all words as lower case. It drops further to 41586 when we remove numbers and stop words, and finally to 29338 when we stem the data.
 
-## Construction of differential word clouds
+### Construction of differential word clouds
 
 We first take the corpus and reshape it to a matrix with row names (words) and counts (one column for each group).
 
@@ -201,7 +228,7 @@ Many of the words which appear disproportionately in the Trump corpus (*employee
 
 Interesting, but perhaps less than we might have expected. Will an analysis of two-word strings (bigrams) provide more insight?
 
-## bigrams
+### bigrams
 
 The comparison cloud illustrates differences in single-word occurrences between the Biden and Trump epochs in r/fedworkers. Here, we repeat the analysis, investigating two-word strings. Note that in order to remove stopwords and numbers, we fist combine adjacent words (tokens) into bigrams, then separate these into pairs of adjacent words, filter on each of these adjacent words, and rejoin them.
 
@@ -241,7 +268,7 @@ comparison.cloud(bigramCounts,
 
 Here, the language of the two epochs comes into clearer focus, with phrases such as *deferred resignation* characterizing the Trump epoch and the relatively benign *pay period* characterizing the Biden period.
 
-## categories of words
+### categories of words
 
 In my own research, I rely on a proprietary tool, *Linguistic Inquiry and Word Count.* Though LIWC can be run within R on a machine that has the license for the software, here I run the program externally, then reimport it into R.
 
@@ -252,7 +279,7 @@ write_csv(a2, "data/fedworkersposts.csv")
 fedworkersLIWC <- read_csv("data/fedworkersLIWC.csv")
 ```
 
-## Code for assessing LIWC effect sizes between 2 groups
+### Code for assessing LIWC effect sizes between 2 groups
 
 There are many measures, or categories, in LIWC. In order to assess the statistical significance of differecnces between the Biden and Trump epochs on LIWC, the simplest approach is to adjust for the number of comparisons using the Bonferroni correction. The number of LIWC categories is 117, so the Bonferroni p-value should be .05/117 = .000427.
 
