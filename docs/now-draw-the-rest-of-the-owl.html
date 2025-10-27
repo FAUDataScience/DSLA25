@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-23" />
+<meta name="date" content="2025-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -427,14 +427,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="22" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html"><i class="fa fa-check"></i><b>22</b> an introduction to networks</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#key-network-concepts"><i class="fa fa-check"></i><b>22.1</b> key network concepts</a>
+<li class="chapter" data-level="22.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#introduction"><i class="fa fa-check"></i><b>22.1</b> introduction</a>
 <ul>
 <li class="chapter" data-level="22.1.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory"><i class="fa fa-check"></i><b>22.1.1</b> a simple example: networks and balance theory</a></li>
-<li class="chapter" data-level="22.1.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#centrality"><i class="fa fa-check"></i><b>22.1.2</b> centrality</a></li>
-<li class="chapter" data-level="22.1.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#components-and-communities"><i class="fa fa-check"></i><b>22.1.3</b> components and communities</a></li>
-<li class="chapter" data-level="22.1.4" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#another-example-its-a-small-world"><i class="fa fa-check"></i><b>22.1.4</b> another example: it’s a small world</a></li>
-<li class="chapter" data-level="22.1.5" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#static-and-dynamic-networks"><i class="fa fa-check"></i><b>22.1.5</b> static and dynamic networks</a></li>
 </ul></li>
+<li class="chapter" data-level="22.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#key-network-concepts"><i class="fa fa-check"></i><b>22.2</b> key network concepts</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#centrality"><i class="fa fa-check"></i><b>22.2.1</b> centrality</a></li>
+<li class="chapter" data-level="22.2.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#components-and-communities"><i class="fa fa-check"></i><b>22.2.2</b> components and communities</a></li>
+<li class="chapter" data-level="22.2.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#another-example-its-a-small-world"><i class="fa fa-check"></i><b>22.2.3</b> another example: it’s a small world</a></li>
+<li class="chapter" data-level="22.2.4" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#static-and-dynamic-networks"><i class="fa fa-check"></i><b>22.2.4</b> static and dynamic networks</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#some-additional-sources"><i class="fa fa-check"></i><b>22.3</b> some additional sources</a></li>
 </ul></li>
 <li class="chapter" data-level="23" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html"><i class="fa fa-check"></i><b>23</b> case study: the network structure of computational social science</a>
 <ul>
@@ -519,13 +523,13 @@ div.csl-indent {
 ##  $ prop: num [1:1924665] 0.0724 0.0267 0.0205 0.0199 0.0179 ...</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="now-draw-the-rest-of-the-owl.html#cb5-1" tabindex="-1"></a>babynames <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
-##    year sex   name               n       prop
-##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;int&gt;      &lt;dbl&gt;
-## 1  1930 F     Charlyne          23 0.0000197 
-## 2  1981 M     Cosme             13 0.00000698
-## 3  1926 F     Emiko             18 0.0000146 
-## 4  2009 F     Keyasia           23 0.0000114 
-## 5  1987 F     Mariaguadalupe    24 0.0000128</code></pre>
+##    year sex   name        n       prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
+## 1  1967 M     Armond     20 0.0000112 
+## 2  1977 M     Jonah     226 0.000132  
+## 3  2006 F     Kamaree    16 0.00000766
+## 4  1913 F     Avo        10 0.0000153 
+## 5  1977 M     Karina      7 0.00000409</code></pre>
 </div>
 <div id="or-the-ggplot2movies-package" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> or the (ggplot2)movies package<a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -563,11 +567,11 @@ div.csl-indent {
 <pre><code>## # A tibble: 5 × 24
 ##   title      year length budget rating votes    r1    r2    r3    r4    r5    r6
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 Reassemb…  1982     40     NA    5.7    21   0     0     4.5   4.5  14.5   4.5
-## 2 Paris Ch…  1975     60     NA    9.1     6   0     0     0     0     0     0  
-## 3 Toni       1999     90     NA    5.6    18  14.5   0     4.5  14.5   4.5  14.5
-## 4 Lionheart  1987    104     NA    5.2   218   4.5   4.5   4.5   4.5  14.5  24.5
-## 5 Papafles…  1971    130     NA    6.6     7   0    14.5  14.5   0     0     0  
+## 1 Cattivi …  1976    105   NA      6.4    22   0     0     4.5   4.5  24.5  24.5
+## 2 Batman R…  1992    126    8e7    6.5 23010   4.5   4.5   4.5   4.5   4.5  14.5
+## 3 This Old…  2004     86   NA      6.2    78   4.5   0     0     0     4.5   4.5
+## 4 Crollo d…  1962     89   NA      4.1     6   0    14.5  14.5   0     0    14.5
+## 5 Fort Sag…  1984    175   NA      6.3   141   4.5   4.5   4.5   4.5  14.5  14.5
 ## # ℹ 12 more variables: r7 &lt;dbl&gt;, r8 &lt;dbl&gt;, r9 &lt;dbl&gt;, r10 &lt;dbl&gt;, mpaa &lt;chr&gt;,
 ## #   Action &lt;int&gt;, Animation &lt;int&gt;, Comedy &lt;int&gt;, Drama &lt;int&gt;,
 ## #   Documentary &lt;int&gt;, Romance &lt;int&gt;, Short &lt;int&gt;</code></pre>

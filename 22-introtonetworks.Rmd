@@ -1,4 +1,5 @@
 ```{r setup22, include=FALSE, message = FALSE}
+library(tidyverse)
 library(tidygraph)
 library(cowplot)
 library(ggraph)
@@ -13,15 +14,89 @@ a part of the main."*
 
 -John Donne.
 
-Networks are everywhere. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism [@apicella2012], kidney donations [@nikzad2021], and obesity [@christakis2007] can be understood, in part, as network phenomena.
+:::: {style="max-width:1024px"}
+::: {style="position:relative;height:0;padding-bottom:56.25%"}
+<iframe src="https://embed.ted.com/talks/nicholas_christakis_the_hidden_influence_of_social_networks" width="1024px" height="576px" title="The hidden influence of social networks" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen onload="window.parent.postMessage(&#39;iframeLoaded&#39;, &#39;https://embed.ted.com&#39;)">
 
-Networks can be nested. The internet can be seen as a network of machines linked by cables and various cellular and satellite technologies. Social network applications such as *X* and Instagram operate within these networks, and your own network of acquaintances
+</iframe>
+:::
+::::
+
+## introduction
+
+Networks are everywhere - they include, of course, the internet, which can be seen as a network of machines linked by cables and various cellular and satellite technologies. They also includes social network applications such as *X* and Instagram which operate within these networks. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism [@apicella2012], kidney donations [@nikzad2021], and obesity [@christakis2007] can be understood, in part, as network phenomena. (That's Christakis in the TED talk linked above).
+
+Networks demand a different approach to data science: up 'til now, the building block of our projects have been data frames or tibbles - objects which can be represented by matrices of observations (rows) x variables (columns). Representing networks in this way is tricky, but we *can* represent a given network in this way.
 
 In this chapter, we briefly introduce some key network concepts. We then consider how network structures can be examined and understood in the tidyverse. In the next chapter, we will consider a case study in network analysis, examining a *bibliometric* network structure of a scholarly discipline.
 
+### a simple example: networks and balance theory
+
+> Let's begin by imagining that you have a friend - maybe you two are the last humans on the planet, or just might as well be. Then someone else comes along, and you don't care for this person, but your friend does. We'll represent this as an undirected, signed network consisting of just three nodes and the edges between them [@harary1959].
+
+```{r message=FALSE, warning=FALSE}
+# if you are running windows, these two lines 
+# will avoid warnings about missing fonts
+
+#extrafont::font_import()
+extrafont::loadfonts(device="win")
+```
+
+
+```{r}
+
+# Create a data frame for the nodes
+nodes <- data.frame(
+  name = c("you", "best friend", "other person")
+)
+
+# Create a data frame for the edges
+# The 'sign' column is used to represent positive (1) or negative (-1) relationships
+edges <- data.frame(
+  from = c("you", "best friend", "you"),
+  to = c("best friend", "other person", "other person"),  sign = c(1, 1, -1)
+)
+
+# Convert the data frames into a tidygraph object
+# Use 'as_tbl_graph' to specify the node and edge data
+triangle <- as_tbl_graph(edges, directed = FALSE) %>%
+  mutate(name = nodes$name)
+
+# Visualize the imbalanced triangle
+ggraph(triangle, layout = "circle") +
+  geom_edge_link(
+    aes(
+      color = factor(sign),
+      linetype = factor(sign)
+    ),
+    arrow = NULL, # No arrows needed for undirected graph
+    width = 1.2 # Make edges more visible
+  ) +
+  geom_node_point(size = 10, color = "green") +
+  geom_node_text(aes(label = name), repel = TRUE, size = 6) +
+  scale_edge_color_manual(
+    name = "Relationship",
+    values = c("1" = "blue", "-1" = "red"),
+    labels = c("1" = "Positive", "-1" = "Negative")
+  ) +
+  scale_edge_linetype_manual(
+    name = "Relationship",
+    values = c("1" = "solid", "-1" = "dashed"),
+    labels = c("1" = "Positive", "-1" = "Negative")
+  ) +
+  theme_graph() +
+  labs(
+    title = "Is three a bad number?"  )
+
+```
+
+So. Is this system stable? What changes in edge weights might make it so? What changes would *not* make things better? What do all 'stable' (or 'unstable') networks have in common?
+
+This is an application of *balance theory* [@cartwright1956], which suggests that certain configurations of positive and negative edges are more stable than others. A recent [*NY Times* article](https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html) illustrates (kind of) how the complex geopolitical situation in the contemporary Middle East can be modeled using ideas drawn from balance theory and simple signed networks like the one above.
+
 ## key network concepts
 
-Networks involve two types of objects **nodes** (or vertices) and **edges** (or links). Networks may be directed or undirected. Edges in a **directed** network might describe relationships such as *likes, follows,* *has heard of, cites,* or *clicks on.* We can represent them by arrows between nodes.
+Networks involve two types of objects called **nodes** (or vertices) and **edges** (or links). Networks may be directed or undirected. Edges in a **directed** network might describe relationships such as *likes, follows,* *has heard of, cites,* or *clicks on.* We can represent them by arrows between nodes.
 
 Edges in an **undirected** network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as *are siblings, are allies, know each other, are married, have been cited by the same source,* and *have both been exposed to.* We represent undirected networks by lines without arrowheads.
 
@@ -32,14 +107,6 @@ Unrequited love is a directed relationship, requited or reciprocal love can be m
 Networks may be **unsigned** (only positive links) or **signed** (with positive and negative links).
 
 In some networks, there is just one type of node. In addition to these **single-mode networks**, we will also encounter **bipartite (two-mode) networks**. A network of enrollments, for example, might include two types of nodes (e.g., classes and students). Edges in such a network describe relationships such as *is enrolled in*. In **bipartite networks,** there can only be links between different types of nodes (so classes can't be enrolled in classes for example).
-
-### a simple example: networks and balance theory
-
-> Consider an undirected, signed network consisting of just three nodes and the edges between them. The nodes might represent, for example, persons [@harary1959] or countries [@estrada2019]. Relationships between the nodes might include things such as *gets along with/does not get along with, trusts/doesn't trust,* etc.
->
-> For networks (graphs) such as these, what can we say about the case where there are three negative edges? Two? One? Zero? Which ones seem to 'make sense' and might be expected to be stable over time?
->
-> A recent [*NY Times* article](https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html) illustrates how the complex geopolitical situation in the contemporary Middle East can be modeled using a simple signed network.
 
 ### centrality
 
@@ -97,3 +164,20 @@ plot_grid (ba, bb, bc,
          nrow = 1, ncol = 3) +
   draw_figure_label("Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)")
 ```
+
+
+## some additional sources
+
+You can learn more about networks in the following resources:
+
+1.  [Intro to Network Analysis in R](https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html) (Bail, SICSS)
+2.  [Network chapter](https://bookdown.org/jdholster1/idsr/network-analysis.html) (Holster, Laboratory for Interdisciplinary Statistical Analysis)
+3.  [Introduction to Networks with ggraph](https://rpubs.com/neloe/ggraph_intro "Neloe RPubs")
+4.  [Rawlings et al chapter](https://inarwhal.github.io/NetworkAnalysisR-book/ch3-Cross-Sectional-Network-Data-R.html)
+5.  [Plutniak - igraph package](https://hal.science/hal-05115696v1/file/plutniak_2025_introduction-to-network-analysis-with-r-and-igraph.pdf)
+6.  Bibliometric network videos (Lanning, see Chapter 23)
+    1.  CSSIntro0 [GettingWOS Refs](https://www.youtube.com/watch?v=qD8Q08k2trs)
+    2.  CSSIntro1 [Citation and structural networks](https://www.youtube.com/watch?v=cSi7-WzDkzM)
+    3.  CSSIntro2 [Visualizing networks](https://www.youtube.com/watch?v=bz5mYaFIZZs)
+    4.  CSSIntro3 [Combining Text and Network analysis](https://www.youtube.com/watch?v=_GCxTyiquuw)
+

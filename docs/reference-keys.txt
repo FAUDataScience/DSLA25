@@ -1,12 +1,12 @@
 tab:unnamed-chunk-78
 tab:unnamed-chunk-88
 tab:initialDF
-tab:unnamed-chunk-90
-tab:fromtwotoone
-tab:unnamed-chunk-91
 tab:unnamed-chunk-92
+tab:fromtwotoone
 tab:unnamed-chunk-93
-tab:unnamed-chunk-97
+tab:unnamed-chunk-94
+tab:unnamed-chunk-95
+tab:unnamed-chunk-99
 what-is-data-science-for-the-liberal-arts
 the-incompleteness-of-the-data-science-venn-diagram
 additional-domains
@@ -176,12 +176,14 @@ categories-of-words
 code-for-assessing-liwc-effect-sizes-between-2-groups
 exercise-what-would-you-do-next
 an-introduction-to-networks
-key-network-concepts
+introduction
 a-simple-example-networks-and-balance-theory
+key-network-concepts
 centrality
 components-and-communities
 another-example-its-a-small-world
 static-and-dynamic-networks
+some-additional-sources
 case-study-the-network-structure-of-computational-social-science
 from-citation-network-to-structural-network
 looking-at-the-whole-citation-network
@@ -208,4 +210,3 @@ cleaning-these-up
 categorical-probability-and-venn-diagrams
 dodge-chargers-and-fhp-cruisers
 asymmetrical-venn-diagrams-in-r
-tab:unnamed-chunk-10

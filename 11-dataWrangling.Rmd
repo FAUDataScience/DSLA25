@@ -8,7 +8,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ![*wild horses are beautiful, wild data ... not so much*](images/horses.png)
 
-
 The term 'wrangling' has been used to describe the process by which unruly, messy, and complex datasets are organized and restructured so that they can be summarized, interpreted, and understood. *Wrangling* includes finding errors, which requires looking at your data closely enough to identify problems, and transforming the data as needed to allow data analyses to take place. *Tidying* is also concerned with data preparation, but is focused on the narrower task of arranging data into simple data frames (tibbles) in which each variable is in its own column, each observation is in its own row, and each cell includes one and only one value.
 
 In practice, the processes of data wrangling and data tidying are often overlapping. In this chapter, we will explore (a little) wrangling and (some) tidying using simulated data. First, we briefly consider some characteristics of the tidyverse
