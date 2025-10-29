@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13 applied data science | Data science for the liberal arts</title>
   <meta name="description" content="13 applied data science | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13 applied data science | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-27" />
+<meta name="date" content="2025-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -557,13 +557,15 @@ div.csl-indent {
 <pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
 <pre><code>## Overall death rate is 10.5.</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="applied-data-science.html#cb61-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
+## ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the excessmort package.
+## ℹ The deprecated feature was likely used in the
+##   excessmort package.
 ##   Please report the issue to the authors.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see
+## where this warning was generated.</code></pre>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="applied-data-science.html#cb63-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
 <span id="cb63-2"><a href="applied-data-science.html#cb63-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>

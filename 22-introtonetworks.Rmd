@@ -42,7 +42,6 @@ In this chapter, we briefly introduce some key network concepts. We then conside
 extrafont::loadfonts(device="win")
 ```
 
-
 ```{r}
 
 # Create a data frame for the nodes
@@ -112,7 +111,7 @@ In some networks, there is just one type of node. In addition to these **single-
 
 Within networks, nodes differ in **centrality,** connectedness, or importance. There are different measures and types of centrality - for example, the number (**degree**) of a node describes its number of connections. In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by 'followers' and 'is following', respectively.
 
-Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and **PageRank**, are *recursive*. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The "Page" in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Surgey Brin) of Google [@page1999].
+Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and **PageRank**, are *recursive*. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The "Page" in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Sergey Brin) of Google [@page1999].
 
 ### components and communities
 
@@ -165,19 +164,18 @@ plot_grid (ba, bb, bc,
   draw_figure_label("Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)")
 ```
 
-
 ## some additional sources
 
 You can learn more about networks in the following resources:
 
-1.  [Intro to Network Analysis in R](https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html) (Bail, SICSS)
-2.  [Network chapter](https://bookdown.org/jdholster1/idsr/network-analysis.html) (Holster, Laboratory for Interdisciplinary Statistical Analysis)
-3.  [Introduction to Networks with ggraph](https://rpubs.com/neloe/ggraph_intro "Neloe RPubs")
-4.  [Rawlings et al chapter](https://inarwhal.github.io/NetworkAnalysisR-book/ch3-Cross-Sectional-Network-Data-R.html)
-5.  [Plutniak - igraph package](https://hal.science/hal-05115696v1/file/plutniak_2025_introduction-to-network-analysis-with-r-and-igraph.pdf)
+1.  [Introduction to Networks with ggraph](https://rpubs.com/neloe/ggraph_intro "Neloe RPubs")
+2.  [Intro to Network Analysis in R](https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html) (Bail, SICSS)
+3.  [Plutniak - igraph package](https://hal.science/hal-05115696v1/file/plutniak_2025_introduction-to-network-analysis-with-r-and-igraph.pdf)
+4.  [Network chapter](https://bookdown.org/jdholster1/idsr/network-analysis.html) (Holster, Laboratory for Interdisciplinary Statistical Analysis)
+5.  [Rawlings et al chapter](https://inarwhal.github.io/NetworkAnalysisR-book/ch3-Cross-Sectional-Network-Data-R.html)
+
 6.  Bibliometric network videos (Lanning, see Chapter 23)
     1.  CSSIntro0 [GettingWOS Refs](https://www.youtube.com/watch?v=qD8Q08k2trs)
     2.  CSSIntro1 [Citation and structural networks](https://www.youtube.com/watch?v=cSi7-WzDkzM)
     3.  CSSIntro2 [Visualizing networks](https://www.youtube.com/watch?v=bz5mYaFIZZs)
     4.  CSSIntro3 [Combining Text and Network analysis](https://www.youtube.com/watch?v=_GCxTyiquuw)
-

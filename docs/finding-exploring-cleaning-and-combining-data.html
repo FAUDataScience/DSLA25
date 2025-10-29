@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12 finding, exploring, cleaning, and combining data | Data science for the liberal arts</title>
   <meta name="description" content="12 finding, exploring, cleaning, and combining data | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12 finding, exploring, cleaning, and combining data | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-27" />
+<meta name="date" content="2025-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -605,8 +605,9 @@ div.csl-indent {
 <span id="cb42-16"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-17"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-18"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-18" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_place =</span> <span class="fu">str_remove</span>(school_place,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 192 rows [8, 18, 21, 22,
-## 24, 26, 32, 33, 44, 46, 47, 49, 53, 57, 59, 60, 62, 67, 73, 81, ...].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA`
+## in 192 rows [8, 18, 21, 22, 24, 26, 32, 33, 44,
+## 46, 47, 49, 53, 57, 59, 60, 62, 67, 73, 81, ...].</code></pre>
 <p>When we run this chunk, we get a warning. What is it about? Is it ok?</p>
 </div>
 </div>
@@ -628,11 +629,13 @@ div.csl-indent {
 <span id="cb44-13"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-13" tabindex="-1"></a>                           <span class="st">&quot;HIGH SCHOOL&quot;</span>,<span class="st">&quot;&quot;</span>))</span>
 <span id="cb44-14"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-14" tabindex="-1"></a>FloridaHighSchools2 <span class="ot">&lt;-</span> FloridaHighSchools <span class="sc">|&gt;</span></span>
 <span id="cb44-15"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-15" tabindex="-1"></a>    <span class="fu">left_join</span>(EnrollmentsFromFHSAA, <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many relationship between `x` and `y`.
+<pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many relationship
+## between `x` and `y`.
 ## ℹ Row 38 of `x` matches multiple rows in `y`.
 ## ℹ Row 187 of `y` matches multiple rows in `x`.
-## ℹ If a many-to-many relationship is expected, set `relationship =
-##   &quot;many-to-many&quot;` to silence this warning.</code></pre>
+## ℹ If a many-to-many relationship is expected, set
+##   `relationship = &quot;many-to-many&quot;` to silence this
+##   warning.</code></pre>
 <p>But when we do this, we get another warning message. Why is it there?</p>
 <div id="challenges-in-joining-datasets" class="section level3 hasAnchor" number="12.2.1">
 <h3><span class="header-section-number">12.2.1</span> challenges in joining datasets<a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -765,8 +768,8 @@ div.csl-indent {
 <span id="cb51-11"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-11" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">width =</span> <span class="st">&quot;14em&quot;</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb51-12"><a href="finding-exploring-cleaning-and-combining-data.html#cb51-12" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## Joining with `by = join_by(district_name)`
-## Correlation computed with • Method: &#39;pearson&#39; • Missing treated using:
-## &#39;pairwise.complete.obs&#39;</code></pre>
+## Correlation computed with • Method: &#39;pearson&#39; •
+## Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
