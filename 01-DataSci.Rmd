@@ -1,6 +1,4 @@
-```{r datasci, include=FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+\`\`\`{r datasci, include=FALSE, message = FALSE} knitr::opts_chunk\$set(echo = TRUE)
 
 # PART I: Introduction {.unnumbered}
 
@@ -60,7 +58,7 @@ All of this should be taken with a grain of salt. Today's AI capabilities are qu
 >
 > I won't spoil it for you, but *Maybe Happy Ending* can be seen as portraying the challenges AI agents face, and how Artificial Intelligence is different from human intelligence. In Sternberg's (2018) terms, Oliver struggles not just with the question of how to adapt to a new environment, but also how to choose an environment altogether. How will it react when it encounters problems for which it has simply no frame of reference?
 
-![Darren Criss as Oliver in *Maybe Happy Ending*](images/helperbot.jpg)
+[![Darren Criss as Oliver in Maybe Happy Ending](images/helperbot.jpg)](https://youtu.be/c-aGhUjerL8?si=jFpXxJhL3XxnrDcA)
 
 ### the challenge of TMI
 
