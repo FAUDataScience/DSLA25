@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>21 working with text | Data science for the liberal arts</title>
   <meta name="description" content="21 working with text | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="21 working with text | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -538,11 +538,11 @@ div.csl-indent {
 <h3><span class="header-section-number">21.2.2</span> finding Reddit data<a href="working-with-text.html#finding-reddit-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I begin with a set of posts that I have already downloaded.</p>
 <p>We initially look at a very small set of data - 100 lines - both to make sure the code works and, if it does, to make an initial determination about what fields are of interest. The file is large, so it will ultimately be read in through streaming rather than all-at-once, hence the readLines -&gt; stream_in syntax.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="working-with-text.html#cb229-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>, <span class="at">n_max =</span> <span class="dv">100</span>)</span>
-<span id="cb229-2"><a href="working-with-text.html#cb229-2" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
-<span id="cb229-3"><a href="working-with-text.html#cb229-3" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) </span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="working-with-text.html#cb228-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>, <span class="at">n_max =</span> <span class="dv">100</span>)</span>
+<span id="cb228-2"><a href="working-with-text.html#cb228-2" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
+<span id="cb228-3"><a href="working-with-text.html#cb228-3" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) </span></code></pre></div>
 <pre><code>##  Found 100 records... Imported 100 records. Simplifying...</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="working-with-text.html#cb231-1" tabindex="-1"></a><span class="fu">glimpse</span>(a1)</span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="working-with-text.html#cb230-1" tabindex="-1"></a><span class="fu">glimpse</span>(a1)</span></code></pre></div>
 <pre><code>## Rows: 100
 ## Columns: 113
 ## $ `_meta`                       &lt;df[,1]&gt; &lt;data.frame[26 x 1]&gt;
@@ -659,33 +659,33 @@ div.csl-indent {
 ## $ preview                       &lt;df[,2]&gt; &lt;data.frame[26 x 2]&gt;
 ## $ url_overridden_by_dest        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
 <p>Only a few columns are of interest to us. We select those columns in the next chunk, for a sample of 10000 posts. We also take note of how long it takes to read a sample of this size by noting start-time, end.time, and the difference between these. Finally we make the date-time field (created_utc) field “human readable.”</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="working-with-text.html#cb233-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>, <span class="at">n_max =</span> <span class="dv">10000</span>)</span>
-<span id="cb233-2"><a href="working-with-text.html#cb233-2" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb233-3"><a href="working-with-text.html#cb233-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
-<span id="cb233-4"><a href="working-with-text.html#cb233-4" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) <span class="sc">|&gt;</span> </span>
-<span id="cb233-5"><a href="working-with-text.html#cb233-5" tabindex="-1"></a>     <span class="fu">select</span>(author, title, selftext, id, link_flair_text,</span>
-<span id="cb233-6"><a href="working-with-text.html#cb233-6" tabindex="-1"></a>            num_comments, ups, downs, subreddit, created_utc) <span class="sc">|&gt;</span> </span>
-<span id="cb233-7"><a href="working-with-text.html#cb233-7" tabindex="-1"></a>     <span class="fu">mutate</span> (<span class="at">date =</span> (<span class="fu">as_datetime</span>(created_utc))) <span class="sc">|&gt;</span> </span>
-<span id="cb233-8"><a href="working-with-text.html#cb233-8" tabindex="-1"></a>     <span class="fu">select</span>(<span class="sc">-</span>created_utc)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="working-with-text.html#cb232-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>, <span class="at">n_max =</span> <span class="dv">10000</span>)</span>
+<span id="cb232-2"><a href="working-with-text.html#cb232-2" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb232-3"><a href="working-with-text.html#cb232-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
+<span id="cb232-4"><a href="working-with-text.html#cb232-4" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) <span class="sc">|&gt;</span> </span>
+<span id="cb232-5"><a href="working-with-text.html#cb232-5" tabindex="-1"></a>     <span class="fu">select</span>(author, title, selftext, id, link_flair_text,</span>
+<span id="cb232-6"><a href="working-with-text.html#cb232-6" tabindex="-1"></a>            num_comments, ups, downs, subreddit, created_utc) <span class="sc">|&gt;</span> </span>
+<span id="cb232-7"><a href="working-with-text.html#cb232-7" tabindex="-1"></a>     <span class="fu">mutate</span> (<span class="at">date =</span> (<span class="fu">as_datetime</span>(created_utc))) <span class="sc">|&gt;</span> </span>
+<span id="cb232-8"><a href="working-with-text.html#cb232-8" tabindex="-1"></a>     <span class="fu">select</span>(<span class="sc">-</span>created_utc)</span></code></pre></div>
 <pre><code>##  Found 500 records... Found 1000 records... Found 1500 records... Found 2000 records... Found 2500 records... Found 3000 records... Found 3500 records... Found 4000 records... Found 4500 records... Found 5000 records... Found 5500 records... Found 6000 records... Found 6500 records... Found 7000 records... Found 7500 records... Found 8000 records... Found 8500 records... Found 9000 records... Found 9500 records... Found 10000 records... Imported 10000 records. Simplifying...</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="working-with-text.html#cb235-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb235-2"><a href="working-with-text.html#cb235-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
-<pre><code>## Time difference of 6.456353 secs</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="working-with-text.html#cb234-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb234-2"><a href="working-with-text.html#cb234-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
+<pre><code>## Time difference of 7.658205 secs</code></pre>
 <p>Looks good - the date/time field is clean, the columns are those that we want, and it only took a few seconds to read in 10,000 posts. Let’s read them all in, then take a look at a small random sample - 10 - of the texts of the posts.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="working-with-text.html#cb237-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>)</span>
-<span id="cb237-2"><a href="working-with-text.html#cb237-2" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb237-3"><a href="working-with-text.html#cb237-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
-<span id="cb237-4"><a href="working-with-text.html#cb237-4" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) <span class="sc">|&gt;</span> </span>
-<span id="cb237-5"><a href="working-with-text.html#cb237-5" tabindex="-1"></a>     <span class="fu">select</span>(author, title, selftext, id, link_flair_text,</span>
-<span id="cb237-6"><a href="working-with-text.html#cb237-6" tabindex="-1"></a>            num_comments, score, subreddit, created_utc) <span class="sc">|&gt;</span> </span>
-<span id="cb237-7"><a href="working-with-text.html#cb237-7" tabindex="-1"></a>     <span class="fu">mutate</span> (<span class="at">date =</span> (<span class="fu">as_datetime</span>(created_utc))) <span class="sc">|&gt;</span> </span>
-<span id="cb237-8"><a href="working-with-text.html#cb237-8" tabindex="-1"></a>     <span class="fu">select</span>(<span class="sc">-</span>created_utc)</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="working-with-text.html#cb236-1" tabindex="-1"></a>posts <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;data/r_fednews_posts.jsonl&quot;</span>)</span>
+<span id="cb236-2"><a href="working-with-text.html#cb236-2" tabindex="-1"></a>start.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb236-3"><a href="working-with-text.html#cb236-3" tabindex="-1"></a>a1 <span class="ot">&lt;-</span> <span class="fu">stream_in</span>(<span class="fu">textConnection</span>(</span>
+<span id="cb236-4"><a href="working-with-text.html#cb236-4" tabindex="-1"></a>     <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">n&quot;</span>,<span class="st">&quot;&quot;</span>, posts))) <span class="sc">|&gt;</span> </span>
+<span id="cb236-5"><a href="working-with-text.html#cb236-5" tabindex="-1"></a>     <span class="fu">select</span>(author, title, selftext, id, link_flair_text,</span>
+<span id="cb236-6"><a href="working-with-text.html#cb236-6" tabindex="-1"></a>            num_comments, score, subreddit, created_utc) <span class="sc">|&gt;</span> </span>
+<span id="cb236-7"><a href="working-with-text.html#cb236-7" tabindex="-1"></a>     <span class="fu">mutate</span> (<span class="at">date =</span> (<span class="fu">as_datetime</span>(created_utc))) <span class="sc">|&gt;</span> </span>
+<span id="cb236-8"><a href="working-with-text.html#cb236-8" tabindex="-1"></a>     <span class="fu">select</span>(<span class="sc">-</span>created_utc)</span></code></pre></div>
 <pre><code>##  Found 500 records... Found 1000 records... Found 1500 records... Found 2000 records... Found 2500 records... Found 3000 records... Found 3500 records... Found 4000 records... Found 4500 records... Found 5000 records... Found 5500 records... Found 6000 records... Found 6500 records... Found 7000 records... Found 7500 records... Found 8000 records... Found 8500 records... Found 9000 records... Found 9500 records... Found 10000 records... Found 10500 records... Found 11000 records... Found 11500 records... Found 12000 records... Found 12500 records... Found 13000 records... Found 13500 records... Found 14000 records... Found 14500 records... Found 15000 records... Found 15500 records... Found 16000 records... Found 16500 records... Found 17000 records... Found 17500 records... Found 18000 records... Found 18500 records... Found 19000 records... Found 19500 records... Found 20000 records... Found 20500 records... Found 21000 records... Found 21500 records... Found 22000 records... Found 22500 records... Found 23000 records... Found 23500 records... Found 24000 records... Found 24500 records... Found 25000 records... Found 25500 records... Found 26000 records... Found 26500 records... Found 27000 records... Found 27500 records... Found 28000 records... Found 28500 records... Found 29000 records... Found 29500 records... Found 30000 records... Found 30500 records... Found 31000 records... Found 31500 records... Found 32000 records... Found 32500 records... Found 33000 records... Found 33500 records... Found 34000 records... Found 34500 records... Found 35000 records... Found 35500 records... Found 36000 records... Found 36500 records... Found 37000 records... Found 37500 records... Found 38000 records... Found 38500 records... Found 39000 records... Found 39500 records... Found 40000 records... Found 40500 records... Found 41000 records... Found 41500 records... Found 42000 records... Found 42500 records... Found 43000 records... Found 43500 records... Found 44000 records... Found 44500 records... Found 45000 records... Found 45500 records... Found 46000 records... Found 46500 records... Found 47000 records... Found 47500 records... Found 48000 records... Found 48500 records... Found 49000 records... Found 49500 records... Found 50000 records... Found 50500 records... Found 51000 records... Found 51500 records... Found 52000 records... Found 52500 records... Found 53000 records... Found 53500 records... Found 54000 records... Found 54500 records... Found 55000 records... Found 55500 records... Found 56000 records... Found 56500 records... Found 57000 records... Found 57500 records... Found 58000 records... Found 58500 records... Found 59000 records... Found 59500 records... Found 59651 records... Imported 59651 records. Simplifying...</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="working-with-text.html#cb239-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb239-2"><a href="working-with-text.html#cb239-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
-<pre><code>## Time difference of 2.47975 mins</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="working-with-text.html#cb241-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb241-2"><a href="working-with-text.html#cb241-2" tabindex="-1"></a>a1 <span class="sc">|&gt;</span> <span class="fu">select</span> (selftext) <span class="sc">|&gt;</span> <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="working-with-text.html#cb238-1" tabindex="-1"></a>end.time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb238-2"><a href="working-with-text.html#cb238-2" tabindex="-1"></a>(end.time <span class="sc">-</span> start.time)</span></code></pre></div>
+<pre><code>## Time difference of 2.661951 mins</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="working-with-text.html#cb240-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb240-2"><a href="working-with-text.html#cb240-2" tabindex="-1"></a>a1 <span class="sc">|&gt;</span> <span class="fu">select</span> (selftext) <span class="sc">|&gt;</span> <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          selftext
 ## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ACA and IRA provided alternate funding sources for several agencies to hire new FTEs. In my agency even when there was a hiring freeze from the general “congress appropriations” hiring budget, we were allowed to bring new people on through the IRA as direct hires. The ACA is also very contentious. If those laws get repealed what happens to those employees? 
 ## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       [removed]
@@ -717,61 +717,61 @@ div.csl-indent {
 <p>We then selectively set the text to lowercase (retaining uppercase only when a multi-character token, or word, is in ALL CAPS). This gives us tidyCorpus1.</p>
 <p>We also remove stopwords from the text in order to simplify and shorten the texts; acknowledging that there are often good reasons not to do this <span class="citation">Pennebaker et al. (<a href="#ref-pennebaker2014">2014</a>)</span>. We’ll remove numbers from the text in the same step. Call this file tidyCorpus2.</p>
 <p>Finally, we stem the text, reducing each word to its common stem, using the SnowballC library. This gives is tidyCorpus3. If we were to stem the text, we would move ahead with this file rather than tidyCorpus2. For more on stemming, please consider Hvitfeldt and Slige<span class="citation">(<a href="#ref-hvitfeldt2021">2021</a>)</span>, which is available online.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-text.html#cb243-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb243-2"><a href="working-with-text.html#cb243-2" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1 <span class="sc">|&gt;</span> <span class="fu">filter</span> (selftext <span class="sc">!=</span> <span class="st">&quot;[removed]&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb243-3"><a href="working-with-text.html#cb243-3" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">epoch =</span> <span class="fu">case_when</span> (</span>
-<span id="cb243-4"><a href="working-with-text.html#cb243-4" tabindex="-1"></a>        date <span class="sc">&lt;</span> <span class="st">&quot;2024-11-06 00:00:00&quot;</span> <span class="sc">~</span> <span class="st">&quot;Biden&quot;</span>,</span>
-<span id="cb243-5"><a href="working-with-text.html#cb243-5" tabindex="-1"></a>        date <span class="sc">&gt;</span> <span class="st">&quot;2025-01-20 12:00:00&quot;</span> <span class="sc">~</span> <span class="st">&quot;Trump&quot;</span>,</span>
-<span id="cb243-6"><a href="working-with-text.html#cb243-6" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Lameduck&quot;</span></span>
-<span id="cb243-7"><a href="working-with-text.html#cb243-7" tabindex="-1"></a>    ))</span>
-<span id="cb243-8"><a href="working-with-text.html#cb243-8" tabindex="-1"></a>tidyCorpus0 <span class="ot">&lt;-</span> a2 <span class="sc">|&gt;</span> </span>
-<span id="cb243-9"><a href="working-with-text.html#cb243-9" tabindex="-1"></a>    <span class="fu">unnest_tokens</span>(word, selftext, <span class="at">to_lower =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb243-10"><a href="working-with-text.html#cb243-10" tabindex="-1"></a>tidyCorpus1 <span class="ot">&lt;-</span> tidyCorpus0 <span class="sc">|&gt;</span> </span>
-<span id="cb243-11"><a href="working-with-text.html#cb243-11" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">word =</span> <span class="fu">case_when</span>(</span>
-<span id="cb243-12"><a href="working-with-text.html#cb243-12" tabindex="-1"></a><span class="co"># if changing a word to uppercase has no effect ...</span></span>
-<span id="cb243-13"><a href="working-with-text.html#cb243-13" tabindex="-1"></a>        (<span class="fu">toupper</span>(word) <span class="sc">==</span> word) <span class="sc">&amp;</span> </span>
-<span id="cb243-14"><a href="working-with-text.html#cb243-14" tabindex="-1"></a><span class="co"># amd the word is more than 1 character long, keep it as is</span></span>
-<span id="cb243-15"><a href="working-with-text.html#cb243-15" tabindex="-1"></a>            <span class="fu">nchar</span>(word) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> word,</span>
-<span id="cb243-16"><a href="working-with-text.html#cb243-16" tabindex="-1"></a><span class="co"># else change it to lowercase</span></span>
-<span id="cb243-17"><a href="working-with-text.html#cb243-17" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">tolower</span>(word)))</span>
-<span id="cb243-18"><a href="working-with-text.html#cb243-18" tabindex="-1"></a></span>
-<span id="cb243-19"><a href="working-with-text.html#cb243-19" tabindex="-1"></a><span class="co"># tidyCorpus2 gets rid of numbers and removes stop words</span></span>
-<span id="cb243-20"><a href="working-with-text.html#cb243-20" tabindex="-1"></a>tidyCorpus2 <span class="ot">&lt;-</span> tidyCorpus1 <span class="sc">|&gt;</span> </span>
-<span id="cb243-21"><a href="working-with-text.html#cb243-21" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span> </span>
-<span id="cb243-22"><a href="working-with-text.html#cb243-22" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word, </span>
-<span id="cb243-23"><a href="working-with-text.html#cb243-23" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
-<span id="cb243-24"><a href="working-with-text.html#cb243-24" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb243-25"><a href="working-with-text.html#cb243-25" tabindex="-1"></a>    <span class="fu">filter</span> (word <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb243-26"><a href="working-with-text.html#cb243-26" tabindex="-1"></a></span>
-<span id="cb243-27"><a href="working-with-text.html#cb243-27" tabindex="-1"></a><span class="co"># tidyCorpus3 takes the additional step of stemming the data</span></span>
-<span id="cb243-28"><a href="working-with-text.html#cb243-28" tabindex="-1"></a>tidyCorpus3 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span> </span>
-<span id="cb243-29"><a href="working-with-text.html#cb243-29" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">wordStem</span>(word))</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="working-with-text.html#cb242-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb242-2"><a href="working-with-text.html#cb242-2" tabindex="-1"></a>a2 <span class="ot">&lt;-</span> a1 <span class="sc">|&gt;</span> <span class="fu">filter</span> (selftext <span class="sc">!=</span> <span class="st">&quot;[removed]&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb242-3"><a href="working-with-text.html#cb242-3" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">epoch =</span> <span class="fu">case_when</span> (</span>
+<span id="cb242-4"><a href="working-with-text.html#cb242-4" tabindex="-1"></a>        date <span class="sc">&lt;</span> <span class="st">&quot;2024-11-06 00:00:00&quot;</span> <span class="sc">~</span> <span class="st">&quot;Biden&quot;</span>,</span>
+<span id="cb242-5"><a href="working-with-text.html#cb242-5" tabindex="-1"></a>        date <span class="sc">&gt;</span> <span class="st">&quot;2025-01-20 12:00:00&quot;</span> <span class="sc">~</span> <span class="st">&quot;Trump&quot;</span>,</span>
+<span id="cb242-6"><a href="working-with-text.html#cb242-6" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Lameduck&quot;</span></span>
+<span id="cb242-7"><a href="working-with-text.html#cb242-7" tabindex="-1"></a>    ))</span>
+<span id="cb242-8"><a href="working-with-text.html#cb242-8" tabindex="-1"></a>tidyCorpus0 <span class="ot">&lt;-</span> a2 <span class="sc">|&gt;</span> </span>
+<span id="cb242-9"><a href="working-with-text.html#cb242-9" tabindex="-1"></a>    <span class="fu">unnest_tokens</span>(word, selftext, <span class="at">to_lower =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb242-10"><a href="working-with-text.html#cb242-10" tabindex="-1"></a>tidyCorpus1 <span class="ot">&lt;-</span> tidyCorpus0 <span class="sc">|&gt;</span> </span>
+<span id="cb242-11"><a href="working-with-text.html#cb242-11" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">word =</span> <span class="fu">case_when</span>(</span>
+<span id="cb242-12"><a href="working-with-text.html#cb242-12" tabindex="-1"></a><span class="co"># if changing a word to uppercase has no effect ...</span></span>
+<span id="cb242-13"><a href="working-with-text.html#cb242-13" tabindex="-1"></a>        (<span class="fu">toupper</span>(word) <span class="sc">==</span> word) <span class="sc">&amp;</span> </span>
+<span id="cb242-14"><a href="working-with-text.html#cb242-14" tabindex="-1"></a><span class="co"># amd the word is more than 1 character long, keep it as is</span></span>
+<span id="cb242-15"><a href="working-with-text.html#cb242-15" tabindex="-1"></a>            <span class="fu">nchar</span>(word) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> word,</span>
+<span id="cb242-16"><a href="working-with-text.html#cb242-16" tabindex="-1"></a><span class="co"># else change it to lowercase</span></span>
+<span id="cb242-17"><a href="working-with-text.html#cb242-17" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">tolower</span>(word)))</span>
+<span id="cb242-18"><a href="working-with-text.html#cb242-18" tabindex="-1"></a></span>
+<span id="cb242-19"><a href="working-with-text.html#cb242-19" tabindex="-1"></a><span class="co"># tidyCorpus2 gets rid of numbers and removes stop words</span></span>
+<span id="cb242-20"><a href="working-with-text.html#cb242-20" tabindex="-1"></a>tidyCorpus2 <span class="ot">&lt;-</span> tidyCorpus1 <span class="sc">|&gt;</span> </span>
+<span id="cb242-21"><a href="working-with-text.html#cb242-21" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span> </span>
+<span id="cb242-22"><a href="working-with-text.html#cb242-22" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word, </span>
+<span id="cb242-23"><a href="working-with-text.html#cb242-23" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
+<span id="cb242-24"><a href="working-with-text.html#cb242-24" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb242-25"><a href="working-with-text.html#cb242-25" tabindex="-1"></a>    <span class="fu">filter</span> (word <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb242-26"><a href="working-with-text.html#cb242-26" tabindex="-1"></a></span>
+<span id="cb242-27"><a href="working-with-text.html#cb242-27" tabindex="-1"></a><span class="co"># tidyCorpus3 takes the additional step of stemming the data</span></span>
+<span id="cb242-28"><a href="working-with-text.html#cb242-28" tabindex="-1"></a>tidyCorpus3 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span> </span>
+<span id="cb242-29"><a href="working-with-text.html#cb242-29" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">wordStem</span>(word))</span></code></pre></div>
 </div>
 <div id="comparing-the-words-and-stems" class="section level3 hasAnchor" number="21.2.5">
 <h3><span class="header-section-number">21.2.5</span> comparing the words and stems<a href="working-with-text.html#comparing-the-words-and-stems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We reduce each of the the three tidy <em>corpora</em> (bodies of text) to simple frequency tables</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="working-with-text.html#cb244-1" tabindex="-1"></a>nwordsCorpus0 <span class="ot">&lt;-</span> tidyCorpus0 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
-<span id="cb244-2"><a href="working-with-text.html#cb244-2" tabindex="-1"></a>nwordsCorpus1 <span class="ot">&lt;-</span> tidyCorpus1 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
-<span id="cb244-3"><a href="working-with-text.html#cb244-3" tabindex="-1"></a>nwordsCorpus2 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
-<span id="cb244-4"><a href="working-with-text.html#cb244-4" tabindex="-1"></a>nwordsCorpus3 <span class="ot">&lt;-</span> tidyCorpus3 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-text.html#cb243-1" tabindex="-1"></a>nwordsCorpus0 <span class="ot">&lt;-</span> tidyCorpus0 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
+<span id="cb243-2"><a href="working-with-text.html#cb243-2" tabindex="-1"></a>nwordsCorpus1 <span class="ot">&lt;-</span> tidyCorpus1 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
+<span id="cb243-3"><a href="working-with-text.html#cb243-3" tabindex="-1"></a>nwordsCorpus2 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span>
+<span id="cb243-4"><a href="working-with-text.html#cb243-4" tabindex="-1"></a>nwordsCorpus3 <span class="ot">&lt;-</span> tidyCorpus3 <span class="sc">|&gt;</span> <span class="fu">count</span> (word) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code></pre></div>
 <p>Whereas there were 58154 words in the initial data, this drops to 49447 when we (mostly) represent all words as lower case. It drops further to 41586 when we remove numbers and stop words, and finally to 29338 when we stem the data.</p>
 </div>
 <div id="construction-of-differential-word-clouds" class="section level3 hasAnchor" number="21.2.6">
 <h3><span class="header-section-number">21.2.6</span> Construction of differential word clouds<a href="working-with-text.html#construction-of-differential-word-clouds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We first take the corpus and reshape it to a matrix with row names (words) and counts (one column for each group).</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="working-with-text.html#cb245-1" tabindex="-1"></a>wideCorpus2 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span></span>
-<span id="cb245-2"><a href="working-with-text.html#cb245-2" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">!=</span> <span class="st">&quot;Lameduck&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb245-3"><a href="working-with-text.html#cb245-3" tabindex="-1"></a>    <span class="fu">count</span>(epoch, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb245-4"><a href="working-with-text.html#cb245-4" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> epoch, <span class="at">values_from =</span> n, </span>
-<span id="cb245-5"><a href="working-with-text.html#cb245-5" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb245-6"><a href="working-with-text.html#cb245-6" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb245-7"><a href="working-with-text.html#cb245-7" tabindex="-1"></a><span class="co"># filter out words that don&#39;t appear at least a few times in each group</span></span>
-<span id="cb245-8"><a href="working-with-text.html#cb245-8" tabindex="-1"></a><span class="co"># and also removes words that are too rare to be useful for comparison</span></span>
-<span id="cb245-9"><a href="working-with-text.html#cb245-9" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">mincount =</span> <span class="fu">pmin</span>(Biden, Trump)) <span class="sc">|&gt;</span> </span>
-<span id="cb245-10"><a href="working-with-text.html#cb245-10" tabindex="-1"></a>    <span class="fu">filter</span> (mincount <span class="sc">&gt;</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb245-11"><a href="working-with-text.html#cb245-11" tabindex="-1"></a>    <span class="fu">select</span> (<span class="sc">-</span>mincount) <span class="sc">|&gt;</span> </span>
-<span id="cb245-12"><a href="working-with-text.html#cb245-12" tabindex="-1"></a>    <span class="fu">as.matrix</span>(<span class="at">rownames =</span> <span class="cn">TRUE</span>)  </span>
-<span id="cb245-13"><a href="working-with-text.html#cb245-13" tabindex="-1"></a><span class="fu">head</span>(wideCorpus2,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="working-with-text.html#cb244-1" tabindex="-1"></a>wideCorpus2 <span class="ot">&lt;-</span> tidyCorpus2 <span class="sc">|&gt;</span></span>
+<span id="cb244-2"><a href="working-with-text.html#cb244-2" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">!=</span> <span class="st">&quot;Lameduck&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb244-3"><a href="working-with-text.html#cb244-3" tabindex="-1"></a>    <span class="fu">count</span>(epoch, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb244-4"><a href="working-with-text.html#cb244-4" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> epoch, <span class="at">values_from =</span> n, </span>
+<span id="cb244-5"><a href="working-with-text.html#cb244-5" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb244-6"><a href="working-with-text.html#cb244-6" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb244-7"><a href="working-with-text.html#cb244-7" tabindex="-1"></a><span class="co"># filter out words that don&#39;t appear at least a few times in each group</span></span>
+<span id="cb244-8"><a href="working-with-text.html#cb244-8" tabindex="-1"></a><span class="co"># and also removes words that are too rare to be useful for comparison</span></span>
+<span id="cb244-9"><a href="working-with-text.html#cb244-9" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">mincount =</span> <span class="fu">pmin</span>(Biden, Trump)) <span class="sc">|&gt;</span> </span>
+<span id="cb244-10"><a href="working-with-text.html#cb244-10" tabindex="-1"></a>    <span class="fu">filter</span> (mincount <span class="sc">&gt;</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb244-11"><a href="working-with-text.html#cb244-11" tabindex="-1"></a>    <span class="fu">select</span> (<span class="sc">-</span>mincount) <span class="sc">|&gt;</span> </span>
+<span id="cb244-12"><a href="working-with-text.html#cb244-12" tabindex="-1"></a>    <span class="fu">as.matrix</span>(<span class="at">rownames =</span> <span class="cn">TRUE</span>)  </span>
+<span id="cb244-13"><a href="working-with-text.html#cb244-13" tabindex="-1"></a><span class="fu">head</span>(wideCorpus2,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##           Trump Biden
 ## federal    7200  2346
 ## employees  6351  1008
@@ -779,112 +779,112 @@ div.csl-indent {
 ## https      4801   762
 ## im         3975  3281</code></pre>
 <p>The <code>comparison.cloud</code> function from the <code>wordcloud</code> package is used to show the greatest relative proportions of words in each group (in that function, the scale parameters will need to be adjusted to get the best visual representation).</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-text.html#cb247-1" tabindex="-1"></a><span class="fu">comparison.cloud</span>(wideCorpus2,</span>
-<span id="cb247-2"><a href="working-with-text.html#cb247-2" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,.<span class="dv">5</span>),</span>
-<span id="cb247-3"><a href="working-with-text.html#cb247-3" tabindex="-1"></a>        <span class="at">max.words=</span><span class="dv">100</span>,</span>
-<span id="cb247-4"><a href="working-with-text.html#cb247-4" tabindex="-1"></a>        <span class="at">random.order=</span><span class="cn">FALSE</span>,</span>
-<span id="cb247-5"><a href="working-with-text.html#cb247-5" tabindex="-1"></a>        <span class="at">rot.per =</span> <span class="dv">0</span>,</span>
-<span id="cb247-6"><a href="working-with-text.html#cb247-6" tabindex="-1"></a>        <span class="at">use.r.layout=</span><span class="cn">FALSE</span>,</span>
-<span id="cb247-7"><a href="working-with-text.html#cb247-7" tabindex="-1"></a>        <span class="at">family=</span><span class="st">&quot;sans&quot;</span>,</span>
-<span id="cb247-8"><a href="working-with-text.html#cb247-8" tabindex="-1"></a>        <span class="at">title.size=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="working-with-text.html#cb246-1" tabindex="-1"></a><span class="fu">comparison.cloud</span>(wideCorpus2,</span>
+<span id="cb246-2"><a href="working-with-text.html#cb246-2" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,.<span class="dv">5</span>),</span>
+<span id="cb246-3"><a href="working-with-text.html#cb246-3" tabindex="-1"></a>        <span class="at">max.words=</span><span class="dv">100</span>,</span>
+<span id="cb246-4"><a href="working-with-text.html#cb246-4" tabindex="-1"></a>        <span class="at">random.order=</span><span class="cn">FALSE</span>,</span>
+<span id="cb246-5"><a href="working-with-text.html#cb246-5" tabindex="-1"></a>        <span class="at">rot.per =</span> <span class="dv">0</span>,</span>
+<span id="cb246-6"><a href="working-with-text.html#cb246-6" tabindex="-1"></a>        <span class="at">use.r.layout=</span><span class="cn">FALSE</span>,</span>
+<span id="cb246-7"><a href="working-with-text.html#cb246-7" tabindex="-1"></a>        <span class="at">family=</span><span class="st">&quot;sans&quot;</span>,</span>
+<span id="cb246-8"><a href="working-with-text.html#cb246-8" tabindex="-1"></a>        <span class="at">title.size=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-85-1.png" alt="" width="672" /></p>
 <p>Many of the words which appear disproportionately in the Trump corpus (<em>employees, https, federal, government)</em> appear relatively neutral in emotional tone, although there are also terms such as <em>fired</em> and <em>resignation</em> here. On the Biden side, the abbreviation <em>GS</em> (for General Schedule, describing the level of various positions in civil service), together with <em>position, job, HR, step, hours</em>, and <em>supervisor</em> indicates that most posts refer to employment issues.</p>
 <p>Interesting, but perhaps less than we might have expected. Will an analysis of two-word strings (bigrams) provide more insight?</p>
 </div>
 <div id="bigrams" class="section level3 hasAnchor" number="21.2.7">
 <h3><span class="header-section-number">21.2.7</span> bigrams<a href="working-with-text.html#bigrams" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The comparison cloud illustrates differences in single-word occurrences between the Biden and Trump epochs in r/fedworkers. Here, we repeat the analysis, investigating two-word strings. Note that in order to remove stopwords and numbers, we fist combine adjacent words (tokens) into bigrams, then separate these into pairs of adjacent words, filter on each of these adjacent words, and rejoin them.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="working-with-text.html#cb248-1" tabindex="-1"></a>tidyBigrams <span class="ot">&lt;-</span> a2 <span class="sc">|&gt;</span> </span>
-<span id="cb248-2"><a href="working-with-text.html#cb248-2" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">!=</span> <span class="st">&quot;Lameduck&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-3"><a href="working-with-text.html#cb248-3" tabindex="-1"></a>    <span class="fu">unnest_tokens</span>(bigram, selftext, <span class="at">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-4"><a href="working-with-text.html#cb248-4" tabindex="-1"></a>    <span class="fu">separate</span>(bigram,<span class="fu">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-5"><a href="working-with-text.html#cb248-5" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">&quot;word1&quot;</span> <span class="sc">==</span> <span class="st">&quot;word&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb248-6"><a href="working-with-text.html#cb248-6" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">&quot;word2&quot;</span> <span class="sc">==</span> <span class="st">&quot;word&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb248-7"><a href="working-with-text.html#cb248-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word1 =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word1, </span>
-<span id="cb248-8"><a href="working-with-text.html#cb248-8" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
-<span id="cb248-9"><a href="working-with-text.html#cb248-9" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb248-10"><a href="working-with-text.html#cb248-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word2 =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word2, </span>
-<span id="cb248-11"><a href="working-with-text.html#cb248-11" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
-<span id="cb248-12"><a href="working-with-text.html#cb248-12" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb248-13"><a href="working-with-text.html#cb248-13" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb248-14"><a href="working-with-text.html#cb248-14" tabindex="-1"></a>    <span class="fu">filter</span> (word1 <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-15"><a href="working-with-text.html#cb248-15" tabindex="-1"></a>    <span class="fu">filter</span> (word2 <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-16"><a href="working-with-text.html#cb248-16" tabindex="-1"></a>    <span class="fu">unite</span>(bigram, word1, word2, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
-<span id="cb248-17"><a href="working-with-text.html#cb248-17" tabindex="-1"></a>bigramCounts <span class="ot">&lt;-</span> tidyBigrams <span class="sc">|&gt;</span>     </span>
-<span id="cb248-18"><a href="working-with-text.html#cb248-18" tabindex="-1"></a>    <span class="fu">count</span>(epoch, bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-19"><a href="working-with-text.html#cb248-19" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> epoch, <span class="at">values_from =</span> n, </span>
-<span id="cb248-20"><a href="working-with-text.html#cb248-20" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb248-21"><a href="working-with-text.html#cb248-21" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;bigram&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb248-22"><a href="working-with-text.html#cb248-22" tabindex="-1"></a>    <span class="fu">as.matrix</span>(<span class="at">rownames =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb248-23"><a href="working-with-text.html#cb248-23" tabindex="-1"></a><span class="fu">comparison.cloud</span>(bigramCounts,</span>
-<span id="cb248-24"><a href="working-with-text.html#cb248-24" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,.<span class="dv">5</span>),</span>
-<span id="cb248-25"><a href="working-with-text.html#cb248-25" tabindex="-1"></a>        <span class="at">max.words=</span><span class="dv">100</span>,</span>
-<span id="cb248-26"><a href="working-with-text.html#cb248-26" tabindex="-1"></a>        <span class="at">random.order=</span><span class="cn">FALSE</span>,</span>
-<span id="cb248-27"><a href="working-with-text.html#cb248-27" tabindex="-1"></a>        <span class="at">rot.per =</span> <span class="dv">0</span>,</span>
-<span id="cb248-28"><a href="working-with-text.html#cb248-28" tabindex="-1"></a>        <span class="at">use.r.layout=</span><span class="cn">FALSE</span>,</span>
-<span id="cb248-29"><a href="working-with-text.html#cb248-29" tabindex="-1"></a>        <span class="at">family=</span><span class="st">&quot;sans&quot;</span>,</span>
-<span id="cb248-30"><a href="working-with-text.html#cb248-30" tabindex="-1"></a>        <span class="at">title.size=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-text.html#cb247-1" tabindex="-1"></a>tidyBigrams <span class="ot">&lt;-</span> a2 <span class="sc">|&gt;</span> </span>
+<span id="cb247-2"><a href="working-with-text.html#cb247-2" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">!=</span> <span class="st">&quot;Lameduck&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-3"><a href="working-with-text.html#cb247-3" tabindex="-1"></a>    <span class="fu">unnest_tokens</span>(bigram, selftext, <span class="at">token =</span> <span class="st">&quot;ngrams&quot;</span>, <span class="at">n =</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-4"><a href="working-with-text.html#cb247-4" tabindex="-1"></a>    <span class="fu">separate</span>(bigram,<span class="fu">c</span>(<span class="st">&quot;word1&quot;</span>, <span class="st">&quot;word2&quot;</span>), <span class="at">sep =</span> <span class="st">&quot; &quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-5"><a href="working-with-text.html#cb247-5" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">&quot;word1&quot;</span> <span class="sc">==</span> <span class="st">&quot;word&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb247-6"><a href="working-with-text.html#cb247-6" tabindex="-1"></a>    <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="fu">join_by</span>(<span class="st">&quot;word2&quot;</span> <span class="sc">==</span> <span class="st">&quot;word&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb247-7"><a href="working-with-text.html#cb247-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word1 =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word1, </span>
+<span id="cb247-8"><a href="working-with-text.html#cb247-8" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
+<span id="cb247-9"><a href="working-with-text.html#cb247-9" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb247-10"><a href="working-with-text.html#cb247-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">word2 =</span> <span class="fu">gsub</span>(<span class="at">x =</span> word2, </span>
+<span id="cb247-11"><a href="working-with-text.html#cb247-11" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;[0-9]+|[[:punct:]]|</span><span class="sc">\\</span><span class="st">(.*</span><span class="sc">\\</span><span class="st">)&quot;</span>,</span>
+<span id="cb247-12"><a href="working-with-text.html#cb247-12" tabindex="-1"></a>                       <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb247-13"><a href="working-with-text.html#cb247-13" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb247-14"><a href="working-with-text.html#cb247-14" tabindex="-1"></a>    <span class="fu">filter</span> (word1 <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-15"><a href="working-with-text.html#cb247-15" tabindex="-1"></a>    <span class="fu">filter</span> (word2 <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-16"><a href="working-with-text.html#cb247-16" tabindex="-1"></a>    <span class="fu">unite</span>(bigram, word1, word2, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb247-17"><a href="working-with-text.html#cb247-17" tabindex="-1"></a>bigramCounts <span class="ot">&lt;-</span> tidyBigrams <span class="sc">|&gt;</span>     </span>
+<span id="cb247-18"><a href="working-with-text.html#cb247-18" tabindex="-1"></a>    <span class="fu">count</span>(epoch, bigram, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-19"><a href="working-with-text.html#cb247-19" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> epoch, <span class="at">values_from =</span> n, </span>
+<span id="cb247-20"><a href="working-with-text.html#cb247-20" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb247-21"><a href="working-with-text.html#cb247-21" tabindex="-1"></a>    <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;bigram&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb247-22"><a href="working-with-text.html#cb247-22" tabindex="-1"></a>    <span class="fu">as.matrix</span>(<span class="at">rownames =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb247-23"><a href="working-with-text.html#cb247-23" tabindex="-1"></a><span class="fu">comparison.cloud</span>(bigramCounts,</span>
+<span id="cb247-24"><a href="working-with-text.html#cb247-24" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,.<span class="dv">5</span>),</span>
+<span id="cb247-25"><a href="working-with-text.html#cb247-25" tabindex="-1"></a>        <span class="at">max.words=</span><span class="dv">100</span>,</span>
+<span id="cb247-26"><a href="working-with-text.html#cb247-26" tabindex="-1"></a>        <span class="at">random.order=</span><span class="cn">FALSE</span>,</span>
+<span id="cb247-27"><a href="working-with-text.html#cb247-27" tabindex="-1"></a>        <span class="at">rot.per =</span> <span class="dv">0</span>,</span>
+<span id="cb247-28"><a href="working-with-text.html#cb247-28" tabindex="-1"></a>        <span class="at">use.r.layout=</span><span class="cn">FALSE</span>,</span>
+<span id="cb247-29"><a href="working-with-text.html#cb247-29" tabindex="-1"></a>        <span class="at">family=</span><span class="st">&quot;sans&quot;</span>,</span>
+<span id="cb247-30"><a href="working-with-text.html#cb247-30" tabindex="-1"></a>        <span class="at">title.size=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" /></p>
 <p>Here, the language of the two epochs comes into clearer focus, with phrases such as <em>deferred resignation</em> characterizing the Trump epoch and the relatively benign <em>pay period</em> characterizing the Biden period.</p>
 </div>
 <div id="categories-of-words" class="section level3 hasAnchor" number="21.2.8">
 <h3><span class="header-section-number">21.2.8</span> categories of words<a href="working-with-text.html#categories-of-words" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In my own research, I rely on a proprietary tool, <em>Linguistic Inquiry and Word Count.</em> Though LIWC can be run within R on a machine that has the license for the software, here I run the program externally, then reimport it into R.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-text.html#cb249-1" tabindex="-1"></a><span class="fu">write_csv</span>(a2, <span class="st">&quot;data/fedworkersposts.csv&quot;</span>)</span>
-<span id="cb249-2"><a href="working-with-text.html#cb249-2" tabindex="-1"></a><span class="co"># we run LIWC outside of R here. </span></span>
-<span id="cb249-3"><a href="working-with-text.html#cb249-3" tabindex="-1"></a><span class="co"># the code is run on the raw data files</span></span>
-<span id="cb249-4"><a href="working-with-text.html#cb249-4" tabindex="-1"></a>fedworkersLIWC <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/fedworkersLIWC.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="working-with-text.html#cb248-1" tabindex="-1"></a><span class="fu">write_csv</span>(a2, <span class="st">&quot;data/fedworkersposts.csv&quot;</span>)</span>
+<span id="cb248-2"><a href="working-with-text.html#cb248-2" tabindex="-1"></a><span class="co"># we run LIWC outside of R here. </span></span>
+<span id="cb248-3"><a href="working-with-text.html#cb248-3" tabindex="-1"></a><span class="co"># the code is run on the raw data files</span></span>
+<span id="cb248-4"><a href="working-with-text.html#cb248-4" tabindex="-1"></a>fedworkersLIWC <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/fedworkersLIWC.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="code-for-assessing-liwc-effect-sizes-between-2-groups" class="section level3 hasAnchor" number="21.2.9">
 <h3><span class="header-section-number">21.2.9</span> Code for assessing LIWC effect sizes between 2 groups<a href="working-with-text.html#code-for-assessing-liwc-effect-sizes-between-2-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are many measures, or categories, in LIWC. In order to assess the statistical significance of differecnces between the Biden and Trump epochs on LIWC, the simplest approach is to adjust for the number of comparisons using the Bonferroni correction. The number of LIWC categories is 117, so the Bonferroni p-value should be .05/117 = .000427.</p>
 <p>This chunk uses three different libraries describe function from the psych package to get means, standard deviations, and sample sizes for each LIWC category. Then it computes the effect sizes and associated statistics using the mes function from the compute.es package and makes tables for the LIWC variables with the largest effects.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="working-with-text.html#cb250-1" tabindex="-1"></a>BonferroniP <span class="ot">&lt;-</span> (.<span class="dv">05</span><span class="sc">/</span><span class="dv">117</span>) <span class="co"># 117 is the number of LIWC categories# simple descriptives</span></span>
-<span id="cb250-2"><a href="working-with-text.html#cb250-2" tabindex="-1"></a></span>
-<span id="cb250-3"><a href="working-with-text.html#cb250-3" tabindex="-1"></a>BidenEpoch <span class="ot">&lt;-</span> fedworkersLIWC <span class="sc">|&gt;</span> </span>
-<span id="cb250-4"><a href="working-with-text.html#cb250-4" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">==</span> <span class="st">&quot;Biden&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb250-5"><a href="working-with-text.html#cb250-5" tabindex="-1"></a>    <span class="fu">select</span>(WC<span class="sc">:</span>OtherP) <span class="sc">|&gt;</span> </span>
-<span id="cb250-6"><a href="working-with-text.html#cb250-6" tabindex="-1"></a>    <span class="fu">describe</span>() <span class="sc">|&gt;</span> <span class="co"># from the psych package</span></span>
-<span id="cb250-7"><a href="working-with-text.html#cb250-7" tabindex="-1"></a>    <span class="fu">select</span>(<span class="at">BidenN=</span>n, <span class="at">BidenM =</span> mean, <span class="at">BidenSD =</span> sd) <span class="sc">|&gt;</span> </span>
-<span id="cb250-8"><a href="working-with-text.html#cb250-8" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb250-9"><a href="working-with-text.html#cb250-9" tabindex="-1"></a>TrumpEpoch <span class="ot">&lt;-</span> fedworkersLIWC <span class="sc">|&gt;</span></span>
-<span id="cb250-10"><a href="working-with-text.html#cb250-10" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">==</span> <span class="st">&quot;Trump&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb250-11"><a href="working-with-text.html#cb250-11" tabindex="-1"></a>    <span class="fu">select</span>(WC<span class="sc">:</span>OtherP) <span class="sc">|&gt;</span> </span>
-<span id="cb250-12"><a href="working-with-text.html#cb250-12" tabindex="-1"></a>    <span class="fu">describe</span>() <span class="sc">|&gt;</span></span>
-<span id="cb250-13"><a href="working-with-text.html#cb250-13" tabindex="-1"></a>    <span class="fu">select</span>(<span class="at">TrumpN=</span>n, <span class="at">TrumpM =</span> mean, <span class="at">TrumpSD =</span> sd) <span class="sc">|&gt;</span> </span>
-<span id="cb250-14"><a href="working-with-text.html#cb250-14" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb250-15"><a href="working-with-text.html#cb250-15" tabindex="-1"></a>poststats <span class="ot">&lt;-</span> BidenEpoch <span class="sc">|&gt;</span> </span>
-<span id="cb250-16"><a href="working-with-text.html#cb250-16" tabindex="-1"></a>    <span class="fu">bind_cols</span> (TrumpEpoch)</span>
-<span id="cb250-17"><a href="working-with-text.html#cb250-17" tabindex="-1"></a><span class="co"># from the compare.es package.</span></span>
-<span id="cb250-18"><a href="working-with-text.html#cb250-18" tabindex="-1"></a>Effects <span class="ot">&lt;-</span> <span class="fu">mes</span>(poststats[,<span class="dv">2</span>], </span>
-<span id="cb250-19"><a href="working-with-text.html#cb250-19" tabindex="-1"></a>               poststats[,<span class="dv">5</span>],</span>
-<span id="cb250-20"><a href="working-with-text.html#cb250-20" tabindex="-1"></a>               poststats[,<span class="dv">3</span>], </span>
-<span id="cb250-21"><a href="working-with-text.html#cb250-21" tabindex="-1"></a>               poststats[,<span class="dv">6</span>],</span>
-<span id="cb250-22"><a href="working-with-text.html#cb250-22" tabindex="-1"></a>               poststats[,<span class="dv">1</span>],poststats[,<span class="dv">4</span>],</span>
-<span id="cb250-23"><a href="working-with-text.html#cb250-23" tabindex="-1"></a>               <span class="at">level =</span> BonferroniP,</span>
-<span id="cb250-24"><a href="working-with-text.html#cb250-24" tabindex="-1"></a>               <span class="at">verbose =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb250-25"><a href="working-with-text.html#cb250-25" tabindex="-1"></a>    <span class="fu">select</span>(d, l.d, u.d, pval.d)</span>
-<span id="cb250-26"><a href="working-with-text.html#cb250-26" tabindex="-1"></a>LIWCSummary <span class="ot">&lt;-</span> poststats <span class="sc">|&gt;</span> </span>
-<span id="cb250-27"><a href="working-with-text.html#cb250-27" tabindex="-1"></a>    <span class="fu">bind_cols</span>(Effects) <span class="sc">|&gt;</span></span>
-<span id="cb250-28"><a href="working-with-text.html#cb250-28" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>BidenN, <span class="sc">-</span>TrumpN) <span class="sc">|&gt;</span> </span>
-<span id="cb250-29"><a href="working-with-text.html#cb250-29" tabindex="-1"></a>    <span class="fu">write_csv</span>(<span class="st">&quot;data/LIWCeffects.csv&quot;</span>)</span>
-<span id="cb250-30"><a href="working-with-text.html#cb250-30" tabindex="-1"></a></span>
-<span id="cb250-31"><a href="working-with-text.html#cb250-31" tabindex="-1"></a>Nsignificant <span class="ot">&lt;-</span> Effects <span class="sc">|&gt;</span> </span>
-<span id="cb250-32"><a href="working-with-text.html#cb250-32" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sig =</span> <span class="fu">case_when</span> (pval.d <span class="sc">&lt;</span> BonferroniP <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb250-33"><a href="working-with-text.html#cb250-33" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb250-34"><a href="working-with-text.html#cb250-34" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(sig)) <span class="sc">|&gt;</span> </span>
-<span id="cb250-35"><a href="working-with-text.html#cb250-35" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
-<span id="cb250-36"><a href="working-with-text.html#cb250-36" tabindex="-1"></a>BidenN <span class="ot">&lt;-</span> <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN)</span>
-<span id="cb250-37"><a href="working-with-text.html#cb250-37" tabindex="-1"></a>TrumpN <span class="ot">&lt;-</span> <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)</span>
-<span id="cb250-38"><a href="working-with-text.html#cb250-38" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
-<span id="cb250-39"><a href="working-with-text.html#cb250-39" tabindex="-1"></a>    <span class="fu">slice_max</span>(d, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb250-40"><a href="working-with-text.html#cb250-40" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;LIWC categories in r/fedworkers most associated with the Biden era&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb250-41"><a href="working-with-text.html#cb250-41" tabindex="-1"></a>    <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb250-42"><a href="working-with-text.html#cb250-42" tabindex="-1"></a>    <span class="fu">add_footnote</span>(<span class="fu">paste0</span>(</span>
-<span id="cb250-43"><a href="working-with-text.html#cb250-43" tabindex="-1"></a>        <span class="st">&quot;Note: BidenNs &gt;= &quot;</span>,</span>
-<span id="cb250-44"><a href="working-with-text.html#cb250-44" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN),</span>
-<span id="cb250-45"><a href="working-with-text.html#cb250-45" tabindex="-1"></a>        <span class="st">&quot; TrumpNs &gt;= &quot;</span>,</span>
-<span id="cb250-46"><a href="working-with-text.html#cb250-46" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)))</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-text.html#cb249-1" tabindex="-1"></a>BonferroniP <span class="ot">&lt;-</span> (.<span class="dv">05</span><span class="sc">/</span><span class="dv">117</span>) <span class="co"># 117 is the number of LIWC categories# simple descriptives</span></span>
+<span id="cb249-2"><a href="working-with-text.html#cb249-2" tabindex="-1"></a></span>
+<span id="cb249-3"><a href="working-with-text.html#cb249-3" tabindex="-1"></a>BidenEpoch <span class="ot">&lt;-</span> fedworkersLIWC <span class="sc">|&gt;</span> </span>
+<span id="cb249-4"><a href="working-with-text.html#cb249-4" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">==</span> <span class="st">&quot;Biden&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb249-5"><a href="working-with-text.html#cb249-5" tabindex="-1"></a>    <span class="fu">select</span>(WC<span class="sc">:</span>OtherP) <span class="sc">|&gt;</span> </span>
+<span id="cb249-6"><a href="working-with-text.html#cb249-6" tabindex="-1"></a>    <span class="fu">describe</span>() <span class="sc">|&gt;</span> <span class="co"># from the psych package</span></span>
+<span id="cb249-7"><a href="working-with-text.html#cb249-7" tabindex="-1"></a>    <span class="fu">select</span>(<span class="at">BidenN=</span>n, <span class="at">BidenM =</span> mean, <span class="at">BidenSD =</span> sd) <span class="sc">|&gt;</span> </span>
+<span id="cb249-8"><a href="working-with-text.html#cb249-8" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb249-9"><a href="working-with-text.html#cb249-9" tabindex="-1"></a>TrumpEpoch <span class="ot">&lt;-</span> fedworkersLIWC <span class="sc">|&gt;</span></span>
+<span id="cb249-10"><a href="working-with-text.html#cb249-10" tabindex="-1"></a>    <span class="fu">filter</span> (epoch <span class="sc">==</span> <span class="st">&quot;Trump&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb249-11"><a href="working-with-text.html#cb249-11" tabindex="-1"></a>    <span class="fu">select</span>(WC<span class="sc">:</span>OtherP) <span class="sc">|&gt;</span> </span>
+<span id="cb249-12"><a href="working-with-text.html#cb249-12" tabindex="-1"></a>    <span class="fu">describe</span>() <span class="sc">|&gt;</span></span>
+<span id="cb249-13"><a href="working-with-text.html#cb249-13" tabindex="-1"></a>    <span class="fu">select</span>(<span class="at">TrumpN=</span>n, <span class="at">TrumpM =</span> mean, <span class="at">TrumpSD =</span> sd) <span class="sc">|&gt;</span> </span>
+<span id="cb249-14"><a href="working-with-text.html#cb249-14" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb249-15"><a href="working-with-text.html#cb249-15" tabindex="-1"></a>poststats <span class="ot">&lt;-</span> BidenEpoch <span class="sc">|&gt;</span> </span>
+<span id="cb249-16"><a href="working-with-text.html#cb249-16" tabindex="-1"></a>    <span class="fu">bind_cols</span> (TrumpEpoch)</span>
+<span id="cb249-17"><a href="working-with-text.html#cb249-17" tabindex="-1"></a><span class="co"># from the compare.es package.</span></span>
+<span id="cb249-18"><a href="working-with-text.html#cb249-18" tabindex="-1"></a>Effects <span class="ot">&lt;-</span> <span class="fu">mes</span>(poststats[,<span class="dv">2</span>], </span>
+<span id="cb249-19"><a href="working-with-text.html#cb249-19" tabindex="-1"></a>               poststats[,<span class="dv">5</span>],</span>
+<span id="cb249-20"><a href="working-with-text.html#cb249-20" tabindex="-1"></a>               poststats[,<span class="dv">3</span>], </span>
+<span id="cb249-21"><a href="working-with-text.html#cb249-21" tabindex="-1"></a>               poststats[,<span class="dv">6</span>],</span>
+<span id="cb249-22"><a href="working-with-text.html#cb249-22" tabindex="-1"></a>               poststats[,<span class="dv">1</span>],poststats[,<span class="dv">4</span>],</span>
+<span id="cb249-23"><a href="working-with-text.html#cb249-23" tabindex="-1"></a>               <span class="at">level =</span> BonferroniP,</span>
+<span id="cb249-24"><a href="working-with-text.html#cb249-24" tabindex="-1"></a>               <span class="at">verbose =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb249-25"><a href="working-with-text.html#cb249-25" tabindex="-1"></a>    <span class="fu">select</span>(d, l.d, u.d, pval.d)</span>
+<span id="cb249-26"><a href="working-with-text.html#cb249-26" tabindex="-1"></a>LIWCSummary <span class="ot">&lt;-</span> poststats <span class="sc">|&gt;</span> </span>
+<span id="cb249-27"><a href="working-with-text.html#cb249-27" tabindex="-1"></a>    <span class="fu">bind_cols</span>(Effects) <span class="sc">|&gt;</span></span>
+<span id="cb249-28"><a href="working-with-text.html#cb249-28" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>BidenN, <span class="sc">-</span>TrumpN) <span class="sc">|&gt;</span> </span>
+<span id="cb249-29"><a href="working-with-text.html#cb249-29" tabindex="-1"></a>    <span class="fu">write_csv</span>(<span class="st">&quot;data/LIWCeffects.csv&quot;</span>)</span>
+<span id="cb249-30"><a href="working-with-text.html#cb249-30" tabindex="-1"></a></span>
+<span id="cb249-31"><a href="working-with-text.html#cb249-31" tabindex="-1"></a>Nsignificant <span class="ot">&lt;-</span> Effects <span class="sc">|&gt;</span> </span>
+<span id="cb249-32"><a href="working-with-text.html#cb249-32" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sig =</span> <span class="fu">case_when</span> (pval.d <span class="sc">&lt;</span> BonferroniP <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb249-33"><a href="working-with-text.html#cb249-33" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb249-34"><a href="working-with-text.html#cb249-34" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">sum =</span> <span class="fu">sum</span>(sig)) <span class="sc">|&gt;</span> </span>
+<span id="cb249-35"><a href="working-with-text.html#cb249-35" tabindex="-1"></a>    <span class="fu">as.numeric</span>()</span>
+<span id="cb249-36"><a href="working-with-text.html#cb249-36" tabindex="-1"></a>BidenN <span class="ot">&lt;-</span> <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN)</span>
+<span id="cb249-37"><a href="working-with-text.html#cb249-37" tabindex="-1"></a>TrumpN <span class="ot">&lt;-</span> <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)</span>
+<span id="cb249-38"><a href="working-with-text.html#cb249-38" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
+<span id="cb249-39"><a href="working-with-text.html#cb249-39" tabindex="-1"></a>    <span class="fu">slice_max</span>(d, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb249-40"><a href="working-with-text.html#cb249-40" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;LIWC categories in r/fedworkers most associated with the Biden era&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb249-41"><a href="working-with-text.html#cb249-41" tabindex="-1"></a>    <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb249-42"><a href="working-with-text.html#cb249-42" tabindex="-1"></a>    <span class="fu">add_footnote</span>(<span class="fu">paste0</span>(</span>
+<span id="cb249-43"><a href="working-with-text.html#cb249-43" tabindex="-1"></a>        <span class="st">&quot;Note: BidenNs &gt;= &quot;</span>,</span>
+<span id="cb249-44"><a href="working-with-text.html#cb249-44" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN),</span>
+<span id="cb249-45"><a href="working-with-text.html#cb249-45" tabindex="-1"></a>        <span class="st">&quot; TrumpNs &gt;= &quot;</span>,</span>
+<span id="cb249-46"><a href="working-with-text.html#cb249-46" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)))</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-88">Table 21.1: </span><span id="tab:unnamed-chunk-88">Table 21.2: </span>LIWC categories in r/fedworkers most associated with the Biden era
@@ -1248,15 +1248,15 @@ Lifestyle
 </tr>
 </tfoot>
 </table>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="working-with-text.html#cb251-1" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
-<span id="cb251-2"><a href="working-with-text.html#cb251-2" tabindex="-1"></a>    <span class="fu">slice_min</span>(d, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb251-3"><a href="working-with-text.html#cb251-3" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;LIWC categories in r/fedworkers most associated with the Trump era&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb251-4"><a href="working-with-text.html#cb251-4" tabindex="-1"></a>    <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb251-5"><a href="working-with-text.html#cb251-5" tabindex="-1"></a>    <span class="fu">add_footnote</span>(<span class="fu">paste0</span>(</span>
-<span id="cb251-6"><a href="working-with-text.html#cb251-6" tabindex="-1"></a>        <span class="st">&quot;Note: BidenNs &gt;= &quot;</span>,</span>
-<span id="cb251-7"><a href="working-with-text.html#cb251-7" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN),</span>
-<span id="cb251-8"><a href="working-with-text.html#cb251-8" tabindex="-1"></a>        <span class="st">&quot; TrumpNs &gt;= &quot;</span>,</span>
-<span id="cb251-9"><a href="working-with-text.html#cb251-9" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)))</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="working-with-text.html#cb250-1" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
+<span id="cb250-2"><a href="working-with-text.html#cb250-2" tabindex="-1"></a>    <span class="fu">slice_min</span>(d, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb250-3"><a href="working-with-text.html#cb250-3" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;LIWC categories in r/fedworkers most associated with the Trump era&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb250-4"><a href="working-with-text.html#cb250-4" tabindex="-1"></a>    <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb250-5"><a href="working-with-text.html#cb250-5" tabindex="-1"></a>    <span class="fu">add_footnote</span>(<span class="fu">paste0</span>(</span>
+<span id="cb250-6"><a href="working-with-text.html#cb250-6" tabindex="-1"></a>        <span class="st">&quot;Note: BidenNs &gt;= &quot;</span>,</span>
+<span id="cb250-7"><a href="working-with-text.html#cb250-7" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>BidenN),</span>
+<span id="cb250-8"><a href="working-with-text.html#cb250-8" tabindex="-1"></a>        <span class="st">&quot; TrumpNs &gt;= &quot;</span>,</span>
+<span id="cb250-9"><a href="working-with-text.html#cb250-9" tabindex="-1"></a>        <span class="fu">min</span>(poststats<span class="sc">$</span>TrumpN)))</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-88">Table 21.1: </span><span id="tab:unnamed-chunk-88">Table 21.1: </span>LIWC categories in r/fedworkers most associated with the Trump era
@@ -1591,10 +1591,10 @@ emo_neg
 </tr>
 </tfoot>
 </table>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="working-with-text.html#cb252-1" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
-<span id="cb252-2"><a href="working-with-text.html#cb252-2" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(d)) <span class="sc">|&gt;</span> </span>
-<span id="cb252-3"><a href="working-with-text.html#cb252-3" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb252-4"><a href="working-with-text.html#cb252-4" tabindex="-1"></a>    <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="working-with-text.html#cb251-1" tabindex="-1"></a>LIWCSummary <span class="sc">|&gt;</span> </span>
+<span id="cb251-2"><a href="working-with-text.html#cb251-2" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(d)) <span class="sc">|&gt;</span> </span>
+<span id="cb251-3"><a href="working-with-text.html#cb251-3" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb251-4"><a href="working-with-text.html#cb251-4" tabindex="-1"></a>    <span class="fu">kable</span>()</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="17%" />
@@ -1744,7 +1744,7 @@ emo_neg
 
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-boyd2022" class="csl-entry">
 Boyd, Ryan L, Ashwini Ashokkumar, Sarah Seraj, and James W Pennebaker. 2022. <span>“The Development and Psychometric Properties of LIWC-22.”</span> <em>Austin, TX: University of Texas at Austin</em> 10: 1–47.

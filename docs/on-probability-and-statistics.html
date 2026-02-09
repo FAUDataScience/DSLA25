@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 on probability and statistics | Data science for the liberal arts</title>
   <meta name="description" content="9 on probability and statistics | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 on probability and statistics | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -495,8 +495,7 @@ div.csl-indent {
 <div id="on-probability" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> on probability<a href="on-probability-and-statistics.html#on-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Discrete</strong> probability is used to understand the likelihood of categorical events. We can think of initial estimates of probability as subjective or personal. For some events (<em>what is the probability this plane will crash?</em>), an estimate of probability can be drawn from a base rate or relative frequency (e.g., <em>p(this plane will crash) = (number of flights with crashes/ number of flights)</em>.</p>
-<p>For other events (e.g., <em>what is the probability that a US President will resign or be impeached before completing their term of office?</em>), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, maybe we should consider a reference group rates such as ‘for this airline,’ or ‘for this type of jet’ etc.</p>
-<p>The claim that there is a simple distinction between ‘relative frequencies’ and ‘personal probabilities’ turns out to be an oversimplification. Relative frequencies are not statistical givens, because in many of not most situations there is no single base rate that is clearly superior to others. For the plane crash example, we might consider crash rates among all planes, all jets, and all carriers, or particular planes (Boeing 737 Max jets), particular carriers (United), or the intersection of some or all of these as well as other variables (United 737 Max airliners flying out of LaGuiardia at night). There is no single answer to the plane crash estimate, in other words.</p>
+<p>For other events (e.g., <em>what is the probability that a US President will resign or be impeached before completing their term of office?</em>), it may be hard to arrive at a suitable base rate. Here, a number of subjective beliefs or principles may be combined to arrive at a subjective or personal probability. In a sense, all probability estimates begin with a personal belief such as this, in part because the choice of the most informative base rate is often not self-evident - in the plane crash example, we might consider crash rates among all planes, all jets, and all carriers, or particular planes (Boeing 737 Max jets), particular carriers (United), or the intersection of some or all of these as well as other variables (United 737 Max airliners flying out of LaGuardia at night). There is no single answer to the plane crash estimate, in other words.</p>
 <p>Similarly, a baseball manager, in considering whether a pinch hitter might be brought in to bat at a crucial spot in a game, might consider an omnibus batting average (effectively a relative frequency of hits/opportunities), batting average at night, against this pitcher, etc.</p>
 <p>In general, there is not a correct answer to this “problem of the reference class” in part because a more precise reference group (737 Max planes, batting against a particular pitcher) is <em>inherently</em> based on a smaller sample of data, and is therefore less stable, than a broader, but coarser reference group upon which a probability estimate might also be based <span class="citation">(<a href="#ref-lanning1987">Lanning 1987</a>)</span>.</p>
 <p>The personal origins of probability estimates should become less important as we are exposed to data and revise our estimates in accordance with Bayes theorem. But over the last 50 years, a substantial body of evidence has demonstrates that, under at least some circumstances, we don’t make estimates of probability in this way.</p>
@@ -529,20 +528,19 @@ div.csl-indent {
 <blockquote>
 <p><strong>P(A and B) = P(A) P(B|A).</strong></p>
 </blockquote>
-<p><em>Example: The probability of you and your roommate both getting mononucleosis equals the probability of your getting mono times the probability that your roommate gets it, given that you have it also.</em></p>
+<p><em>Example: The probability of you and your roommate both getting COVID equals the probability of your getting COVID times the probability that your roommate gets it, given that you have it also.</em></p>
 <p>This is the <strong>general multiplication rule</strong>. In this abstract example, the order is irrelevant. To estimate the likelihood of A and B, we could as easily take the probability of B, and multiply it by the conditional probability of A given B</p>
 <blockquote>
 <p><strong>P(A and B) = P(B) P(A|B).</strong></p>
 </blockquote>
-<p><em>Use the mono example again. What are A and B here? Does it still make sense? When might P (B|A) make more sense than P (A|B)?</em></p>
+<p><em>Use the COVID example again. What are A and B here? Does it still make sense? When might P (B|A) make more sense than P (A|B)?</em></p>
 <p>We are often interested in estimating conditional probabilities, in which case we’ll use the same equation, but solve instead for P (A|B). This leads us back to principle IV:</p>
 <blockquote>
 <p><strong>IV. P(A|B) = P (A and B)/ P(B)</strong></p>
 </blockquote>
 <div id="keeping-conditional-probabilities-straight" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> keeping conditional probabilities straight<a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In general, P (B|A) and P (A|B) are not equivalent.</p>
-<p>Here, one could use a Venn diagram to model this asymmetry. There are several R packages for doing this, including Venn and VennDiagram.</p>
+<p>In general, P (B|A) and P (A|B) are not equivalent. Consider the following example</p>
 <div id="exercise-9.1" class="section level4 hasAnchor" number="9.2.1.1">
 <h4><span class="header-section-number">9.2.1.1</span> exercise 9.1<a href="on-probability-and-statistics.html#exercise-9.1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <blockquote>
@@ -557,38 +555,110 @@ div.csl-indent {
 <li><p>Provide a reasonable estimate of this additional value, then compute (P(FHP cruiser | Dodge Charger).</p></li>
 <li><p>Working with your own numbers, what is P(Dodge Charger | FHP cruiser)?</p></li>
 <li><p>How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?</p></li>
-</ol>
-</blockquote>
-</div>
-<div id="exercise-9.2" class="section level4 hasAnchor" number="9.2.1.2">
-<h4><span class="header-section-number">9.2.1.2</span> <strong>exercise 9.2</strong><a href="on-probability-and-statistics.html#exercise-9.2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ol style="list-style-type: lower-alpha">
-<li><p>Sketch out a Venn Diagram that accurately reflects the relationships you described in exercise 9.1.</p></li>
-<li><p>Use R to generate your Venn Diagram.</p></li>
+<li><p>Sketch out a Venn Diagram that accurately reflects the relationships you described here.</p></li>
+<li><p>Use R to generate this, using a package such as Venn and VennDiagram).</p></li>
 <li><p>Look at your figure. In general, if P (A|B) &lt; P (B|A), what must be true of the relationship of P (A) to P (B)?</p></li>
 </ol>
+</blockquote>
+<p>Answers to this exercise are at the end of the book. There are two points to these exercises. The first is that Venn diagrams should often be asymmetrical. The second is that problems about probability may be easier if we sketch them out using Venn diagrams.</p>
 </div>
 </div>
-<div id="venn-diagrams-should-generally-be-asymmetrical" class="section level3 hasAnchor" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Venn diagrams should generally be asymmetrical<a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Answers to this exercise are at the end of the book. There are two points to these exercises. The first is that Venn diagrams should often be asymmetrical. The second is that problems about probability are often easier if we draw Venn diagrams.</p>
 </div>
+<div id="bayes-theorem" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Bayes’ theorem<a href="on-probability-and-statistics.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bayes’ theorem is a tool for estimating one conditional probability from another. Its often expressed in terms of Hypotheses (H) and Data (D). Assume that we are interested in the probability of a hypothesis in light of some data, or <strong>P(H|D</strong>).</p>
+<p>This depends on the prior probability of the hypothesis, or how likely it was before the data were collected, or <strong>P(H).</strong> It also depends upon how likely the data are given two states of the world, that is, the probability of the data given that the hypothesis is true, or <strong>P (D|H)</strong>, and the probability of the data given that the hypothesis is not true, or <strong>P (D|not H)</strong>.</p>
+<p>It may look complicated at first:</p>
+<p><span class="math display">\[ P (H|D) = \frac{P(H)*P(D|H)}{P(H)* P(D|H) + (1-P(H))* P(D|not H)} \]</span> But it is also both powerful and relevant to everyday life. We live in an uncertain world, and constantly form hypotheses about it.  We form these hypotheses as questions…</p>
+<p><em>Do pens get trashed on the whiteboard because of a soap film?<br />
+Am I allergic to shellfish?<br />
+Does studying at the last minute help my exam performance?<br />
+Does she like me?<br />
+Is my car safe in that parking lot?</em></p>
+<p>Let’s look at the soap-film hypothesis as an example.  I begin with an initial P(H), my <strong>prior probability</strong> (often a <strong>base rate</strong>) that soap could dry out pens. Say it’s .3</p>
+<p>P(H) = soap dries out the pen = .3</p>
+<p>I try a new pen on the board, write with it for a few minutes, and ruin it. I think that, if my hypothesis is true, that this is likely (P (D|H) =.7).  If my hypothesis is false, it is unlikely (P (D|not H) = .2).  What is my <strong>posterior probability</strong>, or the revised estimate of the probability of the hypothesis in light of data?</p>
+<p><span class="math display">\[ P (H|D) = \frac{(.3)(.7)}{(.3)(.7) + (.7)(.2)} \]</span></p>
+<p>My new subjective probability is .6.  Apply Bayes’ theorem to the following questions to examine how probability estimates should change in light of data:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Initial hypothesis</strong></th>
+<th align="center"><strong>P (H)</strong></th>
+<th align="left"><strong>New data</strong></th>
+<th align="center"><strong>P (D|H)</strong></th>
+<th align="center"><strong>P (D|not H)</strong></th>
+<th align="center"><strong>P (H|D)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pens don’t last because of soap film on the whiteboard</td>
+<td align="center">.3</td>
+<td align="left">A pen is quickly trashed</td>
+<td align="center">.7</td>
+<td align="center">.2</td>
+<td align="center">.6</td>
+</tr>
+<tr class="even">
+<td align="left">I am allergic to shellfish</td>
+<td align="center">.02</td>
+<td align="left">Rash after eating clams</td>
+<td align="center">.9</td>
+<td align="center">.01</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">Studying at the last minute helps my exam performance</td>
+<td align="center">.6</td>
+<td align="left">I failed</td>
+<td align="center">.2</td>
+<td align="center">.7</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="left">She likes me</td>
+<td align="center">.3</td>
+<td align="left">She gave me a present</td>
+<td align="center">.6</td>
+<td align="center">.3</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">My car is safe in that parking lot</td>
+<td align="center">.3</td>
+<td align="left">I just heard a car alarm</td>
+<td align="center">.4</td>
+<td align="center">.4</td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+<p>Bayes’ theorem is a <em>normative model</em> of probability - how we should revise probability estimates, not a <em>descriptive model</em>.  That is, the research suggests that people don’t typically revise probability estimates in this way, even though we arguably should.</p>
 </div>
-<div id="continuous-probability-distributions" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> continuous probability distributions<a href="on-probability-and-statistics.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="continuous-probability-distributions" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> continuous probability distributions<a href="on-probability-and-statistics.html#continuous-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can also use probability with <strong>continuous</strong> variables such as systolic blood pressure (that’s the first one), which has a mean of approximately 120 and a standard deviation of 15. Continuous probability distributions are handy tools for thinking about the meaning of scores, particularly when we express scores in standard deviations from the mean (z scores). More to the point, this way of thinking about probability is widely used in questions of scientific inference, as, for example, in testing hypotheses such that “the average systolic blood pressure among a group of people studying at a coffee shop (hence caffeinated) will be significantly greater than that of the population as a whole.”</p>
-<p>This is part of the logic of <strong>Null Hypothesis Significance Testing (NHST)</strong> - if the result in my coffee shop sample is sufficiently high, then I say that I have rejected the null hypothesis, and found data which support the hypothesis of interest.</p>
+<p>This is part of the logic of <strong>Null Hypothesis Significance Testing (NHST)</strong> - if the result in my coffee shop sample is sufficiently high, then I say that I have rejected the null hypothesis, and found data which are consistent with the hypothesis of interest.</p>
 </div>
-<div id="dangerous-equations" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> dangerous equations<a href="on-probability-and-statistics.html#dangerous-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dangerous-equations" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> dangerous equations<a href="on-probability-and-statistics.html#dangerous-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Just as Tufte <span class="citation">(<a href="#ref-tufte2001">2001</a>)</span> demonstrated that poor data visualizations can be dangerous, leading, for example, to the loss of life in the Challenger disaster, Wainer <span class="citation">(<a href="#ref-wainer2007">2007</a>)</span> shows that a lack of statistical literacy is also “dangerous.”</p>
 <p>Wainer cites three specific examples of important, yet widely misunderstood, statistical laws. The first of these is deMoivre’s equation, which shows that variability decreases with the square root of sample size. Because the variability of a sample decreases with the size of that sample, small samples tend to have extreme scores. For example, the counties with the highest and lowest rates of kidney cancer (or most other unexplained health measures) will be sparsely populated, typically rural places.</p>
-<p>For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regresson analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.</p>
+<p>For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regression analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.</p>
 <p>Wainer’s third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change <span class="citation">(<a href="#ref-hastie2010">Hastie and Dawes 2010</a>)</span>.</p>
 
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-anscombe1973" class="csl-entry">
 Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>American Statistician</em> 27 (1): 17–21.

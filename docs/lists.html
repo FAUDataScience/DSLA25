@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15 lists | Data science for the liberal arts</title>
   <meta name="description" content="15 lists | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15 lists | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -493,21 +493,21 @@ div.csl-indent {
 <h1><span class="header-section-number">15</span> lists<a href="lists.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Up until now, we have we have thought about ‘data structures’ as matrices (rectangles, two-dimensional arrays), in which columns typically correspond to variables and rows to observations, and in which each variable has a particular type, such as numeric or character (or, in the last chapter, special types such as factors and dates/times).</p>
 <p>In base R, data matrices are typically represented as data frames (type = df). In the Tidyverse, we have been using a special type of data frame, the tibble (type = df and tbl_df). The diamonds dataset, for example, is a tibble:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="lists.html#cb87-1" tabindex="-1"></a>babynames2 <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb87-2"><a href="lists.html#cb87-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">generation =</span> <span class="fu">case_when</span>( </span>
-<span id="cb87-3"><a href="lists.html#cb87-3" tabindex="-1"></a>        (<span class="dv">1944</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1964</span>) <span class="sc">~</span> <span class="st">&quot;boomer&quot;</span>,</span>
-<span id="cb87-4"><a href="lists.html#cb87-4" tabindex="-1"></a>        (<span class="dv">1965</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1979</span>) <span class="sc">~</span> <span class="st">&quot;genX&quot;</span>,</span>
-<span id="cb87-5"><a href="lists.html#cb87-5" tabindex="-1"></a>        (<span class="dv">1980</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1994</span>) <span class="sc">~</span> <span class="st">&quot;millenial&quot;</span>,</span>
-<span id="cb87-6"><a href="lists.html#cb87-6" tabindex="-1"></a>        (<span class="dv">1995</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">2019</span>) <span class="sc">~</span> <span class="st">&quot;genZ&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb87-7"><a href="lists.html#cb87-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">generation =</span> <span class="fu">factor</span>(generation))</span>
-<span id="cb87-8"><a href="lists.html#cb87-8" tabindex="-1"></a><span class="fu">str</span>(babynames2<span class="sc">$</span>generation)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="lists.html#cb86-1" tabindex="-1"></a>babynames2 <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="lists.html#cb86-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">generation =</span> <span class="fu">case_when</span>( </span>
+<span id="cb86-3"><a href="lists.html#cb86-3" tabindex="-1"></a>        (<span class="dv">1944</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1964</span>) <span class="sc">~</span> <span class="st">&quot;boomer&quot;</span>,</span>
+<span id="cb86-4"><a href="lists.html#cb86-4" tabindex="-1"></a>        (<span class="dv">1965</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1979</span>) <span class="sc">~</span> <span class="st">&quot;genX&quot;</span>,</span>
+<span id="cb86-5"><a href="lists.html#cb86-5" tabindex="-1"></a>        (<span class="dv">1980</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">1994</span>) <span class="sc">~</span> <span class="st">&quot;millenial&quot;</span>,</span>
+<span id="cb86-6"><a href="lists.html#cb86-6" tabindex="-1"></a>        (<span class="dv">1995</span> <span class="sc">&lt;=</span> year) <span class="sc">&amp;</span> (year <span class="sc">&lt;=</span> <span class="dv">2019</span>) <span class="sc">~</span> <span class="st">&quot;genZ&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb86-7"><a href="lists.html#cb86-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">generation =</span> <span class="fu">factor</span>(generation))</span>
+<span id="cb86-8"><a href="lists.html#cb86-8" tabindex="-1"></a><span class="fu">str</span>(babynames2<span class="sc">$</span>generation)</span></code></pre></div>
 <pre><code>##  Factor w/ 4 levels &quot;boomer&quot;,&quot;genX&quot;,..: NA NA NA NA NA NA NA NA NA NA ...</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="lists.html#cb89-1" tabindex="-1"></a>babynames3 <span class="ot">&lt;-</span> babynames2 <span class="sc">%&gt;%</span> </span>
-<span id="cb89-2"><a href="lists.html#cb89-2" tabindex="-1"></a> <span class="co">#   count(generation) %&gt;% </span></span>
-<span id="cb89-3"><a href="lists.html#cb89-3" tabindex="-1"></a>    <span class="fu">na.omit</span>(generation)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="lists.html#cb88-1" tabindex="-1"></a>babynames3 <span class="ot">&lt;-</span> babynames2 <span class="sc">%&gt;%</span> </span>
+<span id="cb88-2"><a href="lists.html#cb88-2" tabindex="-1"></a> <span class="co">#   count(generation) %&gt;% </span></span>
+<span id="cb88-3"><a href="lists.html#cb88-3" tabindex="-1"></a>    <span class="fu">na.omit</span>(generation)</span></code></pre></div>
 <p>Within the diamonds tibble, we can examine the types of each variable. This uses the <em>sapply</em> function to SIMPLY APPLY a function (class) to the columns of a data frame or tibble. Here, each column (such as $carat) is a vector, and each vector is homogeneous (of one particular type):</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="lists.html#cb90-1" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb90-2"><a href="lists.html#cb90-2" tabindex="-1"></a>    <span class="fu">sapply</span>(class) </span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="lists.html#cb89-1" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb89-2"><a href="lists.html#cb89-2" tabindex="-1"></a>    <span class="fu">sapply</span>(class) </span></code></pre></div>
 <pre><code>## $carat
 ## [1] &quot;numeric&quot;
 ## 
@@ -560,15 +560,15 @@ div.csl-indent {
 <blockquote>
 <p>Consider the following code. What does it do? What is in ‘mod’? Why is it stored like this?</p>
 </blockquote>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lists.html#cb93-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, </span>
-<span id="cb93-2"><a href="lists.html#cb93-2" tabindex="-1"></a>          <span class="at">data =</span> diamonds)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="lists.html#cb92-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat, </span>
+<span id="cb92-2"><a href="lists.html#cb92-2" tabindex="-1"></a>          <span class="at">data =</span> diamonds)</span></code></pre></div>
 <p>In R studio, you can inspect the structure of the list by clicking on it in the global environment window, by using the View tab, or with the command str(mod).</p>
 <p>You can extract rows of your list by including them in single brackets (which will return another list), or double brackets (which will return a vector or data frame).</p>
 <p>Compare the structure of the following data sets:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="lists.html#cb94-1" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> mod[<span class="st">&#39;coefficients&#39;</span>] </span>
-<span id="cb94-2"><a href="lists.html#cb94-2" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> mod[[<span class="st">&#39;coefficients&#39;</span>]]  </span>
-<span id="cb94-3"><a href="lists.html#cb94-3" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> mod[<span class="st">&#39;model&#39;</span>]</span>
-<span id="cb94-4"><a href="lists.html#cb94-4" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> mod[[<span class="st">&#39;model&#39;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="lists.html#cb93-1" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> mod[<span class="st">&#39;coefficients&#39;</span>] </span>
+<span id="cb93-2"><a href="lists.html#cb93-2" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> mod[[<span class="st">&#39;coefficients&#39;</span>]]  </span>
+<span id="cb93-3"><a href="lists.html#cb93-3" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> mod[<span class="st">&#39;model&#39;</span>]</span>
+<span id="cb93-4"><a href="lists.html#cb93-4" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> mod[[<span class="st">&#39;model&#39;</span>]]</span></code></pre></div>
 <p>Lists are, in a sense, containers. A single bracket gives us the wrapper as well as what is inside; the double bracket extracts only the inner element.</p>
 <p>Lists can be challenging, but they are necessary in a world where data is complexly structured. The R package purrr, a core part of the tidyverse, includes functions which simplify working with lists; to learn more, there is a tutorial <a href="https://jennybc.github.io/purrr-tutorial/index.html">here</a>, and an overview of the package (with a cheatsheet) <a href="https://purrr.tidyverse.org/">here</a>. Lists are also discussed in Chapter 23 of R4DS 2e.</p>
 <p><strong><em>todo: additional iscussion of purrr; review</em></strong></p>

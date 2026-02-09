@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>25 exercises | Data science for the liberal arts</title>
   <meta name="description" content="25 exercises | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="25 exercises | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -496,46 +496,46 @@ div.csl-indent {
 <p>It’s simple to generate a single random variable, but we often want to examine data for several variables that are correlated. The MVRnorm function, in the MASS package, does this.</p>
 <p>We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).</p>
 <p>We then fiddle with these variables, setting the means, standard deviations, ranges, and number of significant digits, to make them look like GPA and SAT scores. And we use the randomnames package to make up fake names to go along with the fake scores. Finally, we upload the data to a Google Sheet. This last command will require first establishing permissions for R to read and write to your Google Drive.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="exercises-2.html#cb275-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb275-2"><a href="exercises-2.html#cb275-2" tabindex="-1"></a></span>
-<span id="cb275-3"><a href="exercises-2.html#cb275-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb275-4"><a href="exercises-2.html#cb275-4" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># for set of first names</span></span>
-<span id="cb275-5"><a href="exercises-2.html#cb275-5" tabindex="-1"></a><span class="fu">library</span>(randomNames) <span class="co"># for initial set of last names</span></span>
-<span id="cb275-6"><a href="exercises-2.html#cb275-6" tabindex="-1"></a><span class="fu">library</span>(googlesheets4) <span class="co"># to read and write to Google sheets</span></span>
-<span id="cb275-7"><a href="exercises-2.html#cb275-7" tabindex="-1"></a></span>
-<span id="cb275-8"><a href="exercises-2.html#cb275-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># for reproducibility</span></span>
-<span id="cb275-9"><a href="exercises-2.html#cb275-9" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
-<span id="cb275-10"><a href="exercises-2.html#cb275-10" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb275-11"><a href="exercises-2.html#cb275-11" tabindex="-1"></a></span>
-<span id="cb275-12"><a href="exercises-2.html#cb275-12" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">randomNames</span>(nrows, <span class="at">which.names =</span> <span class="st">&quot;first&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb275-13"><a href="exercises-2.html#cb275-13" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">randomNames</span>(nrows, </span>
-<span id="cb275-14"><a href="exercises-2.html#cb275-14" tabindex="-1"></a>                          <span class="at">which.names =</span> <span class="st">&quot;last&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb275-15"><a href="exercises-2.html#cb275-15" tabindex="-1"></a>       <span class="fu">rename</span> (<span class="at">FirstName =</span> <span class="dv">1</span>, <span class="at">LastName =</span> <span class="dv">2</span>)</span>
-<span id="cb275-16"><a href="exercises-2.html#cb275-16" tabindex="-1"></a></span>
-<span id="cb275-17"><a href="exercises-2.html#cb275-17" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> nrows, </span>
-<span id="cb275-18"><a href="exercises-2.html#cb275-18" tabindex="-1"></a>                <span class="at">mu =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="dv">0</span>),</span>
-<span id="cb275-19"><a href="exercises-2.html#cb275-19" tabindex="-1"></a>                <span class="at">Sigma =</span> <span class="fu">matrix</span>(</span>
-<span id="cb275-20"><a href="exercises-2.html#cb275-20" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="dv">1</span>, correlation, correlation, <span class="dv">1</span>),</span>
-<span id="cb275-21"><a href="exercises-2.html#cb275-21" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-22"><a href="exercises-2.html#cb275-22" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb275-23"><a href="exercises-2.html#cb275-23" tabindex="-1"></a>    <span class="fu">select</span> (<span class="at">gpa =</span> <span class="dv">1</span>, <span class="at">sat =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-24"><a href="exercises-2.html#cb275-24" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="dv">500</span> <span class="sc">+</span> (<span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(sat, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-25"><a href="exercises-2.html#cb275-25" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">round</span>(gpa, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb275-26"><a href="exercises-2.html#cb275-26" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="fu">case_when</span>(</span>
-<span id="cb275-27"><a href="exercises-2.html#cb275-27" tabindex="-1"></a>        gpa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb275-28"><a href="exercises-2.html#cb275-28" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="fl">4.5</span> <span class="sc">~</span> <span class="fl">4.5</span>,</span>
-<span id="cb275-29"><a href="exercises-2.html#cb275-29" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> gpa)) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-30"><a href="exercises-2.html#cb275-30" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb275-31"><a href="exercises-2.html#cb275-31" tabindex="-1"></a>        sat <span class="sc">&lt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="dv">200</span>,</span>
-<span id="cb275-32"><a href="exercises-2.html#cb275-32" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">~</span> <span class="dv">800</span>,</span>
-<span id="cb275-33"><a href="exercises-2.html#cb275-33" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> sat))</span>
-<span id="cb275-34"><a href="exercises-2.html#cb275-34" tabindex="-1"></a></span>
-<span id="cb275-35"><a href="exercises-2.html#cb275-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
-<span id="cb275-36"><a href="exercises-2.html#cb275-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-37"><a href="exercises-2.html#cb275-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) </span>
-<span id="cb275-38"><a href="exercises-2.html#cb275-38" tabindex="-1"></a><span class="co">#gs4_create(name=&quot;RandomHSGPASAT&quot;,</span></span>
-<span id="cb275-39"><a href="exercises-2.html#cb275-39" tabindex="-1"></a> <span class="co">#          sheets = hsdata)</span></span>
-<span id="cb275-40"><a href="exercises-2.html#cb275-40" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="exercises-2.html#cb274-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb274-2"><a href="exercises-2.html#cb274-2" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="exercises-2.html#cb274-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb274-4"><a href="exercises-2.html#cb274-4" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># for set of first names</span></span>
+<span id="cb274-5"><a href="exercises-2.html#cb274-5" tabindex="-1"></a><span class="fu">library</span>(randomNames) <span class="co"># for initial set of last names</span></span>
+<span id="cb274-6"><a href="exercises-2.html#cb274-6" tabindex="-1"></a><span class="fu">library</span>(googlesheets4) <span class="co"># to read and write to Google sheets</span></span>
+<span id="cb274-7"><a href="exercises-2.html#cb274-7" tabindex="-1"></a></span>
+<span id="cb274-8"><a href="exercises-2.html#cb274-8" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># for reproducibility</span></span>
+<span id="cb274-9"><a href="exercises-2.html#cb274-9" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb274-10"><a href="exercises-2.html#cb274-10" tabindex="-1"></a>nrows <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb274-11"><a href="exercises-2.html#cb274-11" tabindex="-1"></a></span>
+<span id="cb274-12"><a href="exercises-2.html#cb274-12" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">randomNames</span>(nrows, <span class="at">which.names =</span> <span class="st">&quot;first&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb274-13"><a href="exercises-2.html#cb274-13" tabindex="-1"></a>    <span class="fu">bind_cols</span>(<span class="fu">randomNames</span>(nrows, </span>
+<span id="cb274-14"><a href="exercises-2.html#cb274-14" tabindex="-1"></a>                          <span class="at">which.names =</span> <span class="st">&quot;last&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb274-15"><a href="exercises-2.html#cb274-15" tabindex="-1"></a>       <span class="fu">rename</span> (<span class="at">FirstName =</span> <span class="dv">1</span>, <span class="at">LastName =</span> <span class="dv">2</span>)</span>
+<span id="cb274-16"><a href="exercises-2.html#cb274-16" tabindex="-1"></a></span>
+<span id="cb274-17"><a href="exercises-2.html#cb274-17" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(<span class="at">n =</span> nrows, </span>
+<span id="cb274-18"><a href="exercises-2.html#cb274-18" tabindex="-1"></a>                <span class="at">mu =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="dv">0</span>),</span>
+<span id="cb274-19"><a href="exercises-2.html#cb274-19" tabindex="-1"></a>                <span class="at">Sigma =</span> <span class="fu">matrix</span>(</span>
+<span id="cb274-20"><a href="exercises-2.html#cb274-20" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="dv">1</span>, correlation, correlation, <span class="dv">1</span>),</span>
+<span id="cb274-21"><a href="exercises-2.html#cb274-21" tabindex="-1"></a>                    <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-22"><a href="exercises-2.html#cb274-22" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb274-23"><a href="exercises-2.html#cb274-23" tabindex="-1"></a>    <span class="fu">select</span> (<span class="at">gpa =</span> <span class="dv">1</span>, <span class="at">sat =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-24"><a href="exercises-2.html#cb274-24" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="dv">500</span> <span class="sc">+</span> (<span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(sat, <span class="dv">1</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-25"><a href="exercises-2.html#cb274-25" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">round</span>(gpa, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb274-26"><a href="exercises-2.html#cb274-26" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">gpa =</span> <span class="fu">case_when</span>(</span>
+<span id="cb274-27"><a href="exercises-2.html#cb274-27" tabindex="-1"></a>        gpa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb274-28"><a href="exercises-2.html#cb274-28" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="fl">4.5</span> <span class="sc">~</span> <span class="fl">4.5</span>,</span>
+<span id="cb274-29"><a href="exercises-2.html#cb274-29" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> gpa)) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-30"><a href="exercises-2.html#cb274-30" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">sat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb274-31"><a href="exercises-2.html#cb274-31" tabindex="-1"></a>        sat <span class="sc">&lt;</span> <span class="dv">200</span> <span class="sc">~</span> <span class="dv">200</span>,</span>
+<span id="cb274-32"><a href="exercises-2.html#cb274-32" tabindex="-1"></a>        gpa <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">~</span> <span class="dv">800</span>,</span>
+<span id="cb274-33"><a href="exercises-2.html#cb274-33" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> sat))</span>
+<span id="cb274-34"><a href="exercises-2.html#cb274-34" tabindex="-1"></a></span>
+<span id="cb274-35"><a href="exercises-2.html#cb274-35" tabindex="-1"></a>hsdata <span class="ot">&lt;-</span> names <span class="sc">%&gt;%</span> </span>
+<span id="cb274-36"><a href="exercises-2.html#cb274-36" tabindex="-1"></a>    <span class="fu">bind_cols</span>(hsdata) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-37"><a href="exercises-2.html#cb274-37" tabindex="-1"></a>    <span class="fu">arrange</span>(FirstName) </span>
+<span id="cb274-38"><a href="exercises-2.html#cb274-38" tabindex="-1"></a><span class="co">#gs4_create(name=&quot;RandomHSGPASAT&quot;,</span></span>
+<span id="cb274-39"><a href="exercises-2.html#cb274-39" tabindex="-1"></a> <span class="co">#          sheets = hsdata)</span></span>
+<span id="cb274-40"><a href="exercises-2.html#cb274-40" tabindex="-1"></a><span class="fu">slice</span>(hsdata, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   FirstName LastName    gpa   sat
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -551,19 +551,19 @@ div.csl-indent {
 <h3><span class="header-section-number">25.1.2</span> using AI to help us here<a href="exercises-2.html#using-ai-to-help-us-here" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Our intuitions about the idiosyncratic nature of names in the randomNames package is supported (not necessarily confirmed) by MS Copilot, which notes that “the randomNames package in R samples from a uniform distribution, which doesn’t reflect real-world name frequencies.”</p>
 <p>For first names, one solution is to use the babynames data, and then to weight the probability of including the name in our sample by the actual frequency in (some) population:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="exercises-2.html#cb277-1" tabindex="-1"></a><span class="co"># load babynames and Filter for a specific year or range</span></span>
-<span id="cb277-2"><a href="exercises-2.html#cb277-2" tabindex="-1"></a>names_data <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
-<span id="cb277-3"><a href="exercises-2.html#cb277-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb277-4"><a href="exercises-2.html#cb277-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
-<span id="cb277-5"><a href="exercises-2.html#cb277-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb277-6"><a href="exercises-2.html#cb277-6" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb277-7"><a href="exercises-2.html#cb277-7" tabindex="-1"></a></span>
-<span id="cb277-8"><a href="exercises-2.html#cb277-8" tabindex="-1"></a><span class="co"># Sample names with probability proportional to frequency</span></span>
-<span id="cb277-9"><a href="exercises-2.html#cb277-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb277-10"><a href="exercises-2.html#cb277-10" tabindex="-1"></a>sampled_first_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(names_data<span class="sc">$</span>name, <span class="at">size =</span> nrows, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> names_data<span class="sc">$</span>freq) <span class="sc">|&gt;</span> </span>
-<span id="cb277-11"><a href="exercises-2.html#cb277-11" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb277-12"><a href="exercises-2.html#cb277-12" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewFirstName =</span> <span class="dv">1</span>)</span>
-<span id="cb277-13"><a href="exercises-2.html#cb277-13" tabindex="-1"></a><span class="fu">slice</span>(sampled_first_names, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="exercises-2.html#cb276-1" tabindex="-1"></a><span class="co"># load babynames and Filter for a specific year or range</span></span>
+<span id="cb276-2"><a href="exercises-2.html#cb276-2" tabindex="-1"></a>names_data <span class="ot">&lt;-</span> babynames <span class="sc">%&gt;%</span></span>
+<span id="cb276-3"><a href="exercises-2.html#cb276-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb276-4"><a href="exercises-2.html#cb276-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span></span>
+<span id="cb276-5"><a href="exercises-2.html#cb276-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb276-6"><a href="exercises-2.html#cb276-6" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb276-7"><a href="exercises-2.html#cb276-7" tabindex="-1"></a></span>
+<span id="cb276-8"><a href="exercises-2.html#cb276-8" tabindex="-1"></a><span class="co"># Sample names with probability proportional to frequency</span></span>
+<span id="cb276-9"><a href="exercises-2.html#cb276-9" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb276-10"><a href="exercises-2.html#cb276-10" tabindex="-1"></a>sampled_first_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(names_data<span class="sc">$</span>name, <span class="at">size =</span> nrows, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> names_data<span class="sc">$</span>freq) <span class="sc">|&gt;</span> </span>
+<span id="cb276-11"><a href="exercises-2.html#cb276-11" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb276-12"><a href="exercises-2.html#cb276-12" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewFirstName =</span> <span class="dv">1</span>)</span>
+<span id="cb276-13"><a href="exercises-2.html#cb276-13" tabindex="-1"></a><span class="fu">slice</span>(sampled_first_names, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 1
 ##    NewFirstName
 ##    &lt;chr&gt;       
@@ -582,13 +582,13 @@ div.csl-indent {
 <h3><span class="header-section-number">25.1.3</span> for last names, it’s a little bit trickier<a href="exercises-2.html#for-last-names-its-a-little-bit-trickier" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For last names, we’ll also use census data. There’s not an R package that has these, but there is Census data that is available in a zip file. It’s described at <a href="https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf" class="uri">https://www2.census.gov/topics/genealogy/2010surnames/surnames.pdf</a>. There are two files that are available - the top 1000 names, and then a (much longer) file of all names that occur more than 100 times. We’ll use the latter. <strong>Why do we do this?</strong></p>
 <p>Our approach to downloading a zip file directly into R follows: First, we specify a temporary file, then download the zip file into it. Then we unzip this and save it in a subdirectory called ‘data.’ Finally, we read it into R:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="exercises-2.html#cb279-1" tabindex="-1"></a>temp_zip_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.zip&quot;</span>)</span>
-<span id="cb279-2"><a href="exercises-2.html#cb279-2" tabindex="-1"></a>sourcefile <span class="ot">&lt;-</span> <span class="st">&quot;https://www2.census.gov/topics/genealogy/2010surnames/names.zip&quot;</span></span>
-<span id="cb279-3"><a href="exercises-2.html#cb279-3" tabindex="-1"></a><span class="fu">download.file</span>(sourcefile, <span class="at">destfile =</span> temp_zip_file, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
-<span id="cb279-4"><a href="exercises-2.html#cb279-4" tabindex="-1"></a><span class="fu">unzip</span>(temp_zip_file, <span class="at">files =</span> <span class="st">&quot;Names_2010Census.csv&quot;</span>, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
-<span id="cb279-5"><a href="exercises-2.html#cb279-5" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb279-6"><a href="exercises-2.html#cb279-6" tabindex="-1"></a>    <span class="fu">arrange</span>(rank)</span>
-<span id="cb279-7"><a href="exercises-2.html#cb279-7" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="exercises-2.html#cb278-1" tabindex="-1"></a>temp_zip_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.zip&quot;</span>)</span>
+<span id="cb278-2"><a href="exercises-2.html#cb278-2" tabindex="-1"></a>sourcefile <span class="ot">&lt;-</span> <span class="st">&quot;https://www2.census.gov/topics/genealogy/2010surnames/names.zip&quot;</span></span>
+<span id="cb278-3"><a href="exercises-2.html#cb278-3" tabindex="-1"></a><span class="fu">download.file</span>(sourcefile, <span class="at">destfile =</span> temp_zip_file, <span class="at">mode =</span> <span class="st">&quot;wb&quot;</span>)</span>
+<span id="cb278-4"><a href="exercises-2.html#cb278-4" tabindex="-1"></a><span class="fu">unzip</span>(temp_zip_file, <span class="at">files =</span> <span class="st">&quot;Names_2010Census.csv&quot;</span>, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb278-5"><a href="exercises-2.html#cb278-5" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb278-6"><a href="exercises-2.html#cb278-6" tabindex="-1"></a>    <span class="fu">arrange</span>(rank)</span>
+<span id="cb278-7"><a href="exercises-2.html#cb278-7" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##               name rank    count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
 ## 1  ALL OTHER NAMES    0 29312001  9936.97      9936.97    66.65     8.53   7.97    0.86      2.32       13.67
 ## 2            SMITH    1  2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
@@ -606,9 +606,9 @@ div.csl-indent {
 <p>In the lastname data, there’s a problem. Some 10% of the names in the data - presumably rare ones - are replaced with “ALL OTHER NAMES.” We’ll just filter these out.</p>
 <p>Finally, we combine the new NewFirstName and NewLastName with our original HS data. We also replace the SHOUTING (uppercase) in the NewLastName variable with Title Case:</p>
 <p><strong>Did we do this right? Any other issues? How might you have done this better?</strong></p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="exercises-2.html#cb281-1" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb281-2"><a href="exercises-2.html#cb281-2" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">!=</span> <span class="st">&quot;ALL OTHER NAMES&quot;</span>)</span>
-<span id="cb281-3"><a href="exercises-2.html#cb281-3" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="exercises-2.html#cb280-1" tabindex="-1"></a>surnames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/Names_2010Census.csv&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb280-2"><a href="exercises-2.html#cb280-2" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">!=</span> <span class="st">&quot;ALL OTHER NAMES&quot;</span>)</span>
+<span id="cb280-3"><a href="exercises-2.html#cb280-3" tabindex="-1"></a><span class="fu">slice</span>(surnames, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>##         name rank   count prop100k cum_prop100k pctwhite pctblack pctapi pctaian pct2prace pcthispanic
 ## 1      SMITH    1 2442977   828.19       828.19     70.9    23.11    0.5    0.89      2.19         2.4
 ## 2    JOHNSON    2 1932812   655.24      1483.42    58.97    34.63   0.54    0.94      2.56        2.36
@@ -620,17 +620,17 @@ div.csl-indent {
 ## 8      DAVIS    8 1116357   378.45      4172.31     62.2     31.6   0.49    0.82      2.45        2.44
 ## 9  RODRIGUEZ    9 1094924   371.19      4543.50     4.75     0.54   0.57    0.18      0.18       93.77
 ## 10  MARTINEZ   10 1060159   359.40      4902.90     5.28     0.49    0.6    0.51      0.22       92.91</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="exercises-2.html#cb283-1" tabindex="-1"></a><span class="co"># then pull out a weighted sample of last names</span></span>
-<span id="cb283-2"><a href="exercises-2.html#cb283-2" tabindex="-1"></a>sampled_last_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(surnames<span class="sc">$</span>name, <span class="at">size =</span> nrows, </span>
-<span id="cb283-3"><a href="exercises-2.html#cb283-3" tabindex="-1"></a>                            <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> surnames<span class="sc">$</span>count) <span class="sc">|&gt;</span> </span>
-<span id="cb283-4"><a href="exercises-2.html#cb283-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb283-5"><a href="exercises-2.html#cb283-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewLastName =</span> <span class="dv">1</span>)</span>
-<span id="cb283-6"><a href="exercises-2.html#cb283-6" tabindex="-1"></a></span>
-<span id="cb283-7"><a href="exercises-2.html#cb283-7" tabindex="-1"></a>hsdata2 <span class="ot">&lt;-</span> hsdata <span class="sc">|&gt;</span></span>
-<span id="cb283-8"><a href="exercises-2.html#cb283-8" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_first_names) <span class="sc">|&gt;</span> </span>
-<span id="cb283-9"><a href="exercises-2.html#cb283-9" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_last_names) <span class="sc">|&gt;</span> </span>
-<span id="cb283-10"><a href="exercises-2.html#cb283-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">NewLastName =</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>(NewLastName))</span>
-<span id="cb283-11"><a href="exercises-2.html#cb283-11" tabindex="-1"></a><span class="fu">slice</span>(hsdata2, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="exercises-2.html#cb282-1" tabindex="-1"></a><span class="co"># then pull out a weighted sample of last names</span></span>
+<span id="cb282-2"><a href="exercises-2.html#cb282-2" tabindex="-1"></a>sampled_last_names <span class="ot">&lt;-</span> <span class="fu">sample</span>(surnames<span class="sc">$</span>name, <span class="at">size =</span> nrows, </span>
+<span id="cb282-3"><a href="exercises-2.html#cb282-3" tabindex="-1"></a>                            <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> surnames<span class="sc">$</span>count) <span class="sc">|&gt;</span> </span>
+<span id="cb282-4"><a href="exercises-2.html#cb282-4" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb282-5"><a href="exercises-2.html#cb282-5" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">NewLastName =</span> <span class="dv">1</span>)</span>
+<span id="cb282-6"><a href="exercises-2.html#cb282-6" tabindex="-1"></a></span>
+<span id="cb282-7"><a href="exercises-2.html#cb282-7" tabindex="-1"></a>hsdata2 <span class="ot">&lt;-</span> hsdata <span class="sc">|&gt;</span></span>
+<span id="cb282-8"><a href="exercises-2.html#cb282-8" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_first_names) <span class="sc">|&gt;</span> </span>
+<span id="cb282-9"><a href="exercises-2.html#cb282-9" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sampled_last_names) <span class="sc">|&gt;</span> </span>
+<span id="cb282-10"><a href="exercises-2.html#cb282-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">NewLastName =</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>(NewLastName))</span>
+<span id="cb282-11"><a href="exercises-2.html#cb282-11" tabindex="-1"></a><span class="fu">slice</span>(hsdata2, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 6
 ##    FirstName LastName    gpa   sat NewFirstName NewLastName
 ##    &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      
@@ -682,7 +682,7 @@ That is, half of 1% of the FHP cars on the road are Dodge Chargers.</p></li>
 </ol>
 </div>
 <div id="asymmetrical-venn-diagrams-in-r" class="section level4 hasAnchor" number="25.2.0.2">
-<h4><span class="header-section-number">25.2.0.2</span> <strong>(Asymmetrical) Venn Di</strong>agrams in R<a href="exercises-2.html#asymmetrical-venn-diagrams-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">25.2.0.2</span> (Asymmetrical) Venn Diagrams in R<a href="exercises-2.html#asymmetrical-venn-diagrams-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Problems about probability are often easier if we draw Venn diagrams.</p>
 <blockquote>
 <ol style="list-style-type: lower-alpha">
@@ -691,32 +691,32 @@ That is, half of 1% of the FHP cars on the road are Dodge Chargers.</p></li>
 <li><p>Look at your figure. In general, if P(A|B) &lt; P(B|A), what must be true of the relationship of P(A) to P(B)?</p></li>
 </ol>
 </blockquote>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="exercises-2.html#cb285-1" tabindex="-1"></a><span class="co"># Load required packages</span></span>
-<span id="cb285-2"><a href="exercises-2.html#cb285-2" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
-<span id="cb285-3"><a href="exercises-2.html#cb285-3" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
-<span id="cb285-4"><a href="exercises-2.html#cb285-4" tabindex="-1"></a></span>
-<span id="cb285-5"><a href="exercises-2.html#cb285-5" tabindex="-1"></a></span>
-<span id="cb285-6"><a href="exercises-2.html#cb285-6" tabindex="-1"></a><span class="co"># Create first Venn diagram</span></span>
-<span id="cb285-7"><a href="exercises-2.html#cb285-7" tabindex="-1"></a>venn1 <span class="ot">&lt;-</span> <span class="fu">draw.pairwise.venn</span>(</span>
-<span id="cb285-8"><a href="exercises-2.html#cb285-8" tabindex="-1"></a>  <span class="at">area1 =</span> <span class="dv">80000</span>,</span>
-<span id="cb285-9"><a href="exercises-2.html#cb285-9" tabindex="-1"></a>  <span class="at">area2 =</span> <span class="dv">1600</span>,</span>
-<span id="cb285-10"><a href="exercises-2.html#cb285-10" tabindex="-1"></a>  <span class="at">cross.area =</span> <span class="dv">800</span>,</span>
-<span id="cb285-11"><a href="exercises-2.html#cb285-11" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;Charger&quot;</span>, <span class="st">&quot;FHP&quot;</span>),</span>
-<span id="cb285-12"><a href="exercises-2.html#cb285-12" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;gray&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
-<span id="cb285-13"><a href="exercises-2.html#cb285-13" tabindex="-1"></a>  <span class="at">lty =</span> <span class="st">&quot;blank&quot;</span>,</span>
-<span id="cb285-14"><a href="exercises-2.html#cb285-14" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">1</span>,<span class="co">#1.5,</span></span>
-<span id="cb285-15"><a href="exercises-2.html#cb285-15" tabindex="-1"></a>  <span class="at">cat.cex =</span> <span class="dv">1</span>,</span>
-<span id="cb285-16"><a href="exercises-2.html#cb285-16" tabindex="-1"></a>  <span class="at">cat.pos =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">40</span>),</span>
-<span id="cb285-17"><a href="exercises-2.html#cb285-17" tabindex="-1"></a>  <span class="at">cat.dist =</span> <span class="fl">0.05</span>,</span>
-<span id="cb285-18"><a href="exercises-2.html#cb285-18" tabindex="-1"></a>  <span class="at">ind =</span> <span class="cn">FALSE</span></span>
-<span id="cb285-19"><a href="exercises-2.html#cb285-19" tabindex="-1"></a>)</span>
-<span id="cb285-20"><a href="exercises-2.html#cb285-20" tabindex="-1"></a></span>
-<span id="cb285-21"><a href="exercises-2.html#cb285-21" tabindex="-1"></a><span class="co"># To print Venn1, you need to wrap the figure using the grid package. The push and popViewport commands set the margins so it works right.</span></span>
-<span id="cb285-22"><a href="exercises-2.html#cb285-22" tabindex="-1"></a><span class="fu">grid.newpage</span>()</span>
-<span id="cb285-23"><a href="exercises-2.html#cb285-23" tabindex="-1"></a><span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.9</span>, <span class="at">height =</span> <span class="fl">0.9</span>))</span>
-<span id="cb285-24"><a href="exercises-2.html#cb285-24" tabindex="-1"></a><span class="fu">grid.draw</span>(venn1)</span>
-<span id="cb285-25"><a href="exercises-2.html#cb285-25" tabindex="-1"></a><span class="fu">popViewport</span>()</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/Venn1-1.png" width="288" /></p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="exercises-2.html#cb284-1" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb284-2"><a href="exercises-2.html#cb284-2" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
+<span id="cb284-3"><a href="exercises-2.html#cb284-3" tabindex="-1"></a><span class="fu">library</span>(grid)</span>
+<span id="cb284-4"><a href="exercises-2.html#cb284-4" tabindex="-1"></a></span>
+<span id="cb284-5"><a href="exercises-2.html#cb284-5" tabindex="-1"></a></span>
+<span id="cb284-6"><a href="exercises-2.html#cb284-6" tabindex="-1"></a><span class="co"># Create first Venn diagram</span></span>
+<span id="cb284-7"><a href="exercises-2.html#cb284-7" tabindex="-1"></a>venn1 <span class="ot">&lt;-</span> <span class="fu">draw.pairwise.venn</span>(</span>
+<span id="cb284-8"><a href="exercises-2.html#cb284-8" tabindex="-1"></a>  <span class="at">area1 =</span> <span class="dv">80000</span>,</span>
+<span id="cb284-9"><a href="exercises-2.html#cb284-9" tabindex="-1"></a>  <span class="at">area2 =</span> <span class="dv">1600</span>,</span>
+<span id="cb284-10"><a href="exercises-2.html#cb284-10" tabindex="-1"></a>  <span class="at">cross.area =</span> <span class="dv">800</span>,</span>
+<span id="cb284-11"><a href="exercises-2.html#cb284-11" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;Charger&quot;</span>, <span class="st">&quot;FHP&quot;</span>),</span>
+<span id="cb284-12"><a href="exercises-2.html#cb284-12" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;gray&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb284-13"><a href="exercises-2.html#cb284-13" tabindex="-1"></a>  <span class="at">lty =</span> <span class="st">&quot;blank&quot;</span>,</span>
+<span id="cb284-14"><a href="exercises-2.html#cb284-14" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">1</span>,<span class="co">#1.5,</span></span>
+<span id="cb284-15"><a href="exercises-2.html#cb284-15" tabindex="-1"></a>  <span class="at">cat.cex =</span> <span class="dv">1</span>,</span>
+<span id="cb284-16"><a href="exercises-2.html#cb284-16" tabindex="-1"></a>  <span class="at">cat.pos =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb284-17"><a href="exercises-2.html#cb284-17" tabindex="-1"></a>  <span class="at">cat.dist =</span> <span class="fl">0.05</span>,</span>
+<span id="cb284-18"><a href="exercises-2.html#cb284-18" tabindex="-1"></a>  <span class="at">ind =</span> <span class="cn">FALSE</span></span>
+<span id="cb284-19"><a href="exercises-2.html#cb284-19" tabindex="-1"></a>)</span>
+<span id="cb284-20"><a href="exercises-2.html#cb284-20" tabindex="-1"></a></span>
+<span id="cb284-21"><a href="exercises-2.html#cb284-21" tabindex="-1"></a><span class="co"># To print Venn1, you need to wrap the figure using the grid package. The push and popViewport commands set the margins so it works right.</span></span>
+<span id="cb284-22"><a href="exercises-2.html#cb284-22" tabindex="-1"></a><span class="fu">grid.newpage</span>()</span>
+<span id="cb284-23"><a href="exercises-2.html#cb284-23" tabindex="-1"></a><span class="fu">pushViewport</span>(<span class="fu">viewport</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.5</span>, <span class="at">width =</span> <span class="fl">0.9</span>, <span class="at">height =</span> <span class="fl">0.9</span>))</span>
+<span id="cb284-24"><a href="exercises-2.html#cb284-24" tabindex="-1"></a><span class="fu">grid.draw</span>(venn1)</span>
+<span id="cb284-25"><a href="exercises-2.html#cb284-25" tabindex="-1"></a><span class="fu">popViewport</span>()</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/Venn1-1.png" alt="" width="288" /></p>
 <blockquote>
 <p>Here, P(A|B) is 800/1600 or .5, and P(B|A) is 800/80000 or .01.</p>
 <p>If the base rate of A is greater than that of B, and there is at least some overlap, then P(A|B) &gt; P(B|A).</p>

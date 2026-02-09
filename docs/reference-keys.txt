@@ -75,8 +75,7 @@ on-probability
 the-rules-of-probability
 keeping-conditional-probabilities-straight
 exercise-9.1
-exercise-9.2
-venn-diagrams-should-generally-be-asymmetrical
+bayes-theorem
 continuous-probability-distributions
 dangerous-equations
 reproducibility-and-the-replication-crisis

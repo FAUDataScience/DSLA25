@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>References | Data science for the liberal arts</title>
   <meta name="description" content="References | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="References | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -491,6 +491,137 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="references" class="section level1 unnumbered hasAnchor">
 <h1>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<p><strong>Multiple events</strong></p>
+<p>We’re often interested in the conjunction of more than two events (such as the likelihood that a hurricane will pass through campus, your car won’t work, and your friends will be unable or unwilling to help you).  Remember that the probability of the conjunction of any three events A, B, and C can be no more likely than the probability of two of these events.</p>
+<p><em>Which of the following is more likely? <br />
+A: A star athlete becomes a drug addict, enters a treatment program, and wins a championship.<br />
+ or B: A star athlete becomes a drug addict and wins a championship.<br />
+ (Hastie &amp; Dawes, p. 351)</em></p>
+<p>In thinking of the probability of the conjunction of multiple events, remember that each event A, B, etc., can represent a set of outcomes.  Say that A is “useless friends,” B is “dead car” and C is “hurricane.” The probability of useless friends and a dead car is</p>
+<p>P (A and B) = P (A) P (B|A)</p>
+<p>Call “useless friends and a dead car” X.  Then the probability of all three events co-occurring is</p>
+<p>P (X and C) = P (C) P (X|C)</p>
+<p>This tells us that the probability of all three events co-occuring is the probability of a hurricane, times the probability of that your friends and car will both be useless given that there is a hurricane.  We can get further than this using the <strong>chain rule:</strong></p>
+<p>P (A and B and C) = P (C) P (A and B|C)</p>
+<p>                           = P (C) P (B|C) P (A|B and C)</p>
+<p>that is, the probability of all three events co-occurring is equal to the probability of a hurricane hitting us, times the likelihood of your car being dead given that there is a hurricane, times the likelihood of your friends being useless given that you are stuck without a car in a hurricane.  The last of these is, I expect, small.</p>
+<p>As you can see, problems in probability can become complex and cumbersome.  But because we live in an uncertain world, an understanding of probability can help us make more sound, more rational decisions.</p>
+<p><strong>Bayes’ theorem</strong> is a tool for estimating one conditional probability from another. It’s often expressed in terms of Hypotheses (H) and Data (D).</p>
+<p>So. We’re interested in the probability of a hypothesis in light of some data, or <strong>P(H|D</strong>).</p>
+<p>This depends on the prior probability of the hypothesis, or how likely it was before the data were collected, or <strong>P(H).</strong> It also depends upon how likely the data are given two states of the world, that is, the probability of the data given that the hypothesis is true, or <strong>P (D|H)</strong>, and the probability of the data given that the hypothesis is not true, or <strong>P (D|not H)</strong>.</p>
+<p>If we have these three in li</p>
+<p>P (B|A):</p>
+<p>It may look complicated at first:</p>
+<p><span class="math display">\[ P (H|D) = \frac{P(H)*P(D|H)}{P(H)* P(D|H) + (1-P(H))* P(D|not H)} \]</span></p>
+<p>Bayes’ theorem matters, because people as well as scientists are concerned with hypotheses.  We live in an uncertain world, and constantly form hypotheses about it.  We form these hypotheses as questions…</p>
+<p><em>Do pens get trashed on the whiteboard because of a soap film?<br />
+Am I allergic to shellfish?<br />
+Does studying at the last minute help my exam performance?<br />
+Does she love me?<br />
+Is my car safe in that parking lot?</em></p>
+<p>Bayes’ theorem is important because it describes how we should revise our estimates of the probability of a hypothesis in light of data. We can rewrite the above equation, substituting H (hypothesis) for A, and D (data) for B:</p>
+<p>P (H|D) = P(H) P(D|H) /<span class="math display">\[ P(H) P(D\|H) + P(not H) P(D\|not H) \]</span></p>
+<p>Let’s look at the soap-film hypothesis as an example.  I begin with an initial P(H), my <strong>prior probability</strong> (often a <strong>base rate</strong>) that soap could dry out pens. Say it’s .3</p>
+<p>P(H) = soap dries out the pen = .3</p>
+<p>I try a new pen on the board, write with it for 3 minutes, and ruin it. I think that, if my hypothesis is true, that this is likely (P (D|H) =.7).  If my hypothesis is false, it is unlikely (P (D|not H) = .2).  What is my <strong>posterior probability</strong>, or the revised estimate of the probability of the hypothesis in light of data?</p>
+<p>P (H|D) = (.3)(.7) / <span class="math display">\[ (.3)(.7) + (.7)(.2) \]</span></p>
+<p>My new subjective probability is .6.  Apply Bayes’ theorem to the following questions to examine how probability estimates should change in light of data:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Initial hypothesis</strong></th>
+<th align="center"><strong>P (H)</strong></th>
+<th align="left"><strong>New data</strong></th>
+<th align="center"><strong>P (D|H)</strong></th>
+<th align="center"><strong>P (D|not H)</strong></th>
+<th align="center"><strong>P (H|D)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pens don’t last because of soap film on the whiteboard</td>
+<td align="center">.3</td>
+<td align="left">A pen is quickly trashed</td>
+<td align="center">.7</td>
+<td align="center">.2</td>
+<td align="center">.6</td>
+</tr>
+<tr class="even">
+<td align="left">I am allergic to shellfish</td>
+<td align="center">.02</td>
+<td align="left">Rash after eating clams</td>
+<td align="center">.9</td>
+<td align="center">.01</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">Studying at the last minute helps my exam performance</td>
+<td align="center">.6</td>
+<td align="left">I failed</td>
+<td align="center">.2</td>
+<td align="center">.7</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="left">She loves me</td>
+<td align="center">.3</td>
+<td align="left">She gave me a present</td>
+<td align="center">.6</td>
+<td align="center">.3</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">My car is safe in that parking lot</td>
+<td align="center">.3</td>
+<td align="left">I just heard a car alarm</td>
+<td align="center">.4</td>
+<td align="center">.4</td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+<p>Bayes’ theorem is a <em>normative model</em> of probability - how we should revise probability estimates, not a <em>descriptive model</em>.  That is, the research suggests that people don’t typically revise probability estimates in this way, even though we arguably should.</p>
+<p>Implications: Can the principles of probability help us solve these problems?</p>
+<ol style="list-style-type: decimal">
+<li><p>A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time.</p>
+<ol style="list-style-type: decimal">
+<li>What is the probability that the cab was Blue?</li>
+</ol></li>
+<li><p>Imagine two giant jars are each filled with thousands of jelly beans. In the first jar, 70% of the jelly beans are red and the rest are blue. In the second jar, 70% are blue and the rest are red. Suppose one jar is chosen, at random, and 12 jelly beans are taken from it: 8 blue jelly beans and 4 red jelly beans. What are the chances that the 12 jelly beans were taken from the jar with mostly red jelly beans?</p></li>
+</ol>
+<blockquote>
+<p>___________%.</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li><p>You are manager of a baseball team. It is the bottom of the ninth inning, there are two outs, and you are losing by one run. You will lose the game if the next batter makes an out. But because there are base runners, you will win the game if the batter gets a hit. You can choose one of two batters</p>
+<ol style="list-style-type: decimal">
+<li><p>Smith has an overall batting average of .320 in 400 times at bat, but has only bat .250 in 20 plate appearances against this pitcher</p></li>
+<li><p>Jones has an overall batting average of only .250 in 400 times at bat, but has bat .320 in 20 plate appearances against this pitcher</p></li>
+</ol></li>
+<li><p>James grew up in a Bohemian family. His father was a musician, and his mother was a painter. They lived together for 40 years and never got married. James was a very talented child with a special gift for comedy, but he turned into a rebellious troublemaker in his youth. He dropped out of college after two years and traveled to Asia to learn crafts. James is now 35 years old. Of 100 people like James, how many are</p>
+<ol style="list-style-type: decimal">
+<li><p>Republicans?</p></li>
+<li><p>Artists?</p></li>
+<li><p>Republican Artists?</p></li>
+</ol></li>
+<li><p>Steve is very shy and withdrawn, invariably helpful, but with little interest in people, or in the world of reality. A meek and tidy soul, he has a need for order and structure, and a passion for detail.” What is the probability that Steve is</p>
+<ol style="list-style-type: decimal">
+<li><p>a farmer?</p></li>
+<li><p>a Salesman?</p></li>
+<li><p>an Airline Pilot?</p></li>
+<li><p>a Librarian?</p></li>
+<li><p>a Physician?</p></li>
+</ol></li>
+</ol>
 
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div class="csl-entry">

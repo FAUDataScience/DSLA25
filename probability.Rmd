@@ -1,0 +1,108 @@
+**Multiple events**
+
+We're often interested in the conjunction of more than two events (such as the likelihood that a hurricane will pass through campus, your car won't work, and your friends will be unable or unwilling to help you).  Remember that the probability of the conjunction of any three events A, B, and C can be no more likely than the probability of two of these events.
+
+*Which of the following is more likely? \
+A: A star athlete becomes a drug addict, enters a treatment program, and wins a championship.\
+ or B: A star athlete becomes a drug addict and wins a championship.\
+ (Hastie & Dawes, p. 351)*
+
+In thinking of the probability of the conjunction of multiple events, remember that each event A, B, etc., can represent a set of outcomes.  Say that A is "useless friends," B is "dead car" and C is "hurricane." The probability of useless friends and a dead car is
+
+P (A and B) = P (A) P (B\|A)
+
+Call "useless friends and a dead car" X.  Then the probability of all three events co-occurring is
+
+P (X and C) = P (C) P (X\|C)
+
+This tells us that the probability of all three events co-occuring is the probability of a hurricane, times the probability of that your friends and car will both be useless given that there is a hurricane.  We can get further than this using the **chain rule:**
+
+P (A and B and C) = P (C) P (A and B\|C)
+
+                           = P (C) P (B\|C) P (A\|B and C)
+
+that is, the probability of all three events co-occurring is equal to the probability of a hurricane hitting us, times the likelihood of your car being dead given that there is a hurricane, times the likelihood of your friends being useless given that you are stuck without a car in a hurricane.  The last of these is, I expect, small.
+
+As you can see, problems in probability can become complex and cumbersome.  But because we live in an uncertain world, an understanding of probability can help us make more sound, more rational decisions.
+
+**Bayes' theorem** is a tool for estimating one conditional probability from another. It's often expressed in terms of Hypotheses (H) and Data (D).
+
+So. We're interested in the probability of a hypothesis in light of some data, or **P(H\|D**).
+
+This depends on the prior probability of the hypothesis, or how likely it was before the data were collected, or **P(H).** It also depends upon how likely the data are given two states of the world, that is, the probability of the data given that the hypothesis is true, or **P (D\|H)**, and the probability of the data given that the hypothesis is not true, or **P (D\|not H)**.
+
+If we have these three in li
+
+P (B\|A):
+
+It may look complicated at first:
+
+$$ P (H|D) = \frac{P(H)*P(D|H)}{P(H)* P(D|H) + (1-P(H))* P(D|not H)} $$
+
+Bayes' theorem matters, because people as well as scientists are concerned with hypotheses.  We live in an uncertain world, and constantly form hypotheses about it.  We form these hypotheses as questions...
+
+*Do pens get trashed on the whiteboard because of a soap film?\
+Am I allergic to shellfish?\
+Does studying at the last minute help my exam performance?\
+Does she love me?\
+Is my car safe in that parking lot?*
+
+Bayes' theorem is important because it describes how we should revise our estimates of the probability of a hypothesis in light of data. We can rewrite the above equation, substituting H (hypothesis) for A, and D (data) for B:
+
+P (H\|D) = P(H) P(D\|H) /$$ P(H) P(D\|H) + P(not H) P(D\|not H) $$
+
+Let's look at the soap-film hypothesis as an example.  I begin with an initial P(H), my **prior probability** (often a **base rate**) that soap could dry out pens. Say it's .3
+
+P(H) = soap dries out the pen = .3
+
+I try a new pen on the board, write with it for 3 minutes, and ruin it. I think that, if my hypothesis is true, that this is likely (P (D\|H) =.7).  If my hypothesis is false, it is unlikely (P (D\|not H) = .2).  What is my **posterior probability**, or the revised estimate of the probability of the hypothesis in light of data?
+
+P (H\|D) = (.3)(.7) / $$ (.3)(.7) + (.7)(.2) $$
+
+My new subjective probability is .6.  Apply Bayes' theorem to the following questions to examine how probability estimates should change in light of data:
+
+| **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
+|:----------------|:----------:|:-----------|:----------:|:----------:|:----------:|
+| Pens don't last because of soap film on the whiteboard | .3 | A pen is quickly trashed | .7 | .2 | .6 |
+| I am allergic to shellfish | .02 | Rash after eating clams | .9 | .01 | ? |
+| Studying at the last minute helps my exam performance | .6 | I failed | .2 | .7 | ? |
+| She loves me | .3 | She gave me a present | .6 | .3 | ? |
+| My car is safe in that parking lot | .3 | I just heard a car alarm | .4 | .4 | ? |
+
+Bayes' theorem is a *normative model* of probability - how we should revise probability estimates, not a *descriptive model*.  That is, the research suggests that people don't typically revise probability estimates in this way, even though we arguably should.
+
+Implications: Can the principles of probability help us solve these problems?
+
+1)  A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time.
+
+    1.  What is the probability that the cab was Blue?
+
+2)  Imagine two giant jars are each filled with thousands of jelly beans. In the first jar, 70% of the jelly beans are red and the rest are blue. In the second jar, 70% are blue and the rest are red. Suppose one jar is chosen, at random, and 12 jelly beans are taken from it: 8 blue jelly beans and 4 red jelly beans. What are the chances that the 12 jelly beans were taken from the jar with mostly red jelly beans?
+
+> \_\_\_\_\_\_\_\_\_\_\_%.
+
+3)  You are manager of a baseball team. It is the bottom of the ninth inning, there are two outs, and you are losing by one run. You will lose the game if the next batter makes an out. But because there are base runners, you will win the game if the batter gets a hit. You can choose one of two batters
+
+    1.  Smith has an overall batting average of .320 in 400 times at bat, but has only bat .250 in 20 plate appearances against this pitcher
+
+    2.  Jones has an overall batting average of only .250 in 400 times at bat, but has bat .320 in 20 plate appearances against this pitcher
+
+4)  James grew up in a Bohemian family. His father was a musician, and his mother was a painter. They lived together for 40 years and never got married. James was a very talented child with a special gift for comedy, but he turned into a rebellious troublemaker in his youth. He dropped out of college after two years and traveled to Asia to learn crafts. James is now 35 years old. Of 100 people like James, how many are
+
+    1.  Republicans?
+
+    2.  Artists?
+
+    3.  Republican Artists?
+
+5)  Steve is very shy and withdrawn, invariably helpful, but with little interest in people, or in the world of reality. A meek and tidy soul, he has a need for order and structure, and a passion for detail." What is the probability that Steve is
+
+    1.  a farmer?
+
+    2.  a Salesman?
+
+    3.  an Airline Pilot?
+
+    4.  a Librarian?
+
+    5.  a Physician?

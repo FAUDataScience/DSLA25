@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13 applied data science | Data science for the liberal arts</title>
   <meta name="description" content="13 applied data science | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13 applied data science | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -533,7 +533,7 @@ div.csl-indent {
 <span id="cb56-8"><a href="applied-data-science.html#cb56-8" tabindex="-1"></a>    <span class="fu">filter</span>(place <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb56-9"><a href="applied-data-science.html#cb56-9" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">confirmed =</span> <span class="fu">sum</span>(confirmed)) <span class="sc">%&gt;%</span></span>
 <span id="cb56-10"><a href="applied-data-science.html#cb56-10" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date)) <span class="sc">+</span>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>confirmed))</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p>A second package can be used to examine the impact of COVID more indirectly, but possibly more accurately, by looking at excess mortality data.</p>
 </div>
 <div id="a-brief-digression-on-causality" class="section level3 hasAnchor" number="13.1.2">
@@ -557,26 +557,17 @@ div.csl-indent {
 <pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
 <pre><code>## Overall death rate is 10.5.</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="applied-data-science.html#cb61-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in
-## ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## ℹ The deprecated feature was likely used in the
-##   excessmort package.
-##   Please report the issue to the authors.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see
-## where this warning was generated.</code></pre>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="applied-data-science.html#cb63-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
-<span id="cb63-2"><a href="applied-data-science.html#cb63-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb63-3"><a href="applied-data-science.html#cb63-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="applied-data-science.html#cb62-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="applied-data-science.html#cb62-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb62-3"><a href="applied-data-science.html#cb62-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
 <pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
 ## the model is not recommended with less than five years of data. Consider
 ## setting include.trend = FALSE.</code></pre>
 <pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
 <pre><code>## Overall death rate is 7.33.</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="applied-data-science.html#cb67-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="applied-data-science.html#cb66-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-25-2.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="other-datasets-in-and-beyond-r" class="section level2 hasAnchor" number="13.2">
@@ -605,7 +596,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-jackson2017" class="csl-entry">
 Jackson, Dan. 2017. <span>“The <span>Netflix Prize</span>: <span>How</span> a 1 <span>Million Contest Changed Binge-Watching Forever</span>.”</span> <em>Thrillist. Com</em>.

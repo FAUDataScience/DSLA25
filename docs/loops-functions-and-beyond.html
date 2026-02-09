@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16 loops, functions, and beyond | Data science for the liberal arts</title>
   <meta name="description" content="16 loops, functions, and beyond | Data science for the liberal arts" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16 loops, functions, and beyond | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2025-10-28" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
-<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#venn-diagrams-should-generally-be-asymmetrical"><i class="fa fa-check"></i><b>9.2.2</b> Venn diagrams should generally be asymmetrical</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -498,39 +498,39 @@ div.csl-indent {
 <div id="loops" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> loops<a href="loops-functions-and-beyond.html#loops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Consider the task of printing out a series of numbers. Here’s a simple example of how this could be done in a loop in Base R. It prints numbers between 1995 and 1998 (inclusive).</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="loops-functions-and-beyond.html#cb95-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1995</span><span class="sc">:</span><span class="dv">1998</span>) { <span class="co"># i is an index code</span></span>
-<span id="cb95-2"><a href="loops-functions-and-beyond.html#cb95-2" tabindex="-1"></a>    <span class="fu">print</span>(i) <span class="co"># print the ith value in the sequence </span></span>
-<span id="cb95-3"><a href="loops-functions-and-beyond.html#cb95-3" tabindex="-1"></a>} <span class="co"># go to the next one until the range is complete</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="loops-functions-and-beyond.html#cb94-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1995</span><span class="sc">:</span><span class="dv">1998</span>) { <span class="co"># i is an index code</span></span>
+<span id="cb94-2"><a href="loops-functions-and-beyond.html#cb94-2" tabindex="-1"></a>    <span class="fu">print</span>(i) <span class="co"># print the ith value in the sequence </span></span>
+<span id="cb94-3"><a href="loops-functions-and-beyond.html#cb94-3" tabindex="-1"></a>} <span class="co"># go to the next one until the range is complete</span></span></code></pre></div>
 <pre><code>## [1] 1995
 ## [1] 1996
 ## [1] 1997
 ## [1] 1998</code></pre>
 <p>Let’s expand on this a little, connecting back to the babynames data. This will print counts of the number of babies for each year in GenerationZ, which includes years from 1995-2015.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="loops-functions-and-beyond.html#cb97-1" tabindex="-1"></a>genZ <span class="ot">&lt;-</span> (<span class="dv">1995</span><span class="sc">:</span><span class="dv">2015</span>)</span>
-<span id="cb97-2"><a href="loops-functions-and-beyond.html#cb97-2" tabindex="-1"></a><span class="co"># this reduces the (big) babynames to a simple file of years and counts</span></span>
-<span id="cb97-3"><a href="loops-functions-and-beyond.html#cb97-3" tabindex="-1"></a>babyCounts <span class="ot">&lt;-</span></span>
-<span id="cb97-4"><a href="loops-functions-and-beyond.html#cb97-4" tabindex="-1"></a>    babynames <span class="sc">%&gt;%</span> </span>
-<span id="cb97-5"><a href="loops-functions-and-beyond.html#cb97-5" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
-<span id="cb97-6"><a href="loops-functions-and-beyond.html#cb97-6" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> genZ) <span class="sc">%&gt;%</span> </span>
-<span id="cb97-7"><a href="loops-functions-and-beyond.html#cb97-7" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">nbabies =</span> <span class="fu">sum</span>(n))</span>
-<span id="cb97-8"><a href="loops-functions-and-beyond.html#cb97-8" tabindex="-1"></a>    </span>
-<span id="cb97-9"><a href="loops-functions-and-beyond.html#cb97-9" tabindex="-1"></a><span class="co"># and this uses a for loop to print each row in turn</span></span>
-<span id="cb97-10"><a href="loops-functions-and-beyond.html#cb97-10" tabindex="-1"></a><span class="co"># for (i in (1:nrow(babyCounts))) { </span></span>
-<span id="cb97-11"><a href="loops-functions-and-beyond.html#cb97-11" tabindex="-1"></a></span>
-<span id="cb97-12"><a href="loops-functions-and-beyond.html#cb97-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(<span class="fu">nrow</span>(babyCounts))) { </span>
-<span id="cb97-13"><a href="loops-functions-and-beyond.html#cb97-13" tabindex="-1"></a>    <span class="co"># filename[i,j] == ith row and jth column</span></span>
-<span id="cb97-14"><a href="loops-functions-and-beyond.html#cb97-14" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>((babyCounts[i,<span class="dv">1</span>]), babyCounts[i,<span class="dv">2</span>]))</span>
-<span id="cb97-15"><a href="loops-functions-and-beyond.html#cb97-15" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="loops-functions-and-beyond.html#cb96-1" tabindex="-1"></a>genZ <span class="ot">&lt;-</span> (<span class="dv">1995</span><span class="sc">:</span><span class="dv">2015</span>)</span>
+<span id="cb96-2"><a href="loops-functions-and-beyond.html#cb96-2" tabindex="-1"></a><span class="co"># this reduces the (big) babynames to a simple file of years and counts</span></span>
+<span id="cb96-3"><a href="loops-functions-and-beyond.html#cb96-3" tabindex="-1"></a>babyCounts <span class="ot">&lt;-</span></span>
+<span id="cb96-4"><a href="loops-functions-and-beyond.html#cb96-4" tabindex="-1"></a>    babynames <span class="sc">%&gt;%</span> </span>
+<span id="cb96-5"><a href="loops-functions-and-beyond.html#cb96-5" tabindex="-1"></a>    <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-6"><a href="loops-functions-and-beyond.html#cb96-6" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> genZ) <span class="sc">%&gt;%</span> </span>
+<span id="cb96-7"><a href="loops-functions-and-beyond.html#cb96-7" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">nbabies =</span> <span class="fu">sum</span>(n))</span>
+<span id="cb96-8"><a href="loops-functions-and-beyond.html#cb96-8" tabindex="-1"></a>    </span>
+<span id="cb96-9"><a href="loops-functions-and-beyond.html#cb96-9" tabindex="-1"></a><span class="co"># and this uses a for loop to print each row in turn</span></span>
+<span id="cb96-10"><a href="loops-functions-and-beyond.html#cb96-10" tabindex="-1"></a><span class="co"># for (i in (1:nrow(babyCounts))) { </span></span>
+<span id="cb96-11"><a href="loops-functions-and-beyond.html#cb96-11" tabindex="-1"></a></span>
+<span id="cb96-12"><a href="loops-functions-and-beyond.html#cb96-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(<span class="fu">nrow</span>(babyCounts))) { </span>
+<span id="cb96-13"><a href="loops-functions-and-beyond.html#cb96-13" tabindex="-1"></a>    <span class="co"># filename[i,j] == ith row and jth column</span></span>
+<span id="cb96-14"><a href="loops-functions-and-beyond.html#cb96-14" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>((babyCounts[i,<span class="dv">1</span>]), babyCounts[i,<span class="dv">2</span>]))</span>
+<span id="cb96-15"><a href="loops-functions-and-beyond.html#cb96-15" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;1995 3661351&quot;</code></pre>
 <p>The syntax of loops, including where to put parentheses in index statements, can be tricky. Expect to refer to Google and StackExchange often in order to get your code running.</p>
 <p>Another good source is Chapter 26 of R4DS (2e). There, Wickham goes in to additional detail, including a description of seq_along(df) as a tool for creating an index corresponding to 1:ncol(df). Here’s an example with the diamonds dataset:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="loops-functions-and-beyond.html#cb99-1" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
-<span id="cb99-2"><a href="loops-functions-and-beyond.html#cb99-2" tabindex="-1"></a>    <span class="fu">select_if</span>(., is.numeric)</span>
-<span id="cb99-3"><a href="loops-functions-and-beyond.html#cb99-3" tabindex="-1"></a><span class="co"># for (i in (1:ncol(diamonds2))) {</span></span>
-<span id="cb99-4"><a href="loops-functions-and-beyond.html#cb99-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(diamonds2)) {</span>
-<span id="cb99-5"><a href="loops-functions-and-beyond.html#cb99-5" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">names</span>(diamonds2[i]),</span>
-<span id="cb99-6"><a href="loops-functions-and-beyond.html#cb99-6" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">mean</span>(diamonds2[[i]]),<span class="dv">2</span>)))</span>
-<span id="cb99-7"><a href="loops-functions-and-beyond.html#cb99-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="loops-functions-and-beyond.html#cb98-1" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> </span>
+<span id="cb98-2"><a href="loops-functions-and-beyond.html#cb98-2" tabindex="-1"></a>    <span class="fu">select_if</span>(., is.numeric)</span>
+<span id="cb98-3"><a href="loops-functions-and-beyond.html#cb98-3" tabindex="-1"></a><span class="co"># for (i in (1:ncol(diamonds2))) {</span></span>
+<span id="cb98-4"><a href="loops-functions-and-beyond.html#cb98-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(diamonds2)) {</span>
+<span id="cb98-5"><a href="loops-functions-and-beyond.html#cb98-5" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">names</span>(diamonds2[i]),</span>
+<span id="cb98-6"><a href="loops-functions-and-beyond.html#cb98-6" tabindex="-1"></a>                <span class="fu">round</span>(<span class="fu">mean</span>(diamonds2[[i]]),<span class="dv">2</span>)))</span>
+<span id="cb98-7"><a href="loops-functions-and-beyond.html#cb98-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;carat 0.8&quot;
 ## [1] &quot;depth 61.75&quot;
 ## [1] &quot;table 57.46&quot;
@@ -544,22 +544,22 @@ div.csl-indent {
 <h2><span class="header-section-number">16.2</span> from loop to apply to purrr::map<a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Understanding for loops is fundamental in programming, but in R they should often be sidestepped. If the order of iteration isn’t important (if, for example, it doesn’t matter which of the diamonds variables we take the mean of first), then using one of the measures from the <strong>apply</strong> family can generally be used to make your code simpler and more efficient.</p>
 <p>The logic is that one takes a dataframe (df or tibble), then applies a function to its rows or columns:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="loops-functions-and-beyond.html#cb101-1" tabindex="-1"></a><span class="co"># apply = apply the function (mean) to the columns(2) of the df </span></span>
-<span id="cb101-2"><a href="loops-functions-and-beyond.html#cb101-2" tabindex="-1"></a>diamonds2  <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">2</span>,mean) </span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="loops-functions-and-beyond.html#cb100-1" tabindex="-1"></a><span class="co"># apply = apply the function (mean) to the columns(2) of the df </span></span>
+<span id="cb100-2"><a href="loops-functions-and-beyond.html#cb100-2" tabindex="-1"></a>diamonds2  <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">2</span>,mean) </span></code></pre></div>
 <pre><code>##        carat        depth        table        price            x            y 
 ##    0.7979397   61.7494049   57.4571839 3932.7997219    5.7311572    5.7345260 
 ##            z 
 ##    3.5387338</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="loops-functions-and-beyond.html#cb103-1" tabindex="-1"></a><span class="co"># sapply = simply apply - guesses that you are looking for col. means</span></span>
-<span id="cb103-2"><a href="loops-functions-and-beyond.html#cb103-2" tabindex="-1"></a>diamonds2  <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(mean) </span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="loops-functions-and-beyond.html#cb102-1" tabindex="-1"></a><span class="co"># sapply = simply apply - guesses that you are looking for col. means</span></span>
+<span id="cb102-2"><a href="loops-functions-and-beyond.html#cb102-2" tabindex="-1"></a>diamonds2  <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(mean) </span></code></pre></div>
 <pre><code>##        carat        depth        table        price            x            y 
 ##    0.7979397   61.7494049   57.4571839 3932.7997219    5.7311572    5.7345260 
 ##            z 
 ##    3.5387338</code></pre>
 <p>The many variants of the apply family, including lapply [list apply] and tapply [table apply] as well as sapply, each have their own uses and can be quite efficient but, again, can be syntactically challenging.</p>
 <p>In the evolving tidyverse, the <strong>map</strong> family of commands is supplementing if not supplanting apply; these commands (part of the purrr package in the core tidyverse) may prove to be more convenient and clear. For example, the <strong>map_df</strong> function will apply a function and return a dataframe (tibble), which can be handy for further analysis.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="loops-functions-and-beyond.html#cb105-1" tabindex="-1"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
-<span id="cb105-2"><a href="loops-functions-and-beyond.html#cb105-2" tabindex="-1"></a>  <span class="fu">map_df</span>(mean)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="loops-functions-and-beyond.html#cb104-1" tabindex="-1"></a>diamonds2 <span class="sc">%&gt;%</span> </span>
+<span id="cb104-2"><a href="loops-functions-and-beyond.html#cb104-2" tabindex="-1"></a>  <span class="fu">map_df</span>(mean)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   carat depth table price     x     y     z
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -573,54 +573,54 @@ div.csl-indent {
 <div id="preliminaries" class="section level3 hasAnchor" number="16.3.1">
 <h3><span class="header-section-number">16.3.1</span> preliminaries<a href="loops-functions-and-beyond.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here is the preliminary stuff, where I pull the data <del>off the net</del> and initialize the variables</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loops-functions-and-beyond.html#cb107-1" tabindex="-1"></a>sampledata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/sentiment-words-DFE-785960.csv&quot;</span>)<span class="co">#url(</span></span>
-<span id="cb107-2"><a href="loops-functions-and-beyond.html#cb107-2" tabindex="-1"></a><span class="co">#     &quot;https://www.crowdflower.com/wp-content/uploads/2016/03/sentiment-words-DFE-785960.csv&quot;))</span></span>
-<span id="cb107-3"><a href="loops-functions-and-beyond.html#cb107-3" tabindex="-1"></a><span class="co">#&quot;https://raw.githubusercontent.com/totalgood/hope/master/data/corpora/sentiment-words-DFE-785960.csv&quot;))</span></span>
-<span id="cb107-4"><a href="loops-functions-and-beyond.html#cb107-4" tabindex="-1"></a>  <span class="co"># pulls off four words</span></span>
-<span id="cb107-5"><a href="loops-functions-and-beyond.html#cb107-5" tabindex="-1"></a>sampledata <span class="ot">&lt;-</span> sampledata[<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>] <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
-<span id="cb107-6"><a href="loops-functions-and-beyond.html#cb107-6" tabindex="-1"></a>ndocs <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb107-7"><a href="loops-functions-and-beyond.html#cb107-7" tabindex="-1"></a>minDocLength <span class="ot">&lt;-</span>  <span class="dv">5</span></span>
-<span id="cb107-8"><a href="loops-functions-and-beyond.html#cb107-8" tabindex="-1"></a>maxDocLength <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb107-9"><a href="loops-functions-and-beyond.html#cb107-9" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;character&quot;</span>, <span class="at">length =</span> ndocs)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="loops-functions-and-beyond.html#cb106-1" tabindex="-1"></a>sampledata <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/sentiment-words-DFE-785960.csv&quot;</span>)<span class="co">#url(</span></span>
+<span id="cb106-2"><a href="loops-functions-and-beyond.html#cb106-2" tabindex="-1"></a><span class="co">#     &quot;https://www.crowdflower.com/wp-content/uploads/2016/03/sentiment-words-DFE-785960.csv&quot;))</span></span>
+<span id="cb106-3"><a href="loops-functions-and-beyond.html#cb106-3" tabindex="-1"></a><span class="co">#&quot;https://raw.githubusercontent.com/totalgood/hope/master/data/corpora/sentiment-words-DFE-785960.csv&quot;))</span></span>
+<span id="cb106-4"><a href="loops-functions-and-beyond.html#cb106-4" tabindex="-1"></a>  <span class="co"># pulls off four words</span></span>
+<span id="cb106-5"><a href="loops-functions-and-beyond.html#cb106-5" tabindex="-1"></a>sampledata <span class="ot">&lt;-</span> sampledata[<span class="dv">22</span><span class="sc">:</span><span class="dv">25</span>] <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb106-6"><a href="loops-functions-and-beyond.html#cb106-6" tabindex="-1"></a>ndocs <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb106-7"><a href="loops-functions-and-beyond.html#cb106-7" tabindex="-1"></a>minDocLength <span class="ot">&lt;-</span>  <span class="dv">5</span></span>
+<span id="cb106-8"><a href="loops-functions-and-beyond.html#cb106-8" tabindex="-1"></a>maxDocLength <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb106-9"><a href="loops-functions-and-beyond.html#cb106-9" tabindex="-1"></a>doc <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode =</span> <span class="st">&quot;character&quot;</span>, <span class="at">length =</span> ndocs)</span></code></pre></div>
 </div>
 <div id="the-function" class="section level3 hasAnchor" number="16.3.2">
 <h3><span class="header-section-number">16.3.2</span> the function<a href="loops-functions-and-beyond.html#the-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here’s the simple function which pulls a random word out of the matrix of sampledata.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="loops-functions-and-beyond.html#cb108-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># a random seed is used to allow reproducible results</span></span>
-<span id="cb108-2"><a href="loops-functions-and-beyond.html#cb108-2" tabindex="-1"></a>getword <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb108-3"><a href="loops-functions-and-beyond.html#cb108-3" tabindex="-1"></a>      rowid <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(sampledata), <span class="dv">1</span>)</span>
-<span id="cb108-4"><a href="loops-functions-and-beyond.html#cb108-4" tabindex="-1"></a>      colid <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(sampledata), <span class="dv">1</span>)</span>
-<span id="cb108-5"><a href="loops-functions-and-beyond.html#cb108-5" tabindex="-1"></a>      sampledata[rowid,colid]</span>
-<span id="cb108-6"><a href="loops-functions-and-beyond.html#cb108-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loops-functions-and-beyond.html#cb107-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>) <span class="co"># a random seed is used to allow reproducible results</span></span>
+<span id="cb107-2"><a href="loops-functions-and-beyond.html#cb107-2" tabindex="-1"></a>getword <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb107-3"><a href="loops-functions-and-beyond.html#cb107-3" tabindex="-1"></a>      rowid <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(sampledata), <span class="dv">1</span>)</span>
+<span id="cb107-4"><a href="loops-functions-and-beyond.html#cb107-4" tabindex="-1"></a>      colid <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(sampledata), <span class="dv">1</span>)</span>
+<span id="cb107-5"><a href="loops-functions-and-beyond.html#cb107-5" tabindex="-1"></a>      sampledata[rowid,colid]</span>
+<span id="cb107-6"><a href="loops-functions-and-beyond.html#cb107-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="applying-the-function" class="section level3 hasAnchor" number="16.3.3">
 <h3><span class="header-section-number">16.3.3</span> applying the function<a href="loops-functions-and-beyond.html#applying-the-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The function is applied, first, to extract one word, then, in successive loops, to build up one phrase and then many.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loops-functions-and-beyond.html#cb109-1" tabindex="-1"></a><span class="co"># combine words into docs</span></span>
-<span id="cb109-2"><a href="loops-functions-and-beyond.html#cb109-2" tabindex="-1"></a><span class="co"># establish length of first phrase</span></span>
-<span id="cb109-3"><a href="loops-functions-and-beyond.html#cb109-3" tabindex="-1"></a>docLength <span class="ot">&lt;-</span> <span class="fu">sample</span>(minDocLength<span class="sc">:</span>maxDocLength,<span class="dv">1</span>)</span>
-<span id="cb109-4"><a href="loops-functions-and-beyond.html#cb109-4" tabindex="-1"></a><span class="co"># initialize with one word</span></span>
-<span id="cb109-5"><a href="loops-functions-and-beyond.html#cb109-5" tabindex="-1"></a>sampleCorpus <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
-<span id="cb109-6"><a href="loops-functions-and-beyond.html#cb109-6" tabindex="-1"></a><span class="co"># loop to build up first phrase</span></span>
-<span id="cb109-7"><a href="loops-functions-and-beyond.html#cb109-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>docLength) {</span>
-<span id="cb109-8"><a href="loops-functions-and-beyond.html#cb109-8" tabindex="-1"></a>      addWord <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
-<span id="cb109-9"><a href="loops-functions-and-beyond.html#cb109-9" tabindex="-1"></a>      sampleCorpus <span class="ot">&lt;-</span> <span class="fu">paste</span>(sampleCorpus, addWord)</span>
-<span id="cb109-10"><a href="loops-functions-and-beyond.html#cb109-10" tabindex="-1"></a>}</span>
-<span id="cb109-11"><a href="loops-functions-and-beyond.html#cb109-11" tabindex="-1"></a><span class="co">#add additional simulated documents</span></span>
-<span id="cb109-12"><a href="loops-functions-and-beyond.html#cb109-12" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ndocs) {</span>
-<span id="cb109-13"><a href="loops-functions-and-beyond.html#cb109-13" tabindex="-1"></a>      docLength <span class="ot">&lt;-</span> <span class="fu">sample</span>(minDocLength<span class="sc">:</span>maxDocLength,<span class="dv">1</span>)</span>
-<span id="cb109-14"><a href="loops-functions-and-beyond.html#cb109-14" tabindex="-1"></a>      newdoc <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
-<span id="cb109-15"><a href="loops-functions-and-beyond.html#cb109-15" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>docLength <span class="sc">-</span> <span class="dv">1</span>) {</span>
-<span id="cb109-16"><a href="loops-functions-and-beyond.html#cb109-16" tabindex="-1"></a>            addWord <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
-<span id="cb109-17"><a href="loops-functions-and-beyond.html#cb109-17" tabindex="-1"></a>            newdoc <span class="ot">&lt;-</span> <span class="fu">paste</span>(newdoc, addWord)</span>
-<span id="cb109-18"><a href="loops-functions-and-beyond.html#cb109-18" tabindex="-1"></a>      }</span>
-<span id="cb109-19"><a href="loops-functions-and-beyond.html#cb109-19" tabindex="-1"></a>      sampleCorpus <span class="ot">&lt;-</span> <span class="fu">rbind</span>(newdoc,sampleCorpus)</span>
-<span id="cb109-20"><a href="loops-functions-and-beyond.html#cb109-20" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="loops-functions-and-beyond.html#cb108-1" tabindex="-1"></a><span class="co"># combine words into docs</span></span>
+<span id="cb108-2"><a href="loops-functions-and-beyond.html#cb108-2" tabindex="-1"></a><span class="co"># establish length of first phrase</span></span>
+<span id="cb108-3"><a href="loops-functions-and-beyond.html#cb108-3" tabindex="-1"></a>docLength <span class="ot">&lt;-</span> <span class="fu">sample</span>(minDocLength<span class="sc">:</span>maxDocLength,<span class="dv">1</span>)</span>
+<span id="cb108-4"><a href="loops-functions-and-beyond.html#cb108-4" tabindex="-1"></a><span class="co"># initialize with one word</span></span>
+<span id="cb108-5"><a href="loops-functions-and-beyond.html#cb108-5" tabindex="-1"></a>sampleCorpus <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
+<span id="cb108-6"><a href="loops-functions-and-beyond.html#cb108-6" tabindex="-1"></a><span class="co"># loop to build up first phrase</span></span>
+<span id="cb108-7"><a href="loops-functions-and-beyond.html#cb108-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>docLength) {</span>
+<span id="cb108-8"><a href="loops-functions-and-beyond.html#cb108-8" tabindex="-1"></a>      addWord <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
+<span id="cb108-9"><a href="loops-functions-and-beyond.html#cb108-9" tabindex="-1"></a>      sampleCorpus <span class="ot">&lt;-</span> <span class="fu">paste</span>(sampleCorpus, addWord)</span>
+<span id="cb108-10"><a href="loops-functions-and-beyond.html#cb108-10" tabindex="-1"></a>}</span>
+<span id="cb108-11"><a href="loops-functions-and-beyond.html#cb108-11" tabindex="-1"></a><span class="co">#add additional simulated documents</span></span>
+<span id="cb108-12"><a href="loops-functions-and-beyond.html#cb108-12" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ndocs) {</span>
+<span id="cb108-13"><a href="loops-functions-and-beyond.html#cb108-13" tabindex="-1"></a>      docLength <span class="ot">&lt;-</span> <span class="fu">sample</span>(minDocLength<span class="sc">:</span>maxDocLength,<span class="dv">1</span>)</span>
+<span id="cb108-14"><a href="loops-functions-and-beyond.html#cb108-14" tabindex="-1"></a>      newdoc <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
+<span id="cb108-15"><a href="loops-functions-and-beyond.html#cb108-15" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>docLength <span class="sc">-</span> <span class="dv">1</span>) {</span>
+<span id="cb108-16"><a href="loops-functions-and-beyond.html#cb108-16" tabindex="-1"></a>            addWord <span class="ot">&lt;-</span> <span class="fu">getword</span>()</span>
+<span id="cb108-17"><a href="loops-functions-and-beyond.html#cb108-17" tabindex="-1"></a>            newdoc <span class="ot">&lt;-</span> <span class="fu">paste</span>(newdoc, addWord)</span>
+<span id="cb108-18"><a href="loops-functions-and-beyond.html#cb108-18" tabindex="-1"></a>      }</span>
+<span id="cb108-19"><a href="loops-functions-and-beyond.html#cb108-19" tabindex="-1"></a>      sampleCorpus <span class="ot">&lt;-</span> <span class="fu">rbind</span>(newdoc,sampleCorpus)</span>
+<span id="cb108-20"><a href="loops-functions-and-beyond.html#cb108-20" tabindex="-1"></a>}</span></code></pre></div>
 <p>Finally, the results are combined with a vector of alternating labels of ‘Dem’ and ‘Rep’:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="loops-functions-and-beyond.html#cb110-1" tabindex="-1"></a><span class="fu">row.names</span>(sampleCorpus) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb110-2"><a href="loops-functions-and-beyond.html#cb110-2" tabindex="-1"></a>evenOdd <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Dem&quot;</span>,<span class="st">&quot;Rep&quot;</span>),<span class="at">length.out =</span> <span class="fu">nrow</span>(sampleCorpus))</span>
-<span id="cb110-3"><a href="loops-functions-and-beyond.html#cb110-3" tabindex="-1"></a>workingCorpus <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">cbind</span>(evenOdd,sampleCorpus))</span>
-<span id="cb110-4"><a href="loops-functions-and-beyond.html#cb110-4" tabindex="-1"></a><span class="fu">head</span>(workingCorpus,<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loops-functions-and-beyond.html#cb109-1" tabindex="-1"></a><span class="fu">row.names</span>(sampleCorpus) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb109-2"><a href="loops-functions-and-beyond.html#cb109-2" tabindex="-1"></a>evenOdd <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Dem&quot;</span>,<span class="st">&quot;Rep&quot;</span>),<span class="at">length.out =</span> <span class="fu">nrow</span>(sampleCorpus))</span>
+<span id="cb109-3"><a href="loops-functions-and-beyond.html#cb109-3" tabindex="-1"></a>workingCorpus <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">cbind</span>(evenOdd,sampleCorpus))</span>
+<span id="cb109-4"><a href="loops-functions-and-beyond.html#cb109-4" tabindex="-1"></a><span class="fu">head</span>(workingCorpus,<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 2
 ##   evenOdd V2                                                                    
 ##   &lt;chr&gt;   &lt;chr&gt;                                                                 
@@ -634,113 +634,113 @@ div.csl-indent {
 <div id="how-many-bottles-of-what" class="section level2 hasAnchor" number="16.4">
 <h2><span class="header-section-number">16.4</span> how many bottles of what?<a href="loops-functions-and-beyond.html#how-many-bottles-of-what" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To put the fun back into function, here’s a solution to the “99 bottles of beer” function described in r4DS 21.2.1. Study the code. Ask or answer a question about it in class or on Slack.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="loops-functions-and-beyond.html#cb112-1" tabindex="-1"></a>beerSong <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">liquid =</span> <span class="st">&quot;beer&quot;</span>, <span class="at">count =</span> <span class="dv">99</span>, <span class="at">surface =</span> <span class="st">&quot;wall&quot;</span>) {</span>
-<span id="cb112-2"><a href="loops-functions-and-beyond.html#cb112-2" tabindex="-1"></a>    songtext <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span> </span>
-<span id="cb112-3"><a href="loops-functions-and-beyond.html#cb112-3" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> (count<span class="sc">:</span><span class="dv">1</span>)) { </span>
-<span id="cb112-4"><a href="loops-functions-and-beyond.html#cb112-4" tabindex="-1"></a>        thisLine <span class="ot">=</span> (<span class="fu">paste0</span>(i, <span class="st">&quot; bottles of &quot;</span>, liquid, </span>
-<span id="cb112-5"><a href="loops-functions-and-beyond.html#cb112-5" tabindex="-1"></a>            <span class="st">&quot; on the &quot;</span>, surface,</span>
-<span id="cb112-6"><a href="loops-functions-and-beyond.html#cb112-6" tabindex="-1"></a>            <span class="st">&quot;, you take one down and pass it around,</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
-<span id="cb112-7"><a href="loops-functions-and-beyond.html#cb112-7" tabindex="-1"></a>        songtext <span class="ot">=</span> <span class="fu">c</span>(songtext, thisLine)</span>
-<span id="cb112-8"><a href="loops-functions-and-beyond.html#cb112-8" tabindex="-1"></a>    }</span>
-<span id="cb112-9"><a href="loops-functions-and-beyond.html#cb112-9" tabindex="-1"></a>    songtext <span class="ot">=</span> <span class="fu">c</span>(songtext, </span>
-<span id="cb112-10"><a href="loops-functions-and-beyond.html#cb112-10" tabindex="-1"></a>                 (<span class="fu">paste0</span>(<span class="st">&quot;no more bottles of &quot;</span>,</span>
-<span id="cb112-11"><a href="loops-functions-and-beyond.html#cb112-11" tabindex="-1"></a>                         liquid,<span class="st">&quot; on the &quot;</span>, surface,<span class="st">&quot;...&quot;</span>)))</span>
-<span id="cb112-12"><a href="loops-functions-and-beyond.html#cb112-12" tabindex="-1"></a>    <span class="fu">cat</span>(songtext) <span class="co"># cat prints without line numbers</span></span>
-<span id="cb112-13"><a href="loops-functions-and-beyond.html#cb112-13" tabindex="-1"></a>}</span>
-<span id="cb112-14"><a href="loops-functions-and-beyond.html#cb112-14" tabindex="-1"></a><span class="co">#beerSong() </span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="loops-functions-and-beyond.html#cb111-1" tabindex="-1"></a>beerSong <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">liquid =</span> <span class="st">&quot;beer&quot;</span>, <span class="at">count =</span> <span class="dv">99</span>, <span class="at">surface =</span> <span class="st">&quot;wall&quot;</span>) {</span>
+<span id="cb111-2"><a href="loops-functions-and-beyond.html#cb111-2" tabindex="-1"></a>    songtext <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span> </span>
+<span id="cb111-3"><a href="loops-functions-and-beyond.html#cb111-3" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> (count<span class="sc">:</span><span class="dv">1</span>)) { </span>
+<span id="cb111-4"><a href="loops-functions-and-beyond.html#cb111-4" tabindex="-1"></a>        thisLine <span class="ot">=</span> (<span class="fu">paste0</span>(i, <span class="st">&quot; bottles of &quot;</span>, liquid, </span>
+<span id="cb111-5"><a href="loops-functions-and-beyond.html#cb111-5" tabindex="-1"></a>            <span class="st">&quot; on the &quot;</span>, surface,</span>
+<span id="cb111-6"><a href="loops-functions-and-beyond.html#cb111-6" tabindex="-1"></a>            <span class="st">&quot;, you take one down and pass it around,</span><span class="sc">\n</span><span class="st">&quot;</span>))</span>
+<span id="cb111-7"><a href="loops-functions-and-beyond.html#cb111-7" tabindex="-1"></a>        songtext <span class="ot">=</span> <span class="fu">c</span>(songtext, thisLine)</span>
+<span id="cb111-8"><a href="loops-functions-and-beyond.html#cb111-8" tabindex="-1"></a>    }</span>
+<span id="cb111-9"><a href="loops-functions-and-beyond.html#cb111-9" tabindex="-1"></a>    songtext <span class="ot">=</span> <span class="fu">c</span>(songtext, </span>
+<span id="cb111-10"><a href="loops-functions-and-beyond.html#cb111-10" tabindex="-1"></a>                 (<span class="fu">paste0</span>(<span class="st">&quot;no more bottles of &quot;</span>,</span>
+<span id="cb111-11"><a href="loops-functions-and-beyond.html#cb111-11" tabindex="-1"></a>                         liquid,<span class="st">&quot; on the &quot;</span>, surface,<span class="st">&quot;...&quot;</span>)))</span>
+<span id="cb111-12"><a href="loops-functions-and-beyond.html#cb111-12" tabindex="-1"></a>    <span class="fu">cat</span>(songtext) <span class="co"># cat prints without line numbers</span></span>
+<span id="cb111-13"><a href="loops-functions-and-beyond.html#cb111-13" tabindex="-1"></a>}</span>
+<span id="cb111-14"><a href="loops-functions-and-beyond.html#cb111-14" tabindex="-1"></a><span class="co">#beerSong() </span></span></code></pre></div>
 <p>And here are solutions proposed by some of your classmates over the last few years. How do they differ from each other, and from the solution given above?</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="loops-functions-and-beyond.html#cb113-1" tabindex="-1"></a>beersng <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
-<span id="cb113-2"><a href="loops-functions-and-beyond.html#cb113-2" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb113-3"><a href="loops-functions-and-beyond.html#cb113-3" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,n,<span class="st">&quot; bottle of beer on the wall, &quot;</span>,n,</span>
-<span id="cb113-4"><a href="loops-functions-and-beyond.html#cb113-4" tabindex="-1"></a>        <span class="st">&quot; bottles of beer.</span><span class="sc">\n</span><span class="st">Take one down and pass it around,&quot;</span>,</span>
-<span id="cb113-5"><a href="loops-functions-and-beyond.html#cb113-5" tabindex="-1"></a>        <span class="st">&quot; no more bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb113-6"><a href="loops-functions-and-beyond.html#cb113-6" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">No more bottles of beer on the wall, </span></span>
-<span id="cb113-7"><a href="loops-functions-and-beyond.html#cb113-7" tabindex="-1"></a><span class="st">        no more bottles of beer.</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb113-8"><a href="loops-functions-and-beyond.html#cb113-8" tabindex="-1"></a>        <span class="st">&quot;Go to the store and buy some more, </span></span>
-<span id="cb113-9"><a href="loops-functions-and-beyond.html#cb113-9" tabindex="-1"></a><span class="st">        99 bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb113-10"><a href="loops-functions-and-beyond.html#cb113-10" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb113-11"><a href="loops-functions-and-beyond.html#cb113-11" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,n,<span class="st">&quot; bottles of beer on the wall, &quot;</span>,n,</span>
-<span id="cb113-12"><a href="loops-functions-and-beyond.html#cb113-12" tabindex="-1"></a>        <span class="st">&quot; bottles of beer.</span><span class="sc">\n</span><span class="st">Take one down and pass it around, &quot;</span>,</span>
-<span id="cb113-13"><a href="loops-functions-and-beyond.html#cb113-13" tabindex="-1"></a>        n<span class="dv">-1</span>, <span class="st">&quot; more bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb113-14"><a href="loops-functions-and-beyond.html#cb113-14" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">beersng</span>(n<span class="dv">-1</span>))</span>
-<span id="cb113-15"><a href="loops-functions-and-beyond.html#cb113-15" tabindex="-1"></a>  }</span>
-<span id="cb113-16"><a href="loops-functions-and-beyond.html#cb113-16" tabindex="-1"></a>}</span>
-<span id="cb113-17"><a href="loops-functions-and-beyond.html#cb113-17" tabindex="-1"></a><span class="co">#beersng(99)</span></span>
-<span id="cb113-18"><a href="loops-functions-and-beyond.html#cb113-18" tabindex="-1"></a>moreBeer <span class="ot">&lt;-</span> <span class="cf">function</span> () {</span>
-<span id="cb113-19"><a href="loops-functions-and-beyond.html#cb113-19" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb113-20"><a href="loops-functions-and-beyond.html#cb113-20" tabindex="-1"></a>  starting_number <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb113-21"><a href="loops-functions-and-beyond.html#cb113-21" tabindex="-1"></a>  <span class="cf">if</span> (starting_number <span class="sc">-</span> i <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb113-22"><a href="loops-functions-and-beyond.html#cb113-22" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;No more bottles of beer on the wall, </span></span>
-<span id="cb113-23"><a href="loops-functions-and-beyond.html#cb113-23" tabindex="-1"></a><span class="st">          no more bottles of beer, </span></span>
-<span id="cb113-24"><a href="loops-functions-and-beyond.html#cb113-24" tabindex="-1"></a><span class="st">          Go to the store and buy some more, </span></span>
-<span id="cb113-25"><a href="loops-functions-and-beyond.html#cb113-25" tabindex="-1"></a><span class="st">          99 bottles of beer on the wall.&quot;</span>)</span>
-<span id="cb113-26"><a href="loops-functions-and-beyond.html#cb113-26" tabindex="-1"></a>    <span class="cf">break</span></span>
-<span id="cb113-27"><a href="loops-functions-and-beyond.html#cb113-27" tabindex="-1"></a>  }</span>
-<span id="cb113-28"><a href="loops-functions-and-beyond.html#cb113-28" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(starting_number <span class="sc">-</span> i,</span>
-<span id="cb113-29"><a href="loops-functions-and-beyond.html#cb113-29" tabindex="-1"></a>              <span class="st">&quot;bottles of beer on the wall&quot;</span>,</span>
-<span id="cb113-30"><a href="loops-functions-and-beyond.html#cb113-30" tabindex="-1"></a>              <span class="st">&quot;Take one down and pass it around,&quot;</span>,</span>
-<span id="cb113-31"><a href="loops-functions-and-beyond.html#cb113-31" tabindex="-1"></a>              starting_number <span class="sc">-</span> i <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb113-32"><a href="loops-functions-and-beyond.html#cb113-32" tabindex="-1"></a>              <span class="st">&quot;bottles of beer on the wall.&quot;</span>))</span>
-<span id="cb113-33"><a href="loops-functions-and-beyond.html#cb113-33" tabindex="-1"></a>  }</span>
-<span id="cb113-34"><a href="loops-functions-and-beyond.html#cb113-34" tabindex="-1"></a>}</span>
-<span id="cb113-35"><a href="loops-functions-and-beyond.html#cb113-35" tabindex="-1"></a><span class="co"># moreBeer()</span></span>
-<span id="cb113-36"><a href="loops-functions-and-beyond.html#cb113-36" tabindex="-1"></a>song <span class="ot">&lt;-</span> <span class="cf">function</span>(bottlesofbeer){</span>
-<span id="cb113-37"><a href="loops-functions-and-beyond.html#cb113-37" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> bottlesofbeer<span class="sc">:</span><span class="dv">1</span>){ </span>
-<span id="cb113-38"><a href="loops-functions-and-beyond.html#cb113-38" tabindex="-1"></a>     <span class="fu">cat</span>(bottlesofbeer,<span class="st">&quot; bottles of beer on the wall </span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb113-39"><a href="loops-functions-and-beyond.html#cb113-39" tabindex="-1"></a>        bottlesofbeer,<span class="st">&quot; bottles of beer </span><span class="sc">\n</span><span class="st">Take one down, </span></span>
-<span id="cb113-40"><a href="loops-functions-and-beyond.html#cb113-40" tabindex="-1"></a><span class="st">        pass it around </span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb113-41"><a href="loops-functions-and-beyond.html#cb113-41" tabindex="-1"></a>        bottlesofbeer<span class="dv">-1</span>, <span class="st">&quot; bottles of beer on the wall </span><span class="sc">\n</span><span class="st">&quot;</span>,<span class="st">&quot; </span><span class="sc">\n</span><span class="st">&quot;</span>)       </span>
-<span id="cb113-42"><a href="loops-functions-and-beyond.html#cb113-42" tabindex="-1"></a>        bottlesofbeer <span class="ot">=</span> bottlesofbeer <span class="sc">-</span> <span class="dv">1</span> </span>
-<span id="cb113-43"><a href="loops-functions-and-beyond.html#cb113-43" tabindex="-1"></a>  }</span>
-<span id="cb113-44"><a href="loops-functions-and-beyond.html#cb113-44" tabindex="-1"></a>}</span>
-<span id="cb113-45"><a href="loops-functions-and-beyond.html#cb113-45" tabindex="-1"></a><span class="co">#song(99)</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="loops-functions-and-beyond.html#cb112-1" tabindex="-1"></a>beersng <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb112-2"><a href="loops-functions-and-beyond.html#cb112-2" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb112-3"><a href="loops-functions-and-beyond.html#cb112-3" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,n,<span class="st">&quot; bottle of beer on the wall, &quot;</span>,n,</span>
+<span id="cb112-4"><a href="loops-functions-and-beyond.html#cb112-4" tabindex="-1"></a>        <span class="st">&quot; bottles of beer.</span><span class="sc">\n</span><span class="st">Take one down and pass it around,&quot;</span>,</span>
+<span id="cb112-5"><a href="loops-functions-and-beyond.html#cb112-5" tabindex="-1"></a>        <span class="st">&quot; no more bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb112-6"><a href="loops-functions-and-beyond.html#cb112-6" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">No more bottles of beer on the wall, </span></span>
+<span id="cb112-7"><a href="loops-functions-and-beyond.html#cb112-7" tabindex="-1"></a><span class="st">        no more bottles of beer.</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb112-8"><a href="loops-functions-and-beyond.html#cb112-8" tabindex="-1"></a>        <span class="st">&quot;Go to the store and buy some more, </span></span>
+<span id="cb112-9"><a href="loops-functions-and-beyond.html#cb112-9" tabindex="-1"></a><span class="st">        99 bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb112-10"><a href="loops-functions-and-beyond.html#cb112-10" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb112-11"><a href="loops-functions-and-beyond.html#cb112-11" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,n,<span class="st">&quot; bottles of beer on the wall, &quot;</span>,n,</span>
+<span id="cb112-12"><a href="loops-functions-and-beyond.html#cb112-12" tabindex="-1"></a>        <span class="st">&quot; bottles of beer.</span><span class="sc">\n</span><span class="st">Take one down and pass it around, &quot;</span>,</span>
+<span id="cb112-13"><a href="loops-functions-and-beyond.html#cb112-13" tabindex="-1"></a>        n<span class="dv">-1</span>, <span class="st">&quot; more bottles of beer on the wall.</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb112-14"><a href="loops-functions-and-beyond.html#cb112-14" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">beersng</span>(n<span class="dv">-1</span>))</span>
+<span id="cb112-15"><a href="loops-functions-and-beyond.html#cb112-15" tabindex="-1"></a>  }</span>
+<span id="cb112-16"><a href="loops-functions-and-beyond.html#cb112-16" tabindex="-1"></a>}</span>
+<span id="cb112-17"><a href="loops-functions-and-beyond.html#cb112-17" tabindex="-1"></a><span class="co">#beersng(99)</span></span>
+<span id="cb112-18"><a href="loops-functions-and-beyond.html#cb112-18" tabindex="-1"></a>moreBeer <span class="ot">&lt;-</span> <span class="cf">function</span> () {</span>
+<span id="cb112-19"><a href="loops-functions-and-beyond.html#cb112-19" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb112-20"><a href="loops-functions-and-beyond.html#cb112-20" tabindex="-1"></a>  starting_number <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb112-21"><a href="loops-functions-and-beyond.html#cb112-21" tabindex="-1"></a>  <span class="cf">if</span> (starting_number <span class="sc">-</span> i <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb112-22"><a href="loops-functions-and-beyond.html#cb112-22" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;No more bottles of beer on the wall, </span></span>
+<span id="cb112-23"><a href="loops-functions-and-beyond.html#cb112-23" tabindex="-1"></a><span class="st">          no more bottles of beer, </span></span>
+<span id="cb112-24"><a href="loops-functions-and-beyond.html#cb112-24" tabindex="-1"></a><span class="st">          Go to the store and buy some more, </span></span>
+<span id="cb112-25"><a href="loops-functions-and-beyond.html#cb112-25" tabindex="-1"></a><span class="st">          99 bottles of beer on the wall.&quot;</span>)</span>
+<span id="cb112-26"><a href="loops-functions-and-beyond.html#cb112-26" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb112-27"><a href="loops-functions-and-beyond.html#cb112-27" tabindex="-1"></a>  }</span>
+<span id="cb112-28"><a href="loops-functions-and-beyond.html#cb112-28" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(starting_number <span class="sc">-</span> i,</span>
+<span id="cb112-29"><a href="loops-functions-and-beyond.html#cb112-29" tabindex="-1"></a>              <span class="st">&quot;bottles of beer on the wall&quot;</span>,</span>
+<span id="cb112-30"><a href="loops-functions-and-beyond.html#cb112-30" tabindex="-1"></a>              <span class="st">&quot;Take one down and pass it around,&quot;</span>,</span>
+<span id="cb112-31"><a href="loops-functions-and-beyond.html#cb112-31" tabindex="-1"></a>              starting_number <span class="sc">-</span> i <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb112-32"><a href="loops-functions-and-beyond.html#cb112-32" tabindex="-1"></a>              <span class="st">&quot;bottles of beer on the wall.&quot;</span>))</span>
+<span id="cb112-33"><a href="loops-functions-and-beyond.html#cb112-33" tabindex="-1"></a>  }</span>
+<span id="cb112-34"><a href="loops-functions-and-beyond.html#cb112-34" tabindex="-1"></a>}</span>
+<span id="cb112-35"><a href="loops-functions-and-beyond.html#cb112-35" tabindex="-1"></a><span class="co"># moreBeer()</span></span>
+<span id="cb112-36"><a href="loops-functions-and-beyond.html#cb112-36" tabindex="-1"></a>song <span class="ot">&lt;-</span> <span class="cf">function</span>(bottlesofbeer){</span>
+<span id="cb112-37"><a href="loops-functions-and-beyond.html#cb112-37" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> bottlesofbeer<span class="sc">:</span><span class="dv">1</span>){ </span>
+<span id="cb112-38"><a href="loops-functions-and-beyond.html#cb112-38" tabindex="-1"></a>     <span class="fu">cat</span>(bottlesofbeer,<span class="st">&quot; bottles of beer on the wall </span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb112-39"><a href="loops-functions-and-beyond.html#cb112-39" tabindex="-1"></a>        bottlesofbeer,<span class="st">&quot; bottles of beer </span><span class="sc">\n</span><span class="st">Take one down, </span></span>
+<span id="cb112-40"><a href="loops-functions-and-beyond.html#cb112-40" tabindex="-1"></a><span class="st">        pass it around </span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb112-41"><a href="loops-functions-and-beyond.html#cb112-41" tabindex="-1"></a>        bottlesofbeer<span class="dv">-1</span>, <span class="st">&quot; bottles of beer on the wall </span><span class="sc">\n</span><span class="st">&quot;</span>,<span class="st">&quot; </span><span class="sc">\n</span><span class="st">&quot;</span>)       </span>
+<span id="cb112-42"><a href="loops-functions-and-beyond.html#cb112-42" tabindex="-1"></a>        bottlesofbeer <span class="ot">=</span> bottlesofbeer <span class="sc">-</span> <span class="dv">1</span> </span>
+<span id="cb112-43"><a href="loops-functions-and-beyond.html#cb112-43" tabindex="-1"></a>  }</span>
+<span id="cb112-44"><a href="loops-functions-and-beyond.html#cb112-44" tabindex="-1"></a>}</span>
+<span id="cb112-45"><a href="loops-functions-and-beyond.html#cb112-45" tabindex="-1"></a><span class="co">#song(99)</span></span></code></pre></div>
 <p>Which code is ‘best’? Good code is clear, but it is also efficient. We probably shouldn’t expect much in the way of differences between these functions in terms of speed (as each includes 99 iterations of a simple print command), but here’s a simple way to compare. Note that I’ve used the “sink” command to write my output to files rather than consoles:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="loops-functions-and-beyond.html#cb114-1" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-2"><a href="loops-functions-and-beyond.html#cb114-2" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f1.txt&quot;</span>)</span>
-<span id="cb114-3"><a href="loops-functions-and-beyond.html#cb114-3" tabindex="-1"></a><span class="fu">beerSong</span>(<span class="st">&quot;beer&quot;</span>,<span class="dv">99</span>)</span>
-<span id="cb114-4"><a href="loops-functions-and-beyond.html#cb114-4" tabindex="-1"></a><span class="fu">sink</span>()</span>
-<span id="cb114-5"><a href="loops-functions-and-beyond.html#cb114-5" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-6"><a href="loops-functions-and-beyond.html#cb114-6" tabindex="-1"></a>beerSongtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
-<span id="cb114-7"><a href="loops-functions-and-beyond.html#cb114-7" tabindex="-1"></a></span>
-<span id="cb114-8"><a href="loops-functions-and-beyond.html#cb114-8" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-9"><a href="loops-functions-and-beyond.html#cb114-9" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f2.txt&quot;</span>)</span>
-<span id="cb114-10"><a href="loops-functions-and-beyond.html#cb114-10" tabindex="-1"></a><span class="fu">beersng</span>(<span class="dv">99</span>)</span>
-<span id="cb114-11"><a href="loops-functions-and-beyond.html#cb114-11" tabindex="-1"></a><span class="fu">sink</span>()</span>
-<span id="cb114-12"><a href="loops-functions-and-beyond.html#cb114-12" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-13"><a href="loops-functions-and-beyond.html#cb114-13" tabindex="-1"></a>beersngtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
-<span id="cb114-14"><a href="loops-functions-and-beyond.html#cb114-14" tabindex="-1"></a></span>
-<span id="cb114-15"><a href="loops-functions-and-beyond.html#cb114-15" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-16"><a href="loops-functions-and-beyond.html#cb114-16" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f3.txt&quot;</span>)</span>
-<span id="cb114-17"><a href="loops-functions-and-beyond.html#cb114-17" tabindex="-1"></a><span class="fu">song</span>(<span class="dv">99</span>)</span>
-<span id="cb114-18"><a href="loops-functions-and-beyond.html#cb114-18" tabindex="-1"></a><span class="fu">sink</span>()</span>
-<span id="cb114-19"><a href="loops-functions-and-beyond.html#cb114-19" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-20"><a href="loops-functions-and-beyond.html#cb114-20" tabindex="-1"></a>songtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
-<span id="cb114-21"><a href="loops-functions-and-beyond.html#cb114-21" tabindex="-1"></a></span>
-<span id="cb114-22"><a href="loops-functions-and-beyond.html#cb114-22" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-23"><a href="loops-functions-and-beyond.html#cb114-23" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f4.txt&quot;</span>)</span>
-<span id="cb114-24"><a href="loops-functions-and-beyond.html#cb114-24" tabindex="-1"></a><span class="fu">moreBeer</span>()</span>
-<span id="cb114-25"><a href="loops-functions-and-beyond.html#cb114-25" tabindex="-1"></a><span class="fu">sink</span>()</span>
-<span id="cb114-26"><a href="loops-functions-and-beyond.html#cb114-26" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb114-27"><a href="loops-functions-and-beyond.html#cb114-27" tabindex="-1"></a>moreBeertime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="loops-functions-and-beyond.html#cb113-1" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-2"><a href="loops-functions-and-beyond.html#cb113-2" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f1.txt&quot;</span>)</span>
+<span id="cb113-3"><a href="loops-functions-and-beyond.html#cb113-3" tabindex="-1"></a><span class="fu">beerSong</span>(<span class="st">&quot;beer&quot;</span>,<span class="dv">99</span>)</span>
+<span id="cb113-4"><a href="loops-functions-and-beyond.html#cb113-4" tabindex="-1"></a><span class="fu">sink</span>()</span>
+<span id="cb113-5"><a href="loops-functions-and-beyond.html#cb113-5" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-6"><a href="loops-functions-and-beyond.html#cb113-6" tabindex="-1"></a>beerSongtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
+<span id="cb113-7"><a href="loops-functions-and-beyond.html#cb113-7" tabindex="-1"></a></span>
+<span id="cb113-8"><a href="loops-functions-and-beyond.html#cb113-8" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-9"><a href="loops-functions-and-beyond.html#cb113-9" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f2.txt&quot;</span>)</span>
+<span id="cb113-10"><a href="loops-functions-and-beyond.html#cb113-10" tabindex="-1"></a><span class="fu">beersng</span>(<span class="dv">99</span>)</span>
+<span id="cb113-11"><a href="loops-functions-and-beyond.html#cb113-11" tabindex="-1"></a><span class="fu">sink</span>()</span>
+<span id="cb113-12"><a href="loops-functions-and-beyond.html#cb113-12" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-13"><a href="loops-functions-and-beyond.html#cb113-13" tabindex="-1"></a>beersngtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
+<span id="cb113-14"><a href="loops-functions-and-beyond.html#cb113-14" tabindex="-1"></a></span>
+<span id="cb113-15"><a href="loops-functions-and-beyond.html#cb113-15" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-16"><a href="loops-functions-and-beyond.html#cb113-16" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f3.txt&quot;</span>)</span>
+<span id="cb113-17"><a href="loops-functions-and-beyond.html#cb113-17" tabindex="-1"></a><span class="fu">song</span>(<span class="dv">99</span>)</span>
+<span id="cb113-18"><a href="loops-functions-and-beyond.html#cb113-18" tabindex="-1"></a><span class="fu">sink</span>()</span>
+<span id="cb113-19"><a href="loops-functions-and-beyond.html#cb113-19" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-20"><a href="loops-functions-and-beyond.html#cb113-20" tabindex="-1"></a>songtime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span>
+<span id="cb113-21"><a href="loops-functions-and-beyond.html#cb113-21" tabindex="-1"></a></span>
+<span id="cb113-22"><a href="loops-functions-and-beyond.html#cb113-22" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-23"><a href="loops-functions-and-beyond.html#cb113-23" tabindex="-1"></a><span class="fu">sink</span> (<span class="at">file =</span> <span class="st">&quot;f4.txt&quot;</span>)</span>
+<span id="cb113-24"><a href="loops-functions-and-beyond.html#cb113-24" tabindex="-1"></a><span class="fu">moreBeer</span>()</span>
+<span id="cb113-25"><a href="loops-functions-and-beyond.html#cb113-25" tabindex="-1"></a><span class="fu">sink</span>()</span>
+<span id="cb113-26"><a href="loops-functions-and-beyond.html#cb113-26" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb113-27"><a href="loops-functions-and-beyond.html#cb113-27" tabindex="-1"></a>moreBeertime <span class="ot">&lt;-</span> end_time <span class="sc">-</span> start_time</span></code></pre></div>
 <p>Here is the first line of output from each function, together with table showing the elapsed times:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="loops-functions-and-beyond.html#cb115-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f1.txt&quot;</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="loops-functions-and-beyond.html#cb114-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f1.txt&quot;</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot; 99 bottles of beer on the wall, you take one down and pass it around,&quot;</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="loops-functions-and-beyond.html#cb117-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f2.txt&quot;</span>,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="loops-functions-and-beyond.html#cb116-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f2.txt&quot;</span>,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&quot;                                                   
 ## [2] &quot;99 bottles of beer on the wall, 99 bottles of beer.&quot;</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="loops-functions-and-beyond.html#cb119-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f3.txt&quot;</span>,<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="loops-functions-and-beyond.html#cb118-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f3.txt&quot;</span>,<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;99  bottles of beer on the wall &quot; &quot; 99  bottles of beer &quot;           
 ## [3] &quot;Take one down, &quot;                  &quot;        pass it around &quot;</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="loops-functions-and-beyond.html#cb121-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f4.txt&quot;</span>,<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="loops-functions-and-beyond.html#cb120-1" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">&quot;f4.txt&quot;</span>,<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;[1] \&quot;100 bottles of beer on the wall Take one down and pass it around, 99 bottles of beer on the wall.\&quot;&quot;</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="loops-functions-and-beyond.html#cb123-1" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">functionName =</span> <span class="fu">c</span>(<span class="st">&quot;beerSongtime&quot;</span>,</span>
-<span id="cb123-2"><a href="loops-functions-and-beyond.html#cb123-2" tabindex="-1"></a>           <span class="st">&quot;beersngtime&quot;</span>,</span>
-<span id="cb123-3"><a href="loops-functions-and-beyond.html#cb123-3" tabindex="-1"></a>           <span class="st">&quot;songtime&quot;</span>,</span>
-<span id="cb123-4"><a href="loops-functions-and-beyond.html#cb123-4" tabindex="-1"></a>           <span class="st">&quot;moreBeertime&quot;</span>), <span class="at">time =</span></span>
-<span id="cb123-5"><a href="loops-functions-and-beyond.html#cb123-5" tabindex="-1"></a>             <span class="fu">c</span>(beerSongtime,beersngtime,</span>
-<span id="cb123-6"><a href="loops-functions-and-beyond.html#cb123-6" tabindex="-1"></a>           songtime,</span>
-<span id="cb123-7"><a href="loops-functions-and-beyond.html#cb123-7" tabindex="-1"></a>           moreBeertime)) <span class="sc">%&gt;%</span> </span>
-<span id="cb123-8"><a href="loops-functions-and-beyond.html#cb123-8" tabindex="-1"></a>          <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="loops-functions-and-beyond.html#cb122-1" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">functionName =</span> <span class="fu">c</span>(<span class="st">&quot;beerSongtime&quot;</span>,</span>
+<span id="cb122-2"><a href="loops-functions-and-beyond.html#cb122-2" tabindex="-1"></a>           <span class="st">&quot;beersngtime&quot;</span>,</span>
+<span id="cb122-3"><a href="loops-functions-and-beyond.html#cb122-3" tabindex="-1"></a>           <span class="st">&quot;songtime&quot;</span>,</span>
+<span id="cb122-4"><a href="loops-functions-and-beyond.html#cb122-4" tabindex="-1"></a>           <span class="st">&quot;moreBeertime&quot;</span>), <span class="at">time =</span></span>
+<span id="cb122-5"><a href="loops-functions-and-beyond.html#cb122-5" tabindex="-1"></a>             <span class="fu">c</span>(beerSongtime,beersngtime,</span>
+<span id="cb122-6"><a href="loops-functions-and-beyond.html#cb122-6" tabindex="-1"></a>           songtime,</span>
+<span id="cb122-7"><a href="loops-functions-and-beyond.html#cb122-7" tabindex="-1"></a>           moreBeertime)) <span class="sc">%&gt;%</span> </span>
+<span id="cb122-8"><a href="loops-functions-and-beyond.html#cb122-8" tabindex="-1"></a>          <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -759,20 +759,20 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td align="left">songtime</td>
-<td align="left">0.03 secs</td>
+<td align="left">0.01 secs</td>
 </tr>
 <tr class="even">
 <td align="left">moreBeertime</td>
-<td align="left">0.01 secs</td>
+<td align="left">0.02 secs</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="loops-functions-and-beyond.html#cb124-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">c</span>(<span class="st">&quot;f1.txt&quot;</span>, <span class="st">&quot;f2.txt&quot;</span>, <span class="st">&quot;f3.txt&quot;</span>, <span class="st">&quot;f4.txt&quot;</span>), <span class="at">echo =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="loops-functions-and-beyond.html#cb123-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">c</span>(<span class="st">&quot;f1.txt&quot;</span>, <span class="st">&quot;f2.txt&quot;</span>, <span class="st">&quot;f3.txt&quot;</span>, <span class="st">&quot;f4.txt&quot;</span>), <span class="at">echo =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
 
 </div>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-sternberg1999" class="csl-entry">
 Sternberg, Robert J. 1999. <span>“The Theory of Successful Intelligence.”</span> <em>Review of General Psychology</em> 3 (4): 292–316. <a href="https://doi.org/10/cqrkxh">https://doi.org/10/cqrkxh</a>.
