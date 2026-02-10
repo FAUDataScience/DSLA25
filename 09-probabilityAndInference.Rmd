@@ -66,7 +66,7 @@ We are often interested in estimating conditional probabilities, in which case w
 
 ### keeping conditional probabilities straight
 
-In general, P (B\|A) and P (A\|B) are not equivalent (see exercise 1 at the end of this chapter). This is clear when we sketch them out using Venn diagrams - which should often be asymmetrical.
+In general, P (B\|A) and P (A\|B) are not equivalent (see the "did we just drive by a cop?" exercise at the end of this chapter). This is clear when we sketch them out using Venn diagrams - which should often be asymmetrical.
 
 ### Bayes' theorem
 
@@ -92,13 +92,13 @@ I try a new pen on the board, write with it for a few minutes, and ruin it. I th
 
 $$ P (H|D) = \frac{(.3)(.7)}{(.3)(.7) + (.7)(.2)} $$
 
-My new subjective probability is .6. Additional problems like this are in Exercise 2 below.
+My new subjective probability is .6. Additional problems like this are in the exercises below.
 
 | **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
 |:-----------|:----------:|:-----------|:----------:|:----------:|:----------:|
 | Pens don't last because of soap film on the whiteboard | .3 | A pen is quickly trashed | .7 | .2 | .6 |
 
-Bayes' theorem is a *normative model* of probability - how we should revise probability estimates, not a *descriptive model*.  That is, the research suggests that people don't typically revise probability estimates in this way, even though we arguably should - this is illustrated in some of the problems in Exercise 3.
+Bayes' theorem is a *normative model* of probability - how we should revise probability estimates, not a *descriptive model*.  That is, the research suggests that people don't typically revise probability estimates in this way, even though we arguably should - this is illustrated in some of the problems in the final set of exercises on "decision making under uncertainty."
 
 ## continuous probability distributions
 
@@ -118,7 +118,9 @@ Wainer's third example of statistical illiteracy is the failure to appreciate re
 
 ## exercises
 
-> 1.  In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
+### did we just drive by a cop?
+
+> In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
 
 ![](images/FloridaCar.jpg)
 
@@ -140,17 +142,21 @@ Wainer's third example of statistical illiteracy is the failure to appreciate re
 >
 > h)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
 
-> 2.  Complete the following table using Bayes' Theorem:
+### practice applying Bayes' Theorem
+
+> Here are some more problems like the 'whiteboard/soap film' hypothesis described above. Complete the following table using Bayes' Theorem:
 
 | **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
-|:--------------------|:----------:|:-----------|:----------:|:----------:|:----------:|
+|:------------|:----------:|:----------:|:----------:|:----------:|:----------:|
 | I am allergic to shellfish | .02 | Rash after eating clams | .9 | .01 | ? |
 | Studying at the last minute helps my exam performance | .6 | I failed | .2 | .7 | ? |
 | She likes me | .3 | She gave me a present | .6 | .3 | ? |
 | My car is safe in that parking lot | .3 | I just heard a car alarm | .4 | .4 | ? |
+| add your own (better!) example here | (??) | (??) | (??) | (??) | ? |
 
-> 3.  Try to solve each of the following. You may or may not have all of the information you need. Remember the 15 minute rule.
->
+### decision making under uncertainty
+
+> Try to solve each of the following. You may or may not have all of the information you need. Remember the 15 minute rule.
 >
 > a.  A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time. What is the probability that the cab was Blue?
 

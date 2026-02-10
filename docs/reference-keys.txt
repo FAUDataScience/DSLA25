@@ -211,3 +211,6 @@ dodge-chargers-and-fhp-cruisers
 asymmetrical-venn-diagrams-in-r
 section-1
 exercises-3
+did-we-just-drive-by-a-cop
+practice-applying-bayes-theorem
+decision-making-under-uncertainty

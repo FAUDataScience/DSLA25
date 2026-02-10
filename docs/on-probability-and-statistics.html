@@ -206,7 +206,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>7.3</b> continuous probability distributions</a></li>
 <li class="chapter" data-level="7.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>7.4</b> dangerous equations</a></li>
-<li class="chapter" data-level="7.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>7.5</b> exercises</a></li>
+<li class="chapter" data-level="7.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>7.5</b> exercises</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#did-we-just-drive-by-a-cop"><i class="fa fa-check"></i><b>7.5.1</b> did we just drive by a cop?</a></li>
+<li class="chapter" data-level="7.5.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#practice-applying-bayes-theorem"><i class="fa fa-check"></i><b>7.5.2</b> practice applying Bayes’ Theorem</a></li>
+<li class="chapter" data-level="7.5.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#decision-making-under-uncertainty"><i class="fa fa-check"></i><b>7.5.3</b> decision making under uncertainty</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>8</b> reproducibility and the replication crisis</a>
 <ul>
@@ -469,7 +474,7 @@ div.csl-indent {
 </blockquote>
 <div id="keeping-conditional-probabilities-straight" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> keeping conditional probabilities straight<a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In general, P (B|A) and P (A|B) are not equivalent (see exercise 1 at the end of this chapter). This is clear when we sketch them out using Venn diagrams - which should often be asymmetrical.</p>
+<p>In general, P (B|A) and P (A|B) are not equivalent (see the “did we just drive by a cop?” exercise at the end of this chapter). This is clear when we sketch them out using Venn diagrams - which should often be asymmetrical.</p>
 </div>
 <div id="bayes-theorem" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Bayes’ theorem<a href="on-probability-and-statistics.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -486,7 +491,7 @@ Is my car safe in that parking lot?</em></p>
 <p>P(H) = soap dries out the pen = .3</p>
 <p>I try a new pen on the board, write with it for a few minutes, and ruin it. I think that, if my hypothesis is true, that this is likely (P (D|H) =.7).  If my hypothesis is false, it is unlikely (P (D|not H) = .2).  What is my <strong>posterior probability</strong>, or the revised estimate of the probability of the hypothesis in light of data?</p>
 <p><span class="math display">\[ P (H|D) = \frac{(.3)(.7)}{(.3)(.7) + (.7)(.2)} \]</span></p>
-<p>My new subjective probability is .6. Additional problems like this are in Exercise 2 below.</p>
+<p>My new subjective probability is .6. Additional problems like this are in the exercises below.</p>
 <table style="width:100%;">
 <colgroup>
 <col width="16%" />
@@ -517,7 +522,7 @@ Is my car safe in that parking lot?</em></p>
 </tr>
 </tbody>
 </table>
-<p>Bayes’ theorem is a <em>normative model</em> of probability - how we should revise probability estimates, not a <em>descriptive model</em>.  That is, the research suggests that people don’t typically revise probability estimates in this way, even though we arguably should - this is illustrated in some of the problems in Exercise 3.</p>
+<p>Bayes’ theorem is a <em>normative model</em> of probability - how we should revise probability estimates, not a <em>descriptive model</em>.  That is, the research suggests that people don’t typically revise probability estimates in this way, even though we arguably should - this is illustrated in some of the problems in the final set of exercises on “decision making under uncertainty.”</p>
 </div>
 </div>
 <div id="continuous-probability-distributions" class="section level2 hasAnchor" number="7.3">
@@ -534,10 +539,10 @@ Is my car safe in that parking lot?</em></p>
 </div>
 <div id="exercises-1" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> exercises<a href="on-probability-and-statistics.html#exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="did-we-just-drive-by-a-cop" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> did we just drive by a cop?<a href="on-probability-and-statistics.html#did-we-just-drive-by-a-cop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
-<ol style="list-style-type: decimal">
-<li>In 2024, the Florida Highway Patrol won a national competition for “best looking cruiser.” The winning car was a Dodge Charger.</li>
-</ol>
+<p>In 2024, the Florida Highway Patrol won a national competition for “best looking cruiser.” The winning car was a Dodge Charger.</p>
 </blockquote>
 <p><img src="images/FloridaCar.jpg" /></p>
 <blockquote>
@@ -553,25 +558,26 @@ Is my car safe in that parking lot?</em></p>
 <li><p>Look at your figure. In general, if P (A|B) &lt; P (B|A), what must be true of the relationship of P (A) to P (B)?</p></li>
 </ol>
 </blockquote>
+</div>
+<div id="practice-applying-bayes-theorem" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> practice applying Bayes’ Theorem<a href="on-probability-and-statistics.html#practice-applying-bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
-<ol start="2" style="list-style-type: decimal">
-<li>Complete the following table using Bayes’ Theorem:</li>
-</ol>
+<p>Here are some more problems like the ‘whiteboard/soap film’ hypothesis described above. Complete the following table using Bayes’ Theorem:</p>
 </blockquote>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
+<col width="17%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left"><strong>Initial hypothesis</strong></th>
 <th align="center"><strong>P (H)</strong></th>
-<th align="left"><strong>New data</strong></th>
+<th align="center"><strong>New data</strong></th>
 <th align="center"><strong>P (D|H)</strong></th>
 <th align="center"><strong>P (D|not H)</strong></th>
 <th align="center"><strong>P (H|D)</strong></th>
@@ -581,7 +587,7 @@ Is my car safe in that parking lot?</em></p>
 <tr class="odd">
 <td align="left">I am allergic to shellfish</td>
 <td align="center">.02</td>
-<td align="left">Rash after eating clams</td>
+<td align="center">Rash after eating clams</td>
 <td align="center">.9</td>
 <td align="center">.01</td>
 <td align="center">?</td>
@@ -589,7 +595,7 @@ Is my car safe in that parking lot?</em></p>
 <tr class="even">
 <td align="left">Studying at the last minute helps my exam performance</td>
 <td align="center">.6</td>
-<td align="left">I failed</td>
+<td align="center">I failed</td>
 <td align="center">.2</td>
 <td align="center">.7</td>
 <td align="center">?</td>
@@ -597,7 +603,7 @@ Is my car safe in that parking lot?</em></p>
 <tr class="odd">
 <td align="left">She likes me</td>
 <td align="center">.3</td>
-<td align="left">She gave me a present</td>
+<td align="center">She gave me a present</td>
 <td align="center">.6</td>
 <td align="center">.3</td>
 <td align="center">?</td>
@@ -605,17 +611,26 @@ Is my car safe in that parking lot?</em></p>
 <tr class="even">
 <td align="left">My car is safe in that parking lot</td>
 <td align="center">.3</td>
-<td align="left">I just heard a car alarm</td>
+<td align="center">I just heard a car alarm</td>
 <td align="center">.4</td>
 <td align="center">.4</td>
 <td align="center">?</td>
 </tr>
+<tr class="odd">
+<td align="left">add your own (better!) example here</td>
+<td align="center">(??)</td>
+<td align="center">(??)</td>
+<td align="center">(??)</td>
+<td align="center">(??)</td>
+<td align="center">?</td>
+</tr>
 </tbody>
 </table>
+</div>
+<div id="decision-making-under-uncertainty" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> decision making under uncertainty<a href="on-probability-and-statistics.html#decision-making-under-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
-<ol start="3" style="list-style-type: decimal">
-<li>Try to solve each of the following. You may or may not have all of the information you need. Remember the 15 minute rule.</li>
-</ol>
+<p>Try to solve each of the following. You may or may not have all of the information you need. Remember the 15 minute rule.</p>
 <ol style="list-style-type: lower-alpha">
 <li>A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time. What is the probability that the cab was Blue?</li>
 </ol>
@@ -641,6 +656,7 @@ Is my car safe in that parking lot?</em></p>
 </ol>
 </blockquote>
 
+</div>
 </div>
 </div>
 <h3>References</h3>
