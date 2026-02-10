@@ -68,33 +68,9 @@ We are often interested in estimating conditional probabilities, in which case w
 
 In general, P (B\|A) and P (A\|B) are not equivalent. Consider the following example
 
-#### exercise 9.1
+Answers to this exercise are at the end of the book. There are two points here: The first is that problems about probability may be easier if we sketch them out using Venn diagrams. The second is that Venn diagrams should often be asymmetrical.
 
-> In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
-
-![](images/FloridaCar.jpg)
-
-> Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these (or 1% of all cars) are Dodge Chargers.
->
-> a)  On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., P(FHP cruiser \| Dodge Charger)?
->
-> b)  If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (P(FHP cruiser \| Dodge Charger)?
->
-> c)  Provide a reasonable estimate of this additional value, then compute (P(FHP cruiser \| Dodge Charger).
->
-> d)  Working with your own numbers, what is P(Dodge Charger \| FHP cruiser)?
->
-> e)  How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?
->
-> f)  Sketch out a Venn Diagram that accurately reflects the relationships you described here.
->
-> g)  Use R to generate this, using a package such as Venn and VennDiagram).
->
-> h)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
-
-Answers to this exercise are at the end of the book. There are two points to these exercises. The first is that Venn diagrams should often be asymmetrical. The second is that problems about probability may be easier if we sketch them out using Venn diagrams.
-
-## Bayes' theorem
+### Bayes' theorem
 
 Bayes' theorem is a tool for estimating one conditional probability from another. Its often expressed in terms of Hypotheses (H) and Data (D). Assume that we are interested in the probability of a hypothesis in light of some data, or **P(H\|D**).
 
@@ -121,7 +97,7 @@ $$ P (H|D) = \frac{(.3)(.7)}{(.3)(.7) + (.7)(.2)} $$
 My new subjective probability is .6.  Apply Bayes' theorem to the following questions to examine how probability estimates should change in light of data:
 
 | **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
-|:---|:--:|:---|:--:|:--:|:--:|
+|:-----------|:----------:|:-----------|:----------:|:----------:|:----------:|
 | Pens don't last because of soap film on the whiteboard | .3 | A pen is quickly trashed | .7 | .2 | .6 |
 | I am allergic to shellfish | .02 | Rash after eating clams | .9 | .01 | ? |
 | Studying at the last minute helps my exam performance | .6 | I failed | .2 | .7 | ? |
@@ -129,6 +105,8 @@ My new subjective probability is .6.  Apply Bayes' theorem to the following que
 | My car is safe in that parking lot | .3 | I just heard a car alarm | .4 | .4 | ? |
 
 Bayes' theorem is a *normative model* of probability - how we should revise probability estimates, not a *descriptive model*.  That is, the research suggests that people don't typically revise probability estimates in this way, even though we arguably should.
+
+### 
 
 ## continuous probability distributions
 
@@ -145,3 +123,51 @@ Wainer cites three specific examples of important, yet widely misunderstood, sta
 For Wainer, a second form of statistical illiteracy is the failure to understand the complex interdependencies that arise in multiple regression analysis, in particular, how coefficients may change or even reverse in sign when new variables are added as predictors.
 
 Wainer's third example of statistical illiteracy is the failure to appreciate regression to the mean. I consider this to be the most dangerous form of statistical illiteracy, in part because regression effects contribute to an overestimate of the effectiveness of punishment and an under-appreciation of the effectiveness of positive reinforcement as tools for behavior change [@hastie2010].
+
+#### exercises
+
+> 1.  In 2024, the Florida Highway Patrol won a national competition for "best looking cruiser." The winning car was a Dodge Charger.
+
+![](images/FloridaCar.jpg)
+
+> Not all FHP cruisers are Dodge Chargers, but some are. Assume that there are 8 million registered cars in Florida, that all cars (including all FHP cruisers) are registered, and that 80,000 of these (or 1% of all cars) are Dodge Chargers.
+>
+> a)  On the basis of the above information, if you see a Dodge Charger on the road, can you compute the probability that it is an FHP cruiser (i.e., P(FHP cruiser \| Dodge Charger)?
+>
+> b)  If you can compute this, what is the probability? If you cannot compute this, what is the minimum additional information would you need to compute this probability (P(FHP cruiser \| Dodge Charger)?
+>
+> c)  Provide a reasonable estimate of this additional value, then compute (P(FHP cruiser \| Dodge Charger).
+>
+> d)  Working with your own numbers, what is P(Dodge Charger \| FHP cruiser)?
+>
+> e)  How confident are you in these results? Are there any additional assumptions that you might make that would make you more confident about your results?
+>
+> f)  Sketch out a Venn Diagram that accurately reflects the relationships you described here.
+>
+> g)  Use R to generate this, using a package such as Venn and VennDiagram).
+>
+> h)  Look at your figure. In general, if P (A\|B) \< P (B\|A), what must be true of the relationship of P (A) to P (B)?
+
+> 2.  Complete the following table:
+
+| **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
+|:-----------|:----------:|:-----------|:----------:|:----------:|:----------:|
+| Pens don't last because of soap film on the whiteboard | .3 | A pen is quickly trashed | .7 | .2 | .6 |
+| I am allergic to shellfish | .02 | Rash after eating clams | .9 | .01 | ? |
+| Studying at the last minute helps my exam performance | .6 | I failed | .2 | .7 | ? |
+| She likes me | .3 | She gave me a present | .6 | .3 | ? |
+| My car is safe in that parking lot | .3 | I just heard a car alarm | .4 | .4 | ? |
+
+> 3.  Try to solve each of the following. You may or may not have all of the information you need. Remember the 15 minute rule.
+>
+> <!-- -->
+>
+> a.  A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time. What is the probability that the cab was Blue?
+
+> b)  Imagine two giant jars are each filled with thousands of jelly beans. In the first jar, 70% of the jelly beans are red and the rest are blue. In the second jar, 70% are blue and the rest are red. Suppose one jar is chosen, at random, and 12 jelly beans are taken from it: 8 blue jelly beans and 4 red jelly beans. What are the chances that the 12 jelly beans were taken from the jar with mostly red jelly beans?
+
+> c)  You are manager of a baseball team. It is the bottom of the ninth inning, there are two outs, and you are losing by one run. You will lose the game if the next batter makes an out. But because there are base runners, you will win the game if the batter gets a hit. You can choose one of two batters: Smith has an overall batting average of .320 in 400 times at bat, but has only bat .250 in 20 plate appearances against this pitcher. Jones has an overall batting average of only .250 in 400 times at bat, but has bat .320 in 20 plate appearances against this pitcher. Who should you choose?
+
+> d)  James grew up in a Bohemian family. His father was a musician, and his mother was a painter. They lived together for 40 years and never got married. James was a very talented child with a special gift for comedy, but he turned into a rebellious troublemaker in his youth. He dropped out of college after two years and traveled to Asia to learn crafts. James is now 35 years old. Of 100 people like James, how many are Republicans? How many are Artists? How many are Republican Artists?
+
+> e)  Steve is very shy and withdrawn, invariably helpful, but with little interest in people, or in the world of reality. A meek and tidy soul, he has a need for order and structure, and a passion for detail." What is the probability that Steve is a Farmer? a Salesman? an Airline Pilot? a Librarian? a Physician?

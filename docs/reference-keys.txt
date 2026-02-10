@@ -209,3 +209,5 @@ cleaning-these-up
 categorical-probability-and-venn-diagrams
 dodge-chargers-and-fhp-cruisers
 asymmetrical-venn-diagrams-in-r
+section-1
+exercises-3
