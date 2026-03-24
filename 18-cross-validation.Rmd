@@ -4,25 +4,51 @@ library(tidyverse)
 library(modelr)
 library(Ecdat) 
 library (caret)# machine learning package
-library (caTools) # ditto
+library (caTools)
+library(GGally)
 ```
 
 # cross-validation
 
 *The problem of capitalizing on chance is a significant one in prediction, and one should always be skeptical of models which are untested beyond the sample from which they were derived.*
 
-## revisiting the affairs data
+Here's another dataset, the Fair (marital affairs) data, which is also included in the Ecdat package. You should read a little about it in the help window before proceeding.
 
-Let's go back and do what we should have done earlier, that is, examine and think about the "number of affairs" variable. What does the distribution look like?
+To begin to examine univariate and bivariate relationships, we'll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:
+
+```{r out.width = "100%", warning= FALSE, message = FALSE}
+Fair1 <- Fair %>% 
+  select(sex:child, nbaffairs)
+ggpairs(Fair1,  
+# if you wanted to jam all 9 vars onto one page you could do this
+#        upper = list(continuous = wrap(ggally_cor, size = 10)),
+         lower = list(continuous = 'smooth'),
+         axisLabels = "none",
+        switch = 'both')
+Fair2 <- Fair %>% 
+  select(religious:nbaffairs) 
+ggpairs(Fair2, lower = list(continuous = 'smooth'),
+           axisLabels = "none",
+           switch = 'both')
+```
+
+```{r multiple regression - affairs}
+affairReg <- lm(nbaffairs ~ ., data=Fair)
+summary(affairReg)
+```
+
+## transformations
+
+Look at the distribution of the "number of affairs" variable in the plots above. What does it look like?
 
 ```{r}
 data(Fair)
 Fair %>% count(nbaffairs)
 ```
 
-We note that the distribution is skewed - and we realize that perhaps we should think about it differently: The *meaning* of the difference between 0 and 1 is not the same as that between 1 and 2, or perhaps even 1 and 12.
+The distribution is skewed - and we realize that perhaps we should think about it differently: The *meaning* of the difference between 0 and 1 is not the same as that between 1 and 2, or perhaps even 1 and 12.
 
-We can transform the data in several ways. We might perform a *root transform*, which we could then round to an integer:
+This suggests that perhaps we should transform the data. We might do this in several ways. We might perform a *root transform*, which we could then round to an integer:
 
 ```{r}
 Fair <- Fair %>% 
@@ -44,7 +70,7 @@ We'll examine each of these in the following paragraphs.
 
 ## avoiding capitalizing on chance
 
-One lesson from the last class was that correlations (and regression coefficients) drawn from small samples were not stable. In regression analysis, as progressively smaller samples were drawn from the Fair data, the ability to predict the outcome increased. In the limiting case, when the number of predictors (variables) was equal to the number of cases in the sample (rows), prediction became perfect.
+One lesson from the last class was that correlations (and regression coefficients) drawn from small samples were not stable. In regression analysis, as progressively smaller samples are drawn from a dataset, the ability to predict an outcome increases. In the limiting case, when the number of predictors (variables) is equal to the number of cases in the sample (rows), prediction became perfect.  But if we were to apply the model to a new dataset, prediction would be poor.
 
 ### splitting the data into training and test subsamples
 

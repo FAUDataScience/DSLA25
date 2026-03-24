@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>17 from correlation to multiple regression | Data science for the liberal arts</title>
-  <meta name="description" content="17 from correlation to multiple regression | Data science for the liberal arts" />
+  <title>17 from correlation to multiple regression | From Modern, Appendix E</title>
+  <meta name="description" content="17 from correlation to multiple regression | From Modern, Appendix E" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="17 from correlation to multiple regression | Data science for the liberal arts" />
+  <meta property="og:title" content="17 from correlation to multiple regression | From Modern, Appendix E" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="17 from correlation to multiple regression | Data science for the liberal arts" />
+  <meta name="twitter:title" content="17 from correlation to multiple regression | From Modern, Appendix E" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2026-02-09" />
+<meta name="date" content="2026-03-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,10 +273,16 @@ div.csl-indent {
 <li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.2.2</b> Bayes’ theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.3</b> Bayes’ theorem</a></li>
-<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.4</b> continuous probability distributions</a></li>
-<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.5</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.5</b> exercises</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#did-we-just-drive-by-a-cop"><i class="fa fa-check"></i><b>9.5.1</b> did we just drive by a cop?</a></li>
+<li class="chapter" data-level="9.5.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#practice-applying-bayes-theorem"><i class="fa fa-check"></i><b>9.5.2</b> practice applying Bayes’ Theorem</a></li>
+<li class="chapter" data-level="9.5.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#decision-making-under-uncertainty"><i class="fa fa-check"></i><b>9.5.3</b> decision making under uncertainty</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
 <ul>
@@ -296,7 +302,7 @@ div.csl-indent {
 <li class="chapter" data-level="11.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#where-should-we-eat"><i class="fa fa-check"></i><b>11.2</b> where should we eat?</a>
 <ul>
 <li class="chapter" data-level="11.2.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>11.2.1</b> tall and wide formats</a></li>
-<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-1"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
+<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-2"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>11.3</b> more on tidy coding</a></li>
 </ul></li>
@@ -358,16 +364,17 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="17" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html"><i class="fa fa-check"></i><b>17</b> from correlation to multiple regression</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>17.1</b> bivariate analysis: Galton’s height data</a>
+<li class="chapter" data-level="17.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#univariate-and-bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>17.1</b> univariate and bivariate analysis: Galton’s height data</a>
 <ul>
 <li class="chapter" data-level="17.1.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>17.1.1</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a></li>
 <li class="chapter" data-level="17.1.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-correlation-to-regression"><i class="fa fa-check"></i><b>17.1.2</b> from correlation to regression</a></li>
 </ul></li>
-<li class="chapter" data-level="17.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#multivariate-data"><i class="fa fa-check"></i><b>17.2</b> multivariate data</a></li>
+<li class="chapter" data-level="17.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-bivariate-to-multivariate-analysis"><i class="fa fa-check"></i><b>17.2</b> from bivariate to multivariate analysis</a></li>
+<li class="chapter" data-level="17.3" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#different-forms-of-regression"><i class="fa fa-check"></i><b>17.3</b> different forms of regression</a></li>
 </ul></li>
 <li class="chapter" data-level="18" data-path="cross-validation.html"><a href="cross-validation.html"><i class="fa fa-check"></i><b>18</b> cross-validation</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="cross-validation.html"><a href="cross-validation.html#revisiting-the-affairs-data"><i class="fa fa-check"></i><b>18.1</b> revisiting the affairs data</a></li>
+<li class="chapter" data-level="18.1" data-path="cross-validation.html"><a href="cross-validation.html#transformations"><i class="fa fa-check"></i><b>18.1</b> transformations</a></li>
 <li class="chapter" data-level="18.2" data-path="cross-validation.html"><a href="cross-validation.html#avoiding-capitalizing-on-chance"><i class="fa fa-check"></i><b>18.2</b> avoiding capitalizing on chance</a>
 <ul>
 <li class="chapter" data-level="18.2.1" data-path="cross-validation.html"><a href="cross-validation.html#splitting-the-data-into-training-and-test-subsamples"><i class="fa fa-check"></i><b>18.2.1</b> splitting the data into training and test subsamples</a></li>
@@ -460,18 +467,30 @@ div.csl-indent {
 <li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
 <li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="exercises-2.html"><a href="exercises-2.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
+<li class="chapter" data-level="25" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="exercises-2.html"><a href="exercises-2.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a>
+<li class="chapter" data-level="25.1" data-path="exercises-3.html"><a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a>
 <ul>
-<li class="chapter" data-level="25.1.1" data-path="exercises-2.html"><a href="exercises-2.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.1.1</b> now look at your data in the spreadsheet</a></li>
-<li class="chapter" data-level="25.1.2" data-path="exercises-2.html"><a href="exercises-2.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.1.2</b> using AI to help us here</a></li>
-<li class="chapter" data-level="25.1.3" data-path="exercises-2.html"><a href="exercises-2.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.1.3</b> for last names, it’s a little bit trickier</a></li>
-<li class="chapter" data-level="25.1.4" data-path="exercises-2.html"><a href="exercises-2.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.1.4</b> cleaning these up</a></li>
+<li class="chapter" data-level="25.1.1" data-path="exercises-3.html"><a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.1.1</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.1.2" data-path="exercises-3.html"><a href="exercises-3.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.1.2</b> using AI to help us here</a></li>
+<li class="chapter" data-level="25.1.3" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.1.3</b> for last names, it’s a little bit trickier</a></li>
+<li class="chapter" data-level="25.1.4" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.1.4</b> cleaning these up</a></li>
 </ul></li>
-<li class="chapter" data-level="25.2" data-path="exercises-2.html"><a href="exercises-2.html#categorical-probability-and-venn-diagrams"><i class="fa fa-check"></i><b>25.2</b> categorical probability and Venn diagrams</a></li>
+<li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#categorical-probability-and-venn-diagrams"><i class="fa fa-check"></i><b>25.2</b> categorical probability and Venn diagrams</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="26" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>26</b> correlation and regression</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.1-motivating-example-modeling-usage-of-a-rail-trail"><i class="fa fa-check"></i><b>26.1</b> E.1.1 Motivating example: Modeling usage of a rail trail</a></li>
+<li class="chapter" data-level="26.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.2-model-visualization"><i class="fa fa-check"></i><b>26.2</b> E.1.2 Model visualization</a></li>
+<li class="chapter" data-level="26.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.3-measuring-the-strength-of-fit"><i class="fa fa-check"></i><b>26.3</b> E.1.3 Measuring the strength of fit</a></li>
+<li class="chapter" data-level="26.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.4-categorical-explanatory-variables"><i class="fa fa-check"></i><b>26.4</b> E.1.4 Categorical explanatory variables</a></li>
+<li class="chapter" data-level="26.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.3-non-parallel-slopes-multiple-regression-with-interaction"><i class="fa fa-check"></i><b>26.5</b> E.2.3 Non-parallel slopes: Multiple regression with interaction</a></li>
+<li class="chapter" data-level="26.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.4-modeling-non-linear-relationships"><i class="fa fa-check"></i><b>26.6</b> E.2.4 Modeling non-linear relationships</a></li>
+<li class="chapter" data-level="26.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#split-into-train-and-test"><i class="fa fa-check"></i><b>26.7</b> split into train and test</a></li>
+<li class="chapter" data-level="26.8" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#the-null-model"><i class="fa fa-check"></i><b>26.8</b> 10.2.1.1 the null model</a></li>
+<li class="chapter" data-level="26.9" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#logistic-regression"><i class="fa fa-check"></i><b>26.9</b> 10.2.1.2 Logistic regression</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -481,7 +500,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Modern, Appendix E</a>
           </h1>
         </div>
 
@@ -493,10 +512,10 @@ div.csl-indent {
 <h1><span class="header-section-number">17</span> from correlation to multiple regression<a href="from-correlation-to-multiple-regression.html#from-correlation-to-multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In the previous chapters, we have learned how to summarize and visualize data. We have seen that we can summarize data using <strong>descriptive statistics</strong> and visualize data using <strong>plots</strong>.</p>
 <p>We can distinguish between analyses of just one variable (the univariate case), two variables (bivariate), and multivariate (many variables).</p>
-<div id="bivariate-analysis-galtons-height-data" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">17.1</span> bivariate analysis: Galton’s height data<a href="from-correlation-to-multiple-regression.html#bivariate-analysis-galtons-height-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="univariate-and-bivariate-analysis-galtons-height-data" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> univariate and bivariate analysis: Galton’s height data<a href="from-correlation-to-multiple-regression.html#univariate-and-bivariate-analysis-galtons-height-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(Note that this section is excerpted directly from From <a href="https://github.com/datasciencelabs" class="uri">https://github.com/datasciencelabs</a>). <a href="https://en.wikipedia.org/wiki/Francis_Galton">Francis Galton</a>, a polymath and cousin of Charles Darwin, is one of the fathers of modern statistics. Galton liked to count - his motto is said to have been “whenever you can, count”. He collected data on the heights of families in England, and he found that there was a strong correlation between the heights of fathers and their sons.</p>
-<p>We have access to Galton’s family height data through the <code>HistData</code> package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key univariate statistics for the two variables of father and son height, each taken alone:</p>
+<p>We have access to Galton’s family height data through the <code>HistData</code> package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key <strong>univariate</strong> statistics for the two variables of father and son height, each taken alone:</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="from-correlation-to-multiple-regression.html#cb125-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GaltonFamilies&quot;</span>)</span>
 <span id="cb125-2"><a href="from-correlation-to-multiple-regression.html#cb125-2" tabindex="-1"></a>galton_heights <span class="ot">&lt;-</span> GaltonFamilies <span class="sc">%&gt;%</span></span>
 <span id="cb125-3"><a href="from-correlation-to-multiple-regression.html#cb125-3" tabindex="-1"></a>  <span class="fu">filter</span>(childNum <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> gender <span class="sc">==</span> <span class="st">&quot;male&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -506,13 +525,13 @@ div.csl-indent {
 <span id="cb125-7"><a href="from-correlation-to-multiple-regression.html#cb125-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(father), <span class="fu">sd</span>(father), <span class="fu">mean</span>(son), <span class="fu">sd</span>(son))</span></code></pre></div>
 <pre><code>##   mean(father) sd(father) mean(son)  sd(son)
 ## 1     69.09888   2.546555  70.45475 2.557061</code></pre>
-<p>This <strong>univariate</strong> description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the <strong>correlation</strong> between the two variables.</p>
+<p>This univariate description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the <strong>correlation</strong> between the two variables.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="from-correlation-to-multiple-regression.html#cb127-1" tabindex="-1"></a>galton_heights <span class="sc">%&gt;%</span></span>
 <span id="cb127-2"><a href="from-correlation-to-multiple-regression.html#cb127-2" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cor</span>(father, son)) <span class="sc">%&gt;%</span> </span>
 <span id="cb127-3"><a href="from-correlation-to-multiple-regression.html#cb127-3" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   cor(father, son)
 ## 1            0.501</code></pre>
-<p>In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father’s height, we expect the son’s height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the <code>correlate()</code> function from the <code>corrr</code> package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The <code>fashion()</code> function can be used to easily clean up the output. (And the parentheses around the whole statement allows us to print out the result to the console / RMarkdown document, as well aas saving rmatrix in our environment).</p>
+<p>In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father’s height, we expect the son’s height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the <code>correlate()</code> function from the <code>corrr</code> package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The <code>fashion()</code> function can be used to easily clean up the output. (The parentheses around the whole statement allows us to print out the result to the console or RMarkdown document, as well as saving rmatrix in our environment).</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="from-correlation-to-multiple-regression.html#cb129-1" tabindex="-1"></a>(rmatrix <span class="ot">&lt;-</span> galton_heights <span class="sc">%&gt;%</span> </span>
 <span id="cb129-2"><a href="from-correlation-to-multiple-regression.html#cb129-2" tabindex="-1"></a>  <span class="fu">select</span>(father, son) <span class="sc">%&gt;%</span> </span>
 <span id="cb129-3"><a href="from-correlation-to-multiple-regression.html#cb129-3" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">%&gt;%</span> </span>
@@ -564,8 +583,8 @@ div.csl-indent {
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-56-1.png" alt="" width="384" /></p>
 </div>
 </div>
-<div id="multivariate-data" class="section level2 hasAnchor" number="17.2">
-<h2><span class="header-section-number">17.2</span> multivariate data<a href="from-correlation-to-multiple-regression.html#multivariate-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="from-bivariate-to-multivariate-analysis" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> from bivariate to multivariate analysis<a href="from-correlation-to-multiple-regression.html#from-bivariate-to-multivariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the Galton data, we examined the relationship between two variables - one a predictor (father’s height) and the other a response (son’s height). In this section (drawn from Peng, Caffo, and Leek’s treatment from Coursera - the Johns Hopkins Data Science Program), we will extend our analysis to consider multiple predictors of a single response or outcome variable. You may need to install the packages “UsingR”, “GGally” and/or”Hmisc”.</p>
 <p>We begin with a second dataset. You can learn about it by typing <code>?swiss</code> in the console.</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="from-correlation-to-multiple-regression.html#cb134-1" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
@@ -586,7 +605,7 @@ div.csl-indent {
 <span id="cb136-6"><a href="from-correlation-to-multiple-regression.html#cb136-6" tabindex="-1"></a>        <span class="at">axisLabels =</span><span class="st">&quot;none&quot;</span>,</span>
 <span id="cb136-7"><a href="from-correlation-to-multiple-regression.html#cb136-7" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/scatterplot%20matrix%20with%20ggpairs,%20swiss-1.png" alt="" width="672" /></p>
-<p>Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?</p>
+<p>Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="from-correlation-to-multiple-regression.html#cb137-1" tabindex="-1"></a>swissReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Fertility <span class="sc">~</span> ., <span class="at">data=</span>swiss)</span>
 <span id="cb137-2"><a href="from-correlation-to-multiple-regression.html#cb137-2" tabindex="-1"></a><span class="fu">summary</span>(swissReg)</span></code></pre></div>
 <pre><code>## 
@@ -611,50 +630,120 @@ div.csl-indent {
 ## Residual standard error: 7.165 on 41 degrees of freedom
 ## Multiple R-squared:  0.7067, Adjusted R-squared:  0.671 
 ## F-statistic: 19.76 on 5 and 41 DF,  p-value: 5.594e-10</code></pre>
-<p>Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed. Here’s a second dataset, the marital affairs data, which is also included in the Ecdat package.
-We’ll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="from-correlation-to-multiple-regression.html#cb139-1" tabindex="-1"></a>Fair1 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
-<span id="cb139-2"><a href="from-correlation-to-multiple-regression.html#cb139-2" tabindex="-1"></a>  <span class="fu">select</span>(sex<span class="sc">:</span>child, nbaffairs)</span>
-<span id="cb139-3"><a href="from-correlation-to-multiple-regression.html#cb139-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair1,  </span>
-<span id="cb139-4"><a href="from-correlation-to-multiple-regression.html#cb139-4" tabindex="-1"></a><span class="co"># if you wanted to jam all 9 vars onto one page you could do this</span></span>
-<span id="cb139-5"><a href="from-correlation-to-multiple-regression.html#cb139-5" tabindex="-1"></a><span class="co">#        upper = list(continuous = wrap(ggally_cor, size = 10)),</span></span>
-<span id="cb139-6"><a href="from-correlation-to-multiple-regression.html#cb139-6" tabindex="-1"></a>         <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
-<span id="cb139-7"><a href="from-correlation-to-multiple-regression.html#cb139-7" tabindex="-1"></a>         <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb139-8"><a href="from-correlation-to-multiple-regression.html#cb139-8" tabindex="-1"></a>        <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-57-1.png" alt="" width="100%" /></p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="from-correlation-to-multiple-regression.html#cb140-1" tabindex="-1"></a>Fair2 <span class="ot">&lt;-</span> Fair <span class="sc">%&gt;%</span> </span>
-<span id="cb140-2"><a href="from-correlation-to-multiple-regression.html#cb140-2" tabindex="-1"></a>  <span class="fu">select</span>(religious<span class="sc">:</span>nbaffairs) </span>
-<span id="cb140-3"><a href="from-correlation-to-multiple-regression.html#cb140-3" tabindex="-1"></a><span class="fu">ggpairs</span>(Fair2, <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="st">&#39;smooth&#39;</span>),</span>
-<span id="cb140-4"><a href="from-correlation-to-multiple-regression.html#cb140-4" tabindex="-1"></a>           <span class="at">axisLabels =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb140-5"><a href="from-correlation-to-multiple-regression.html#cb140-5" tabindex="-1"></a>           <span class="at">switch =</span> <span class="st">&#39;both&#39;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-57-2.png" alt="" width="100%" /></p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="from-correlation-to-multiple-regression.html#cb141-1" tabindex="-1"></a>affairReg <span class="ot">&lt;-</span> <span class="fu">lm</span>(nbaffairs <span class="sc">~</span> ., <span class="at">data=</span>Fair)</span>
-<span id="cb141-2"><a href="from-correlation-to-multiple-regression.html#cb141-2" tabindex="-1"></a><span class="fu">summary</span>(affairReg)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = nbaffairs ~ ., data = Fair)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -5.0503 -1.7226 -0.7947  0.2101 12.7036 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.87201    1.13750   5.162 3.34e-07 ***
-## sexmale      0.05409    0.30049   0.180   0.8572    
-## age         -0.05098    0.02262  -2.254   0.0246 *  
-## ym           0.16947    0.04122   4.111 4.50e-05 ***
-## childyes    -0.14262    0.35020  -0.407   0.6840    
-## religious   -0.47761    0.11173  -4.275 2.23e-05 ***
-## education   -0.01375    0.06414  -0.214   0.8303    
-## occupation   0.10492    0.08888   1.180   0.2383    
-## rate        -0.71188    0.12001  -5.932 5.09e-09 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.095 on 592 degrees of freedom
-## Multiple R-squared:  0.1317, Adjusted R-squared:   0.12 
-## F-statistic: 11.23 on 8 and 592 DF,  p-value: 7.472e-15</code></pre>
+<p>The coefficients in the “Estimate” column show the direction and nature of relations between the five predictors and Fertility after holding all other variables constant. So, Education, and to a lesser extent Agriculture, have negative relationships with Fertility and Catholicism has a positive correlation. Examination is <em>not</em> a significant predictor when all variables are included in the model (despite having a negative correlation initially in the scatterplot matrix shown above. ., - that is</p>
+<p>Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed.</p>
+</div>
+<div id="different-forms-of-regression" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> different forms of regression<a href="from-correlation-to-multiple-regression.html#different-forms-of-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can do a lot with regression and the general linear model upon which it is based. Consider the following approach to prediction, which is adapted from <a href="https://mdsr-book.github.io/mdsr3e/E-regression.html">Appendix E of the Modern text.</a></p>
+<p>Consider that we want to predict usage of a recreational trail (volume) from a series of predictors, including the weather (hightemp), and the day of the week (weekend vs weekday). The data are from the RailTrail data set in the mosaic package.
+We can begin by looking at the mean (and standard deviation) for volume.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="from-correlation-to-multiple-regression.html#cb139-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb139-2"><a href="from-correlation-to-multiple-regression.html#cb139-2" tabindex="-1"></a><span class="fu">library</span>(mdsr)</span>
+<span id="cb139-3"><a href="from-correlation-to-multiple-regression.html#cb139-3" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb139-4"><a href="from-correlation-to-multiple-regression.html#cb139-4" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb139-5"><a href="from-correlation-to-multiple-regression.html#cb139-5" tabindex="-1"></a><span class="fu">glimpse</span>(RailTrail)</span></code></pre></div>
+<pre><code>## Rows: 90
+## Columns: 11
+## $ hightemp   &lt;int&gt; 83, 73, 74, 95, 44, 69, 66, 66, 80, 79, 78, 65, 41, 59, 50,…
+## $ lowtemp    &lt;int&gt; 50, 49, 52, 61, 52, 54, 39, 38, 55, 45, 55, 48, 49, 35, 35,…
+## $ avgtemp    &lt;dbl&gt; 66.5, 61.0, 63.0, 78.0, 48.0, 61.5, 52.5, 52.0, 67.5, 62.0,…
+## $ spring     &lt;int&gt; 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0,…
+## $ summer     &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0,…
+## $ fall       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1,…
+## $ cloudcover &lt;dbl&gt; 7.6, 6.3, 7.5, 2.6, 10.0, 6.6, 2.4, 0.0, 3.8, 4.1, 8.5, 7.2…
+## $ precip     &lt;dbl&gt; 0.00, 0.29, 0.32, 0.00, 0.14, 0.02, 0.00, 0.00, 0.00, 0.00,…
+## $ volume     &lt;int&gt; 501, 419, 397, 385, 200, 375, 417, 629, 533, 547, 432, 418,…
+## $ weekday    &lt;lgl&gt; TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, TR…
+## $ dayType    &lt;chr&gt; &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekend&quot;, &quot;weekday&quot;, &quot;wee…</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="from-correlation-to-multiple-regression.html#cb141-1" tabindex="-1"></a>RailTrail <span class="sc">%&gt;%</span> </span>
+<span id="cb141-2"><a href="from-correlation-to-multiple-regression.html#cb141-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(volume), <span class="fu">sd</span>(volume))</span></code></pre></div>
+<pre><code>##   mean(volume) sd(volume)
+## 1        375.4   127.4626</code></pre>
+<p>The mean of a variable is your best guess of scores on that variable. It is what we predict if we know nothing else, and so in prediction it can be considered the null model.</p>
+<p>Section E.1.2 of the Modern text illustrates how we can construct and visualize a series of models. The first figure compares the null model with prediction from hightemp alone:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="from-correlation-to-multiple-regression.html#cb143-1" tabindex="-1"></a>my_lm <span class="ot">&lt;-</span> <span class="cf">function</span>(data, formula) { <span class="co"># native pipe fills in first unnamed argument</span></span>
+<span id="cb143-2"><a href="from-correlation-to-multiple-regression.html#cb143-2" tabindex="-1"></a>  <span class="fu">lm</span>(formula, data)</span>
+<span id="cb143-3"><a href="from-correlation-to-multiple-regression.html#cb143-3" tabindex="-1"></a>}</span>
+<span id="cb143-4"><a href="from-correlation-to-multiple-regression.html#cb143-4" tabindex="-1"></a>mod_avg <span class="ot">&lt;-</span> RailTrail <span class="sc">|&gt;</span></span>
+<span id="cb143-5"><a href="from-correlation-to-multiple-regression.html#cb143-5" tabindex="-1"></a>  <span class="fu">my_lm</span>(volume <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb143-6"><a href="from-correlation-to-multiple-regression.html#cb143-6" tabindex="-1"></a>  <span class="fu">augment</span>(RailTrail)</span>
+<span id="cb143-7"><a href="from-correlation-to-multiple-regression.html#cb143-7" tabindex="-1"></a>mod_temp <span class="ot">&lt;-</span> RailTrail <span class="sc">|&gt;</span></span>
+<span id="cb143-8"><a href="from-correlation-to-multiple-regression.html#cb143-8" tabindex="-1"></a>  <span class="fu">my_lm</span>(volume <span class="sc">~</span> hightemp) <span class="sc">|&gt;</span></span>
+<span id="cb143-9"><a href="from-correlation-to-multiple-regression.html#cb143-9" tabindex="-1"></a>  <span class="fu">augment</span>(RailTrail)</span>
+<span id="cb143-10"><a href="from-correlation-to-multiple-regression.html#cb143-10" tabindex="-1"></a>mod_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mod_avg, mod_temp) <span class="sc">|&gt;</span></span>
+<span id="cb143-11"><a href="from-correlation-to-multiple-regression.html#cb143-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;null&quot;</span>, <span class="st">&quot;slr&quot;</span>), </span>
+<span id="cb143-12"><a href="from-correlation-to-multiple-regression.html#cb143-12" tabindex="-1"></a>                     <span class="at">each =</span> <span class="fu">nrow</span>(RailTrail)))</span></code></pre></div>
+<p>In each plot, the vertical lines show our errors of prediction around the regression line (which is flat for the null model).</p>
+<p>, and sloping for the . The sum of these squared errors</p>
+<p>blue line shows our initial prediction:</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="from-correlation-to-multiple-regression.html#cb144-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mod_data, <span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume)) <span class="sc">+</span> </span>
+<span id="cb144-2"><a href="from-correlation-to-multiple-regression.html#cb144-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb144-3"><a href="from-correlation-to-multiple-regression.html#cb144-3" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(mod_data, model <span class="sc">==</span> <span class="st">&quot;null&quot;</span>), </span>
+<span id="cb144-4"><a href="from-correlation-to-multiple-regression.html#cb144-4" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb144-5"><a href="from-correlation-to-multiple-regression.html#cb144-5" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb144-6"><a href="from-correlation-to-multiple-regression.html#cb144-6" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb144-7"><a href="from-correlation-to-multiple-regression.html#cb144-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb144-8"><a href="from-correlation-to-multiple-regression.html#cb144-8" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(mod_data, model <span class="sc">==</span> <span class="st">&quot;slr&quot;</span>),</span>
+<span id="cb144-9"><a href="from-correlation-to-multiple-regression.html#cb144-9" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb144-10"><a href="from-correlation-to-multiple-regression.html#cb144-10" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb144-11"><a href="from-correlation-to-multiple-regression.html#cb144-11" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb144-12"><a href="from-correlation-to-multiple-regression.html#cb144-12" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb144-13"><a href="from-correlation-to-multiple-regression.html#cb144-13" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xend =</span> hightemp, <span class="at">yend =</span> .fitted), </span>
+<span id="cb144-14"><a href="from-correlation-to-multiple-regression.html#cb144-14" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>)), </span>
+<span id="cb144-15"><a href="from-correlation-to-multiple-regression.html#cb144-15" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;darkgray&quot;</span></span>
+<span id="cb144-16"><a href="from-correlation-to-multiple-regression.html#cb144-16" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb144-17"><a href="from-correlation-to-multiple-regression.html#cb144-17" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb144-18"><a href="from-correlation-to-multiple-regression.html#cb144-18" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672" /></p>
+<p>A “parallel slopes” model includes predictions from both hightemp and weekday vs. weekend.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="from-correlation-to-multiple-regression.html#cb145-1" tabindex="-1"></a>mod_parallel <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday, <span class="at">data =</span> RailTrail)</span>
+<span id="cb145-2"><a href="from-correlation-to-multiple-regression.html#cb145-2" tabindex="-1"></a>mod_parallel <span class="sc">|&gt;</span></span>
+<span id="cb145-3"><a href="from-correlation-to-multiple-regression.html#cb145-3" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span></span>
+<span id="cb145-4"><a href="from-correlation-to-multiple-regression.html#cb145-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume, <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb145-5"><a href="from-correlation-to-multiple-regression.html#cb145-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb145-6"><a href="from-correlation-to-multiple-regression.html#cb145-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
+<span id="cb145-7"><a href="from-correlation-to-multiple-regression.html#cb145-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Is it a</span><span class="sc">\n</span><span class="st">weekday?&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
+<p>The final model allows an interaction as well as the two main effects:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="from-correlation-to-multiple-regression.html#cb146-1" tabindex="-1"></a>mod_interact <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday <span class="sc">+</span> hightemp <span class="sc">*</span> weekday, </span>
+<span id="cb146-2"><a href="from-correlation-to-multiple-regression.html#cb146-2" tabindex="-1"></a>  <span class="at">data =</span> RailTrail)</span>
+<span id="cb146-3"><a href="from-correlation-to-multiple-regression.html#cb146-3" tabindex="-1"></a>mod_interact <span class="sc">|&gt;</span></span>
+<span id="cb146-4"><a href="from-correlation-to-multiple-regression.html#cb146-4" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span></span>
+<span id="cb146-5"><a href="from-correlation-to-multiple-regression.html#cb146-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume, <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb146-6"><a href="from-correlation-to-multiple-regression.html#cb146-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb146-7"><a href="from-correlation-to-multiple-regression.html#cb146-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
+<span id="cb146-8"><a href="from-correlation-to-multiple-regression.html#cb146-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Is it a</span><span class="sc">\n</span><span class="st">weekday?&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" /></p>
+<p>The four models are presented here, together with summary statitsics.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="from-correlation-to-multiple-regression.html#cb147-1" tabindex="-1"></a><span class="fu">lm</span>(volume <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> RailTrail) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     375.      13.4      27.9 7.86e-46</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="from-correlation-to-multiple-regression.html#cb149-1" tabindex="-1"></a><span class="fu">lm</span>(volume <span class="sc">~</span> hightemp, <span class="at">data =</span> RailTrail) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic       p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+## 1 (Intercept)   -17.1     59.4      -0.288 0.774        
+## 2 hightemp        5.70     0.848     6.72  0.00000000171</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="from-correlation-to-multiple-regression.html#cb151-1" tabindex="-1"></a><span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday, <span class="at">data =</span> RailTrail) <span class="sc">|&gt;</span> </span>
+<span id="cb151-2"><a href="from-correlation-to-multiple-regression.html#cb151-2" tabindex="-1"></a>    <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   term        estimate std.error statistic      p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 (Intercept)    42.8     64.3       0.665 0.508       
+## 2 hightemp        5.35     0.846     6.32  0.0000000109
+## 3 weekdayTRUE   -51.6     23.7      -2.18  0.0321</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="from-correlation-to-multiple-regression.html#cb153-1" tabindex="-1"></a><span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday <span class="sc">+</span> hightemp <span class="sc">*</span> weekday, </span>
+<span id="cb153-2"><a href="from-correlation-to-multiple-regression.html#cb153-2" tabindex="-1"></a>  <span class="at">data =</span> RailTrail) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
+##   term                 estimate std.error statistic p.value
+##   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)            135.      108.        1.25 0.215  
+## 2 hightemp                 4.07      1.47      2.78 0.00676
+## 3 weekdayTRUE           -186.      129.       -1.44 0.153  
+## 4 hightemp:weekdayTRUE     1.91      1.80      1.06 0.292</code></pre>
 
 </div>
 </div>

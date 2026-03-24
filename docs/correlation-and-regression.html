@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>26 correlation and regression | From Modern, Appendix E</title>
+  <meta name="description" content="26 correlation and regression | From Modern, Appendix E" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="26 correlation and regression | From Modern, Appendix E" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="kevinlanning/DSLA25" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="26 correlation and regression | From Modern, Appendix E" />
+  
+  
+  
+
+<meta name="author" content="Kevin Lanning" />
+
+
+<meta name="date" content="2026-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="references.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-role-of-the-liberal-arts-in-data-science"><i class="fa fa-check"></i>the role of the liberal arts in data science</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#some-features-of-the-text"><i class="fa fa-check"></i>some features of the text</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#the-book-is-for-you"><i class="fa fa-check"></i>the book is for you</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-i-introduction.html"><a href="part-i-introduction.html"><i class="fa fa-check"></i>PART I: Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html"><i class="fa fa-check"></i><b>1</b> what is “data science for the liberal arts?”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-incompleteness-of-the-data-science-venn-diagram"><i class="fa fa-check"></i><b>1.1</b> the incompleteness of the data science Venn diagram</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#additional-domains"><i class="fa fa-check"></i><b>1.1.1</b> additional domains</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#an-additional-dimension"><i class="fa fa-check"></i><b>1.1.2</b> an additional dimension</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-importance-of-data-science-for-society"><i class="fa fa-check"></i><b>1.2</b> the importance of data science for society</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#intelligence-artificial-intelligence-ai-and-careers"><i class="fa fa-check"></i><b>1.2.1</b> intelligence, artificial intelligence (AI), and careers</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#the-challenge-of-tmi"><i class="fa fa-check"></i><b>1.2.2</b> the challenge of TMI</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-data-science-for-the-liberal-arts.html"><a href="what-is-data-science-for-the-liberal-arts.html#discussion-what-are-your-objectives-in-data-science"><i class="fa fa-check"></i><b>1.3</b> discussion: what are your objectives in data science?</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> getting started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#are-you-already-a-programmer-and-statistician"><i class="fa fa-check"></i><b>2.1</b> are you already a programmer and statistician?</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#spreadsheets---some-best-practices"><i class="fa fa-check"></i><b>2.2</b> spreadsheets - some best practices</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#setting-up-your-laptop-some-basic-tools"><i class="fa fa-check"></i><b>2.3</b> setting up your laptop: some basic tools</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#a-modified-15-minute-rule"><i class="fa fa-check"></i><b>2.4</b> a (modified) 15-minute rule</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio-desktop"><i class="fa fa-check"></i><b>2.5</b> installing R and RStudio desktop</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html"><i class="fa fa-check"></i><b>3</b> what R stands for …</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#base-r-and-packages"><i class="fa fa-check"></i><b>3.0.1</b> base R and packages</a></li>
+<li class="chapter" data-level="3.1" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#cha-cha-cha-changes"><i class="fa fa-check"></i><b>3.1</b> cha-cha-cha-changes</a></li>
+<li class="chapter" data-level="3.2" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#some-technical-characteristics"><i class="fa fa-check"></i><b>3.2</b> some technical characteristics</a></li>
+<li class="chapter" data-level="3.3" data-path="what-r-stands-for.html"><a href="what-r-stands-for.html#finding-help"><i class="fa fa-check"></i><b>3.3</b> finding help</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="exploring-r-world.html"><a href="exploring-r-world.html"><i class="fa fa-check"></i><b>4</b> exploring R world</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-the-movies"><i class="fa fa-check"></i><b>4.1</b> go to the movies</a></li>
+<li class="chapter" data-level="4.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-into-the-clouds"><i class="fa fa-check"></i><b>4.2</b> go into the clouds</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-r-world.html"><a href="exploring-r-world.html#open-the-box"><i class="fa fa-check"></i><b>4.3</b> open the box</a></li>
+<li class="chapter" data-level="4.4" data-path="exploring-r-world.html"><a href="exploring-r-world.html#go-to-datacamp"><i class="fa fa-check"></i><b>4.4</b> go to (data)camp</a></li>
+<li class="chapter" data-level="4.5" data-path="exploring-r-world.html"><a href="exploring-r-world.html#learn-to-knit"><i class="fa fa-check"></i><b>4.5</b> learn to knit</a></li>
+<li class="chapter" data-level="4.6" data-path="exploring-r-world.html"><a href="exploring-r-world.html#read-parts-of-another-introductory-book"><i class="fa fa-check"></i><b>4.6</b> read (parts of) another introductory book</a></li>
+<li class="chapter" data-level="4.7" data-path="exploring-r-world.html"><a href="exploring-r-world.html#older-approaches"><i class="fa fa-check"></i><b>4.7</b> older approaches</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="exploring-r-world.html"><a href="exploring-r-world.html#using-swirl"><i class="fa fa-check"></i><b>4.7.1</b> <strong>using Swirl</strong></a></li>
+<li class="chapter" data-level="4.7.2" data-path="exploring-r-world.html"><a href="exploring-r-world.html#readingwatching-roger-pengs-text-andor-videos"><i class="fa fa-check"></i><b>4.7.2</b> reading/watching Roger Peng’s text and/or videos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-towards-data-literacy.html"><a href="part-ii-towards-data-literacy.html"><i class="fa fa-check"></i>Part II: Towards data literacy</a></li>
+<li class="chapter" data-level="5" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html"><i class="fa fa-check"></i><b>5</b> now draw the rest of the owl</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#time-for-hands-on-experience"><i class="fa fa-check"></i><b>5.1</b> time for hands-on experience</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#consider-loading-the-tidyverse"><i class="fa fa-check"></i><b>5.1.1</b> consider loading the tidyverse</a></li>
+<li class="chapter" data-level="5.1.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package"><i class="fa fa-check"></i><b>5.1.2</b> now explore the babynames package</a></li>
+<li class="chapter" data-level="5.1.3" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package"><i class="fa fa-check"></i><b>5.1.3</b> or the (ggplot2)movies package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="now-draw-the-rest-of-the-owl.html"><a href="now-draw-the-rest-of-the-owl.html#assignment"><i class="fa fa-check"></i><b>5.2</b> assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="literate-programming.html"><a href="literate-programming.html"><i class="fa fa-check"></i><b>6</b> literate programming</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="literate-programming.html"><a href="literate-programming.html#projects-are-directories"><i class="fa fa-check"></i><b>6.1</b> projects are directories</a></li>
+<li class="chapter" data-level="6.2" data-path="literate-programming.html"><a href="literate-programming.html#scripts-are-files-of-code"><i class="fa fa-check"></i><b>6.2</b> scripts are files of code</a></li>
+<li class="chapter" data-level="6.3" data-path="literate-programming.html"><a href="literate-programming.html#r-markdown-quarto-documents-combine-scripts-with-comments-and-once-knit-results"><i class="fa fa-check"></i><b>6.3</b> R markdown / Quarto documents combine scripts with comments and (once knit) results</a></li>
+<li class="chapter" data-level="6.4" data-path="literate-programming.html"><a href="literate-programming.html#some-elements-of-coding-style"><i class="fa fa-check"></i><b>6.4</b> some elements of coding style</a></li>
+<li class="chapter" data-level="6.5" data-path="literate-programming.html"><a href="literate-programming.html#what-to-do-when-you-are-stuck"><i class="fa fa-check"></i><b>6.5</b> What to do when you are stuck</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html"><i class="fa fa-check"></i><b>7</b> principles of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-opening-thoughts"><i class="fa fa-check"></i><b>7.1</b> some opening thoughts</a></li>
+<li class="chapter" data-level="7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#some-early-graphs"><i class="fa fa-check"></i><b>7.2</b> some early graphs</a></li>
+<li class="chapter" data-level="7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tukey-and-eda"><i class="fa fa-check"></i><b>7.3</b> Tukey and EDA</a></li>
+<li class="chapter" data-level="7.4" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#approaches-to-graphs"><i class="fa fa-check"></i><b>7.4</b> approaches to graphs</a></li>
+<li class="chapter" data-level="7.5" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#tufte-first-principles"><i class="fa fa-check"></i><b>7.5</b> Tufte: first principles</a></li>
+<li class="chapter" data-level="7.6" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-politics-of-data-visualization"><i class="fa fa-check"></i><b>7.6</b> the politics of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-leads-to-an-uninformed-or-misinformed-world"><i class="fa fa-check"></i><b>7.6.1</b> poor design leads to an uninformed or misinformed world</a></li>
+<li class="chapter" data-level="7.6.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#poor-design-can-be-a-tool-to-deceive"><i class="fa fa-check"></i><b>7.6.2</b> poor design can be a tool to deceive</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-psychology-of-data-visualization"><i class="fa fa-check"></i><b>7.7</b> the psychology of data visualization</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#the-power-of-animation"><i class="fa fa-check"></i><b>7.7.1</b> the power of animation</a></li>
+<li class="chapter" data-level="7.7.2" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#telling-the-truth-when-the-truth-is-unclear"><i class="fa fa-check"></i><b>7.7.2</b> telling the truth when the truth is unclear</a></li>
+<li class="chapter" data-level="7.7.3" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#visualizing-uncertainty"><i class="fa fa-check"></i><b>7.7.3</b> visualizing uncertainty</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#exercises"><i class="fa fa-check"></i><b>7.8</b> exercises</a>
+<ul>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#smartphone-sales"><i class="fa fa-check"></i>Smartphone sales</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#stand-your-ground"><i class="fa fa-check"></i>Stand your ground</a></li>
+<li class="chapter" data-level="" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#big-businesses"><i class="fa fa-check"></i>Big businesses</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#further-reading-and-resources"><i class="fa fa-check"></i><b>7.9</b> further reading and resources</a></li>
+<li class="chapter" data-level="7.10" data-path="principles-of-data-visualization.html"><a href="principles-of-data-visualization.html#notes-for-next-revision"><i class="fa fa-check"></i><b>7.10</b> notes for next revision</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html"><i class="fa fa-check"></i><b>8</b> visualization in R with ggplot</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#a-picture-words-numbers"><i class="fa fa-check"></i><b>8.1</b> a picture &gt; (words, numbers)?</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#read-wickhams-opening-chapter"><i class="fa fa-check"></i><b>8.2</b> Read Wickham’s opening chapter</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization-in-r-with-ggplot.html"><a href="visualization-in-r-with-ggplot.html#explore"><i class="fa fa-check"></i><b>8.3</b> explore</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html"><i class="fa fa-check"></i><b>9</b> on probability and statistics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#on-probability"><i class="fa fa-check"></i><b>9.1</b> on probability</a></li>
+<li class="chapter" data-level="9.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#the-rules-of-probability"><i class="fa fa-check"></i><b>9.2</b> the rules of probability</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#keeping-conditional-probabilities-straight"><i class="fa fa-check"></i><b>9.2.1</b> keeping conditional probabilities straight</a></li>
+<li class="chapter" data-level="9.2.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#bayes-theorem"><i class="fa fa-check"></i><b>9.2.2</b> Bayes’ theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#continuous-probability-distributions"><i class="fa fa-check"></i><b>9.3</b> continuous probability distributions</a></li>
+<li class="chapter" data-level="9.4" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#dangerous-equations"><i class="fa fa-check"></i><b>9.4</b> dangerous equations</a></li>
+<li class="chapter" data-level="9.5" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#exercises-1"><i class="fa fa-check"></i><b>9.5</b> exercises</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#did-we-just-drive-by-a-cop"><i class="fa fa-check"></i><b>9.5.1</b> did we just drive by a cop?</a></li>
+<li class="chapter" data-level="9.5.2" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#practice-applying-bayes-theorem"><i class="fa fa-check"></i><b>9.5.2</b> practice applying Bayes’ Theorem</a></li>
+<li class="chapter" data-level="9.5.3" data-path="on-probability-and-statistics.html"><a href="on-probability-and-statistics.html#decision-making-under-uncertainty"><i class="fa fa-check"></i><b>9.5.3</b> decision making under uncertainty</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html"><i class="fa fa-check"></i><b>10</b> reproducibility and the replication crisis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#answers-to-the-reproducibility-crisis"><i class="fa fa-check"></i><b>10.1</b> answers to the reproducibility crisis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-1-tweak-or-abandon-nhst"><i class="fa fa-check"></i><b>10.1.1</b> partial answer 1: Tweak or abandon NHST</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-2-keep-a-log-of-every-step-of-every-analysis-in-r-markdown-or-jupyter-notebooks"><i class="fa fa-check"></i><b>10.1.2</b> partial answer 2: Keep a log of every step of every analysis in R markdown or Jupyter notebooks</a></li>
+<li class="chapter" data-level="10.1.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#partial-answer-3-pre-registration-of-your-research"><i class="fa fa-check"></i><b>10.1.3</b> partial answer 3: Pre-registration of your research</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#further-readings"><i class="fa fa-check"></i><b>10.2</b> further readings</a></li>
+<li class="chapter" data-level="10.3" data-path="reproducibility-and-the-replication-crisis.html"><a href="reproducibility-and-the-replication-crisis.html#notes-for-next-revision-1"><i class="fa fa-check"></i><b>10.3</b> notes for next revision</a></li>
+</ul></li>
+<li class="part"><span><b>I Part III Towards data proficiency</b></span></li>
+<li class="chapter" data-level="11" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html"><i class="fa fa-check"></i><b>11</b> wrangling and tidying</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse"><i class="fa fa-check"></i><b>11.1</b> the structure of the tidyverse</a></li>
+<li class="chapter" data-level="11.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#where-should-we-eat"><i class="fa fa-check"></i><b>11.2</b> where should we eat?</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#tall-and-wide-formats"><i class="fa fa-check"></i><b>11.2.1</b> tall and wide formats</a></li>
+<li class="chapter" data-level="11.2.2" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#exercises-2"><i class="fa fa-check"></i><b>11.2.2</b> exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="wrangling-and-tidying.html"><a href="wrangling-and-tidying.html#more-on-tidy-coding"><i class="fa fa-check"></i><b>11.3</b> more on tidy coding</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html"><i class="fa fa-check"></i><b>12</b> finding, exploring, cleaning, and combining data</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#florida-educational-data"><i class="fa fa-check"></i><b>12.1</b> florida educational data</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#a-digression-slash-windows-and-the-world."><i class="fa fa-check"></i><b>12.1.1</b> a digression: Slash, Windows and the world.</a></li>
+<li class="chapter" data-level="12.1.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#getting-data-from-our-machine-into-r"><i class="fa fa-check"></i><b>12.1.2</b> getting data from our machine into R</a></li>
+<li class="chapter" data-level="12.1.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#which-ones-are-high-schools"><i class="fa fa-check"></i><b>12.1.3</b> which ones are “high schools”?</a></li>
+<li class="chapter" data-level="12.1.4" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#can-we-compute-district-county-means-from-these-data"><i class="fa fa-check"></i><b>12.1.4</b> can we compute district (county) means from these data?</a></li>
+<li class="chapter" data-level="12.1.5" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-school-enrollments"><i class="fa fa-check"></i><b>12.1.5</b> estimating school enrollments</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#combining-datasets"><i class="fa fa-check"></i><b>12.2</b> combining datasets</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#challenges-in-joining-datasets"><i class="fa fa-check"></i><b>12.2.1</b> challenges in joining datasets</a></li>
+<li class="chapter" data-level="12.2.2" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#some-approaches-to-fixing-the-data"><i class="fa fa-check"></i><b>12.2.2</b> some approaches to fixing the data</a></li>
+<li class="chapter" data-level="12.2.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#estimating-the-relationship-between-economic-disadvantage-and-graduation-rates"><i class="fa fa-check"></i><b>12.2.3</b> estimating the relationship between economic disadvantage and graduation rates</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="finding-exploring-cleaning-and-combining-data.html"><a href="finding-exploring-cleaning-and-combining-data.html#recap-on-joining-files"><i class="fa fa-check"></i><b>12.3</b> recap / on joining files</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="applied-data-science.html"><a href="applied-data-science.html"><i class="fa fa-check"></i><b>13</b> applied data science</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="applied-data-science.html"><a href="applied-data-science.html#public-health-and-covid"><i class="fa fa-check"></i><b>13.1</b> public health and covid</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="applied-data-science.html"><a href="applied-data-science.html#covid-data-in-2025"><i class="fa fa-check"></i><b>13.1.1</b> COVID data in 2025</a></li>
+<li class="chapter" data-level="13.1.2" data-path="applied-data-science.html"><a href="applied-data-science.html#a-brief-digression-on-causality"><i class="fa fa-check"></i><b>13.1.2</b> a brief digression on causality</a></li>
+<li class="chapter" data-level="13.1.3" data-path="applied-data-science.html"><a href="applied-data-science.html#the-excess-mortality-package"><i class="fa fa-check"></i><b>13.1.3</b> the excess mortality package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="applied-data-science.html"><a href="applied-data-science.html#other-datasets-in-and-beyond-r"><i class="fa fa-check"></i><b>13.2</b> other datasets in and beyond R</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="applied-data-science.html"><a href="applied-data-science.html#makeextractcombine-your-own-data"><i class="fa fa-check"></i><b>13.2.1</b> make/extract/combine your own data</a></li>
+<li class="chapter" data-level="13.2.2" data-path="applied-data-science.html"><a href="applied-data-science.html#keep-it-manageable"><i class="fa fa-check"></i><b>13.2.2</b> keep it manageable</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html"><i class="fa fa-check"></i><b>14</b> strings, factors, dates, and times</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#strings"><i class="fa fa-check"></i><b>14.1</b> strings</a></li>
+<li class="chapter" data-level="14.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#factors"><i class="fa fa-check"></i><b>14.2</b> factors</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-babies"><i class="fa fa-check"></i><b>14.2.1</b> types of babies</a></li>
+<li class="chapter" data-level="14.2.2" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#types-of-grown-ups"><i class="fa fa-check"></i><b>14.2.2</b> types of grown-ups</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#dates"><i class="fa fa-check"></i><b>14.3</b> dates</a></li>
+<li class="chapter" data-level="14.4" data-path="strings-factors-dates-and-times.html"><a href="strings-factors-dates-and-times.html#times"><i class="fa fa-check"></i><b>14.4</b> times</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>15</b> lists</a></li>
+<li class="chapter" data-level="16" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html"><i class="fa fa-check"></i><b>16</b> loops, functions, and beyond</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#loops"><i class="fa fa-check"></i><b>16.1</b> loops</a></li>
+<li class="chapter" data-level="16.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#from-loop-to-apply-to-purrrmap"><i class="fa fa-check"></i><b>16.2</b> from loop to apply to purrr::map</a></li>
+<li class="chapter" data-level="16.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#some-examples-of-functions"><i class="fa fa-check"></i><b>16.3</b> some examples of functions</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#preliminaries"><i class="fa fa-check"></i><b>16.3.1</b> preliminaries</a></li>
+<li class="chapter" data-level="16.3.2" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#the-function"><i class="fa fa-check"></i><b>16.3.2</b> the function</a></li>
+<li class="chapter" data-level="16.3.3" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#applying-the-function"><i class="fa fa-check"></i><b>16.3.3</b> applying the function</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="loops-functions-and-beyond.html"><a href="loops-functions-and-beyond.html#how-many-bottles-of-what"><i class="fa fa-check"></i><b>16.4</b> how many bottles of what?</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html"><i class="fa fa-check"></i><b>17</b> from correlation to multiple regression</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#univariate-and-bivariate-analysis-galtons-height-data"><i class="fa fa-check"></i><b>17.1</b> univariate and bivariate analysis: Galton’s height data</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#correlations-based-on-small-samples-are-unstable-a-monte-carlo-demonstration"><i class="fa fa-check"></i><b>17.1.1</b> correlations based on small samples are unstable: A Monte Carlo demonstration</a></li>
+<li class="chapter" data-level="17.1.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-correlation-to-regression"><i class="fa fa-check"></i><b>17.1.2</b> from correlation to regression</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#from-bivariate-to-multivariate-analysis"><i class="fa fa-check"></i><b>17.2</b> from bivariate to multivariate analysis</a></li>
+<li class="chapter" data-level="17.3" data-path="from-correlation-to-multiple-regression.html"><a href="from-correlation-to-multiple-regression.html#different-forms-of-regression"><i class="fa fa-check"></i><b>17.3</b> different forms of regression</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="cross-validation.html"><a href="cross-validation.html"><i class="fa fa-check"></i><b>18</b> cross-validation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="cross-validation.html"><a href="cross-validation.html#transformations"><i class="fa fa-check"></i><b>18.1</b> transformations</a></li>
+<li class="chapter" data-level="18.2" data-path="cross-validation.html"><a href="cross-validation.html#avoiding-capitalizing-on-chance"><i class="fa fa-check"></i><b>18.2</b> avoiding capitalizing on chance</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="cross-validation.html"><a href="cross-validation.html#splitting-the-data-into-training-and-test-subsamples"><i class="fa fa-check"></i><b>18.2.1</b> splitting the data into training and test subsamples</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="cross-validation.html"><a href="cross-validation.html#an-example-of-cross-validated-linear-regression"><i class="fa fa-check"></i><b>18.3</b> an example of cross-validated linear regression</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="cross-validation.html"><a href="cross-validation.html#applying-logistic-regression-analysis-to-the-training-data"><i class="fa fa-check"></i><b>18.3.1</b> applying logistic regression analysis to the training data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html"><i class="fa fa-check"></i><b>19</b> prediction and classification</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-regression-to-classification-selection-of-a-threshold"><i class="fa fa-check"></i><b>19.1</b> from regression to classification: selection of a threshold</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#applying-the-model-to-the-test-data"><i class="fa fa-check"></i><b>19.1.1</b> applying the model to the test data</a></li>
+<li class="chapter" data-level="19.1.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#changing-our-decision-threshold"><i class="fa fa-check"></i><b>19.1.2</b> changing our decision threshold</a></li>
+<li class="chapter" data-level="19.1.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#more-confusion"><i class="fa fa-check"></i><b>19.1.3</b> more confusion</a></li>
+<li class="chapter" data-level="19.1.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#rocs-and-auc"><i class="fa fa-check"></i><b>19.1.4</b> ROCs and AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#another-approach-to-classification-k-nearest-neighbor"><i class="fa fa-check"></i><b>19.2</b> another approach to classification: k-nearest neighbor</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#application-the-affairs-data"><i class="fa fa-check"></i><b>19.2.1</b> application: the affairs data</a></li>
+<li class="chapter" data-level="19.2.2" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#from-one-doppelganger-to-many"><i class="fa fa-check"></i><b>19.2.2</b> from one doppelganger to many</a></li>
+<li class="chapter" data-level="19.2.3" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-bayesian-classifier"><i class="fa fa-check"></i><b>19.2.3</b> the Bayesian classifier</a></li>
+<li class="chapter" data-level="19.2.4" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#back-to-the-affairs-data"><i class="fa fa-check"></i><b>19.2.4</b> Back to the affairs data</a></li>
+<li class="chapter" data-level="19.2.5" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#avoiding-capitalization-on-chance-again"><i class="fa fa-check"></i><b>19.2.5</b> avoiding capitalization on chance (again)</a></li>
+<li class="chapter" data-level="19.2.6" data-path="prediction-and-classification.html"><a href="prediction-and-classification.html#the-multinomial-case"><i class="fa fa-check"></i><b>19.2.6</b> the multinomial case</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><i class="fa fa-check"></i><b>20</b> machine learning: chihuahuas vs muffins, and other distinctions and ideas</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#supervised-versus-unsupervised"><i class="fa fa-check"></i><b>20.1</b> supervised versus unsupervised</a></li>
+<li class="chapter" data-level="20.2" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#prediction-versus-classification"><i class="fa fa-check"></i><b>20.2</b> prediction versus classification</a></li>
+<li class="chapter" data-level="20.3" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#understanding-versus-prediction"><i class="fa fa-check"></i><b>20.3</b> understanding versus prediction</a></li>
+<li class="chapter" data-level="20.4" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#bias-versus-variability"><i class="fa fa-check"></i><b>20.4</b> bias versus variability</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#resampling-beyond-test-training-and-validation-samples"><i class="fa fa-check"></i><b>20.4.1</b> resampling: beyond test, training, and validation samples</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#compensatory-versus-non-compensatory-problems"><i class="fa fa-check"></i><b>20.5</b> compensatory versus non-compensatory problems</a></li>
+<li class="chapter" data-level="20.6" data-path="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html"><a href="machine-learning-chihuahuas-vs-muffins-and-other-distinctions-and-ideas.html#a-postscript-the-tidymodels-packages"><i class="fa fa-check"></i><b>20.6</b> a postscript: The Tidymodels packages</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="working-with-text.html"><a href="working-with-text.html"><i class="fa fa-check"></i><b>21</b> working with text</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="working-with-text.html"><a href="working-with-text.html#overview-of-key-topics-in-text-analysis"><i class="fa fa-check"></i><b>21.1</b> overview of key topics in text analysis</a></li>
+<li class="chapter" data-level="21.2" data-path="working-with-text.html"><a href="working-with-text.html#a-case-study"><i class="fa fa-check"></i><b>21.2</b> a case study</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="working-with-text.html"><a href="working-with-text.html#federal-workers"><i class="fa fa-check"></i><b>21.2.1</b> federal workers</a></li>
+<li class="chapter" data-level="21.2.2" data-path="working-with-text.html"><a href="working-with-text.html#finding-reddit-data"><i class="fa fa-check"></i><b>21.2.2</b> finding Reddit data</a></li>
+<li class="chapter" data-level="21.2.3" data-path="working-with-text.html"><a href="working-with-text.html#some-initial-observations"><i class="fa fa-check"></i><b>21.2.3</b> some initial observations</a></li>
+<li class="chapter" data-level="21.2.4" data-path="working-with-text.html"><a href="working-with-text.html#preprocessing"><i class="fa fa-check"></i><b>21.2.4</b> preprocessing</a></li>
+<li class="chapter" data-level="21.2.5" data-path="working-with-text.html"><a href="working-with-text.html#comparing-the-words-and-stems"><i class="fa fa-check"></i><b>21.2.5</b> comparing the words and stems</a></li>
+<li class="chapter" data-level="21.2.6" data-path="working-with-text.html"><a href="working-with-text.html#construction-of-differential-word-clouds"><i class="fa fa-check"></i><b>21.2.6</b> Construction of differential word clouds</a></li>
+<li class="chapter" data-level="21.2.7" data-path="working-with-text.html"><a href="working-with-text.html#bigrams"><i class="fa fa-check"></i><b>21.2.7</b> bigrams</a></li>
+<li class="chapter" data-level="21.2.8" data-path="working-with-text.html"><a href="working-with-text.html#categories-of-words"><i class="fa fa-check"></i><b>21.2.8</b> categories of words</a></li>
+<li class="chapter" data-level="21.2.9" data-path="working-with-text.html"><a href="working-with-text.html#code-for-assessing-liwc-effect-sizes-between-2-groups"><i class="fa fa-check"></i><b>21.2.9</b> Code for assessing LIWC effect sizes between 2 groups</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="working-with-text.html"><a href="working-with-text.html#exercise-what-would-you-do-next"><i class="fa fa-check"></i><b>21.3</b> exercise: what would you do next?</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html"><i class="fa fa-check"></i><b>22</b> an introduction to networks</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#introduction"><i class="fa fa-check"></i><b>22.1</b> introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory"><i class="fa fa-check"></i><b>22.1.1</b> a simple example: networks and balance theory</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#key-network-concepts"><i class="fa fa-check"></i><b>22.2</b> key network concepts</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#centrality"><i class="fa fa-check"></i><b>22.2.1</b> centrality</a></li>
+<li class="chapter" data-level="22.2.2" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#components-and-communities"><i class="fa fa-check"></i><b>22.2.2</b> components and communities</a></li>
+<li class="chapter" data-level="22.2.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#another-example-its-a-small-world"><i class="fa fa-check"></i><b>22.2.3</b> another example: it’s a small world</a></li>
+<li class="chapter" data-level="22.2.4" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#static-and-dynamic-networks"><i class="fa fa-check"></i><b>22.2.4</b> static and dynamic networks</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="an-introduction-to-networks.html"><a href="an-introduction-to-networks.html#some-additional-sources"><i class="fa fa-check"></i><b>22.3</b> some additional sources</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html"><i class="fa fa-check"></i><b>23</b> case study: the network structure of computational social science</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#from-citation-network-to-structural-network"><i class="fa fa-check"></i><b>23.0.1</b> from citation network to structural network</a></li>
+<li class="chapter" data-level="23.0.2" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#looking-at-the-whole-citation-network"><i class="fa fa-check"></i><b>23.0.2</b> looking at the whole citation network</a></li>
+<li class="chapter" data-level="23.0.3" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#the-structural-network-centrality-and-community-structure"><i class="fa fa-check"></i><b>23.0.3</b> the structural network: Centrality and community structure</a></li>
+<li class="chapter" data-level="23.0.4" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#visualizing-the-network"><i class="fa fa-check"></i><b>23.0.4</b> visualizing the network</a></li>
+<li class="chapter" data-level="23.0.5" data-path="case-study-the-network-structure-of-computational-social-science.html"><a href="case-study-the-network-structure-of-computational-social-science.html#exploring-the-communities"><i class="fa fa-check"></i><b>23.0.5</b> exploring the communities</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html"><i class="fa fa-check"></i><b>24</b> some ethical concerns for the data scientist</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#ethics-and-personality-harvesting"><i class="fa fa-check"></i><b>24.1</b> ethics and personality harvesting</a></li>
+<li class="chapter" data-level="24.2" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-law-of-unintended-consequences"><i class="fa fa-check"></i><b>24.2</b> the law of unintended consequences</a></li>
+<li class="chapter" data-level="24.3" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#your-privacy-is-my-concern"><i class="fa fa-check"></i><b>24.3</b> your privacy is my concern</a></li>
+<li class="chapter" data-level="24.4" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#who-should-hold-the-digital-keys"><i class="fa fa-check"></i><b>24.4</b> who should hold the digital keys?</a></li>
+<li class="chapter" data-level="24.5" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#contact-tracing-and-covid-19"><i class="fa fa-check"></i><b>24.5</b> contact-tracing and COVID-19</a></li>
+<li class="chapter" data-level="24.6" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#the-digital-divide"><i class="fa fa-check"></i><b>24.6</b> the digital divide</a></li>
+<li class="chapter" data-level="24.7" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#still-more-case-studies"><i class="fa fa-check"></i><b>24.7</b> still more case studies</a></li>
+<li class="chapter" data-level="24.8" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#some-potential-remedies"><i class="fa fa-check"></i><b>24.8</b> some potential remedies</a></li>
+<li class="chapter" data-level="24.9" data-path="some-ethical-concerns-for-the-data-scientist.html"><a href="some-ethical-concerns-for-the-data-scientist.html#technology-change-and-risk"><i class="fa fa-check"></i><b>24.9</b> technology, change, and risk</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="exercises-3.html"><a href="exercises-3.html"><i class="fa fa-check"></i><b>25</b> exercises</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="exercises-3.html"><a href="exercises-3.html#generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet"><i class="fa fa-check"></i><b>25.1</b> generating correlated data (GPA and SAT) and putting it in a Google Sheet</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="exercises-3.html"><a href="exercises-3.html#now-look-at-your-data-in-the-spreadsheet"><i class="fa fa-check"></i><b>25.1.1</b> now look at your data in the spreadsheet</a></li>
+<li class="chapter" data-level="25.1.2" data-path="exercises-3.html"><a href="exercises-3.html#using-ai-to-help-us-here"><i class="fa fa-check"></i><b>25.1.2</b> using AI to help us here</a></li>
+<li class="chapter" data-level="25.1.3" data-path="exercises-3.html"><a href="exercises-3.html#for-last-names-its-a-little-bit-trickier"><i class="fa fa-check"></i><b>25.1.3</b> for last names, it’s a little bit trickier</a></li>
+<li class="chapter" data-level="25.1.4" data-path="exercises-3.html"><a href="exercises-3.html#cleaning-these-up"><i class="fa fa-check"></i><b>25.1.4</b> cleaning these up</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#categorical-probability-and-venn-diagrams"><i class="fa fa-check"></i><b>25.2</b> categorical probability and Venn diagrams</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="26" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>26</b> correlation and regression</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.1-motivating-example-modeling-usage-of-a-rail-trail"><i class="fa fa-check"></i><b>26.1</b> E.1.1 Motivating example: Modeling usage of a rail trail</a></li>
+<li class="chapter" data-level="26.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.2-model-visualization"><i class="fa fa-check"></i><b>26.2</b> E.1.2 Model visualization</a></li>
+<li class="chapter" data-level="26.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.3-measuring-the-strength-of-fit"><i class="fa fa-check"></i><b>26.3</b> E.1.3 Measuring the strength of fit</a></li>
+<li class="chapter" data-level="26.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.4-categorical-explanatory-variables"><i class="fa fa-check"></i><b>26.4</b> E.1.4 Categorical explanatory variables</a></li>
+<li class="chapter" data-level="26.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.3-non-parallel-slopes-multiple-regression-with-interaction"><i class="fa fa-check"></i><b>26.5</b> E.2.3 Non-parallel slopes: Multiple regression with interaction</a></li>
+<li class="chapter" data-level="26.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.4-modeling-non-linear-relationships"><i class="fa fa-check"></i><b>26.6</b> E.2.4 Modeling non-linear relationships</a></li>
+<li class="chapter" data-level="26.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#split-into-train-and-test"><i class="fa fa-check"></i><b>26.7</b> split into train and test</a></li>
+<li class="chapter" data-level="26.8" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#the-null-model"><i class="fa fa-check"></i><b>26.8</b> 10.2.1.1 the null model</a></li>
+<li class="chapter" data-level="26.9" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#logistic-regression"><i class="fa fa-check"></i><b>26.9</b> 10.2.1.2 Logistic regression</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Modern, Appendix E</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="correlation-and-regression" class="section level1 hasAnchor" number="26">
+<h1><span class="header-section-number">26</span> correlation and regression<a href="correlation-and-regression.html#correlation-and-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="correlation-and-regression.html#cb301-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb301-2"><a href="correlation-and-regression.html#cb301-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb301-3"><a href="correlation-and-regression.html#cb301-3" tabindex="-1"></a><span class="fu">library</span>(mdsr)</span>
+<span id="cb301-4"><a href="correlation-and-regression.html#cb301-4" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb301-5"><a href="correlation-and-regression.html#cb301-5" tabindex="-1"></a><span class="fu">glimpse</span>(RailTrail)</span></code></pre></div>
+<pre><code>## Rows: 90
+## Columns: 11
+## $ hightemp   &lt;int&gt; 83, 73, 74, 95, 44, 69, 66, 66, 80, 79, 78, 65, 41, 59, 50, 54, 97, 75, 63, 42, 70, 57, 71, 46, 61,…
+## $ lowtemp    &lt;int&gt; 50, 49, 52, 61, 52, 54, 39, 38, 55, 45, 55, 48, 49, 35, 35, 32, 71, 43, 35, 37, 49, 48, 39, 30, 35,…
+## $ avgtemp    &lt;dbl&gt; 66.5, 61.0, 63.0, 78.0, 48.0, 61.5, 52.5, 52.0, 67.5, 62.0, 66.5, 56.5, 45.0, 47.0, 42.5, 43.0, 84.…
+## $ spring     &lt;int&gt; 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, …
+## $ summer     &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, …
+## $ fall       &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ cloudcover &lt;dbl&gt; 7.6, 6.3, 7.5, 2.6, 10.0, 6.6, 2.4, 0.0, 3.8, 4.1, 8.5, 7.2, 10.0, 7.7, 5.8, 3.6, 6.1, 6.3, 8.6, 10…
+## $ precip     &lt;dbl&gt; 0.00, 0.29, 0.32, 0.00, 0.14, 0.02, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.03, 0.00, 0.00, 0.00, 0.6…
+## $ volume     &lt;int&gt; 501, 419, 397, 385, 200, 375, 417, 629, 533, 547, 432, 418, 193, 331, 280, 304, 352, 156, 365, 181,…
+## $ weekday    &lt;lgl&gt; TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, …
+## $ dayType    &lt;chr&gt; &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekend&quot;, &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekday&quot;, &quot;weekend&quot;, &quot;weekend&quot;, …</code></pre>
+<div id="e.1.1-motivating-example-modeling-usage-of-a-rail-trail" class="section level2 hasAnchor" number="26.1">
+<h2><span class="header-section-number">26.1</span> E.1.1 Motivating example: Modeling usage of a rail trail<a href="correlation-and-regression.html#e.1.1-motivating-example-modeling-usage-of-a-rail-trail" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="correlation-and-regression.html#cb303-1" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> hightemp, <span class="at">data =</span> RailTrail)</span>
+<span id="cb303-2"><a href="correlation-and-regression.html#cb303-2" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb303-3"><a href="correlation-and-regression.html#cb303-3" tabindex="-1"></a><span class="fu">tidy</span>(mod)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic       p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+## 1 (Intercept)   -17.1     59.4      -0.288 0.774        
+## 2 hightemp        5.70     0.848     6.72  0.00000000171</code></pre>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="correlation-and-regression.html#cb305-1" tabindex="-1"></a><span class="fu">ggplot</span>(RailTrail, <span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume)) <span class="sc">+</span> </span>
+<span id="cb305-2"><a href="correlation-and-regression.html#cb305-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb305-3"><a href="correlation-and-regression.html#cb305-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-111-1.png" alt="" width="672" /></p>
+</div>
+<div id="e.1.2-model-visualization" class="section level2 hasAnchor" number="26.2">
+<h2><span class="header-section-number">26.2</span> E.1.2 Model visualization<a href="correlation-and-regression.html#e.1.2-model-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="correlation-and-regression.html#cb306-1" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb306-2"><a href="correlation-and-regression.html#cb306-2" tabindex="-1"></a>my_lm <span class="ot">&lt;-</span> <span class="cf">function</span>(data, formula) { <span class="co"># native pipe fills in first unnamed argument</span></span>
+<span id="cb306-3"><a href="correlation-and-regression.html#cb306-3" tabindex="-1"></a>  <span class="fu">lm</span>(formula, data)</span>
+<span id="cb306-4"><a href="correlation-and-regression.html#cb306-4" tabindex="-1"></a>}</span>
+<span id="cb306-5"><a href="correlation-and-regression.html#cb306-5" tabindex="-1"></a>mod_avg <span class="ot">&lt;-</span> RailTrail <span class="sc">|&gt;</span></span>
+<span id="cb306-6"><a href="correlation-and-regression.html#cb306-6" tabindex="-1"></a>  <span class="fu">my_lm</span>(volume <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb306-7"><a href="correlation-and-regression.html#cb306-7" tabindex="-1"></a>  <span class="fu">augment</span>(RailTrail)</span>
+<span id="cb306-8"><a href="correlation-and-regression.html#cb306-8" tabindex="-1"></a>mod_temp <span class="ot">&lt;-</span> RailTrail <span class="sc">|&gt;</span></span>
+<span id="cb306-9"><a href="correlation-and-regression.html#cb306-9" tabindex="-1"></a>  <span class="fu">my_lm</span>(volume <span class="sc">~</span> hightemp) <span class="sc">|&gt;</span></span>
+<span id="cb306-10"><a href="correlation-and-regression.html#cb306-10" tabindex="-1"></a>  <span class="fu">augment</span>(RailTrail)</span>
+<span id="cb306-11"><a href="correlation-and-regression.html#cb306-11" tabindex="-1"></a>mod_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(mod_avg, mod_temp) <span class="sc">|&gt;</span></span>
+<span id="cb306-12"><a href="correlation-and-regression.html#cb306-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;null&quot;</span>, <span class="st">&quot;slr&quot;</span>), <span class="at">each =</span> <span class="fu">nrow</span>(RailTrail)))</span></code></pre></div>
+<p>What is the point of this code? What do the two graphs describe?</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="correlation-and-regression.html#cb307-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mod_data, <span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume)) <span class="sc">+</span> </span>
+<span id="cb307-2"><a href="correlation-and-regression.html#cb307-2" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb307-3"><a href="correlation-and-regression.html#cb307-3" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(mod_data, model <span class="sc">==</span> <span class="st">&quot;null&quot;</span>), </span>
+<span id="cb307-4"><a href="correlation-and-regression.html#cb307-4" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> y <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb307-5"><a href="correlation-and-regression.html#cb307-5" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb307-6"><a href="correlation-and-regression.html#cb307-6" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb307-7"><a href="correlation-and-regression.html#cb307-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb307-8"><a href="correlation-and-regression.html#cb307-8" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(mod_data, model <span class="sc">==</span> <span class="st">&quot;slr&quot;</span>),</span>
+<span id="cb307-9"><a href="correlation-and-regression.html#cb307-9" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, </span>
+<span id="cb307-10"><a href="correlation-and-regression.html#cb307-10" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb307-11"><a href="correlation-and-regression.html#cb307-11" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb307-12"><a href="correlation-and-regression.html#cb307-12" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb307-13"><a href="correlation-and-regression.html#cb307-13" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xend =</span> hightemp, <span class="at">yend =</span> .fitted), </span>
+<span id="cb307-14"><a href="correlation-and-regression.html#cb307-14" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;cm&quot;</span>)), </span>
+<span id="cb307-15"><a href="correlation-and-regression.html#cb307-15" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;darkgray&quot;</span></span>
+<span id="cb307-16"><a href="correlation-and-regression.html#cb307-16" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb307-17"><a href="correlation-and-regression.html#cb307-17" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb307-18"><a href="correlation-and-regression.html#cb307-18" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>model)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-113-1.png" alt="" width="672" /></p>
+</div>
+<div id="e.1.3-measuring-the-strength-of-fit" class="section level2 hasAnchor" number="26.3">
+<h2><span class="header-section-number">26.3</span> E.1.3 Measuring the strength of fit<a href="correlation-and-regression.html#e.1.3-measuring-the-strength-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="correlation-and-regression.html#cb308-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(RailTrail)</span>
+<span id="cb308-2"><a href="correlation-and-regression.html#cb308-2" tabindex="-1"></a>SST <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">pull</span>(RailTrail, volume)) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb308-3"><a href="correlation-and-regression.html#cb308-3" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(mod)) <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb308-4"><a href="correlation-and-regression.html#cb308-4" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> SSE <span class="sc">/</span> SST</span></code></pre></div>
+<pre><code>## [1] 0.33939</code></pre>
+</div>
+<div id="e.1.4-categorical-explanatory-variables" class="section level2 hasAnchor" number="26.4">
+<h2><span class="header-section-number">26.4</span> E.1.4 Categorical explanatory variables<a href="correlation-and-regression.html#e.1.4-categorical-explanatory-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the relationship between the values of the following two lines? Why?</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="correlation-and-regression.html#cb310-1" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(volume <span class="sc">~</span> weekday, <span class="at">data =</span> RailTrail))</span></code></pre></div>
+<pre><code>## (Intercept) weekdayTRUE 
+##   430.71429   -80.29493</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="correlation-and-regression.html#cb312-1" tabindex="-1"></a>RailTrail <span class="sc">|&gt;</span></span>
+<span id="cb312-2"><a href="correlation-and-regression.html#cb312-2" tabindex="-1"></a>  <span class="fu">group_by</span>(weekday) <span class="sc">|&gt;</span></span>
+<span id="cb312-3"><a href="correlation-and-regression.html#cb312-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_volume =</span> <span class="fu">mean</span>(volume))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   weekday mean_volume
+##   &lt;lgl&gt;         &lt;dbl&gt;
+## 1 FALSE          431.
+## 2 TRUE           350.</code></pre>
+<p>E.2.1 Parallel slopes: Multiple regression with a categorical variable</p>
+<p>From correlation to multiple regression (no interaction, parallel lines model)</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="correlation-and-regression.html#cb314-1" tabindex="-1"></a>mod_parallel <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday, <span class="at">data =</span> RailTrail)</span>
+<span id="cb314-2"><a href="correlation-and-regression.html#cb314-2" tabindex="-1"></a><span class="fu">tidy</span>(mod_parallel)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+##   term        estimate std.error statistic      p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 (Intercept)    42.8     64.3       0.665 0.508       
+## 2 hightemp        5.35     0.846     6.32  0.0000000109
+## 3 weekdayTRUE   -51.6     23.7      -2.18  0.0321</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="correlation-and-regression.html#cb316-1" tabindex="-1"></a><span class="fu">glance</span>(mod_parallel)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC deviance df.residual  nobs
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+## 1     0.374         0.359  102.      25.9 0.00000000146     2  -542. 1093. 1103.  905841.          87    90</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="correlation-and-regression.html#cb318-1" tabindex="-1"></a>mod_parallel <span class="sc">|&gt;</span></span>
+<span id="cb318-2"><a href="correlation-and-regression.html#cb318-2" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span></span>
+<span id="cb318-3"><a href="correlation-and-regression.html#cb318-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume, <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb318-4"><a href="correlation-and-regression.html#cb318-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb318-5"><a href="correlation-and-regression.html#cb318-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
+<span id="cb318-6"><a href="correlation-and-regression.html#cb318-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Is it a</span><span class="sc">\n</span><span class="st">weekday?&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-117-1.png" alt="" width="672" /></p>
+</div>
+<div id="e.2.3-non-parallel-slopes-multiple-regression-with-interaction" class="section level2 hasAnchor" number="26.5">
+<h2><span class="header-section-number">26.5</span> E.2.3 Non-parallel slopes: Multiple regression with interaction<a href="correlation-and-regression.html#e.2.3-non-parallel-slopes-multiple-regression-with-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="correlation-and-regression.html#cb319-1" tabindex="-1"></a>mod_interact <span class="ot">&lt;-</span> <span class="fu">lm</span>(volume <span class="sc">~</span> hightemp <span class="sc">+</span> weekday <span class="sc">+</span> hightemp <span class="sc">*</span> weekday, </span>
+<span id="cb319-2"><a href="correlation-and-regression.html#cb319-2" tabindex="-1"></a>  <span class="at">data =</span> RailTrail)</span>
+<span id="cb319-3"><a href="correlation-and-regression.html#cb319-3" tabindex="-1"></a><span class="fu">tidy</span>(mod_interact)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
+##   term                 estimate std.error statistic p.value
+##   &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)            135.      108.        1.25 0.215  
+## 2 hightemp                 4.07      1.47      2.78 0.00676
+## 3 weekdayTRUE           -186.      129.       -1.44 0.153  
+## 4 hightemp:weekdayTRUE     1.91      1.80      1.06 0.292</code></pre>
+</div>
+<div id="e.2.4-modeling-non-linear-relationships" class="section level2 hasAnchor" number="26.6">
+<h2><span class="header-section-number">26.6</span> E.2.4 Modeling non-linear relationships<a href="correlation-and-regression.html#e.2.4-modeling-non-linear-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="correlation-and-regression.html#cb321-1" tabindex="-1"></a>mod_interact <span class="sc">|&gt;</span></span>
+<span id="cb321-2"><a href="correlation-and-regression.html#cb321-2" tabindex="-1"></a>  <span class="fu">augment</span>() <span class="sc">|&gt;</span></span>
+<span id="cb321-3"><a href="correlation-and-regression.html#cb321-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume, <span class="at">color =</span> weekday)) <span class="sc">+</span></span>
+<span id="cb321-4"><a href="correlation-and-regression.html#cb321-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb321-5"><a href="correlation-and-regression.html#cb321-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span> </span>
+<span id="cb321-6"><a href="correlation-and-regression.html#cb321-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Is it a</span><span class="sc">\n</span><span class="st">weekday?&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-119-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="correlation-and-regression.html#cb322-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> RailTrail, <span class="fu">aes</span>(<span class="at">x =</span> hightemp, <span class="at">y =</span> volume)) <span class="sc">+</span> </span>
+<span id="cb322-2"><a href="correlation-and-regression.html#cb322-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb322-3"><a href="correlation-and-regression.html#cb322-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span></span>
+<span id="cb322-4"><a href="correlation-and-regression.html#cb322-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> loess, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb322-5"><a href="correlation-and-regression.html#cb322-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number of trail crossings&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb322-6"><a href="correlation-and-regression.html#cb322-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;High temperature (F)&quot;</span>) </span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-120-1.png" alt="" width="672" /></p>
+<p>10.2.1</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="correlation-and-regression.html#cb323-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb323-2"><a href="correlation-and-regression.html#cb323-2" tabindex="-1"></a><span class="fu">library</span>(mdsr)</span>
+<span id="cb323-3"><a href="correlation-and-regression.html#cb323-3" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;http://archive.ics.uci.edu/static/public/2/adult.zip&quot;</span></span>
+<span id="cb323-4"><a href="correlation-and-regression.html#cb323-4" tabindex="-1"></a>adult_zip <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb323-5"><a href="correlation-and-regression.html#cb323-5" tabindex="-1"></a><span class="fu">download.file</span>(url, <span class="at">destfile =</span> adult_zip)</span>
+<span id="cb323-6"><a href="correlation-and-regression.html#cb323-6" tabindex="-1"></a>adult_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;adult&quot;</span>)</span>
+<span id="cb323-7"><a href="correlation-and-regression.html#cb323-7" tabindex="-1"></a><span class="fu">unzip</span>(adult_zip, <span class="at">files =</span> <span class="st">&quot;adult.data&quot;</span>, <span class="at">exdir =</span> adult_dir)</span>
+<span id="cb323-8"><a href="correlation-and-regression.html#cb323-8" tabindex="-1"></a>adult_data <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(adult_dir, <span class="st">&quot;adult.data&quot;</span>)</span>
+<span id="cb323-9"><a href="correlation-and-regression.html#cb323-9" tabindex="-1"></a></span>
+<span id="cb323-10"><a href="correlation-and-regression.html#cb323-10" tabindex="-1"></a>census <span class="ot">&lt;-</span> adult_data <span class="sc">|&gt;</span></span>
+<span id="cb323-11"><a href="correlation-and-regression.html#cb323-11" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
+<span id="cb323-12"><a href="correlation-and-regression.html#cb323-12" tabindex="-1"></a>    <span class="at">col_names =</span> <span class="fu">c</span>(</span>
+<span id="cb323-13"><a href="correlation-and-regression.html#cb323-13" tabindex="-1"></a>      <span class="st">&quot;age&quot;</span>, <span class="st">&quot;workclass&quot;</span>, <span class="st">&quot;fnlwgt&quot;</span>, <span class="st">&quot;education&quot;</span>, </span>
+<span id="cb323-14"><a href="correlation-and-regression.html#cb323-14" tabindex="-1"></a>      <span class="st">&quot;education_1&quot;</span>, <span class="st">&quot;marital_status&quot;</span>, <span class="st">&quot;occupation&quot;</span>, <span class="st">&quot;relationship&quot;</span>, </span>
+<span id="cb323-15"><a href="correlation-and-regression.html#cb323-15" tabindex="-1"></a>      <span class="st">&quot;race&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;capital_gain&quot;</span>, <span class="st">&quot;capital_loss&quot;</span>, <span class="st">&quot;hours_per_week&quot;</span>, </span>
+<span id="cb323-16"><a href="correlation-and-regression.html#cb323-16" tabindex="-1"></a>      <span class="st">&quot;native_country&quot;</span>, <span class="st">&quot;income&quot;</span></span>
+<span id="cb323-17"><a href="correlation-and-regression.html#cb323-17" tabindex="-1"></a>    )</span>
+<span id="cb323-18"><a href="correlation-and-regression.html#cb323-18" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb323-19"><a href="correlation-and-regression.html#cb323-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">factor</span>(income))</span>
+<span id="cb323-20"><a href="correlation-and-regression.html#cb323-20" tabindex="-1"></a><span class="fu">glimpse</span>(census)</span></code></pre></div>
+<pre><code>## Rows: 32,561
+## Columns: 15
+## $ age            &lt;dbl&gt; 39, 50, 38, 53, 28, 37, 49, 52, 31, 42, 37, 30, 23, 32, 40, 34, 25, 32, 38, 43, 40, 54, 35, 43,…
+## $ workclass      &lt;chr&gt; &quot;State-gov&quot;, &quot;Self-emp-not-inc&quot;, &quot;Private&quot;, &quot;Private&quot;, &quot;Private&quot;, &quot;Private&quot;, &quot;Private&quot;, &quot;Self-e…
+## $ fnlwgt         &lt;dbl&gt; 77516, 83311, 215646, 234721, 338409, 284582, 160187, 209642, 45781, 159449, 280464, 141297, 12…
+## $ education      &lt;chr&gt; &quot;Bachelors&quot;, &quot;Bachelors&quot;, &quot;HS-grad&quot;, &quot;11th&quot;, &quot;Bachelors&quot;, &quot;Masters&quot;, &quot;9th&quot;, &quot;HS-grad&quot;, &quot;Masters…
+## $ education_1    &lt;dbl&gt; 13, 13, 9, 7, 13, 14, 5, 9, 14, 13, 10, 13, 13, 12, 11, 4, 9, 9, 7, 14, 16, 9, 5, 7, 9, 13, 9, …
+## $ marital_status &lt;chr&gt; &quot;Never-married&quot;, &quot;Married-civ-spouse&quot;, &quot;Divorced&quot;, &quot;Married-civ-spouse&quot;, &quot;Married-civ-spouse&quot;, …
+## $ occupation     &lt;chr&gt; &quot;Adm-clerical&quot;, &quot;Exec-managerial&quot;, &quot;Handlers-cleaners&quot;, &quot;Handlers-cleaners&quot;, &quot;Prof-specialty&quot;, …
+## $ relationship   &lt;chr&gt; &quot;Not-in-family&quot;, &quot;Husband&quot;, &quot;Not-in-family&quot;, &quot;Husband&quot;, &quot;Wife&quot;, &quot;Wife&quot;, &quot;Not-in-family&quot;, &quot;Husba…
+## $ race           &lt;chr&gt; &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;Black&quot;, &quot;Black&quot;, &quot;White&quot;, &quot;Black&quot;, &quot;White&quot;, &quot;White&quot;, &quot;White&quot;, &quot;Blac…
+## $ sex            &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Male&quot;,…
+## $ capital_gain   &lt;dbl&gt; 2174, 0, 0, 0, 0, 0, 0, 0, 14084, 5178, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ capital_loss   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2042, 0, 0, 0, 0, 0, 0, 0,…
+## $ hours_per_week &lt;dbl&gt; 40, 13, 40, 40, 40, 40, 16, 45, 50, 40, 80, 40, 30, 50, 40, 45, 35, 40, 50, 45, 60, 20, 40, 40,…
+## $ native_country &lt;chr&gt; &quot;United-States&quot;, &quot;United-States&quot;, &quot;United-States&quot;, &quot;United-States&quot;, &quot;Cuba&quot;, &quot;United-States&quot;, &quot;J…
+## $ income         &lt;fct&gt; &lt;=50K, &lt;=50K, &lt;=50K, &lt;=50K, &lt;=50K, &lt;=50K, &lt;=50K, &gt;50K, &gt;50K, &gt;50K, &gt;50K, &gt;50K, &lt;=50K, &lt;=50K, &gt;5…</code></pre>
+</div>
+<div id="split-into-train-and-test" class="section level2 hasAnchor" number="26.7">
+<h2><span class="header-section-number">26.7</span> split into train and test<a href="correlation-and-regression.html#split-into-train-and-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="correlation-and-regression.html#cb325-1" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb325-2"><a href="correlation-and-regression.html#cb325-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">364</span>)</span>
+<span id="cb325-3"><a href="correlation-and-regression.html#cb325-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(census)</span>
+<span id="cb325-4"><a href="correlation-and-regression.html#cb325-4" tabindex="-1"></a>census_parts <span class="ot">&lt;-</span> census <span class="sc">|&gt;</span></span>
+<span id="cb325-5"><a href="correlation-and-regression.html#cb325-5" tabindex="-1"></a>  <span class="fu">initial_split</span>(<span class="at">prop =</span> <span class="fl">0.8</span>)</span>
+<span id="cb325-6"><a href="correlation-and-regression.html#cb325-6" tabindex="-1"></a></span>
+<span id="cb325-7"><a href="correlation-and-regression.html#cb325-7" tabindex="-1"></a>train <span class="ot">&lt;-</span> census_parts <span class="sc">|&gt;</span></span>
+<span id="cb325-8"><a href="correlation-and-regression.html#cb325-8" tabindex="-1"></a>  <span class="fu">training</span>()</span>
+<span id="cb325-9"><a href="correlation-and-regression.html#cb325-9" tabindex="-1"></a></span>
+<span id="cb325-10"><a href="correlation-and-regression.html#cb325-10" tabindex="-1"></a>test <span class="ot">&lt;-</span> census_parts <span class="sc">|&gt;</span></span>
+<span id="cb325-11"><a href="correlation-and-regression.html#cb325-11" tabindex="-1"></a>  <span class="fu">testing</span>()</span>
+<span id="cb325-12"><a href="correlation-and-regression.html#cb325-12" tabindex="-1"></a></span>
+<span id="cb325-13"><a href="correlation-and-regression.html#cb325-13" tabindex="-1"></a><span class="fu">list</span>(train, test) <span class="sc">|&gt;</span></span>
+<span id="cb325-14"><a href="correlation-and-regression.html#cb325-14" tabindex="-1"></a>  <span class="fu">map_int</span>(nrow)</span></code></pre></div>
+<pre><code>## [1] 26048  6513</code></pre>
+</div>
+<div id="the-null-model" class="section level2 hasAnchor" number="26.8">
+<h2><span class="header-section-number">26.8</span> 10.2.1.1 the null model<a href="correlation-and-regression.html#the-null-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>simple percentage of high earners, then shown as table, then saved as a model</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="correlation-and-regression.html#cb327-1" tabindex="-1"></a>(pi_bar <span class="ot">&lt;-</span> train <span class="sc">|&gt;</span></span>
+<span id="cb327-2"><a href="correlation-and-regression.html#cb327-2" tabindex="-1"></a>  <span class="fu">count</span>(income) <span class="sc">|&gt;</span></span>
+<span id="cb327-3"><a href="correlation-and-regression.html#cb327-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb327-4"><a href="correlation-and-regression.html#cb327-4" tabindex="-1"></a>  <span class="fu">filter</span>(income <span class="sc">==</span> <span class="st">&quot;&gt;50K&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb327-5"><a href="correlation-and-regression.html#cb327-5" tabindex="-1"></a>  <span class="fu">pull</span>(pct))</span></code></pre></div>
+<pre><code>## [1] 0.2412853</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="correlation-and-regression.html#cb329-1" tabindex="-1"></a>train <span class="sc">|&gt;</span></span>
+<span id="cb329-2"><a href="correlation-and-regression.html#cb329-2" tabindex="-1"></a>  <span class="fu">count</span>(income) <span class="sc">|&gt;</span></span>
+<span id="cb329-3"><a href="correlation-and-regression.html#cb329-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   income     n   pct
+##   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt;
+## 1 &lt;=50K  19763 0.759
+## 2 &gt;50K    6285 0.241</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="correlation-and-regression.html#cb331-1" tabindex="-1"></a>mod_null <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(<span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb331-2"><a href="correlation-and-regression.html#cb331-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;glm&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb331-3"><a href="correlation-and-regression.html#cb331-3" tabindex="-1"></a>  <span class="fu">fit</span>(income <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> train)</span>
+<span id="cb331-4"><a href="correlation-and-regression.html#cb331-4" tabindex="-1"></a></span>
+<span id="cb331-5"><a href="correlation-and-regression.html#cb331-5" tabindex="-1"></a><span class="fu">library</span>(yardstick)</span>
+<span id="cb331-6"><a href="correlation-and-regression.html#cb331-6" tabindex="-1"></a>pred <span class="ot">&lt;-</span> train <span class="sc">|&gt;</span></span>
+<span id="cb331-7"><a href="correlation-and-regression.html#cb331-7" tabindex="-1"></a>  <span class="fu">select</span>(income, capital_gain) <span class="sc">|&gt;</span></span>
+<span id="cb331-8"><a href="correlation-and-regression.html#cb331-8" tabindex="-1"></a>  <span class="fu">bind_cols</span>(</span>
+<span id="cb331-9"><a href="correlation-and-regression.html#cb331-9" tabindex="-1"></a>    <span class="fu">predict</span>(mod_null, <span class="at">new_data =</span> train, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span>
+<span id="cb331-10"><a href="correlation-and-regression.html#cb331-10" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb331-11"><a href="correlation-and-regression.html#cb331-11" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">income_null =</span> .pred_class)</span>
+<span id="cb331-12"><a href="correlation-and-regression.html#cb331-12" tabindex="-1"></a><span class="fu">accuracy</span>(pred, income, income_null)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.759</code></pre>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="correlation-and-regression.html#cb333-1" tabindex="-1"></a>confusion_null <span class="ot">&lt;-</span> pred <span class="sc">|&gt;</span></span>
+<span id="cb333-2"><a href="correlation-and-regression.html#cb333-2" tabindex="-1"></a>  <span class="fu">conf_mat</span>(<span class="at">truth =</span> income, <span class="at">estimate =</span> income_null)</span>
+<span id="cb333-3"><a href="correlation-and-regression.html#cb333-3" tabindex="-1"></a>confusion_null</span></code></pre></div>
+<pre><code>##           Truth
+## Prediction &lt;=50K  &gt;50K
+##      &lt;=50K 19763  6285
+##      &gt;50K      0     0</code></pre>
+</div>
+<div id="logistic-regression" class="section level2 hasAnchor" number="26.9">
+<h2><span class="header-section-number">26.9</span> 10.2.1.2 Logistic regression<a href="correlation-and-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="correlation-and-regression.html#cb335-1" tabindex="-1"></a>mod_log_1 <span class="ot">&lt;-</span> <span class="fu">logistic_reg</span>(<span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb335-2"><a href="correlation-and-regression.html#cb335-2" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;glm&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb335-3"><a href="correlation-and-regression.html#cb335-3" tabindex="-1"></a>  <span class="fu">fit</span>(income <span class="sc">~</span> capital_gain, <span class="at">data =</span> train)</span>
+<span id="cb335-4"><a href="correlation-and-regression.html#cb335-4" tabindex="-1"></a>train_plus <span class="ot">&lt;-</span> train <span class="sc">|&gt;</span></span>
+<span id="cb335-5"><a href="correlation-and-regression.html#cb335-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high_earner =</span> <span class="fu">as.integer</span>(income <span class="sc">==</span> <span class="st">&quot;&gt;50K&quot;</span>))</span>
+<span id="cb335-6"><a href="correlation-and-regression.html#cb335-6" tabindex="-1"></a></span>
+<span id="cb335-7"><a href="correlation-and-regression.html#cb335-7" tabindex="-1"></a><span class="fu">ggplot</span>(train_plus, <span class="fu">aes</span>(<span class="at">x =</span> capital_gain, <span class="at">y =</span> high_earner)) <span class="sc">+</span> </span>
+<span id="cb335-8"><a href="correlation-and-regression.html#cb335-8" tabindex="-1"></a>  <span class="fu">geom_count</span>(</span>
+<span id="cb335-9"><a href="correlation-and-regression.html#cb335-9" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.05</span>), </span>
+<span id="cb335-10"><a href="correlation-and-regression.html#cb335-10" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb335-11"><a href="correlation-and-regression.html#cb335-11" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb335-12"><a href="correlation-and-regression.html#cb335-12" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb335-13"><a href="correlation-and-regression.html#cb335-13" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>), </span>
+<span id="cb335-14"><a href="correlation-and-regression.html#cb335-14" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;dodgerblue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">se =</span> <span class="cn">FALSE</span></span>
+<span id="cb335-15"><a href="correlation-and-regression.html#cb335-15" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb335-16"><a href="correlation-and-regression.html#cb335-16" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>), <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb335-17"><a href="correlation-and-regression.html#cb335-17" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span>dollar)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-124-1.png" alt="" width="672" /></p>
+
+<p><strong>Multiple events</strong></p>
+<p>We’re often interested in the conjunction of more than two events (such as the likelihood that a hurricane will pass through campus, your car won’t work, and your friends will be unable or unwilling to help you).  Remember that the probability of the conjunction of any three events A, B, and C can be no more likely than the probability of two of these events.</p>
+<p><em>Which of the following is more likely? <br />
+A: A star athlete becomes a drug addict, enters a treatment program, and wins a championship.<br />
+ or B: A star athlete becomes a drug addict and wins a championship.<br />
+ (Hastie &amp; Dawes, p. 351)</em></p>
+<p>In thinking of the probability of the conjunction of multiple events, remember that each event A, B, etc., can represent a set of outcomes.  Say that A is “useless friends,” B is “dead car” and C is “hurricane.” The probability of useless friends and a dead car is</p>
+<p>P (A and B) = P (A) P (B|A)</p>
+<p>Call “useless friends and a dead car” X.  Then the probability of all three events co-occurring is</p>
+<p>P (X and C) = P (C) P (X|C)</p>
+<p>This tells us that the probability of all three events co-occuring is the probability of a hurricane, times the probability of that your friends and car will both be useless given that there is a hurricane.  We can get further than this using the <strong>chain rule:</strong></p>
+<p>P (A and B and C) = P (C) P (A and B|C)</p>
+<p>                           = P (C) P (B|C) P (A|B and C)</p>
+<p>that is, the probability of all three events co-occurring is equal to the probability of a hurricane hitting us, times the likelihood of your car being dead given that there is a hurricane, times the likelihood of your friends being useless given that you are stuck without a car in a hurricane.  The last of these is, I expect, small.</p>
+<p>As you can see, problems in probability can become complex and cumbersome.  But because we live in an uncertain world, an understanding of probability can help us make more sound, more rational decisions.</p>
+<p><strong>Bayes’ theorem</strong> is a tool for estimating one conditional probability from another. It’s often expressed in terms of Hypotheses (H) and Data (D).</p>
+<p>So. We’re interested in the probability of a hypothesis in light of some data, or <strong>P(H|D</strong>).</p>
+<p>This depends on the prior probability of the hypothesis, or how likely it was before the data were collected, or <strong>P(H).</strong> It also depends upon how likely the data are given two states of the world, that is, the probability of the data given that the hypothesis is true, or <strong>P (D|H)</strong>, and the probability of the data given that the hypothesis is not true, or <strong>P (D|not H)</strong>.</p>
+<p>If we have these three in li</p>
+<p>P (B|A):</p>
+<p>It may look complicated at first:</p>
+<p><span class="math display">\[ P (H|D) = \frac{P(H)*P(D|H)}{P(H)* P(D|H) + (1-P(H))* P(D|not H)} \]</span></p>
+<p>Bayes’ theorem matters, because people as well as scientists are concerned with hypotheses.  We live in an uncertain world, and constantly form hypotheses about it.  We form these hypotheses as questions…</p>
+<p><em>Do pens get trashed on the whiteboard because of a soap film?<br />
+Am I allergic to shellfish?<br />
+Does studying at the last minute help my exam performance?<br />
+Does she love me?<br />
+Is my car safe in that parking lot?</em></p>
+<p>Bayes’ theorem is important because it describes how we should revise our estimates of the probability of a hypothesis in light of data. We can rewrite the above equation, substituting H (hypothesis) for A, and D (data) for B:</p>
+<p>P (H|D) = P(H) P(D|H) /<span class="math display">\[ P(H) P(D\|H) + P(not H) P(D\|not H) \]</span></p>
+<p>Let’s look at the soap-film hypothesis as an example.  I begin with an initial P(H), my <strong>prior probability</strong> (often a <strong>base rate</strong>) that soap could dry out pens. Say it’s .3</p>
+<p>P(H) = soap dries out the pen = .3</p>
+<p>I try a new pen on the board, write with it for 3 minutes, and ruin it. I think that, if my hypothesis is true, that this is likely (P (D|H) =.7).  If my hypothesis is false, it is unlikely (P (D|not H) = .2).  What is my <strong>posterior probability</strong>, or the revised estimate of the probability of the hypothesis in light of data?</p>
+<p>P (H|D) = (.3)(.7) / <span class="math display">\[ (.3)(.7) + (.7)(.2) \]</span></p>
+<p>My new subjective probability is .6.  Apply Bayes’ theorem to the following questions to examine how probability estimates should change in light of data:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="22%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Initial hypothesis</strong></th>
+<th align="center"><strong>P (H)</strong></th>
+<th align="left"><strong>New data</strong></th>
+<th align="center"><strong>P (D|H)</strong></th>
+<th align="center"><strong>P (D|not H)</strong></th>
+<th align="center"><strong>P (H|D)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pens don’t last because of soap film on the whiteboard</td>
+<td align="center">.3</td>
+<td align="left">A pen is quickly trashed</td>
+<td align="center">.7</td>
+<td align="center">.2</td>
+<td align="center">.6</td>
+</tr>
+<tr class="even">
+<td align="left">I am allergic to shellfish</td>
+<td align="center">.02</td>
+<td align="left">Rash after eating clams</td>
+<td align="center">.9</td>
+<td align="center">.01</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">Studying at the last minute helps my exam performance</td>
+<td align="center">.6</td>
+<td align="left">I failed</td>
+<td align="center">.2</td>
+<td align="center">.7</td>
+<td align="center">?</td>
+</tr>
+<tr class="even">
+<td align="left">She loves me</td>
+<td align="center">.3</td>
+<td align="left">She gave me a present</td>
+<td align="center">.6</td>
+<td align="center">.3</td>
+<td align="center">?</td>
+</tr>
+<tr class="odd">
+<td align="left">My car is safe in that parking lot</td>
+<td align="center">.3</td>
+<td align="left">I just heard a car alarm</td>
+<td align="center">.4</td>
+<td align="center">.4</td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+<p>Bayes’ theorem is a <em>normative model</em> of probability - how we should revise probability estimates, not a <em>descriptive model</em>.  That is, the research suggests that people don’t typically revise probability estimates in this way, even though we arguably should.</p>
+<p>Implications: Can the principles of probability help us solve these problems?</p>
+<ol style="list-style-type: decimal">
+<li><p>A cab was involved in a hit-and-run accident at night and two cab companies, the Green and the Blue, operate in the neighborhood in which the accident occurred. Of the cabs in the neighborhood, 85% are Green and 15% are Blue. A witness identified the cab as Blue. The court tested the accuracy of the witness under the same circumstances that existed on the night of the accident and the witness correctly identified each of the two colors of cabs 80% of the time.</p>
+<ol style="list-style-type: decimal">
+<li>What is the probability that the cab was Blue?</li>
+</ol></li>
+<li><p>Imagine two giant jars are each filled with thousands of jelly beans. In the first jar, 70% of the jelly beans are red and the rest are blue. In the second jar, 70% are blue and the rest are red. Suppose one jar is chosen, at random, and 12 jelly beans are taken from it: 8 blue jelly beans and 4 red jelly beans. What are the chances that the 12 jelly beans were taken from the jar with mostly red jelly beans?</p></li>
+</ol>
+<blockquote>
+<p>___________%.</p>
+</blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li><p>You are manager of a baseball team. It is the bottom of the ninth inning, there are two outs, and you are losing by one run. You will lose the game if the next batter makes an out. But because there are base runners, you will win the game if the batter gets a hit. You can choose one of two batters</p>
+<ol style="list-style-type: decimal">
+<li><p>Smith has an overall batting average of .320 in 400 times at bat, but has only bat .250 in 20 plate appearances against this pitcher</p></li>
+<li><p>Jones has an overall batting average of only .250 in 400 times at bat, but has bat .320 in 20 plate appearances against this pitcher</p></li>
+</ol></li>
+<li><p>James grew up in a Bohemian family. His father was a musician, and his mother was a painter. They lived together for 40 years and never got married. James was a very talented child with a special gift for comedy, but he turned into a rebellious troublemaker in his youth. He dropped out of college after two years and traveled to Asia to learn crafts. James is now 35 years old. Of 100 people like James, how many are</p>
+<ol style="list-style-type: decimal">
+<li><p>Republicans?</p></li>
+<li><p>Artists?</p></li>
+<li><p>Republican Artists?</p></li>
+</ol></li>
+<li><p>Steve is very shy and withdrawn, invariably helpful, but with little interest in people, or in the world of reality. A meek and tidy soul, he has a need for order and structure, and a passion for detail.” What is the probability that Steve is</p>
+<ol style="list-style-type: decimal">
+<li><p>a farmer?</p></li>
+<li><p>a Salesman?</p></li>
+<li><p>an Airline Pilot?</p></li>
+<li><p>a Librarian?</p></li>
+<li><p>a Physician?</p></li>
+</ol></li>
+</ol>
+
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div class="csl-entry">
+Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>American Statistician</em> 27 (1): 17–21.
+</div>
+<div class="csl-entry">
+Apicella, Coren L., Frank W. Marlowe, James H. Fowler, and Nicholas A. Christakis. 2012. <span>“Social Networks and Cooperation in Hunter-Gatherers.”</span> <em>Nature</em> 481 (7382): 497–501. <a href="https://doi.org/10/fz3v4v">https://doi.org/10/fz3v4v</a>.
+</div>
+<div class="csl-entry">
+Baker, Monya. 2016. <span>“Is There a Reproducibility Crisis?”</span> <em>Nature</em> 533: 26.
+</div>
+<div class="csl-entry">
+Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/10/cff2">https://doi.org/10/cff2</a>.
+</div>
+<div class="csl-entry">
+Blumenthal, Arthur L. 1975. <span>“A Reappraisal of <span>Wilhelm Wundt</span>.”</span> <em>American Psychologist</em> 30 (11): 1081.
+</div>
+<div class="csl-entry">
+Bond, Robert M., Christopher J. Fariss, Jason J. Jones, Adam D. I. Kramer, Cameron Marlow, Jaime E. Settle, and James H. Fowler. 2012. <span>“A 61-Million-Person Experiment in Social Influence and Political Mobilization.”</span> <em>Nature</em> 489 (7415): 295–98. <a href="https://doi.org/10/f3689v">https://doi.org/10/f3689v</a>.
+</div>
+<div class="csl-entry">
+Bonomi, Flavio, Rodolfo Milito, Jiang Zhu, and Sateesh Addepalli. 2012. <span>“Fog Computing and Its Role in the Internet of Things.”</span> In <em>Proceedings of the First Edition of the <span>MCC</span> Workshop on <span>Mobile</span> Cloud Computing</em>, 13–16. ACM. <a href="https://doi.org/10/gft9b9">https://doi.org/10/gft9b9</a>.
+</div>
+<div class="csl-entry">
+Boyd, Ryan L, Ashwini Ashokkumar, Sarah Seraj, and James W Pennebaker. 2022. <span>“The Development and Psychometric Properties of LIWC-22.”</span> <em>Austin, TX: University of Texas at Austin</em> 10: 1–47.
+</div>
+<div class="csl-entry">
+Boyd, Ryan L., Paola Pasca, and Kevin Lanning. 2020. <span>“The <span>Personality Panorama</span>: <span>Conceptualizing Personality Through Big Behavioural Data</span>: <span>The</span> Personality Panorama.”</span> Edited by John Rauthmann. <em>European Journal of Personality</em>, April. <a href="https://doi.org/10/gg4t8j">https://doi.org/10/gg4t8j</a>.
+</div>
+<div class="csl-entry">
+Broman, Karl W., and Kara H. Woo. 2018. <span>“Data <span>Organization</span> in <span>Spreadsheets</span>.”</span> <em>The American Statistician</em> 72 (1): 2–10. <a href="https://doi.org/10.1080/00031305.2017.1375989">https://doi.org/10.1080/00031305.2017.1375989</a>.
+</div>
+<div class="csl-entry">
+Buckheit, Jonathan B., and David L. Donoho. 1995. <span>“Wavelab and Reproducible Research.”</span> In <em>Wavelets and Statistics</em>, 55–81. Springer.
+</div>
+<div class="csl-entry">
+Cartwright, Dorwin, and Frank Harary. 1956. <span>“Structural Balance: A Generalization of <span>Heider</span>’s Theory.”</span> <em>Psychological Review</em> 63 (5): 277.
+</div>
+<div class="csl-entry">
+Christakis, Nicholas A., and James H. Fowler. 2007. <span>“The Spread of Obesity in a Large Social Network over 32 Years.”</span> <em>N Engl J Med</em> 357: 3709. <a href="https://doi.org/10/dmrgt6">https://doi.org/10/dmrgt6</a>.
+</div>
+<div class="csl-entry">
+———. 2013. <span>“Social Contagion Theory: Examining Dynamic Social Networks and Human Behavior.”</span> <em>Statistics in Medicine</em> 32 (4): 556–77. <a href="https://doi.org/10/ck2j">https://doi.org/10/ck2j</a>.
+</div>
+<div class="csl-entry">
+Clarke, Russell, David Dorwin, and Rob Nash. 2009. <span>“Is Open Source Software More Secure?”</span> <em>Homeland Security/Cyber Security</em>.
+</div>
+<div class="csl-entry">
+Cleveland, William S., and Robert McGill. 1985. <span>“Graphical <span>Perception</span> and <span>Graphical Methods</span> for <span>Analyzing Scientific Data</span>.”</span> <em>Science, New Series</em> 229 (4716): 828–33. <a href="https://www.jstor.org/stable/1695272">https://www.jstor.org/stable/1695272</a>.
+</div>
+<div class="csl-entry">
+Cox, Jonathan, and Michael Lindell. 2013. <span>“Visualizing Uncertainty in Predicted Hurricane Tracks.”</span> <em>International Journal for Uncertainty Quantification</em> 3 (2). <a href="https://doi.org/10/gjjsfw">https://doi.org/10/gjjsfw</a>.
+</div>
+<div class="csl-entry">
+Deane, Claudia. 2024. <span>“Americans’ <span>Deepening Mistrust</span> of <span>Institutions</span>.”</span>
+</div>
+<div class="csl-entry">
+Donoho, David. 2017. <span>“50 <span>Years</span> of <span>Data Science</span>.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
+</div>
+<div class="csl-entry">
+Donoho, David L. 2010. <span>“An Invitation to Reproducible Computational Research.”</span> <em>Biostatistics</em> 11 (3): 385–88. <a href="https://doi.org/10/bxwkns">https://doi.org/10/bxwkns</a>.
+</div>
+<div class="csl-entry">
+Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/10/cs5c5q">https://doi.org/10/cs5c5q</a>.
+</div>
+<div class="csl-entry">
+FitzGerald, Ben, Peter L Levin, and Jacqueline Parziale. 2016. <em>Open Source Software &amp; the Department of Defense</em>. Center for a New American Security.
+</div>
+<div class="csl-entry">
+Gandrud, Christopher. 2013. <em>Reproducible <span>Research</span> with <span>R</span> and <span>R Studio</span></em>. CRC Press.
+</div>
+<div class="csl-entry">
+Garcia, David, Mansi Goel, Amod Kant Agrawal, and Ponnurangam Kumaraguru. 2018. <span>“Collective Aspects of Privacy in the <span>Twitter</span> Social Network.”</span> <em>EPJ Data Science</em> 7: 1–13. <a href="https://doi.org/10/cjhr">https://doi.org/10/cjhr</a>.
+</div>
+<div class="csl-entry">
+Gleibs, Ilka H. 2014. <span>“Turning Virtual Public Spaces into Laboratories: <span>Thoughts</span> on Conducting Online Field Studies Using Social Network Sites.”</span> <em>Analyses of Social Issues and Public Policy</em> 14 (1): 352–70. <a href="https://doi.org/10/f6t7gd">https://doi.org/10/f6t7gd</a>.
+</div>
+<div class="csl-entry">
+Grange, JA, D Lakens, F Adolfi, C Albers, F Anvari, M Apps, S Argamon, et al. 2018. <span>“Justify Your Alpha.”</span> <em>Nature Human Behavior</em>.
+</div>
+<div class="csl-entry">
+Harary, Frank. 1959. <span>“On the Measurement of Structural Balance.”</span> <em>Behavioral Science</em> 4 (4): 316–23. <a href="https://doi.org/10/cp9nfp">https://doi.org/10/cp9nfp</a>.
+</div>
+<div class="csl-entry">
+Hastie, Reid, and Robyn M Dawes. 2010. <em>Rational Choice in an Uncertain World: <span>The</span> Psychology of Judgment and Decision Making</em>. Sage.
+</div>
+<div class="csl-entry">
+Healy, Kieran. 2017. <span>“Data Visualization for Social Science: <span>A</span> Practical Introduction with r and Ggplot2.”</span>
+</div>
+<div class="csl-entry">
+Henrich, Joseph, Steven J. Heine, and Ara Norenzayan. 2010. <span>“The Weirdest People in the World?”</span> <em>Behavioral and Brain Sciences</em> 33 (2-3): 61–83. <a href="https://doi.org/10/c9j35b">https://doi.org/10/c9j35b</a>.
+</div>
+<div class="csl-entry">
+Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/10/gfr5tf">https://doi.org/10/gfr5tf</a>.
+</div>
+<div class="csl-entry">
+Hornik, Kurt, and The R Core Team. 2022. <span>“R <span>FAQ</span>: <span>The Comprehensive R Archive Network</span>.”</span>
+</div>
+<div class="csl-entry">
+Hullman, Jessica, Paul Resnick, and Eytan Adar. 2015. <span>“Hypothetical <span>Outcome Plots Outperform Error Bars</span> and <span>Violin Plots</span> for <span>Inferences</span> about <span>Reliability</span> of <span>Variable Ordering</span>.”</span> Edited by Elena Papaleo. <em>PLOS ONE</em> 10 (11): e0142444. <a href="https://doi.org/10.1371/journal.pone.0142444">https://doi.org/10.1371/journal.pone.0142444</a>.
+</div>
+<div class="csl-entry">
+Hvitfeldt, Emil, and Julia Silge. 2021. <em>Supervised Machine Learning for Text Analysis in <span>R</span></em>. <span>Chapman and Hall/CRC</span>.
+</div>
+<div class="csl-entry">
+Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/10/chhf6b">https://doi.org/10/chhf6b</a>.
+</div>
+<div class="csl-entry">
+Isaacson, Walter. 2014. <em>The <span>Innovators</span>: <span>How</span> a <span>Group</span> of <span>Hackers</span>, <span>Geniuses</span>, and <span>Geeks Created</span> the <span>Digital Revolution</span></em>. <span>Simon and Schuster</span>.
+</div>
+<div class="csl-entry">
+Jackson, Dan. 2017. <span>“The <span>Netflix Prize</span>: <span>How</span> a 1 <span>Million Contest Changed Binge-Watching Forever</span>.”</span> <em>Thrillist. Com</em>.
+</div>
+<div class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An <span>Introduction</span> to <span>Statistical Learning</span></em>. Vol. 103. Springer <span>Texts</span> in <span>Statistics</span>. New York, NY: Springer New York. <a href="https://doi.org/10.1007/978-1-4614-7138-7">https://doi.org/10.1007/978-1-4614-7138-7</a>.
+</div>
+<div class="csl-entry">
+Kelly, Janice R., Nicole E. Iannone, and Megan K. McCarty. 2016. <span>“Emotional Contagion of Anger Is Automatic: An Evolutionary Explanation.”</span> <em>British Journal of Social Psychology</em> 55 (1): 182–91. <a href="https://doi.org/10/gf6mn3">https://doi.org/10/gf6mn3</a>.
+</div>
+<div class="csl-entry">
+Kondo, Marie. 2016. <em>Spark <span>Joy</span>: An Illustrated Master Class on the Art of Organizing and Tidying up</em>. Ten Speed Press.
+</div>
+<div class="csl-entry">
+Kumar, Devinder, Alexander Wong, and Graham W Taylor. 2017. <span>“Explaining the Unexplained: <span>A</span> Class-Enhanced Attentive Response (Clear) Approach to Understanding Deep Neural Networks.”</span> In <em>Proceedings of the <span>IEEE</span> Conference on Computer Vision and Pattern Recognition Workshops</em>, 36–44.
+</div>
+<div class="csl-entry">
+Lakatos, Imre. 1969. <span>“Falsification and the Methodology of Scientific Research Programmes.”</span> <em>Criticism and the Growth of Knowledge. Cambridge University Press: Cambridge</em>.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span class="nocase">Non-normative Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/10/fv4hh5">https://doi.org/10/fv4hh5</a>.
+</div>
+<div class="csl-entry">
+———. 1994. <span>“Dimensionality of <span>Observer Ratings</span> on the <span class="nocase">California Adult Q-set</span>.”</span> <em>Journal of Personality and Social Psychology</em> 67 (July): 151–60. <a href="https://doi.org/10/drnkvm">https://doi.org/10/drnkvm</a>.
+</div>
+<div class="csl-entry">
+———. 1996. <span>“Robustness Is Not Dimensionality: <span>On</span> the Sensitivity of Component Comparability Coefficients to Sample Size.”</span> <em>Multivariate Behavioral Research</em> 31 (1): 33–46. <a href="https://doi.org/10/dt6gb3">https://doi.org/10/dt6gb3</a>.
+</div>
+<div class="csl-entry">
+———. 2017. <span>“What Is the Relationship Between <span>‘Personality’</span> and <span>‘Social’</span> Psychologies? <span>Network</span>, Community, and Whole Text Analyses of the Structure of Contemporary Scholarship.”</span> <em>Collabra: Psychology</em> 3 (1): 8.
+</div>
+<div class="csl-entry">
+———. 2018. <span>“Data Visualizations in Personality and Social Psychology: <span>Challenges</span> in Representing Taxonomic, Community, and Developmental Structures.”</span> <em>Association of Psychological Science Annual Convention, San Francisco, May 25.</em>
+</div>
+<div class="csl-entry">
+Lanning, Kevin, and Ari Rosenberg. 2009. <span>“The Dimensionality of <span>American</span> Political Attitudes: Tensions Between Equality and Freedom in the Wake of <span>September</span> 11.”</span> <em>Behavioral Sciences of Terrorism and Political Aggression</em> 1 (2): 84–100. <a href="https://doi.org/10/fckr37">https://doi.org/10/fckr37</a>.
+</div>
+<div class="csl-entry">
+Leek, Jeffrey T, and Roger D Peng. 2015. <span>“Statistics: <span>P</span> Values Are Just the Tip of the Iceberg.”</span> <em>Nature</em> 520 (7549): 612. <a href="https://doi.org/10/gfb8jm">https://doi.org/10/gfb8jm</a>.
+</div>
+<div class="csl-entry">
+Loevinger, Jane. 1957. <span>“Objective <span>Tests</span> as <span>Instruments</span> of <span>Psychological Theory</span>.”</span> <em>Psychological Reports</em> 3 (3): 635–94. <a href="https://doi.org/10/b27jpk">https://doi.org/10/b27jpk</a>.
+</div>
+<div class="csl-entry">
+Loukides, Hilary, Mike. 2018. <em>Ethics and Data Science</em>. O’Reilly.
+</div>
+<div class="csl-entry">
+Matz, S. C., M. Kosinski, G. Nave, and D. J. Stillwell. 2017. <span>“Psychological Targeting as an Effective Approach to Digital Mass Persuasion.”</span> <em>Proceedings of the National Academy of Sciences</em> 114 (48): 12714–19. <a href="https://doi.org/10.1073/pnas.1710966114">https://doi.org/10.1073/pnas.1710966114</a>.
+</div>
+<div class="csl-entry">
+McShane, Blakeley B., David Gal, Andrew Gelman, Christian Robert, and Jennifer L. Tackett. 2017. <span>“Abandon <span>Statistical Significance</span>.”</span> <em>arXiv:1709.07588 [Stat]</em>, September. <a href="https://arxiv.org/abs/1709.07588">https://arxiv.org/abs/1709.07588</a>.
+</div>
+<div class="csl-entry">
+Merton, Robert K. 1936. <span>“The Unanticipated Consequences of Purposive Social Action.”</span> <em>American Sociological Review</em> 1 (6): 894–904. <a href="https://doi.org/10/fjg8hf">https://doi.org/10/fjg8hf</a>.
+</div>
+<div class="csl-entry">
+Miguel, Edward, Colin Camerer, Katherine Casey, Joshua Cohen, Kevin M Esterling, Alan Gerber, Rachel Glennerster, et al. 2014. <span>“Promoting Transparency in Social Science Research.”</span> <em>Science</em> 343 (6166): 30–31. <a href="https://doi.org/10/gdrcpz">https://doi.org/10/gdrcpz</a>.
+</div>
+<div class="csl-entry">
+Milgram, Stanley. 1967. <span>“The Small World Problem.”</span> <em>Psychology Today</em> 2 (1): 6067.
+</div>
+<div class="csl-entry">
+Munafò, Marcus R., Brian A. Nosek, Dorothy V. M. Bishop, Katherine S. Button, Christopher D. Chambers, Nathalie Percie du Sert, Uri Simonsohn, Eric-Jan Wagenmakers, Jennifer J. Ware, and John P. A. Ioannidis. 2017. <span>“A Manifesto for Reproducible Science.”</span> <em>Nature Human Behaviour</em> 1 (1): 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a>.
+</div>
+<div class="csl-entry">
+Narayanan, Arvind, and Vitaly Shmatikov. 2008. <span>“Robust <span class="nocase">De-anonymization</span> of <span>Large Sparse Datasets</span>.”</span> In <em>2008 <span>IEEE Symposium</span> on <span>Security</span> and <span>Privacy</span> (Sp 2008)</em>, 111–25. Oakland, CA, USA: IEEE. <a href="https://doi.org/10.1109/SP.2008.33">https://doi.org/10.1109/SP.2008.33</a>.
+</div>
+<div class="csl-entry">
+Nikzad, Afshin, Mohammad Akbarpour, Michael A. Rees, and Alvin E. Roth. 2021. <span>“Global Kidney Chains.”</span> <em>Proceedings of the National Academy of Sciences of the United States of America</em> 118 (36): e2106652118. <a href="https://doi.org/10.1073/pnas.2106652118">https://doi.org/10.1073/pnas.2106652118</a>.
+</div>
+<div class="csl-entry">
+Ondaatje, Michael, and Walter Murch. 2002. <em>The Conversations: <span>Walter Murch</span> and the Art of Editing Film</em>. A&amp;C Black.
+</div>
+<div class="csl-entry">
+Open Science Collaboration. 2015. <span>“Estimating the Reproducibility of Psychological Science.”</span> <em>Science</em> 349 (6251): aac4716–16. <a href="https://doi.org/10/68c">https://doi.org/10/68c</a>.
+</div>
+<div class="csl-entry">
+Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <span>“The PageRank Citation Ranking: Bringing Order to the Web.”</span>
+</div>
+<div class="csl-entry">
+Peng, Roger. 2018. <span>“Teaching r to New Users - from Tapply to the Tidyverse.”</span>
+</div>
+<div class="csl-entry">
+Peng, Roger D. 2014. <em>R <span>Programming</span> for <span>Data Science</span></em>.
+</div>
+<div class="csl-entry">
+Pennebaker, James W., Cindy K. Chung, Joey Frazee, Gary M. Lavergne, and David I. Beaver. 2014. <span>“When <span>Small Words Foretell Academic Success</span>: <span>The Case</span> of <span>College Admissions Essays</span>.”</span> Edited by Qiyong Gong. <em>PLoS ONE</em> 9 (12): e115844. <a href="https://doi.org/10/f6z8q5">https://doi.org/10/f6z8q5</a>.
+</div>
+<div class="csl-entry">
+Phillips, Nathaniel D., Hansjörg Neth, Jan K. Woike, and Wolfgang Gaissmaier. 2017. <span>“<span>FFTrees</span>: <span>A</span> Toolbox to Create, Visualize, and Evaluate Fast-and-Frugal Decision Trees.”</span> <em>Judgment and Decision Making</em> 12 (4): 344–68.
+</div>
+<div class="csl-entry">
+Poulin, Michael J., and Claudia M. Haase. 2015. <span>“Growing to <span>Trust</span>: <span>Evidence That Trust Increases</span> and <span>Sustains Well-Being Across</span> the <span>Life Span</span>.”</span> <em>Social Psychological and Personality Science</em> 6 (6): 614–21. <a href="https://doi.org/10.1177/1948550615574301">https://doi.org/10.1177/1948550615574301</a>.
+</div>
+<div class="csl-entry">
+Reinsel, David, John Gantz, and John Rydning. 2025. <span>“The <span>Digitization</span> of the <span>World</span>.”</span>
+</div>
+<div class="csl-entry">
+Shattuck, Roger. 1997. <em>Forbidden Knowledge: <span>From Prometheus</span> to Pornography</em>. Houghton Mifflin Harcourt.
+</div>
+<div class="csl-entry">
+Silge, Julia, and David Robinson. 2017. <em>Text Mining with <span>R</span>: <span>A</span> Tidy Approach</em>. " O’Reilly Media, Inc.".
+</div>
+<div class="csl-entry">
+Slovic, Paul, David Zionts, Andrew K Woods, Ryan Goodman, and Derek Jinks. 2013. <span>“Psychic Numbing and Mass Atrocity.”</span> <em>The Behavioral Foundations of Public Policy</em>, 126–42. <a href="https://doi.org/10/gk4945">https://doi.org/10/gk4945</a>.
+</div>
+<div class="csl-entry">
+Sternberg, Robert J. 1999. <span>“The Theory of Successful Intelligence.”</span> <em>Review of General Psychology</em> 3 (4): 292–316. <a href="https://doi.org/10/cqrkxh">https://doi.org/10/cqrkxh</a>.
+</div>
+<div class="csl-entry">
+Sternberg, Robert J. 2018. <span>“Theories of Intelligence.”</span> In, edited by Steven I. Pfeiffer, Elizabeth Shaunessy-Dedrick, and Megan Foley-Nicpon, 145161. American Psychological Association. <a href="https://doi.org/10.1037/0000038-010">https://doi.org/10.1037/0000038-010</a>.
+</div>
+<div class="csl-entry">
+Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/10/cmthvk">https://doi.org/10/cmthvk</a>.
+</div>
+<div class="csl-entry">
+Sweeney, Latanya. 2005. <span>“Privacy-Enhanced Linking.”</span> <em>ACM SIGKDD Explorations Newsletter</em> 7 (2): 72–75. <a href="https://doi.org/10/bjvpjh">https://doi.org/10/bjvpjh</a>.
+</div>
+<div class="csl-entry">
+Szucs, Denes, and John Ioannidis. 2017. <span>“When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.”</span> <em>Frontiers in Human Neuroscience</em> 11: 390. <a href="https://doi.org/10/gc6vws">https://doi.org/10/gc6vws</a>.
+</div>
+<div class="csl-entry">
+Thies, Justus, Michael Zollhöfer, Matthias Nießner, Levi Valgaerts, Marc Stamminger, and Christian Theobalt. 2015. <span>“Real-Time Expression Transfer for Facial Reenactment.”</span> <em>ACM Trans. Graph.</em> 34 (6): 183–81. <a href="https://doi.org/10/f7wqz7">https://doi.org/10/f7wqz7</a>.
+</div>
+<div class="csl-entry">
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Cheshire, CT: Graphics Press.
+</div>
+<div class="csl-entry">
+Tukey, John W. 1962. <span>“The Future of Data Analysis.”</span> <em>The Annals of Mathematical Statistics</em> 33 (1): 1–67. <a href="https://doi.org/10/d48nqg">https://doi.org/10/d48nqg</a>.
+</div>
+<div class="csl-entry">
+———. 1977. <span>“<span>EDA</span>: <span>Exploratory</span> Data Analysis.”</span> <em>Reading, Mass</em>.
+</div>
+<div class="csl-entry">
+Tversky, Amos, and Daniel Kahneman. 1974. <span>“Judgment Under <span>Uncertainty</span>: <span>Heuristics</span> and <span>Biases</span>.”</span> <em>Science</em> 185 (4157): 1124–31. <a href="https://doi.org/10/gwh">https://doi.org/10/gwh</a>.
+</div>
+<div class="csl-entry">
+Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
+</div>
+<div class="csl-entry">
+Wainer, H, and D Thissen. 1981. <span>“Graphical <span>Data Analysis</span>,”</span> 51.
+</div>
+<div class="csl-entry">
+Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <span>Networks</span>.”</span> <em>Annual Review of Sociology</em> 3: 243–70. <a href="https://www.jstor.org/stable/29737693">https://www.jstor.org/stable/29737693</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span>Tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science 2e</em>. " O’Reilly Media, Inc.".
+</div>
+<div class="csl-entry">
+Wu, Tim. 2019. <span>“How <span>Capitalism Betrayed Privacy</span>.”</span> <em>The New York Times</em>, 5.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

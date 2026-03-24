@@ -95,7 +95,7 @@ $$ P (H|D) = \frac{(.3)(.7)}{(.3)(.7) + (.7)(.2)} $$
 My new subjective probability is .6. Additional problems like this are in the exercises below.
 
 | **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
-|:-----------|:----------:|:-----------|:----------:|:----------:|:----------:|
+|:---|:--:|:---|:--:|:--:|:--:|
 | Pens don't last because of soap film on the whiteboard | .3 | A pen is quickly trashed | .7 | .2 | .6 |
 
 Bayes' theorem is a *normative model* of probability - how we should revise probability estimates, not a *descriptive model*.  That is, the research suggests that people don't typically revise probability estimates in this way, even though we arguably should - this is illustrated in some of the problems in the final set of exercises on "decision making under uncertainty."
@@ -147,7 +147,7 @@ Wainer's third example of statistical illiteracy is the failure to appreciate re
 > Here are some more problems like the 'whiteboard/soap film' hypothesis described above. Complete the following table using Bayes' Theorem:
 
 | **Initial hypothesis** | **P (H)** | **New data** | **P (D\|H)** | **P (D\|not H)** | **P (H\|D)** |
-|:------------|:----------:|:----------:|:----------:|:----------:|:----------:|
+|:---|:--:|:--:|:--:|:--:|:--:|
 | I am allergic to shellfish | .02 | Rash after eating clams | .9 | .01 | ? |
 | Studying at the last minute helps my exam performance | .6 | I failed | .2 | .7 | ? |
 | She likes me | .3 | She gave me a present | .6 | .3 | ? |

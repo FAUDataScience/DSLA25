@@ -1,0 +1,235 @@
+---
+title: "From Modern, Appendix E"
+output: html_document
+date: "2026-03-17"
+---
+
+# correlation and regression
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(mdsr)
+library(mosaic)
+glimpse(RailTrail)
+```
+
+## E.1.1 Motivating example: Modeling usage of a rail trail
+
+```{r}
+mod <- lm(volume ~ hightemp, data = RailTrail)
+library(broom)
+tidy(mod)
+ggplot(RailTrail, aes(x = hightemp, y = volume)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## E.1.2 Model visualization
+
+```{r}
+library(broom)
+my_lm <- function(data, formula) { # native pipe fills in first unnamed argument
+  lm(formula, data)
+}
+mod_avg <- RailTrail |>
+  my_lm(volume ~ 1) |>
+  augment(RailTrail)
+mod_temp <- RailTrail |>
+  my_lm(volume ~ hightemp) |>
+  augment(RailTrail)
+mod_data <- bind_rows(mod_avg, mod_temp) |>
+  mutate(model = rep(c("null", "slr"), each = nrow(RailTrail)))
+```
+
+What is the point of this code? What do the two graphs describe?
+
+```{r}
+ggplot(data = mod_data, aes(x = hightemp, y = volume)) + 
+  geom_smooth(
+    data = filter(mod_data, model == "null"), 
+    method = "lm", se = FALSE, formula = y ~ 1, 
+    color = "dodgerblue", linewidth = 0.5
+  ) + 
+  geom_smooth(
+    data = filter(mod_data, model == "slr"),
+    method = "lm", se = FALSE, formula = y ~ x, 
+    color = "dodgerblue", linewidth = 0.5
+  ) + 
+  geom_segment(
+    aes(xend = hightemp, yend = .fitted), 
+    arrow = arrow(length = unit(0.1, "cm")), 
+    linewidth = 0.5, color = "darkgray"
+  ) + 
+  geom_point(color = "dodgerblue") + 
+  facet_wrap(~model)
+```
+
+## E.1.3 Measuring the strength of fit
+
+```{r}
+n <- nrow(RailTrail)
+SST <- var(pull(RailTrail, volume)) * (n - 1)
+SSE <- var(residuals(mod)) * (n - 1)
+1 - SSE / SST
+```
+
+
+## E.1.4 Categorical explanatory variables
+
+
+What is the relationship between the values of the following two lines? Why? 
+
+```{r}
+coef(lm(volume ~ weekday, data = RailTrail))
+RailTrail |>
+  group_by(weekday) |>
+  summarize(mean_volume = mean(volume))
+```
+
+E.2.1 Parallel slopes: Multiple regression with a categorical variable
+
+From correlation to multiple regression (no interaction, parallel lines model)
+
+```{r}
+mod_parallel <- lm(volume ~ hightemp + weekday, data = RailTrail)
+tidy(mod_parallel)
+glance(mod_parallel)
+```
+
+```{r}
+mod_parallel |>
+  augment() |>
+  ggplot(aes(x = hightemp, y = volume, color = weekday)) +
+  geom_point() + 
+  geom_line(aes(y = .fitted)) + 
+  labs(color = "Is it a\nweekday?")
+```
+
+## E.2.3 Non-parallel slopes: Multiple regression with interaction
+
+```{r}
+mod_interact <- lm(volume ~ hightemp + weekday + hightemp * weekday, 
+  data = RailTrail)
+tidy(mod_interact)
+```
+
+## E.2.4 Modeling non-linear relationships
+
+```{r}
+mod_interact |>
+  augment() |>
+  ggplot(aes(x = hightemp, y = volume, color = weekday)) +
+  geom_point() + 
+  geom_line(aes(y = .fitted)) + 
+  labs(color = "Is it a\nweekday?")
+```
+
+```{r}
+ggplot(data = RailTrail, aes(x = hightemp, y = volume)) + 
+  geom_point() +
+  geom_smooth(method = lm) +
+  geom_smooth(method = loess, color = "green") + 
+  ylab("Number of trail crossings") + 
+  xlab("High temperature (F)") 
+```
+
+10.2.1
+
+```{r}
+library(tidyverse)
+library(mdsr)
+url <- "http://archive.ics.uci.edu/static/public/2/adult.zip"
+adult_zip <- tempfile()
+download.file(url, destfile = adult_zip)
+adult_dir <- here::here("data", "adult")
+unzip(adult_zip, files = "adult.data", exdir = adult_dir)
+adult_data <- here::here(adult_dir, "adult.data")
+
+census <- adult_data |>
+  read_csv(
+    col_names = c(
+      "age", "workclass", "fnlwgt", "education", 
+      "education_1", "marital_status", "occupation", "relationship", 
+      "race", "sex", "capital_gain", "capital_loss", "hours_per_week", 
+      "native_country", "income"
+    )
+  ) |>
+  mutate(income = factor(income))
+glimpse(census)
+```
+
+## split into train and test
+
+```{r}
+library(tidymodels)
+set.seed(364)
+n <- nrow(census)
+census_parts <- census |>
+  initial_split(prop = 0.8)
+
+train <- census_parts |>
+  training()
+
+test <- census_parts |>
+  testing()
+
+list(train, test) |>
+  map_int(nrow)
+```
+
+## 10.2.1.1 the null model
+
+simple percentage of high earners, then shown as table, then saved as a model
+
+```{r}
+(pi_bar <- train |>
+  count(income) |>
+  mutate(pct = n / sum(n)) |>
+  filter(income == ">50K") |>
+  pull(pct))
+
+train |>
+  count(income) |>
+  mutate(pct = n / sum(n))
+
+mod_null <- logistic_reg(mode = "classification") |>
+  set_engine("glm") |>
+  fit(income ~ 1, data = train)
+
+library(yardstick)
+pred <- train |>
+  select(income, capital_gain) |>
+  bind_cols(
+    predict(mod_null, new_data = train, type = "class")
+  ) |>
+  rename(income_null = .pred_class)
+accuracy(pred, income, income_null)
+
+confusion_null <- pred |>
+  conf_mat(truth = income, estimate = income_null)
+confusion_null
+```
+
+## 10.2.1.2 Logistic regression 
+
+```{r}
+mod_log_1 <- logistic_reg(mode = "classification") |>
+  set_engine("glm") |>
+  fit(income ~ capital_gain, data = train)
+train_plus <- train |>
+  mutate(high_earner = as.integer(income == ">50K"))
+
+ggplot(train_plus, aes(x = capital_gain, y = high_earner)) + 
+  geom_count(
+    position = position_jitter(width = 0, height = 0.05), 
+    alpha = 0.5
+  ) + 
+  geom_smooth(
+    method = "glm", method.args = list(family = "binomial"), 
+    color = "dodgerblue", lty = 2, se = FALSE
+  ) + 
+  geom_hline(aes(yintercept = 0.5), linetype = 3) + 
+  scale_x_log10(labels = scales::dollar)
+
+```
+

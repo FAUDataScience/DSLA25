@@ -11,18 +11,17 @@ library(GGally) # for scatterplot matrix
 library(Ecdat) # Econometric data incl. affairs dataset 
 ```
 
-
 # from correlation to multiple regression
 
 In the previous chapters, we have learned how to summarize and visualize data. We have seen that we can summarize data using **descriptive statistics** and visualize data using **plots**.
 
 We can distinguish between analyses of just one variable (the univariate case), two variables (bivariate), and multivariate (many variables).
 
-## bivariate analysis: Galton's height data
+## univariate and bivariate analysis: Galton's height data
 
 (Note that this section is excerpted directly from From <https://github.com/datasciencelabs>). [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton), a polymath and cousin of Charles Darwin, is one of the fathers of modern statistics. Galton liked to count - his motto is said to have been "whenever you can, count". He collected data on the heights of families in England, and he found that there was a strong correlation between the heights of fathers and their sons.
 
-We have access to Galton's family height data through the `HistData` package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key univariate statistics for the two variables of father and son height, each taken alone:
+We have access to Galton's family height data through the `HistData` package. We will create a dataset with the heights of fathers and the first son of each family. Here are the key **univariate** statistics for the two variables of father and son height, each taken alone:
 
 ```{r}
 data("GaltonFamilies")
@@ -34,7 +33,7 @@ galton_heights %>%
   summarise(mean(father), sd(father), mean(son), sd(son))
 ```
 
-This **univariate** description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the **correlation** between the two variables. 
+This univariate description fails to capture the key characteristic of the data, namely, the idea that there is a relationship between the two variables. To summarize this relationship, we can compute the **correlation** between the two variables.
 
 ```{r}
 galton_heights %>%
@@ -42,7 +41,7 @@ galton_heights %>%
   round(3)
 ```
 
-In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father's height, we expect the son's height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the `correlate()` function from the `corrr` package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The `fashion()` function can be used to easily clean up the output. (And the parentheses around the whole statement allows us to print out the result to the console / RMarkdown document, as well aas saving rmatrix in our environment).
+In these data, the correlation (r) is about .50. (This means that for every standard deviation increase in the father's height, we expect the son's height to increase by about half a standard deviation). Incidentally, if we want to save correlations as a matrix, we can use the `correlate()` function from the `corrr` package. This function computes the correlation matrix for all pairs of variables in a data frame, which can be easily saved and formatted as a table. The `fashion()` function can be used to easily clean up the output. (The parentheses around the whole statement allows us to print out the result to the console or RMarkdown document, as well as saving rmatrix in our environment).
 
 ```{r}
 (rmatrix <- galton_heights %>% 
@@ -74,10 +73,9 @@ These sample correlations range from `r round(min(replications),3)` to `r round(
 
 ### from correlation to regression
 
-In bivariate analysis, there is often an asymmetry between the two variables - one is often considered the **predictor** (or independent variable, typically x) and the other the **response** (or dependent variable, y). In these data, we are likely to consider the father's height as the predictor and the son's height as the response. 
+In bivariate analysis, there is often an asymmetry between the two variables - one is often considered the **predictor** (or independent variable, typically x) and the other the **response** (or dependent variable, y). In these data, we are likely to consider the father's height as the predictor and the son's height as the response.
 
-As noted above, one way of thinking about a correlation between variables like heights of fathers (x) and sons (y), is that for every one standard deviation increase in x (father's height), we expect the son's height to increase by about $r$ times the standard deviation of y (the son's height). We can compute all of these things manually and plot the points with a regression line. (We use the pull function to extract the values from the statistics from tibbles into single values). 
- 
+As noted above, one way of thinking about a correlation between variables like heights of fathers (x) and sons (y), is that for every one standard deviation increase in x (father's height), we expect the son's height to increase by about $r$ times the standard deviation of y (the son's height). We can compute all of these things manually and plot the points with a regression line. (We use the pull function to extract the values from the statistics from tibbles into single values).
 
 ```{r}
 mu_x <- galton_heights |> summarise(mean(father)) |> pull()
@@ -104,12 +102,11 @@ galton_heights %>%
   geom_abline(intercept = 0, slope = r,  col = "blue") 
 ```
 
-
-## multivariate data
+## from bivariate to multivariate analysis
 
 For the Galton data, we examined the relationship between two variables - one a predictor (father's height) and the other a response (son's height). In this section (drawn from Peng, Caffo, and Leek's treatment from Coursera - the Johns Hopkins Data Science Program), we will extend our analysis to consider multiple predictors of a single response or outcome variable. You may need to install the packages "UsingR", "GGally" and/or"Hmisc".
 
-We begin with a second dataset. You can learn about it by typing `?swiss` in the console. 
+We begin with a second dataset. You can learn about it by typing `?swiss` in the console.
 
 ```{r swiss data}
 data(swiss)
@@ -128,34 +125,112 @@ ggpairs (swiss,
         switch = 'both')
 ```
 
-Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?
-
+Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command.
 
 ```{r multiple regression - swiss data}
 swissReg <- lm(Fertility ~ ., data=swiss)
 summary(swissReg)
 ```
 
-Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed.  Here's a second dataset, the marital affairs data, which is also included in the Ecdat package.
-We'll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:
+The coefficients in the "Estimate" column show the direction and nature of relations between the five predictors and Fertility after holding all other variables constant. So, Education, and to a lesser extent Agriculture, have negative relationships with Fertility and Catholicism has a positive correlation. Examination is *not* a significant predictor when all variables are included in the model (despite having a negative correlation initially in the scatterplot matrix shown above. .,  - that is
 
-```{r out.width = "100%", warning= FALSE, message = FALSE}
-Fair1 <- Fair %>% 
-  select(sex:child, nbaffairs)
-ggpairs(Fair1,  
-# if you wanted to jam all 9 vars onto one page you could do this
-#        upper = list(continuous = wrap(ggally_cor, size = 10)),
-         lower = list(continuous = 'smooth'),
-         axisLabels = "none",
-        switch = 'both')
-Fair2 <- Fair %>% 
-  select(religious:nbaffairs) 
-ggpairs(Fair2, lower = list(continuous = 'smooth'),
-           axisLabels = "none",
-           switch = 'both')
+Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed.
+
+## different forms of regression
+
+We can do a lot with regression and the general linear model upon which it is based. Consider the following approach to prediction, which is adapted from [Appendix E of the Modern text.](https://mdsr-book.github.io/mdsr3e/E-regression.html)
+
+Consider that we want to predict usage of a recreational trail (volume) from a series of predictors, including the weather (hightemp), and the day of the week (weekend vs weekday). The data are from the RailTrail data set in the mosaic package.
+We can begin by looking at the mean (and standard deviation) for volume.
+
+```{r}
+
+library(tidyverse)
+library(mdsr)
+library(mosaic)
+library(broom)
+glimpse(RailTrail)
+RailTrail %>% 
+  summarise(mean(volume), sd(volume))
 ```
 
-```{r multiple regression - affairs}
-affairReg <- lm(nbaffairs ~ ., data=Fair)
-summary(affairReg)
+The mean of a variable is your best guess of scores on that variable. It is what we predict if we know nothing else, and so in prediction it can be considered the null model. 
+
+Section E.1.2 of the Modern text illustrates how we can construct and visualize a series of models. The first figure compares the null model with prediction from hightemp alone:
+
+```{r}
+
+my_lm <- function(data, formula) { # native pipe fills in first unnamed argument
+  lm(formula, data)
+}
+mod_avg <- RailTrail |>
+  my_lm(volume ~ 1) |>
+  augment(RailTrail)
+mod_temp <- RailTrail |>
+  my_lm(volume ~ hightemp) |>
+  augment(RailTrail)
+mod_data <- bind_rows(mod_avg, mod_temp) |>
+  mutate(model = rep(c("null", "slr"), 
+                     each = nrow(RailTrail)))
+```
+
+In each plot, the vertical lines show our errors of prediction around the regression line (which is flat for the null model).
+
+, and sloping for the . The sum of these squared errors 
+
+blue line shows our initial prediction:
+```{r}
+ggplot(data = mod_data, aes(x = hightemp, y = volume)) + 
+  geom_smooth(
+    data = filter(mod_data, model == "null"), 
+    method = "lm", se = FALSE, formula = y ~ 1, 
+    color = "dodgerblue", linewidth = 0.5
+  ) + 
+  geom_smooth(
+    data = filter(mod_data, model == "slr"),
+    method = "lm", se = FALSE, formula = y ~ x, 
+    color = "dodgerblue", linewidth = 0.5
+  ) + 
+  geom_segment(
+    aes(xend = hightemp, yend = .fitted), 
+    arrow = arrow(length = unit(0.1, "cm")), 
+    linewidth = 0.5, color = "darkgray"
+  ) + 
+  geom_point(color = "dodgerblue") + 
+  facet_wrap(~model)
+```
+
+A "parallel slopes" model includes predictions from both hightemp and weekday vs. weekend.
+
+```{r}
+mod_parallel <- lm(volume ~ hightemp + weekday, data = RailTrail)
+mod_parallel |>
+  augment() |>
+  ggplot(aes(x = hightemp, y = volume, color = weekday)) +
+  geom_point() + 
+  geom_line(aes(y = .fitted)) + 
+  labs(color = "Is it a\nweekday?")
+```
+
+The final model allows an interaction as well as the two main effects:
+
+```{r}
+mod_interact <- lm(volume ~ hightemp + weekday + hightemp * weekday, 
+  data = RailTrail)
+mod_interact |>
+  augment() |>
+  ggplot(aes(x = hightemp, y = volume, color = weekday)) +
+  geom_point() + 
+  geom_line(aes(y = .fitted)) + 
+  labs(color = "Is it a\nweekday?")
+```
+
+The four models are presented here, together with summary statitsics. 
+```{r}
+lm(volume ~ 1, data = RailTrail) |> tidy()
+lm(volume ~ hightemp, data = RailTrail) |> tidy()
+lm(volume ~ hightemp + weekday, data = RailTrail) |> 
+    tidy()
+lm(volume ~ hightemp + weekday + hightemp * weekday, 
+  data = RailTrail) |> tidy()
 ```

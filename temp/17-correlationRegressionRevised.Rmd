@@ -1,0 +1,67 @@
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
+library(tidyverse)
+library(HistData) # for Galton data
+library(corrr) # for tidy corr matrix output
+#library(dslabs)
+#library(Ecfun)
+#library(broom) # unlist regression results into tibbles
+#library(modelr)
+library(GGally) # for scatterplot matrix
+library(Ecdat) # Econometric data incl. affairs dataset 
+```
+
+# from correlation to multiple regression
+
+Please begin with a review of [Appendix E of the Modern text.](https://mdsr-book.github.io/mdsr3e/E-regression.html)
+
+## the multivariate case
+
+We begin with a second dataset. You can learn about it by typing `?swiss` in the console.
+
+```{r swiss data}
+data(swiss)
+str(swiss)
+```
+
+Here's a *scatterplot matrix* of the Swiss data. Look at the first column of plots (or first row of the correlations). What is the relationship between fertility and each of the other variables?
+
+```{r scatterplot matrix with ggpairs, swiss}
+# ds_theme_set()
+set.seed(0)
+ggpairs (swiss,
+        lower = list(
+            continuous = "smooth"),
+        axisLabels ="none",
+        switch = 'both')
+```
+
+Here, we predict fertility from all of the remaining variables together in a single regression analysis, using the lm (linear model) command. Note that the result of this analysis is a list. We can pull out the key features of the data using the summary() command. How do you interpret this?
+
+```{r multiple regression - swiss data}
+swissReg <- lm(Fertility ~ ., data=swiss)
+summary(swissReg)
+```
+
+Regression is a powerful tool for understanding the relationship between a response variable and one or more predictor variables. We can use it where our variables are not normally distributed, as in the case of dichotomous variables (yes/no, true/false), as well as counts, which often are skewed. Here's a second dataset, the marital affairs data, which is also included in the Ecdat package. We'll apply ggpairs here, but for clarity will show only half of the data at a time. The dependent variable of interest (nbaffairs) will be included in both plots:
+
+```{r out.width = "100%", warning= FALSE, message = FALSE}
+Fair1 <- Fair %>% 
+  select(sex:child, nbaffairs)
+ggpairs(Fair1,  
+# if you wanted to jam all 9 vars onto one page you could do this
+#        upper = list(continuous = wrap(ggally_cor, size = 10)),
+         lower = list(continuous = 'smooth'),
+         axisLabels = "none",
+        switch = 'both')
+Fair2 <- Fair %>% 
+  select(religious:nbaffairs) 
+ggpairs(Fair2, lower = list(continuous = 'smooth'),
+           axisLabels = "none",
+           switch = 'both')
+```
+
+```{r multiple regression - affairs}
+affairReg <- lm(nbaffairs ~ ., data=Fair)
+summary(affairReg)
+```
