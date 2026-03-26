@@ -1,4 +1,4 @@
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 library(tidyverse)
 library(modelr)
@@ -30,11 +30,6 @@ Fair2 <- Fair %>%
 ggpairs(Fair2, lower = list(continuous = 'smooth'),
            axisLabels = "none",
            switch = 'both')
-```
-
-```{r multiple regression - affairs}
-affairReg <- lm(nbaffairs ~ ., data=Fair)
-summary(affairReg)
 ```
 
 ## transformations
@@ -71,6 +66,7 @@ We'll examine each of these in the following paragraphs.
 ## avoiding capitalizing on chance
 
 One lesson from the last class was that correlations (and regression coefficients) drawn from small samples were not stable. In regression analysis, as progressively smaller samples are drawn from a dataset, the ability to predict an outcome increases. In the limiting case, when the number of predictors (variables) is equal to the number of cases in the sample (rows), prediction became perfect.  But if we were to apply the model to a new dataset, prediction would be poor.
+
 
 ### splitting the data into training and test subsamples
 
@@ -114,8 +110,10 @@ R2.model.dep.data <- function(myModel,myDep,myData) {
     1 - (SS.error/SS.total)
 }    
 
-R2Train <- R2.model.dep.data(model2,trainFair2$rootAffair,trainFair2)
+(R2Train <- R2.model.dep.data(model2,trainFair2$rootAffair,trainFair2))
 (R2Test <- R2.model.dep.data(model2,testFair2$rootAffair,testFair2))
+
+
 ```
 
 The R2 on the training sample is `r R2Train`, on the test sample it is `r R2Test`. The difference between these is sometimes referred to as shrinkage. Shrinkage will be problematic particularly when there are a small number of observations, a large number of predictors (and consequently a complex model), or both of these.
@@ -143,11 +141,5 @@ model2 <- glm(affairYN ~ ., data = trainFair,
 summary (model2)
 ```
 
-Our "predicted scores" are continuous, corresponding to the probability that a given person will have an affair. Here's how they are distributed (still on the training data here):
+Examine your results. Is there a problem? If so, how do you fix it? When you have fixed it, how do you interpret the results?
 
-```{r}
-predictTrain <- predict(model2, trainFair, type = "response")
-summary (predictTrain)
-```
-
-As scores on predictTrain increase, the predicted likelihood of an affair increases. If you are considering marriage to a potential partner, what score would be too high? How do we distinguish "ok" from "not"?

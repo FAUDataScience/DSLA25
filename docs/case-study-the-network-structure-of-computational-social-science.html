@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>23 case study: the network structure of computational social science | From Modern, Appendix E</title>
-  <meta name="description" content="23 case study: the network structure of computational social science | From Modern, Appendix E" />
+  <title>23 case study: the network structure of computational social science | Data science for the liberal arts</title>
+  <meta name="description" content="23 case study: the network structure of computational social science | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="23 case study: the network structure of computational social science | From Modern, Appendix E" />
+  <meta property="og:title" content="23 case study: the network structure of computational social science | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="23 case study: the network structure of computational social science | From Modern, Appendix E" />
+  <meta name="twitter:title" content="23 case study: the network structure of computational social science | Data science for the liberal arts" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Kevin Lanning" />
 
 
-<meta name="date" content="2026-03-17" />
+<meta name="date" content="2026-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -479,18 +479,6 @@ div.csl-indent {
 <li class="chapter" data-level="25.2" data-path="exercises-3.html"><a href="exercises-3.html#categorical-probability-and-venn-diagrams"><i class="fa fa-check"></i><b>25.2</b> categorical probability and Venn diagrams</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="26" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html"><i class="fa fa-check"></i><b>26</b> correlation and regression</a>
-<ul>
-<li class="chapter" data-level="26.1" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.1-motivating-example-modeling-usage-of-a-rail-trail"><i class="fa fa-check"></i><b>26.1</b> E.1.1 Motivating example: Modeling usage of a rail trail</a></li>
-<li class="chapter" data-level="26.2" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.2-model-visualization"><i class="fa fa-check"></i><b>26.2</b> E.1.2 Model visualization</a></li>
-<li class="chapter" data-level="26.3" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.3-measuring-the-strength-of-fit"><i class="fa fa-check"></i><b>26.3</b> E.1.3 Measuring the strength of fit</a></li>
-<li class="chapter" data-level="26.4" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.1.4-categorical-explanatory-variables"><i class="fa fa-check"></i><b>26.4</b> E.1.4 Categorical explanatory variables</a></li>
-<li class="chapter" data-level="26.5" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.3-non-parallel-slopes-multiple-regression-with-interaction"><i class="fa fa-check"></i><b>26.5</b> E.2.3 Non-parallel slopes: Multiple regression with interaction</a></li>
-<li class="chapter" data-level="26.6" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#e.2.4-modeling-non-linear-relationships"><i class="fa fa-check"></i><b>26.6</b> E.2.4 Modeling non-linear relationships</a></li>
-<li class="chapter" data-level="26.7" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#split-into-train-and-test"><i class="fa fa-check"></i><b>26.7</b> split into train and test</a></li>
-<li class="chapter" data-level="26.8" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#the-null-model"><i class="fa fa-check"></i><b>26.8</b> 10.2.1.1 the null model</a></li>
-<li class="chapter" data-level="26.9" data-path="correlation-and-regression.html"><a href="correlation-and-regression.html#logistic-regression"><i class="fa fa-check"></i><b>26.9</b> 10.2.1.2 Logistic regression</a></li>
-</ul></li>
 </ul>
 
       </nav>
@@ -500,7 +488,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Modern, Appendix E</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data science for the liberal arts</a>
           </h1>
         </div>
 
@@ -514,14 +502,14 @@ div.csl-indent {
 <p>We begin with a collection of records of research articles that we have downloaded from the Web of Science, using the phrase “computational social science” as a search term. (A <a href="https://youtu.be/qD8Q08k2trs?si=n_59vdW8NXqI7mWR">video on YouTube</a> illustrates each step of this process).</p>
 <p><a href="https://youtu.be/cSi7-WzDkzM?si=o4UoRVIKESe3_Djt">A second video</a> accompanies the code below, which was originally developed for the Summer Institute of Computational Social Science held in Jupiter, Florida in 2023.</p>
 <p>After loading the needed libraries, we begin with a dataframe consisting of a list of records downloaded from the Web of Science. These are all papers which included the phrase ‘computational social science,’ as downloaded on 6/5/2023. The data include a ‘source’ field and a set of cited references as well as a bunch of other fields (metadata).</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-1" tabindex="-1"></a><span class="co"># for large jobs, set to TRUE to run this on only one reference file</span></span>
-<span id="cb272-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-2" tabindex="-1"></a>debugging <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb272-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-3" tabindex="-1"></a>dataDir <span class="ot">&lt;-</span> <span class="st">&quot;data/CompSocSci2023&quot;</span></span>
-<span id="cb272-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-4" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(dataDir, <span class="at">pattern =</span> <span class="st">&quot;*.txt&quot;</span>, </span>
-<span id="cb272-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-5" tabindex="-1"></a>                        <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb272-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-6" tabindex="-1"></a><span class="cf">if</span> (debugging <span class="sc">==</span> <span class="cn">TRUE</span>) {filenames <span class="ot">=</span> filenames[<span class="dv">1</span>]}</span>
-<span id="cb272-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-7" tabindex="-1"></a>biblioDF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">as.list</span>(filenames)) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb272-8" tabindex="-1"></a>    <span class="fu">convert2df</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-1" tabindex="-1"></a><span class="co"># for large jobs, set to TRUE to run this on only one reference file</span></span>
+<span id="cb274-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-2" tabindex="-1"></a>debugging <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb274-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-3" tabindex="-1"></a>dataDir <span class="ot">&lt;-</span> <span class="st">&quot;data/CompSocSci2023&quot;</span></span>
+<span id="cb274-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-4" tabindex="-1"></a>filenames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(dataDir, <span class="at">pattern =</span> <span class="st">&quot;*.txt&quot;</span>, </span>
+<span id="cb274-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-5" tabindex="-1"></a>                        <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb274-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-6" tabindex="-1"></a><span class="cf">if</span> (debugging <span class="sc">==</span> <span class="cn">TRUE</span>) {filenames <span class="ot">=</span> filenames[<span class="dv">1</span>]}</span>
+<span id="cb274-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-7" tabindex="-1"></a>biblioDF <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">as.list</span>(filenames)) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-8" tabindex="-1"></a>    <span class="fu">convert2df</span>()</span></code></pre></div>
 <pre><code>## 
 ## Converting your wos collection into a bibliographic dataframe
 ## 
@@ -529,12 +517,12 @@ div.csl-indent {
 ## 
 ## 
 ## Generating affiliation field tag AU_UN from C1:  Done!</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-1" tabindex="-1"></a>biblioDF <span class="sc">%&gt;%</span>  </span>
-<span id="cb274-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-2" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&quot;source&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-3" tabindex="-1"></a>    <span class="fu">select</span>(source,CR) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-4" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-5" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Cited refs in one document&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb274-6" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-1" tabindex="-1"></a>biblioDF <span class="sc">%&gt;%</span>  </span>
+<span id="cb276-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-2" tabindex="-1"></a>    <span class="fu">rownames_to_column</span>(<span class="st">&quot;source&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-3" tabindex="-1"></a>    <span class="fu">select</span>(source,CR) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-4" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-5" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Cited refs in one document&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-6" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:initialDF">Table 23.1: </span><span id="tab:initialDF">Table 23.2: </span>Cited refs in one document
@@ -563,32 +551,32 @@ ATTEWELL P., 2015, DATA MINING SOCIAL S;AXELROD R, 1981, SCIENCE, V211, P1390, D
 <div id="from-citation-network-to-structural-network" class="section level3 hasAnchor" number="23.0.1">
 <h3><span class="header-section-number">23.0.1</span> from citation network to structural network<a href="case-study-the-network-structure-of-computational-social-science.html#from-citation-network-to-structural-network" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A citation network is a type of two-mode or bipartite network which consists of source papers, referenced papers, and the directed edges which link a subset of these. Here’s a fragment of our citation network, first as a list of citations (edges), then as a graph showing links between the two types of vertices or nodes (i.e., source papers in red, cited papers in green). Notice that the edges are directed (e.g., Hox 2017 cites Lazer 2014).</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-1" tabindex="-1"></a><span class="co"># illustration of a small fragment of the citation network</span></span>
-<span id="cb275-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-2" tabindex="-1"></a>someSources <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
-<span id="cb275-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-3" tabindex="-1"></a><span class="co"># take the first four sources</span></span>
-<span id="cb275-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-4" tabindex="-1"></a>    <span class="fu">slice</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb275-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-5" tabindex="-1"></a></span>
-<span id="cb275-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-6" tabindex="-1"></a>smallBiblioDF <span class="ot">&lt;-</span> someSources <span class="sc">%&gt;%</span> </span>
-<span id="cb275-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-7" tabindex="-1"></a><span class="co"># make them into a rectangular source * citation matrix</span></span>
-<span id="cb275-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-8" tabindex="-1"></a>    <span class="fu">cocMatrix</span>(<span class="at">Field =</span> <span class="st">&quot;CR&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-9" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb275-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-10" tabindex="-1"></a><span class="co"># then a list of edges</span></span>
-<span id="cb275-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-11" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb275-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-12" tabindex="-1"></a>    <span class="fu">filter</span> (value <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-13" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">source =</span> <span class="dv">1</span>, <span class="at">citation =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-14" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>value) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-15" tabindex="-1"></a>    <span class="fu">group_by</span>(citation) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-16" tabindex="-1"></a><span class="co"># then choose only papers cited more than once</span></span>
-<span id="cb275-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-17" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">&gt;</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-18" tabindex="-1"></a>    ungroup</span>
-<span id="cb275-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-19" tabindex="-1"></a></span>
-<span id="cb275-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-20" tabindex="-1"></a>smallBiblioDF <span class="sc">%&gt;%</span> </span>
-<span id="cb275-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-21" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;A small citation network: </span></span>
-<span id="cb275-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-22" tabindex="-1"></a><span class="st">           Edge list of papers cited &gt; 1 time in four sources in CSS&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb275-23" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-1" tabindex="-1"></a><span class="co"># illustration of a small fragment of the citation network</span></span>
+<span id="cb277-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-2" tabindex="-1"></a>someSources <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
+<span id="cb277-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-3" tabindex="-1"></a><span class="co"># take the first four sources</span></span>
+<span id="cb277-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-4" tabindex="-1"></a>    <span class="fu">slice</span> (<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb277-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-5" tabindex="-1"></a></span>
+<span id="cb277-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-6" tabindex="-1"></a>smallBiblioDF <span class="ot">&lt;-</span> someSources <span class="sc">%&gt;%</span> </span>
+<span id="cb277-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-7" tabindex="-1"></a><span class="co"># make them into a rectangular source * citation matrix</span></span>
+<span id="cb277-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-8" tabindex="-1"></a>    <span class="fu">cocMatrix</span>(<span class="at">Field =</span> <span class="st">&quot;CR&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-9" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb277-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-10" tabindex="-1"></a><span class="co"># then a list of edges</span></span>
+<span id="cb277-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-11" tabindex="-1"></a>    reshape2<span class="sc">::</span><span class="fu">melt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb277-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-12" tabindex="-1"></a>    <span class="fu">filter</span> (value <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-13" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">source =</span> <span class="dv">1</span>, <span class="at">citation =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-14" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>value) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-15" tabindex="-1"></a>    <span class="fu">group_by</span>(citation) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-16" tabindex="-1"></a><span class="co"># then choose only papers cited more than once</span></span>
+<span id="cb277-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-17" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">n</span>()<span class="sc">&gt;</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-18" tabindex="-1"></a>    ungroup</span>
+<span id="cb277-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-19" tabindex="-1"></a></span>
+<span id="cb277-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-20" tabindex="-1"></a>smallBiblioDF <span class="sc">%&gt;%</span> </span>
+<span id="cb277-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-21" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;A small citation network: </span></span>
+<span id="cb277-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-22" tabindex="-1"></a><span class="st">           Edge list of papers cited &gt; 1 time in four sources in CSS&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-23" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-98">Table 23.3: </span><span id="tab:unnamed-chunk-98">Table 23.4: </span>A small citation network:
+<span id="tab:unnamed-chunk-99">Table 23.3: </span><span id="tab:unnamed-chunk-99">Table 23.4: </span>A small citation network:
 Edge list of papers cited &gt; 1 time in four sources in CSS
 </caption>
 <thead>
@@ -732,28 +720,28 @@ LAZER DMJ 2020 SCIENCE
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-1" tabindex="-1"></a><span class="co"># plotted using qgraph</span></span>
-<span id="cb276-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-2" tabindex="-1"></a>smallgraph <span class="ot">&lt;-</span> smallBiblioDF <span class="sc">%&gt;%</span></span>
-<span id="cb276-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-3" tabindex="-1"></a>    qgraph<span class="sc">::</span><span class="fu">qgraph</span>(<span class="at">labels =</span> T, </span>
-<span id="cb276-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-4" tabindex="-1"></a>           <span class="at">label.cex =</span> <span class="dv">4</span>,</span>
-<span id="cb276-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-5" tabindex="-1"></a>           <span class="at">vTrans =</span> <span class="dv">30</span>,</span>
-<span id="cb276-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-6" tabindex="-1"></a>           <span class="at">border.color =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb276-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-7" tabindex="-1"></a>           <span class="at">edge.width =</span> <span class="dv">4</span>,</span>
-<span id="cb276-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-8" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
-<span id="cb276-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb276-9" tabindex="-1"></a>           <span class="at">title =</span> <span class="st">&quot;A small citation network: Common cites among four papers&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-98-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-1" tabindex="-1"></a><span class="co"># plotted using qgraph</span></span>
+<span id="cb278-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-2" tabindex="-1"></a>smallgraph <span class="ot">&lt;-</span> smallBiblioDF <span class="sc">%&gt;%</span></span>
+<span id="cb278-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-3" tabindex="-1"></a>    qgraph<span class="sc">::</span><span class="fu">qgraph</span>(<span class="at">labels =</span> T, </span>
+<span id="cb278-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-4" tabindex="-1"></a>           <span class="at">label.cex =</span> <span class="dv">4</span>,</span>
+<span id="cb278-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-5" tabindex="-1"></a>           <span class="at">vTrans =</span> <span class="dv">30</span>,</span>
+<span id="cb278-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-6" tabindex="-1"></a>           <span class="at">border.color =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb278-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-7" tabindex="-1"></a>           <span class="at">edge.width =</span> <span class="dv">4</span>,</span>
+<span id="cb278-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-8" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>),</span>
+<span id="cb278-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-9" tabindex="-1"></a>           <span class="at">title =</span> <span class="st">&quot;A small citation network: Common cites among four papers&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-99-1.png" alt="" width="672" /></p>
 <p>The two-mode citation network can be collapsed to one of two one-mode networks. A co-citation network is one which extracts citations (green nodes), and links them based on the number of times that they are cited by the same authors. We will look instead at <em>bibliometric couplings,</em> or links between the (pink) source papers. This will be a single mode, weighted, undirected network, with source papers as vertices and the number of shared references as edge weights. Here’s a graph showing the collapsed network based on just the papers cited above:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-1" tabindex="-1"></a>smallOneModeMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(someSources, <span class="at">analysis =</span> <span class="st">&quot;coupling&quot;</span>, </span>
-<span id="cb277-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-2" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;references&quot;</span>, </span>
-<span id="cb277-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-3" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb277-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-4" tabindex="-1"></a><span class="co"># Normalize adjusts weights; Salton algorithm takes shared refs / product of geometric means of n refs. This is what I have always done.</span></span>
-<span id="cb277-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-5" tabindex="-1"></a>    <span class="fu">normalizeSimilarity</span>(<span class="at">type =</span> <span class="st">&quot;salton&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb277-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-6" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb277-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-7" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
-<span id="cb277-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-8" tabindex="-1"></a><span class="fu">diag</span>(smallOneModeMatrix) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb277-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-9" tabindex="-1"></a>smallOneModeMatrix <span class="sc">%&gt;%</span> </span>
-<span id="cb277-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-10" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;A small structural network: Matrix showing shared references among 4 papers&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb277-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb277-11" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-1" tabindex="-1"></a>smallOneModeMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(someSources, <span class="at">analysis =</span> <span class="st">&quot;coupling&quot;</span>, </span>
+<span id="cb279-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-2" tabindex="-1"></a>                           <span class="at">network =</span> <span class="st">&quot;references&quot;</span>, </span>
+<span id="cb279-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-3" tabindex="-1"></a>                           <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-4" tabindex="-1"></a><span class="co"># Normalize adjusts weights; Salton algorithm takes shared refs / product of geometric means of n refs. This is what I have always done.</span></span>
+<span id="cb279-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-5" tabindex="-1"></a>    <span class="fu">normalizeSimilarity</span>(<span class="at">type =</span> <span class="st">&quot;salton&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb279-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-6" tabindex="-1"></a>    <span class="fu">as.matrix</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb279-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-7" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb279-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-8" tabindex="-1"></a><span class="fu">diag</span>(smallOneModeMatrix) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb279-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-9" tabindex="-1"></a>smallOneModeMatrix <span class="sc">%&gt;%</span> </span>
+<span id="cb279-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-10" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;A small structural network: Matrix showing shared references among 4 papers&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb279-11" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:fromtwotoone">Table 23.5: </span><span id="tab:fromtwotoone">Table 23.6: </span>A small structural network: Matrix showing shared references among 4 papers
@@ -852,9 +840,9 @@ BALTAR R, 2021
 <div id="looking-at-the-whole-citation-network" class="section level3 hasAnchor" number="23.0.2">
 <h3><span class="header-section-number">23.0.2</span> looking at the whole citation network<a href="case-study-the-network-structure-of-computational-social-science.html#looking-at-the-whole-citation-network" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The bibliometrix package can quickly give summary statistics for citation networks. Here are some characteristics of the entire set of papers.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-1" tabindex="-1"></a>twoModeStats <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(biblioDF)<span class="co">#, sep = &quot;;&quot;)</span></span>
-<span id="cb278-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-2" tabindex="-1"></a>twoModeSummary <span class="ot">&lt;-</span> twoModeStats <span class="sc">|&gt;</span> </span>
-<span id="cb278-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb278-3" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="co"># summary returns a list. look at it.</span></span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-1" tabindex="-1"></a>twoModeStats <span class="ot">&lt;-</span> <span class="fu">biblioAnalysis</span>(biblioDF)<span class="co">#, sep = &quot;;&quot;)</span></span>
+<span id="cb280-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-2" tabindex="-1"></a>twoModeSummary <span class="ot">&lt;-</span> twoModeStats <span class="sc">|&gt;</span> </span>
+<span id="cb280-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-3" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="co"># summary returns a list. look at it.</span></span></code></pre></div>
 <pre><code>## 
 ## 
 ## MAIN INFORMATION ABOUT DATA
@@ -1021,15 +1009,15 @@ BALTAR R, 2021
 ## 8  COVID-19                           28          MEDIA               36
 ## 9  AGENT-BASED MODELING               26          TWITTER             35
 ## 10 DATA SCIENCE                       21          NETWORKS            34</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-1" tabindex="-1"></a>twoModeSummary <span class="sc">|&gt;</span> </span>
-<span id="cb280-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-2" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb280-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-3" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb280-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-4" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
-<span id="cb280-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-5" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Citation network: Key features&quot;</span>) <span class="sc">%&gt;%</span>  </span>
-<span id="cb280-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb280-6" tabindex="-1"></a>    <span class="fu">kable_styling</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-1" tabindex="-1"></a>twoModeSummary <span class="sc">|&gt;</span> </span>
+<span id="cb282-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-2" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb282-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-3" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb282-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-4" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb282-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-5" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Citation network: Key features&quot;</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb282-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-6" tabindex="-1"></a>    <span class="fu">kable_styling</span>() </span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-99">Table 23.7: </span><span id="tab:unnamed-chunk-99">Table 23.8: </span>Citation network: Key features
+<span id="tab:unnamed-chunk-100">Table 23.7: </span><span id="tab:unnamed-chunk-100">Table 23.8: </span>Citation network: Key features
 </caption>
 <thead>
 <tr>
@@ -1226,23 +1214,23 @@ International co-authorships % 32.87
 </tbody>
 </table>
 <p>Here’s a manually-constructed table of the “most cited journals.”</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-1" tabindex="-1"></a>sourceJournals <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
-<span id="cb281-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-2" tabindex="-1"></a>    <span class="fu">citations</span>(<span class="at">field =</span> <span class="st">&quot;article&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-3" tabindex="-1"></a><span class="co"># output of above is a list... pluck gets the first element</span></span>
-<span id="cb281-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-4" tabindex="-1"></a><span class="co"># which is a table of sources</span></span>
-<span id="cb281-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-5" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb281-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-6" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb281-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-7" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">CitedJournal =</span> <span class="dv">1</span>) </span>
-<span id="cb281-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-8" tabindex="-1"></a></span>
-<span id="cb281-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-9" tabindex="-1"></a>sourceJournals <span class="sc">%&gt;%</span> </span>
-<span id="cb281-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-10" tabindex="-1"></a>    <span class="fu">count</span>(CitedJournal) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-11" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-12" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-13" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;Most cited journals in Comp Soc Sci&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb281-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb281-14" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-1" tabindex="-1"></a>sourceJournals <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
+<span id="cb283-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-2" tabindex="-1"></a>    <span class="fu">citations</span>(<span class="at">field =</span> <span class="st">&quot;article&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-3" tabindex="-1"></a><span class="co"># output of above is a list... pluck gets the first element</span></span>
+<span id="cb283-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-4" tabindex="-1"></a><span class="co"># which is a table of sources</span></span>
+<span id="cb283-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-5" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb283-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-6" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb283-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-7" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">CitedJournal =</span> <span class="dv">1</span>) </span>
+<span id="cb283-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-8" tabindex="-1"></a></span>
+<span id="cb283-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-9" tabindex="-1"></a>sourceJournals <span class="sc">%&gt;%</span> </span>
+<span id="cb283-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-10" tabindex="-1"></a>    <span class="fu">count</span>(CitedJournal) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-11" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-12" tabindex="-1"></a>    <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-13" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;Most cited journals in Comp Soc Sci&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-14" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-100">Table 23.9: </span><span id="tab:unnamed-chunk-100">Table 23.10: </span>Most cited journals in Comp Soc Sci
+<span id="tab:unnamed-chunk-101">Table 23.9: </span><span id="tab:unnamed-chunk-101">Table 23.10: </span>Most cited journals in Comp Soc Sci
 </caption>
 <thead>
 <tr>
@@ -1340,36 +1328,36 @@ SCI REP-UK
 <div id="the-need-to-inspectclean-data" class="section level4 hasAnchor" number="23.0.2.1">
 <h4><span class="header-section-number">23.0.2.1</span> the need to inspect/clean data<a href="case-study-the-network-structure-of-computational-social-science.html#the-need-to-inspectclean-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>One drawback of bibliometrix and packages like it is that they remove us somewhat from the data. Here, ‘NA’ is the third most common source of papers. We look more closely at these records to see if there is a problem. Here’s one way…</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-1" tabindex="-1"></a><span class="co"># there are no papers where the cited field is empty or NA</span></span>
-<span id="cb282-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-2" tabindex="-1"></a><span class="co"># so this gets us nowhere</span></span>
-<span id="cb282-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-3" tabindex="-1"></a><span class="co"># sourceJournals %&gt;% </span></span>
-<span id="cb282-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-4" tabindex="-1"></a><span class="co">#        filter(CitedJournal == &quot;&quot; |</span></span>
-<span id="cb282-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-5" tabindex="-1"></a><span class="co">#               CitedJournal == &quot;NA&quot; )</span></span>
-<span id="cb282-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb282-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-7" tabindex="-1"></a>countsonly <span class="ot">&lt;-</span> sourceJournals <span class="sc">%&gt;%</span> </span>
-<span id="cb282-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-8" tabindex="-1"></a>    <span class="fu">group_by</span>(CitedJournal) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-9" tabindex="-1"></a>    <span class="fu">count</span>(CitedJournal) </span>
-<span id="cb282-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-10" tabindex="-1"></a>countNA <span class="ot">&lt;-</span> countsonly <span class="sc">%&gt;%</span> </span>
-<span id="cb282-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-11" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.na</span>(CitedJournal)) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-12" tabindex="-1"></a>    as_tibble <span class="sc">%&gt;%</span> </span>
-<span id="cb282-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-13" tabindex="-1"></a>    <span class="fu">select</span>(n) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-14" tabindex="-1"></a>    <span class="fu">as.integer</span>()</span>
-<span id="cb282-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-15" tabindex="-1"></a>sources <span class="ot">&lt;-</span> sourceJournals <span class="sc">%&gt;%</span> </span>
-<span id="cb282-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-16" tabindex="-1"></a>    <span class="fu">left_join</span>(countsonly)</span>
-<span id="cb282-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-17" tabindex="-1"></a>biblioDF <span class="sc">%&gt;%</span> </span>
-<span id="cb282-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-18" tabindex="-1"></a>    <span class="fu">citations</span>(<span class="at">field =</span> <span class="st">&quot;article&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-19" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-20" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb282-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-21" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sources) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-22" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">papercites =</span> <span class="dv">2</span>, <span class="at">journalcites =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-23" tabindex="-1"></a>    <span class="fu">filter</span>(journalcites <span class="sc">==</span> countNA) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-24"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-24" tabindex="-1"></a>    <span class="fu">select</span>(CR) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-25"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-25" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-26"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-26" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;Random sample of references with source journal coded as NA&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-27"><a href="case-study-the-network-structure-of-computational-social-science.html#cb282-27" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-1" tabindex="-1"></a><span class="co"># there are no papers where the cited field is empty or NA</span></span>
+<span id="cb284-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-2" tabindex="-1"></a><span class="co"># so this gets us nowhere</span></span>
+<span id="cb284-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-3" tabindex="-1"></a><span class="co"># sourceJournals %&gt;% </span></span>
+<span id="cb284-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-4" tabindex="-1"></a><span class="co">#        filter(CitedJournal == &quot;&quot; |</span></span>
+<span id="cb284-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-5" tabindex="-1"></a><span class="co">#               CitedJournal == &quot;NA&quot; )</span></span>
+<span id="cb284-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb284-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-7" tabindex="-1"></a>countsonly <span class="ot">&lt;-</span> sourceJournals <span class="sc">%&gt;%</span> </span>
+<span id="cb284-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-8" tabindex="-1"></a>    <span class="fu">group_by</span>(CitedJournal) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-9" tabindex="-1"></a>    <span class="fu">count</span>(CitedJournal) </span>
+<span id="cb284-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-10" tabindex="-1"></a>countNA <span class="ot">&lt;-</span> countsonly <span class="sc">%&gt;%</span> </span>
+<span id="cb284-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-11" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">is.na</span>(CitedJournal)) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-12" tabindex="-1"></a>    as_tibble <span class="sc">%&gt;%</span> </span>
+<span id="cb284-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-13" tabindex="-1"></a>    <span class="fu">select</span>(n) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-14" tabindex="-1"></a>    <span class="fu">as.integer</span>()</span>
+<span id="cb284-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-15" tabindex="-1"></a>sources <span class="ot">&lt;-</span> sourceJournals <span class="sc">%&gt;%</span> </span>
+<span id="cb284-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-16" tabindex="-1"></a>    <span class="fu">left_join</span>(countsonly)</span>
+<span id="cb284-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-17" tabindex="-1"></a>biblioDF <span class="sc">%&gt;%</span> </span>
+<span id="cb284-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-18" tabindex="-1"></a>    <span class="fu">citations</span>(<span class="at">field =</span> <span class="st">&quot;article&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-19" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-20" tabindex="-1"></a>    <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb284-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-21" tabindex="-1"></a>    <span class="fu">bind_cols</span>(sources) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-22" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">papercites =</span> <span class="dv">2</span>, <span class="at">journalcites =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-23" tabindex="-1"></a>    <span class="fu">filter</span>(journalcites <span class="sc">==</span> countNA) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-24"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-24" tabindex="-1"></a>    <span class="fu">select</span>(CR) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-25"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-25" tabindex="-1"></a>    <span class="fu">sample_n</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-26"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-26" tabindex="-1"></a>    <span class="fu">kable</span> (<span class="at">caption =</span> <span class="st">&quot;Random sample of references with source journal coded as NA&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-27"><a href="case-study-the-network-structure-of-computational-social-science.html#cb284-27" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-101">Table 23.11: </span><span id="tab:unnamed-chunk-101">Table 23.12: </span>Random sample of references with source journal coded as NA
+<span id="tab:unnamed-chunk-102">Table 23.11: </span><span id="tab:unnamed-chunk-102">Table 23.12: </span>Random sample of references with source journal coded as NA
 </caption>
 <thead>
 <tr>
@@ -1488,109 +1476,109 @@ STATISTA, MOST POPS SOC NETW W
 <h3><span class="header-section-number">23.0.3</span> the structural network: Centrality and community structure<a href="case-study-the-network-structure-of-computational-social-science.html#the-structural-network-centrality-and-community-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We now reduce the two mode network to a one-mode for the whole dataset, normalizing the edge weights as before, and setting the diagonal entries to 0.</p>
 <p>We then use the tidygraph package to compute several measures of centrality and community structure.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-1" tabindex="-1"></a><span class="co"># random seed to ensure reproducible results</span></span>
-<span id="cb283-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-2" tabindex="-1"></a><span class="co"># esp for centrality and community analyses</span></span>
-<span id="cb283-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb283-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-4" tabindex="-1"></a>oneModeMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(biblioDF, </span>
-<span id="cb283-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-5" tabindex="-1"></a>                            <span class="at">analysis =</span> <span class="st">&quot;coupling&quot;</span>, </span>
-<span id="cb283-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-6" tabindex="-1"></a>                            <span class="at">network =</span> <span class="st">&quot;references&quot;</span>, </span>
-<span id="cb283-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-7" tabindex="-1"></a>                            <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb283-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-8" tabindex="-1"></a>    <span class="fu">normalizeSimilarity</span>(<span class="at">type =</span> <span class="st">&quot;salton&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb283-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-9" tabindex="-1"></a>    <span class="fu">as.matrix</span>()  </span>
-<span id="cb283-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-10" tabindex="-1"></a></span>
-<span id="cb283-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb283-11" tabindex="-1"></a><span class="fu">str</span>(oneModeMatrix)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-1" tabindex="-1"></a><span class="co"># random seed to ensure reproducible results</span></span>
+<span id="cb285-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-2" tabindex="-1"></a><span class="co"># esp for centrality and community analyses</span></span>
+<span id="cb285-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb285-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-4" tabindex="-1"></a>oneModeMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(biblioDF, </span>
+<span id="cb285-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-5" tabindex="-1"></a>                            <span class="at">analysis =</span> <span class="st">&quot;coupling&quot;</span>, </span>
+<span id="cb285-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-6" tabindex="-1"></a>                            <span class="at">network =</span> <span class="st">&quot;references&quot;</span>, </span>
+<span id="cb285-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-7" tabindex="-1"></a>                            <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb285-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-8" tabindex="-1"></a>    <span class="fu">normalizeSimilarity</span>(<span class="at">type =</span> <span class="st">&quot;salton&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb285-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-9" tabindex="-1"></a>    <span class="fu">as.matrix</span>()  </span>
+<span id="cb285-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-10" tabindex="-1"></a></span>
+<span id="cb285-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-11" tabindex="-1"></a><span class="fu">str</span>(oneModeMatrix)</span></code></pre></div>
 <pre><code>##  num [1:794, 1:794] 1 0 0.0128 0 0 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ : chr [1:794] &quot;HOX JJ, 2017&quot; &quot;TORNBERG P, 2021&quot; &quot;ZHANG J, 2020&quot; &quot;BALTAR R, 2021&quot; ...
 ##   ..$ : chr [1:794] &quot;HOX JJ, 2017&quot; &quot;TORNBERG P, 2021&quot; &quot;ZHANG J, 2020&quot; &quot;BALTAR R, 2021&quot; ...</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-1" tabindex="-1"></a><span class="co"># save it as a graph for igraph/tidygraph</span></span>
-<span id="cb285-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-2" tabindex="-1"></a>oneModeGraph <span class="ot">&lt;-</span> oneModeMatrix <span class="sc">%&gt;%</span> </span>
-<span id="cb285-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-3" tabindex="-1"></a>    <span class="fu">graph_from_adjacency_matrix</span>(<span class="at">mode =</span> <span class="st">&quot;undirected&quot;</span>, </span>
-<span id="cb285-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-4" tabindex="-1"></a>                                <span class="at">diag =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb285-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-5" tabindex="-1"></a>                                <span class="at">weighted =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb285-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-6" tabindex="-1"></a><span class="co"># tidygraph allows us to look at graphs</span></span>
-<span id="cb285-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-7" tabindex="-1"></a><span class="co"># as data frames of nodes and edges</span></span>
-<span id="cb285-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-8" tabindex="-1"></a>tidyBibGraph <span class="ot">&lt;-</span> oneModeGraph <span class="sc">%&gt;%</span> </span>
-<span id="cb285-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-9" tabindex="-1"></a>    <span class="fu">as_tbl_graph</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb285-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-10" tabindex="-1"></a><span class="co"># we activate nodes to assign new measures for each node</span></span>
-<span id="cb285-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-11" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">centralPR =</span> <span class="fu">centrality_pagerank</span>(<span class="at">weights =</span> weight)) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-13" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">nodePRRank =</span> <span class="fu">rank</span>(<span class="sc">-</span>centralPR)) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-14" tabindex="-1"></a><span class="co">#    mutate(centralWD = centrality_degree(weights = weight)) %&gt;% </span></span>
-<span id="cb285-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-15" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">central0D =</span> <span class="fu">centrality_degree</span>(<span class="at">weights =</span> <span class="cn">NULL</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-16" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">communityLouv =</span> <span class="fu">group_louvain</span>(<span class="at">weights =</span> weight)) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">group_louvain</span>())) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-18" tabindex="-1"></a><span class="co">#    mutate(communityWalk = group_walktrap(weights = weight)) %&gt;% </span></span>
-<span id="cb285-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-19" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) </span>
-<span id="cb285-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-20" tabindex="-1"></a></span>
-<span id="cb285-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-21" tabindex="-1"></a>edgeList <span class="ot">&lt;-</span> tidyBibGraph <span class="sc">%&gt;%</span> </span>
-<span id="cb285-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-22" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-23" tabindex="-1"></a>    <span class="fu">as_tibble</span>()</span>
-<span id="cb285-24"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-24" tabindex="-1"></a>nodeList <span class="ot">&lt;-</span> tidyBibGraph <span class="sc">%&gt;%</span> </span>
-<span id="cb285-25"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-25" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
-<span id="cb285-26"><a href="case-study-the-network-structure-of-computational-social-science.html#cb285-26" tabindex="-1"></a>    <span class="fu">as_tibble</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-1" tabindex="-1"></a><span class="co"># save it as a graph for igraph/tidygraph</span></span>
+<span id="cb287-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-2" tabindex="-1"></a>oneModeGraph <span class="ot">&lt;-</span> oneModeMatrix <span class="sc">%&gt;%</span> </span>
+<span id="cb287-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-3" tabindex="-1"></a>    <span class="fu">graph_from_adjacency_matrix</span>(<span class="at">mode =</span> <span class="st">&quot;undirected&quot;</span>, </span>
+<span id="cb287-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-4" tabindex="-1"></a>                                <span class="at">diag =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb287-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-5" tabindex="-1"></a>                                <span class="at">weighted =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb287-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-6" tabindex="-1"></a><span class="co"># tidygraph allows us to look at graphs</span></span>
+<span id="cb287-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-7" tabindex="-1"></a><span class="co"># as data frames of nodes and edges</span></span>
+<span id="cb287-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-8" tabindex="-1"></a>tidyBibGraph <span class="ot">&lt;-</span> oneModeGraph <span class="sc">%&gt;%</span> </span>
+<span id="cb287-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-9" tabindex="-1"></a>    <span class="fu">as_tbl_graph</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb287-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-10" tabindex="-1"></a><span class="co"># we activate nodes to assign new measures for each node</span></span>
+<span id="cb287-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-11" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">centralPR =</span> <span class="fu">centrality_pagerank</span>(<span class="at">weights =</span> weight)) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-13" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">nodePRRank =</span> <span class="fu">rank</span>(<span class="sc">-</span>centralPR)) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-14" tabindex="-1"></a><span class="co">#    mutate(centralWD = centrality_degree(weights = weight)) %&gt;% </span></span>
+<span id="cb287-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-15" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">central0D =</span> <span class="fu">centrality_degree</span>(<span class="at">weights =</span> <span class="cn">NULL</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-16" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">communityLouv =</span> <span class="fu">group_louvain</span>(<span class="at">weights =</span> weight)) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">as.factor</span>(<span class="fu">group_louvain</span>())) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-18" tabindex="-1"></a><span class="co">#    mutate(communityWalk = group_walktrap(weights = weight)) %&gt;% </span></span>
+<span id="cb287-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-19" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) </span>
+<span id="cb287-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-20" tabindex="-1"></a></span>
+<span id="cb287-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-21" tabindex="-1"></a>edgeList <span class="ot">&lt;-</span> tidyBibGraph <span class="sc">%&gt;%</span> </span>
+<span id="cb287-22"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-22" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-23"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-23" tabindex="-1"></a>    <span class="fu">as_tibble</span>()</span>
+<span id="cb287-24"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-24" tabindex="-1"></a>nodeList <span class="ot">&lt;-</span> tidyBibGraph <span class="sc">%&gt;%</span> </span>
+<span id="cb287-25"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-25" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-26"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-26" tabindex="-1"></a>    <span class="fu">as_tibble</span>()</span></code></pre></div>
 </div>
 <div id="visualizing-the-network" class="section level3 hasAnchor" number="23.0.4">
 <h3><span class="header-section-number">23.0.4</span> visualizing the network<a href="case-study-the-network-structure-of-computational-social-science.html#visualizing-the-network" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>I use ggraph to try a few visualizations within R - it plays nicely with tidygraph. In the first visualization, all but the 22 isolates are plotted. It suggests that there is a community structure, but nothing beyond this.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-1" tabindex="-1"></a>nNodesToPlot <span class="ot">&lt;-</span> <span class="dv">794</span></span>
-<span id="cb286-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-2" tabindex="-1"></a>minEdgeWeightToPlot <span class="ot">&lt;-</span> .<span class="dv">00001</span></span>
-<span id="cb286-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-3" tabindex="-1"></a><span class="fu">library</span> (ggraph)</span>
-<span id="cb286-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-4" tabindex="-1"></a>tidyBibGraph <span class="sc">%&gt;%</span> </span>
-<span id="cb286-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-5" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-6" tabindex="-1"></a>    <span class="fu">filter</span>(central0D <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-7" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> nNodesToPlot) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-8" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-9" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> minEdgeWeightToPlot) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-10" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&#39;stress&#39;</span>)  <span class="sc">+</span></span>
-<span id="cb286-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-11" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span>  </span>
-<span id="cb286-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-12" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> (centralPR),</span>
-<span id="cb286-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-13" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
-<span id="cb286-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-14" tabindex="-1"></a><span class="co">#  geom_node_label(aes(label = name,</span></span>
-<span id="cb286-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-15" tabindex="-1"></a><span class="co">#                      color = as.factor(communityLouv))) +</span></span>
-<span id="cb286-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb286-16" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-103-1.png" alt="" width="672" /></p>
-<p>In the second plot, I show just the top 20 nodes, but also include labels for these.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-1" tabindex="-1"></a>nNodesToPlot <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb287-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-2" tabindex="-1"></a>minEdgeWeightToPlot <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
-<span id="cb287-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-3" tabindex="-1"></a>tidyBibGraph <span class="sc">%&gt;%</span> </span>
-<span id="cb287-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-4" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-5" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> nNodesToPlot) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-6" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-7" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> minEdgeWeightToPlot) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-8" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&#39;stress&#39;</span>)  <span class="sc">+</span></span>
-<span id="cb287-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-9" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span>  </span>
-<span id="cb287-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-10" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> (centralPR),</span>
-<span id="cb287-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-11" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
-<span id="cb287-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-12" tabindex="-1"></a>  <span class="fu">geom_node_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> name,</span>
-<span id="cb287-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-13" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
-<span id="cb287-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb287-14" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-1" tabindex="-1"></a>nNodesToPlot <span class="ot">&lt;-</span> <span class="dv">794</span></span>
+<span id="cb288-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-2" tabindex="-1"></a>minEdgeWeightToPlot <span class="ot">&lt;-</span> .<span class="dv">00001</span></span>
+<span id="cb288-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-3" tabindex="-1"></a><span class="fu">library</span> (ggraph)</span>
+<span id="cb288-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-4" tabindex="-1"></a>tidyBibGraph <span class="sc">%&gt;%</span> </span>
+<span id="cb288-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-5" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-6" tabindex="-1"></a>    <span class="fu">filter</span>(central0D <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-7" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> nNodesToPlot) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-8" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-9" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> minEdgeWeightToPlot) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-10" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&#39;stress&#39;</span>)  <span class="sc">+</span></span>
+<span id="cb288-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-11" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb288-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-12" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> (centralPR),</span>
+<span id="cb288-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-13" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
+<span id="cb288-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-14" tabindex="-1"></a><span class="co">#  geom_node_label(aes(label = name,</span></span>
+<span id="cb288-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-15" tabindex="-1"></a><span class="co">#                      color = as.factor(communityLouv))) +</span></span>
+<span id="cb288-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-16" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-104-1.png" alt="" width="672" /></p>
+<p>In the second plot, I show just the top 20 nodes, but also include labels for these.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-1" tabindex="-1"></a>nNodesToPlot <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb289-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-2" tabindex="-1"></a>minEdgeWeightToPlot <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb289-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-3" tabindex="-1"></a>tidyBibGraph <span class="sc">%&gt;%</span> </span>
+<span id="cb289-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-4" tabindex="-1"></a>    <span class="fu">activate</span>(nodes) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-5" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> nNodesToPlot) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-6" tabindex="-1"></a>    <span class="fu">activate</span>(edges) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-7" tabindex="-1"></a>    <span class="fu">filter</span>(weight <span class="sc">&gt;</span> minEdgeWeightToPlot) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-8" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&#39;stress&#39;</span>)  <span class="sc">+</span></span>
+<span id="cb289-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-9" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb289-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-10" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> (centralPR),</span>
+<span id="cb289-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-11" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
+<span id="cb289-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-12" tabindex="-1"></a>  <span class="fu">geom_node_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> name,</span>
+<span id="cb289-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-13" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">as.factor</span>(communityLouv))) <span class="sc">+</span></span>
+<span id="cb289-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-14" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-105-1.png" alt="" width="672" /></p>
 <p>The graph shows papers in four communities, three of which are represented by just one or two papers. Note that some of the papers are odd - a book review, for example.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-1" tabindex="-1"></a>nodeInfo <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
-<span id="cb288-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-3" tabindex="-1"></a>    <span class="fu">select</span>(AB, TI, DE, ID, J9) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-4" tabindex="-1"></a><span class="co"># ID is a text field of keywords in the bib data</span></span>
-<span id="cb288-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-5" tabindex="-1"></a><span class="co"># I combine it with the other text fields, then</span></span>
-<span id="cb288-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-6" tabindex="-1"></a><span class="co"># create a new ID of text number to combine with</span></span>
-<span id="cb288-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-7" tabindex="-1"></a><span class="co"># the node centrality etc</span></span>
-<span id="cb288-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">alltext =</span> <span class="fu">paste</span>(TI, AB, DE, ID, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-9" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>AB, <span class="sc">-</span>DE, <span class="sc">-</span>ID) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) </span>
-<span id="cb288-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-11" tabindex="-1"></a>allNodeInfo <span class="ot">&lt;-</span> nodeList <span class="sc">%&gt;%</span> </span>
-<span id="cb288-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-12" tabindex="-1"></a><span class="co">#    filter(nodePRRank &lt; 21) %&gt;% </span></span>
-<span id="cb288-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-13" tabindex="-1"></a>    <span class="fu">left_join</span>(nodeInfo, <span class="at">by =</span> <span class="st">&#39;ID&#39;</span>)</span>
-<span id="cb288-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-14" tabindex="-1"></a></span>
-<span id="cb288-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-15" tabindex="-1"></a>nodeList <span class="sc">%&gt;%</span> </span>
-<span id="cb288-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-16" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> <span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-17" tabindex="-1"></a>    <span class="fu">left_join</span>(nodeInfo) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-18" tabindex="-1"></a>    <span class="fu">select</span> (name, nodePRRank, communityLouv, TI) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-19" tabindex="-1"></a>    <span class="fu">arrange</span>(communityLouv, nodePRRank) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-20" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Top papers in CSS by PR and community&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb288-21" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-1" tabindex="-1"></a>nodeInfo <span class="ot">&lt;-</span> biblioDF <span class="sc">%&gt;%</span> </span>
+<span id="cb290-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-3" tabindex="-1"></a>    <span class="fu">select</span>(AB, TI, DE, ID, J9) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-4" tabindex="-1"></a><span class="co"># ID is a text field of keywords in the bib data</span></span>
+<span id="cb290-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-5" tabindex="-1"></a><span class="co"># I combine it with the other text fields, then</span></span>
+<span id="cb290-6"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-6" tabindex="-1"></a><span class="co"># create a new ID of text number to combine with</span></span>
+<span id="cb290-7"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-7" tabindex="-1"></a><span class="co"># the node centrality etc</span></span>
+<span id="cb290-8"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-8" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">alltext =</span> <span class="fu">paste</span>(TI, AB, DE, ID, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-9"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-9" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>AB, <span class="sc">-</span>DE, <span class="sc">-</span>ID) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-10"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">ID =</span> <span class="fu">row_number</span>()) </span>
+<span id="cb290-11"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-11" tabindex="-1"></a>allNodeInfo <span class="ot">&lt;-</span> nodeList <span class="sc">%&gt;%</span> </span>
+<span id="cb290-12"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-12" tabindex="-1"></a><span class="co">#    filter(nodePRRank &lt; 21) %&gt;% </span></span>
+<span id="cb290-13"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-13" tabindex="-1"></a>    <span class="fu">left_join</span>(nodeInfo, <span class="at">by =</span> <span class="st">&#39;ID&#39;</span>)</span>
+<span id="cb290-14"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-14" tabindex="-1"></a></span>
+<span id="cb290-15"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-15" tabindex="-1"></a>nodeList <span class="sc">%&gt;%</span> </span>
+<span id="cb290-16"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-16" tabindex="-1"></a>    <span class="fu">filter</span>(nodePRRank <span class="sc">&lt;</span> <span class="dv">21</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-17"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-17" tabindex="-1"></a>    <span class="fu">left_join</span>(nodeInfo) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-18"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-18" tabindex="-1"></a>    <span class="fu">select</span> (name, nodePRRank, communityLouv, TI) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-19"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-19" tabindex="-1"></a>    <span class="fu">arrange</span>(communityLouv, nodePRRank) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-20"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-20" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Top papers in CSS by PR and community&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-21"><a href="case-study-the-network-structure-of-computational-social-science.html#cb290-21" tabindex="-1"></a>    <span class="fu">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-105">Table 23.13: </span><span id="tab:unnamed-chunk-105">Table 23.14: </span>Top papers in CSS by PR and community
+<span id="tab:unnamed-chunk-106">Table 23.13: </span><span id="tab:unnamed-chunk-106">Table 23.14: </span>Top papers in CSS by PR and community
 </caption>
 <thead>
 <tr>
@@ -1896,11 +1884,11 @@ TOWARDS COMPUTATIONAL AND BEHAVIORAL SOCIAL SCIENCE
 <h3><span class="header-section-number">23.0.5</span> exploring the communities<a href="case-study-the-network-structure-of-computational-social-science.html#exploring-the-communities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One way to see and understand this community structure is to explore the datausing an interactive network tool (Gephi). In order to do this, we’ll write the nodes and edges to disk in two separate writes.</p>
 <p>Another way to understand the communities is to compare the language of different communities, using the combined text fields. That is explored in a second r markdown script; CSS2_NetworkToText.Rmd.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-1" tabindex="-1"></a>allNodeInfo <span class="sc">%&gt;%</span> </span>
-<span id="cb289-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-2" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="fu">file.path</span>(dataDir, <span class="st">&quot;CSSNodesText.csv&quot;</span>))</span>
-<span id="cb289-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-3" tabindex="-1"></a>edgeList <span class="sc">%&gt;%</span> </span>
-<span id="cb289-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">source =</span> from, <span class="at">target =</span> to) <span class="sc">%&gt;%</span> </span>
-<span id="cb289-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb289-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="fu">file.path</span>(dataDir, <span class="st">&quot;CSSEdges.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="case-study-the-network-structure-of-computational-social-science.html#cb291-1" tabindex="-1"></a>allNodeInfo <span class="sc">%&gt;%</span> </span>
+<span id="cb291-2"><a href="case-study-the-network-structure-of-computational-social-science.html#cb291-2" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="fu">file.path</span>(dataDir, <span class="st">&quot;CSSNodesText.csv&quot;</span>))</span>
+<span id="cb291-3"><a href="case-study-the-network-structure-of-computational-social-science.html#cb291-3" tabindex="-1"></a>edgeList <span class="sc">%&gt;%</span> </span>
+<span id="cb291-4"><a href="case-study-the-network-structure-of-computational-social-science.html#cb291-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">source =</span> from, <span class="at">target =</span> to) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-5"><a href="case-study-the-network-structure-of-computational-social-science.html#cb291-5" tabindex="-1"></a>  <span class="fu">write_csv</span>(<span class="fu">file.path</span>(dataDir, <span class="st">&quot;CSSEdges.csv&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>

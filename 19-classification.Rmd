@@ -1,6 +1,6 @@
 # prediction and classification
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 library(tidyverse)
 # library(dslabs)
@@ -13,37 +13,44 @@ library (caTools) # ditto
 library(magrittr) # allows bidirectional pipe for updating file easily %<>% 
 ```
 
-If we want to classify people, we will need to create a decision threshold at which we will change our prediction from 'no' to 'yes'.
+At the end of the last chapter, we encountered an error. We were trying to predict the dichotomous outcome affairYN - but we forgot to drop the two other variables that were derived from nbaffairs (the original variable) - rootAffair and nbaffairs itself. Note that we did this correctly in the prior analysis of 'rootAffair'. At any rate, here's one way to fix it:
+
+```{r}
+set.seed(33458)
+Fair <- Fair |>  
+    mutate (rootAffair = 
+              as.integer(sqrt(nbaffairs))) |> 
+    mutate (affairYN =
+               ifelse (nbaffairs > 0,1,0))
+n <- nrow(Fair)
+trainIndex <- sample(1:n, size = round(0.6*n), replace=FALSE)
+trainFair <- Fair[trainIndex ,]
+testFair <- Fair[-trainIndex ,]
+trainFair <- trainFair %>%
+    select(-nbaffairs, -rootAffair)
+```
+
+, and then run a logistic regression model to predict affairYN from the other variables. We will use this model to generate predicted scores, which we will then classify as "Predictunfaithful" or "PredictOK" based on a decision threshold.
+
+```{r}
+
+model2 <- glm(affairYN ~ ., data = trainFair,
+              family = "binomial")
+summary (model2)
+```
+
+Our "predicted scores" are continuous, corresponding to the probability that a given person will have an affair. Here's how they are distributed (still on the training data here):
+
+```{r}
+predictTrain <- predict(model2, trainFair, type = "response")
+summary (predictTrain)
+```
+
+As scores on predictTrain increase, the predicted likelihood of an affair increases. If you are considering marriage to a potential partner, what score would be too high? How do we distinguish "ok" from "not"? If we want to classify people, we will need to create a decision threshold at which we will change our prediction from 'no' to 'yes'.
 
 ## from regression to classification: selection of a threshold
 
-We will continue to work with the affairs data; here's the relevant code from last chapter:
-
-```{r}
-# code from last chapter on Fair data
-Fair <- Fair %>% 
-    mutate(rootAffair = 
-              as.integer(sqrt(nbaffairs))) %>% 
-    mutate(affairYN =
-               ifelse (nbaffairs > 0,1,0))
-set.seed(33458)
-n <- nrow(Fair)
-trainIndex <- sample(1:n, size = round(0.6*n),
-                     replace=FALSE)
-trainFair <- Fair[trainIndex ,]
-testFair <- Fair[-trainIndex ,]
-trainFair2 <- trainFair %>%
-    select(-nbaffairs, -affairYN)
-testFair2 <- testFair %>%
-    select(-nbaffairs, -affairYN)
-model2 <- lm(rootAffair ~ .,
-             data = trainFair2)
-summary(model2)
-predictTrain <- predict(model2, trainFair, 
-                        type = "response")
-```
-
-To maximise overall prediction, we will create a threshold equal to the actual proportion of people who don't have affairs in our sample:
+If we want to simply maximize overall prediction, we should create a threshold equal to the actual proportion of people who don't have affairs in our sample:
 
 ```{r}
 (threshold <- mean(trainFair$affairYN))
@@ -80,7 +87,13 @@ On the test data, we are correct `r 100*(round(accuracy,2))` percent of the time
 
 ### changing our decision threshold
 
-In many decision problems, there is an asymmetry in the cost of different types of errors: if you are foraging for mushrooms, for example, an error of the form (you decide its safe and it is poisonous) is more costly than the converse (you decide its poisonous and it is safe).
+In many decision problems, there is an asymmetry in the cost of different types of errors: if you are foraging for mushrooms, for example, an error of the form
+
+-   *you decide its safe but it is poisonous*
+
+is more costly than the converse,
+
+-   *you decide its poisonous and it is safe*.
 
 This may be true in the present example as well. Consider someone who is looking for a spouse, but is really averse to the idea of getting hurt by an affair. That person might feel like the cost of marrying an unfaithful person is much greater than the cost of not marrying a faithful one. So we adjust the threshold downwards:
 
@@ -153,7 +166,7 @@ If regression analysis is an approach to prediction based in our set of variable
 
 Formally, as described in the documentation for the knn package,
 
-> For each row of the test set, the k nearest (in Euclidean distance) training set vectors are found, and the classification is decided by majority vote, with ties broken at random. (ref).
+> For each row of the test set, the k nearest (in Euclidean distance) training set vectors are found, and the classification is decided by majority vote, with ties broken at random.
 
 In the simplest form of this analysis, we find the nearest thing to a "doppelganger" (a look-alike or near double) for a given observation. So, in the affairs data, if a person is most like someone else in the dataset who has had an affair, we predict an affair, else not.
 
