@@ -612,11 +612,10 @@ div.csl-indent {
 <span id="cb42-16"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-16" tabindex="-1"></a>                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-17"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-17" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_name =</span> <span class="fu">toupper</span>(school_name)) <span class="sc">|&gt;</span> </span>
 <span id="cb42-18"><a href="finding-exploring-cleaning-and-combining-data.html#cb42-18" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">school_place =</span> <span class="fu">str_remove</span>(school_place,<span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>))</span></code></pre></div>
-<pre><code>## Warning: Expected 2 pieces. Missing pieces
-## filled with `NA` in 192 rows [8, 18,
-## 21, 22, 24, 26, 32, 33, 44, 46, 47,
-## 49, 53, 57, 59, 60, 62, 67, 73, 81,
-## ...].</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled
+## with `NA` in 192 rows [8, 18, 21, 22, 24,
+## 26, 32, 33, 44, 46, 47, 49, 53, 57, 59,
+## 60, 62, 67, 73, 81, ...].</code></pre>
 <p>When we run this chunk, we get a warning. What is it about? Is it ok?</p>
 </div>
 </div>
@@ -640,10 +639,10 @@ div.csl-indent {
 <span id="cb44-15"><a href="finding-exploring-cleaning-and-combining-data.html#cb44-15" tabindex="-1"></a>    <span class="fu">left_join</span>(EnrollmentsFromFHSAA, <span class="at">by =</span> <span class="st">&quot;school_name&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in left_join(FloridaHighSchools, EnrollmentsFromFHSAA, by = &quot;school_name&quot;): Detected an unexpected many-to-many
 ## relationship between `x` and `y`.
-## ℹ Row 38 of `x` matches multiple rows
-##   in `y`.
-## ℹ Row 187 of `y` matches multiple rows
-##   in `x`.
+## ℹ Row 38 of `x` matches multiple rows in
+##   `y`.
+## ℹ Row 187 of `y` matches multiple rows in
+##   `x`.
 ## ℹ If a many-to-many relationship is
 ##   expected, set `relationship =
 ##   &quot;many-to-many&quot;` to silence this
