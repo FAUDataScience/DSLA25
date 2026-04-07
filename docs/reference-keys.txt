@@ -166,7 +166,7 @@ resampling-beyond-test-training-and-validation-samples
 compensatory-versus-non-compensatory-problems
 a-postscript-the-tidymodels-packages
 working-with-text
-overview-of-key-topics-in-text-analysis
+overview-of-some-key-ideas-in-text-analysis
 a-case-study
 federal-workers
 finding-reddit-data
@@ -177,7 +177,7 @@ construction-of-differential-word-clouds
 bigrams
 categories-of-words
 code-for-assessing-liwc-effect-sizes-between-2-groups
-exercise-what-would-you-do-next
+exercises-what-would-you-do-next
 an-introduction-to-networks
 introduction
 a-simple-example-networks-and-balance-theory
@@ -193,7 +193,8 @@ looking-at-the-whole-citation-network
 the-need-to-inspectclean-data
 the-structural-network-centrality-and-community-structure
 visualizing-the-network
-exploring-the-communities
+exploring-the-communities-using-gephi
+understanding-the-communities-using-text-analysis
 some-ethical-concerns-for-the-data-scientist
 ethics-and-personality-harvesting
 the-law-of-unintended-consequences

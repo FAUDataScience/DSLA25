@@ -92,7 +92,6 @@ smallOneModeMatrix %>%
     kable_styling()
 ```
 
-
 Based on the structure of shared references, Baltar and Hox *appear* to be quite different, distant from each other. (But don't trust the result too much - small networks like this aren't particularly stable). Regardless, this is a beginning of an understanding of the structure of scholarship in computational social science.
 
 ### looking at the whole citation network
@@ -281,11 +280,9 @@ nodeList %>%
 
 ```
 
-### exploring the communities
+### exploring the communities using Gephi
 
-One way to see and understand this community structure is to explore the datausing an interactive network tool (Gephi). In order to do this, we'll write the nodes and edges to disk in two separate writes.
-
-Another way to understand the communities is to compare the language of different communities, using the combined text fields. That is explored in a second r markdown script; CSS2_NetworkToText.Rmd.
+Another way to see, understand, and share this community structure is to use an interactive network tool called [Gephi](https://gephi.org/). We can prepare the data for Gephi in two ways. The most useful will be to write the nodes and edges to disk in two separate writes:
 
 ```{r}
 allNodeInfo %>% 
@@ -294,3 +291,25 @@ edgeList %>%
   rename(source = from, target = to) %>% 
   write_csv(file.path(dataDir, "CSSEdges.csv"))
 ```
+
+A second approach is to prepare a single network file that is directly readable by a new Web-based tool called [Gephi Lite](https://gephi.org/lite/) (as well as by Gephi). The lite version lacks some of the power (and complexity) of Gephi, but it does demonstrate how one can quickly generate attractive graphs using this popular interactive tool. There are two tutorials and a manual [here](https://docs.gephi.org/lite/).
+
+```{r}
+#install.packages("rgexf")
+library(rgexf)
+edges <- edgeList |> 
+  select(source = from, target = to)
+nodes <- nodeList |> 
+  select(ID, label = name)
+weights <- as.numeric(edgeList[["edgesWeight"]])
+  
+write.gexf(nodes = nodes, 
+           edges = edges,
+           edgesWeight = weights,
+           output = (file.path(dataDir, "CSS.gexf")))
+
+```
+
+### understanding the communities using text analysis
+
+Another way to understand the communities is to compare the language of different communities, using the combined text fields. That approach is explored in supplementary code.

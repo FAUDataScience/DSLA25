@@ -15,29 +15,25 @@ library(kableExtra) # for tables
 
 This chapter includes two parts: A (brief) overview and a (longer) case study which serves as an example.
 
-## overview of key topics in text analysis
+## overview of some key ideas in text analysis
 
-1)  We can represent a body of text (a corpus) as a string of words (or, more generally, tokens), using the tidytext package. See the "[introduction to tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html)" for more. (<https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html>). [Jane Austen, Sentiment analysis, Word frequencies, bag-of-words, stop words].
+1)  We can represent a body of text (a corpus) as a string of words (or, more generally, tokens), using the tidytext package. See the "[introduction to tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html)" for more. (<https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html>).
 
-    *exercise: re. stop words, consider how we might remedy the "miss is not negative" problem.*
+    a)  This provides an introduction using the novels of Jane Austen.
+    b)  Some of the concepts introduced include stop words, sentiment analysis, and word clouds, which can be built from tables of word frequencies.
+    c)  For a simple exercise: re. stop words, consider how we might remedy the "miss is not negative" problem.
 
-    There is more in the [Silge & Robinson book](https://www.tidytextmining.com/).
+2)  There is much more detail on the tidy approach in the [Silge & Robinson book](https://www.tidytextmining.com/).
 
-2)  Dictionaries are an extension of [sentiment analysis](https://rpubs.com/confrench33/text_analysis_R).
+3)  The text of the musical Hamilton is examined here (<https://info2950.infosci.cornell.edu/tutorials/text-mining-hamilton.html>). Another example looks at [Topic modeling](https://juliasilge.com/blog/taylor-swift/) in Taylor Swift lyrics.
 
-3)  Word clouds can be built from tables of word frequencies.
+4)  For a little more on [sentiment analysis](https://rpubs.com/confrench33/text_analysis_R), see (<https://rpubs.com/confrench33/text_analysis_R>).
 
-4)  [Hamilton](https://info2950.infosci.cornell.edu/tutorials/text-mining-hamilton.html) project
+5)  When you work with texts from other sources, you may face challenges in [character encoding](https://sicss.io/2020/materials/day3-text-analysis/basic-text-analysis/rmarkdown/Basic_Text_Analysis_in_R.html). You'll need to make decisions about stop-words (whether or not to exclude them), and units of analysis (words, bigrams, etc. as units of speech, and chapters, speakers, etc. as 'corpora' which you might compare).
 
-5)  Challenges in text analysis include problems in [character encoding](https://sicss.io/2020/materials/day3-text-analysis/basic-text-analysis/rmarkdown/Basic_Text_Analysis_in_R.html). Decisions must be made about stop-words (whether or not to exclude them), and units of analysis (words, bigrams, etc. as units of speech; chapters, speakers, etc. as 'corpora' which you might compare).
+6)  In my own work, I've looked at such things as comparing scholarly texts, looking at words associated with [stages of personality development](https://www.nature.com/articles/s41562-018-0329-0), [comparing the language of Fox and MSNBC transcripts](https://spssi.onlinelibrary.wiley.com/doi/full/10.1111/asap.12265), and analyzing the contents of Reddit posts.
 
-6)  Limitations of this approach include negation.
-
-7)  Another example looks at [Topic modeling](https://juliasilge.com/blog/taylor-swift/) in Taylor Swift lyrics.
-
-8)  In my own work, I've looked at such things as comparing scholarly texts, looking at words associated with stages of personality development, and analyzing the contents of Reddit posts.
-
-9)  The nature of LLMs, inferring meaning from context.
+7)  These approaches are rudimentary. The study of large language models (LLMs) is a major part of contemporary work in AI. LLMs build knowledge from large corpora (e.g., Reddit posts); where facts and 'understanding' are generated from context. For example, in such a corpus, the word 'French' is likely to appear near words such as Paris, baguette, Seine, Bastille, and wine. These words appear selectively near other words (cafe, cheese, German), creating a network. We will not be discussing LLMs further here.
 
 ## a case study
 
@@ -79,7 +75,7 @@ In order to address these questions, we'll briefly touch on some auxiliary techn
 
 ### finding Reddit data
 
-Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available following some simple Web sleuthing. In this block, I begin with a set of posts that I have already downloaded.
+Although Reddit data became less accessible beginning in 2023, archives of Reddit posts and comments remain readily available (as of 2026) at sites such as [arctic-shift](https://arctic-shift.photon-reddit.com/download-tool). Here, I begin with a set of posts that I have already downloaded.
 
 We initially look at a very small set of data - 100 lines - both to make sure the code works and, if it does, to make an initial determination about what fields are of interest. The file is large, so it will ultimately be read in through streaming rather than all-at-once, hence the readLines -\> stream_in syntax.
 
@@ -87,7 +83,7 @@ We initially look at a very small set of data - 100 lines - both to make sure th
 posts <- read_lines("data/r_fednews_posts.jsonl", n_max = 100)
 a1 <- stream_in(textConnection(
      gsub("\\n","", posts))) 
-glimpse(a1)
+#glimpse(a1)
 ```
 
 Only a few columns are of interest to us. We select those columns in the next chunk, for a sample of 10000 posts. We also take note of how long it takes to read a sample of this size by noting start-time, end.time, and the difference between these. Finally we make the date-time field (created_utc) field "human readable."
@@ -356,6 +352,6 @@ In comparisons of the two "epochs," the LIWC categories which were particularly 
 
 These analyses support the argument presented in the *Times* article referenced above, including that the r/*fedworkers* subreddit had grown, in the Trump epoch, into a supportive community (shift from *i* to *we*), in which workers were sharing anxieties (LIWC categories such as *emo_neg* and *tone_neg*).
 
-## exercise: what would you do next?
+## exercises: what would you do next?
 
-This chapter has provided a brief example of how to work with text from Reddit. If you were to work with these data, what would you do next? If you were to work with another dataset, what would it look like, what would you expect to find, and how would you study it?
+This chapter has provided a brief example of how to work with text from Reddit. If you were to work with these data, what would you do next? If you were to work with another dataset - such as the "AmITheAsshole subreddit that we discussed in class - what would it look like, what would you expect to find, and how would you study it?

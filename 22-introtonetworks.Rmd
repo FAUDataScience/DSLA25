@@ -91,13 +91,13 @@ ggraph(triangle, layout = "circle") +
 
 So. Is this system stable? What changes in edge weights might make it so? What changes would *not* make things better? What do all 'stable' (or 'unstable') networks have in common?
 
-This is an application of *balance theory* [@cartwright1956], which suggests that certain configurations of positive and negative edges are more stable than others. A recent [*NY Times* article](https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html) illustrates (kind of) how the complex geopolitical situation in the contemporary Middle East can be modeled using ideas drawn from balance theory and simple signed networks like the one above.
+This is an application of *balance theory* [@cartwright1956], which suggests that certain configurations of positive and negative edges are more stable than others. A recent [*NY Times* article](https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html) from a few years ago illustrates (kind of) how the complex geopolitical situation in the contemporary Middle East can be modeled using ideas drawn from balance theory and simple signed networks like the one above.
 
 ## key network concepts
 
-Networks involve two types of objects called **nodes** (or vertices) and **edges** (or links). Networks may be directed or undirected. Edges in a **directed** network might describe relationships such as *likes, follows,* *has heard of, cites,* or *clicks on.* We can represent them by arrows between nodes.
+Networks involve two types of objects called **nodes** (or vertices) and **edges** (or links). Networks may be directed or undirected. Edges in a **directed** network might describe relationships such as *likes, follows,* *has heard of, cites,* or *clicks on.* We can represent them by arrows between nodes. Edges may be **weighted**. For example, in a network of a college curriculum, weights might correspond to the number of classes a student took with a particular professor.
 
-Edges in an **undirected** network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as *are siblings, are allies, know each other, are married, have been cited by the same source,* and *have both been exposed to.* We represent undirected networks by lines without arrowheads.
+Edges in an **undirected** network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as *are siblings, are allies, know each other, are married, have been cited by the same source,* and *have both been exposed to.* We can represent undirected networks by lines without arrowheads.
 
 Unrequited love is a directed relationship, requited or reciprocal love can be modeled as undirected one.
 
@@ -131,7 +131,7 @@ In data science, it's generally easiest to begin with very small datasets and to
 
 Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is **contagion** - not just of diseases, but also of emotions [@kelly2016] and a range of socially desirable and undesirable phenomena [@christakis2013]. Another phenomena seen in dynamic networks is **preferential attachment** in which the most important nodes become still more important over time [@watts2004].
 
-Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products 'go viral' while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of the digital age.
+Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products 'go viral' while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of efficient systems in the digital age.
 
 ```{r}
 
@@ -168,13 +168,14 @@ plot_grid (ba, bb, bc,
 
 You can learn more about networks in the following resources:
 
-1.  [Introduction to Networks with ggraph](https://rpubs.com/neloe/ggraph_intro "Neloe RPubs")
-2.  [Intro to Network Analysis in R](https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html) (Bail, SICSS)
-3.  [Plutniak - igraph package](https://hal.science/hal-05115696v1/file/plutniak_2025_introduction-to-network-analysis-with-r-and-igraph.pdf)
-4.  [Network chapter](https://bookdown.org/jdholster1/idsr/network-analysis.html) (Holster, Laboratory for Interdisciplinary Statistical Analysis)
-5.  [Rawlings et al chapter](https://inarwhal.github.io/NetworkAnalysisR-book/ch3-Cross-Sectional-Network-Data-R.html)
+1.  [Introduction to Networks with ggraph](https://rpubs.com/neloe/ggraph_intro "Neloe RPubs") and The Simpsons
 
-6.  Bibliometric network videos (Lanning, see Chapter 23)
+2.  [Intro to Network Analysis in R](https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html) (Bail, SICSS)
+
+3.  [Network chapter](https://bookdown.org/jdholster1/idsr/network-analysis.html) (Holster, Laboratory for Interdisciplinary Statistical Analysis). A comprehensive introduction and links to a case study of network psychometrics.
+
+4.  Bibliometric network videos (Lanning, see Chapter 23)
+
     1.  CSSIntro0 [GettingWOS Refs](https://www.youtube.com/watch?v=qD8Q08k2trs)
     2.  CSSIntro1 [Citation and structural networks](https://www.youtube.com/watch?v=cSi7-WzDkzM)
     3.  CSSIntro2 [Visualizing networks](https://www.youtube.com/watch?v=bz5mYaFIZZs)
