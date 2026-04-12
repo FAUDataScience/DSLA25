@@ -1,4 +1,5 @@
-```{r setup22, message = FALSE}
+```{r setup22, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE)
 library(tidyverse)
 library(tidygraph)
 library(cowplot)

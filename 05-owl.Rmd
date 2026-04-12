@@ -1,4 +1,4 @@
-```{r owl, include=FALSE, message = FALSE}
+```{r setupowl, include=FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

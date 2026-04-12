@@ -1,4 +1,4 @@
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r setup17, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 library(tidyverse)
 library(HistData) # for Galton data

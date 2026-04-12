@@ -1,5 +1,5 @@
-```{r setup20, include=FALSE, message = FALSE}
-library(tidyverse)
+```{r setup20, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) 
 library(Ecdat) # for Swiss data
 library(rpart) # for decision trees
 library(kableExtra)

@@ -1,4 +1,4 @@
-```{r exploring, include=FALSE, message = FALSE}
+```{r setupexploring, include=FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

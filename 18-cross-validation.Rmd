@@ -1,4 +1,4 @@
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
+```{r setup18, echo=TRUE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 library(tidyverse)
 library(modelr)

@@ -1,5 +1,5 @@
-```{r exercises, include=FALSE, message = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setupexercises, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 ```
 
 # exercises
@@ -213,3 +213,143 @@ popViewport()
 > Here, P(A\|B) is 800/1600 or .5, and P(B\|A) is 800/80000 or .01.
 >
 > If the base rate of A is greater than that of B, and there is at least some overlap, then P(A\|B) \> P(B\|A).
+
+## more on bibliometrics: Combining network analysis with simple text analysis
+
+These analyses extend on the material in chapter 23 on bibliometrics.
+
+As with the network visualizations, we use a tidy approach to text as well.
+
+```{r}
+library(kableExtra) 
+library(tidyverse)
+library(tidytext)
+dataDir <- "data/CompSocSci"
+```
+
+### first analysis: what are the top papers in each community (module) of the network?
+
+We begin by reading in the data on the nodes in the network, which includes the text of the papers (abstracts, titles, and keywords), as well as their position in the network (degree, page rank) and their community (modularity class). We then filter out unconnected papers and small communities. Finally, we list the three highest page rank papers in each of the larger communities.
+
+```{r message=FALSE}
+allNodes <- read_csv(file.path(dataDir,"CSSNodesText.csv"),
+    col_types = cols()) %>% 
+    select(Label = name,
+           alltext, 
+           TI,
+           modularity_class = communityLouv, 
+           page_rank=centralPR, 
+           Degree=central0D)
+# 
+# get rid of unconnected papers 
+mostNodes <- allNodes %>% 
+    filter (Degree > 0) %>% 
+    group_by(modularity_class) %>% 
+    mutate(moduleSize = n()) %>% 
+    ungroup() %>% 
+# and communities with < 40 or so papers
+    filter(moduleSize > (.05*nrow(allNodes)))
+
+mostNodes %>%
+    select(Label, TI, modularity_class, page_rank) %>%
+    group_by(modularity_class) %>% 
+    mutate(rank = rank(page_rank)) %>% 
+    ungroup() %>% 
+    filter(rank < 4) %>% 
+    arrange(modularity_class, rank) %>% 
+    kable (caption = "Three highest PR papers in top communities in core bibliometric network") %>%  
+    kable_styling()
+```
+
+### second analysis: what are the words that characterize "computational social science"?
+
+These use the tidytext approach to text analysis that we saw in chapter 21, which begins by restructuring texts as data frames. Both the size of this vector (the total number of words or tokens) and the first few terms are shown.
+
+Then we order the list of the top 100 terms, after dropping 'stop words' like "a" and "the". (Remember, when we are looking at a single corpus, we will typically want to remove stop words, but when we are comparing corpora, we will typically want to keep them in).
+
+```{r}
+CSSwords <- allNodes %>% 
+    select(alltext) %>% 
+    unnest_tokens(word, alltext) 
+
+# now the most common words in the whole dataset
+wordList <- CSSwords %>%
+    anti_join(get_stopwords()) %>% 
+    count(word, sort = TRUE) 
+wordList %>%
+    slice(1:25) %>% 
+    kable(caption = "Most common words in CSS papers") %>% 
+          kable_styling()
+```
+
+### third analysis: How does the language of different communities differ?
+
+Here we identify the characteristic language (in abstracts, titles, and keywords) of each of the larger communities.  The first chunk unravels the data into a tall tibble of individual words. (Again, stopwords are not dropped). Next, the tall data is reduced to a set of counts, then the word-counts are compared for the individual communities.
+
+
+```{r}
+# the text of each paper is represented as a vector of words 
+oneGrams <- mostNodes %>% 
+    unnest_tokens(word, alltext) %>%
+    filter(!grepl('[0-9]', word))
+#    filter(is.na(as.numeric(word)))
+
+# get overall counts of different words
+oneGramAllCounts <-
+    oneGrams %>% 
+    count(word, sort = TRUE) %>%
+    ungroup() 
+head(oneGramAllCounts,3)
+
+# get counts of words for each group
+oneGramCommCounts <-
+    oneGrams %>% 
+    group_by(modularity_class) %>% 
+    count(word, sort = TRUE) %>%
+    ungroup() 
+
+```
+
+Now we combine the overall counts with the group counts, and we drop words that appear only a few times in the data (these are often names or neologisms found in just one source). This gets us the number of words (tokens) per group. We then do another join to permit the tf/idf calculation - this tells us how much a word is chharacteristic of a particular community, relative to the overall dataset.
+
+Finally, we list the top 25 terms in each community.
+
+```{r}
+# combine the overall counts with the group counts
+mostNodessumCount <- left_join(oneGramCommCounts,
+                               oneGramAllCounts, 
+                               by="word",
+                               suffix = c("Comm",
+                                          "Total")) %>%
+# we drop words that appear only a few times in the data
+# these are often names or neologisms found in just one source
+            filter(nTotal > 3)
+# this gets number of words (tokens) per group
+mostNodesTotalWords <- mostNodessumCount %>% 
+  group_by(modularity_class) %>% 
+  mutate(total = sum(nComm))
+# again a join to permit the tf/idf
+CSStfIdf <- left_join(mostNodessumCount, 
+          mostNodesTotalWords) %>% 
+    bind_tf_idf(word,modularity_class,nComm) 
+# and a listing of the top 25 terms in each
+CSStfIdf %>%
+  arrange(desc(tf_idf)) %>%
+  group_by(modularity_class) %>% 
+  top_n(25) %>% 
+  select(word, modularity_class) %>% 
+    aggregate(word ~ modularity_class,
+              FUN = paste, 
+              collapse = ", ") %>% 
+    kable() %>% 
+              kable_styling(position = "left", 
+                  bootstrap_options = "striped",
+                  font_size = 14)
+```
+
+## a few thoughts
+
+We've used bibliometric data, network analysis, and text analysis to address the question of "what is computational social science?" How far have we gotten? Can, in principle, an empirical approach to the nature of "computational social science (CSS)" tell us what it is? How useful is bibliometric data? What other data sources might one use?
+
+What are the biggest weaknesses you see in these analyses? How would you name the communities (or would you)?
+

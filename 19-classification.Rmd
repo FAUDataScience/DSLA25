@@ -1,7 +1,7 @@
 # prediction and classification
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
+```{r setup19, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) 
 library(tidyverse)
 # library(dslabs)
 # library(broom) 

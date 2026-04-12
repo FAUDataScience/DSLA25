@@ -1,4 +1,5 @@
-```{r setup23, message=FALSE}
+```{r setup23, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 #if needed, install.packages("")
 library(tidyverse)
 library(kableExtra) # for tables 
@@ -22,7 +23,7 @@ After loading the needed libraries, we begin with a dataframe consisting of a li
 ```{r initialDF}
 # for large jobs, set to TRUE to run this on only one reference file
 debugging <- FALSE
-dataDir <- "data/CompSocSci2023"
+dataDir <- "data/CompSocSci"
 filenames <- list.files(dataDir, pattern = "*.txt", 
                         full.names = TRUE)
 if (debugging == TRUE) {filenames = filenames[1]}
@@ -312,4 +313,4 @@ write.gexf(nodes = nodes,
 
 ### understanding the communities using text analysis
 
-Another way to understand the communities is to compare the language of different communities, using the combined text fields. That approach is explored in supplementary code.
+Another way to understand the communities is to compare the language of different communities, using the combined text fields. That approach is explored in the supplementary code at the end of the exercises chapter.

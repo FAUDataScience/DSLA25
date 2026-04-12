@@ -1,3 +1,6 @@
+```{r setup24, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) 
+```
 # some ethical concerns for the data scientist
 
 The Latin word *scientia* is commonly translated as both "science" and "knowledge." Modern science or modern knowledge has led not only to dramatic improvements in public health and human life expectancy, but also to weapons of war that allow the slaughter of millions at a distance. The idea that science or knowledge is ethically fraught is not new: Adam and Eve are said to have been cast out of the Garden of Eden after tasting the forbidden fruit from the tree of *knowledge* [@shattuck1997]. And, as we have seen in our discussion of the "most dangerous equation," the lack of knowledge can also be dangerous - perhaps particularly today, as we are in the grips of a pandemic with leaders who govern by intuition rather than science, by hunch rather than data [@wainer2007].

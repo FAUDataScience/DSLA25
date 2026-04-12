@@ -1,4 +1,6 @@
-\`\`\`{r datasci, include=FALSE, message = FALSE} knitr::opts_chunk\$set(echo = TRUE)
+```{r datasci, include=TRUE, message = FALSE} 
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 # PART I: Introduction {.unnumbered}
 

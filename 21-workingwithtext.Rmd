@@ -1,5 +1,5 @@
-```{r setup21, include=FALSE, message = FALSE }
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```{r setup21, echo=TRUE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE)
 library(tidyverse)
 library(tidyjson) # for reading in JSON files
 library(jsonlite)
