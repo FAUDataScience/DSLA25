@@ -16,13 +16,13 @@ Do you have any questions about the movie data? How might you ask these?
 
 A minimal amount of sleuthing - a click on the STOR 390 link at the top of the page, then a quick scroll - reveals that "all of [Carmichael's] course material is on the github repo" - or repository.
 
--   Can you find the Rmd document that generated his work?
+- Can you find the Rmd document that generated his work?
 
--   Can you download it on to your machine?
+- Can you download it on to your machine?
 
--   If you try to run it, what happens?
+- If you try to run it, what happens?
 
--   If you were working on your thesis and came across a problem like this, what would you do next?
+- If you were working on your thesis and came across a problem like this, what would you do next?
 
 ## go into the clouds
 

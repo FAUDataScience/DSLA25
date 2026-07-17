@@ -1,4 +1,4 @@
-```{r datasci, include=TRUE, message = FALSE} 
+```{r datasci, include=TRUE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -6,61 +6,72 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # what is "data science for the liberal arts?"
 
-Hochster, in Hicks and Irizarry [-@hicks2018], describes two broad types of data scientists: Type A (Analysis) data scientists, whose skills are like those of an applied **statistician**, and Type B (Building) data scientists, whose skills lie in problem solving or coding, using the skills of the **computer scientist**. This view arguably omits a critical component of the field, as data science is driven not just by statistics and computer science, but also by "domain expertise:"
+Hochster, in Hicks and Irizarry [-@hicks2018], describes two broad types of data scientists: Type A (Analysis) data scientists, whose skills are like those of an applied **statistician**, and Type B (Building) data scientists, whose skills lie in problem solving or coding, using the skills of the **computer scientist**.
 
 ![*The iconic data science Venn diagram*](images/dataVenn.png)
 
-The iconic [Venn diagram model of data science](https://www.google.com/search?q=venn+diagram+model+of+data+science&newwindow=1&safe=active&rlz=1C1CHBF_enUS762US763&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwiM_abBtY7XAhXDQCYKHdgyB58QsAQIOg&biw=1378), as shown above, suggests that there are not two but three focal areas in the field, one of which begins not with math or computer science, but with "domain expertise." Data science for the liberal arts is a 'Type C' approach, where 'C' might refer to a concentration of concern in the arts, humanities, social and/or natural sciences. For the Type C data scientist, coding is in the service of applied problems and concerns.
+But this view arguably omits a critical component of the field. The iconic [Venn diagram model of data science](https://www.google.com/search?q=venn+diagram+model+of+data+science&newwindow=1&safe=active&rlz=1C1CHBF_enUS762US763&tbm=isch&tbo=u&source=univ&sa=X&ved=0ahUKEwiM_abBtY7XAhXDQCYKHdgyB58QsAQIOg&biw=1378), as shown above, suggests that there are not two but three focal areas in the field, one of which begins not with math or computer science, but with "domain expertise."
 
-Type C data science does not merely integrate 'domain expertise' with statistics and computing, it places content squarely at the center. We can appreciate the compelling logic and power of statistics as well as the elegance of well-written code, but for our purposes these are means to an end. Programming and statistics are tools in the service of social and scientific problems and cultural concerns. Type C data science aims for work which is not merely cool, efficient, or elegant, but responsible and meaningful.
+#### some meanings of 'type C data science'
+
+So, if Type A data science is characterized by mathematical and statistical sophistication, and Type B is associated with coding and computer science, what might the Type C data scientist, with their 'domain expertise', bring to the table?
+
+An obvious starting point, at least for our purposes, is that 'Type C' data science begins with expertise in a particular *concentration* in the arts, humanities, social and/or natural sciences. That's domain expertise.
+
+Data science also requires **communication**, **collaboration**, and **citizenship**.
+
+Communication, including writing and the design and display of quantitative data, is central to data science because results are inconsequential unless they are recognized, understood, and built upon. Facets of communication include oral presentations, written texts and good data visualizations.
+
+Collaboration is important because problems in data science are sufficiently complex so that any single individual will typically have expertise in some, but not all, facets of the area. Collaboration, even more than statistical and technical sophistication, is arguably the most distinctive feature of contemporary scholarship in the natural and social sciences as well as in the private sector [@isaacson2014].
+
+Citizenship is important because we are humans living in a social world; it includes serving the public good, overcoming the digital divide, furthering social justice, increasing public health, diminishing human suffering, and making the world a more beautiful place. The Type C data scientist is aware of the fact that the world and workforce are undergoing massive change: This puts the classic liberal arts focus of "learning how to learn" (as opposed to memorization) at center stage. Finally, the Type C data scientist is sensitive to the creepiness of living increasingly in a measured, observed world. These real-world goals should be informed by ethical concerns including a respect for the privacy and autonomy of our fellow humans.
+
+All of these 'C words' are, in a sense, subsumed by one other - **Conscientiousness**.
+
+Type C data science is about conscientiousness in that the aim is not simply for work which is cool, efficient, or elegant, but also responsible and meaningful. Coding is a means to an end. Programming and statistics are tools in the service of creating a better world, of addressing social, environmental, and scientific concerns.
 
 At the risk of oversimplifying:
 
--   Type **A** data scientists focus on **Analysis** and questions about 'how?'
+- Type **A** data scientists focus on **Analysis** and questions about 'how?'
 
--   Type **B** data scientists focus on **Building** and questions of 'what?'
+- Type **B** data scientists focus on **Building** and questions of 'what?'
 
--   Type **C** data scientists focus on **Consideration** and questions of 'why?', 'who?', 'what for?', and 'at what (social) cost?'
+- Type **C** data scientists focus on **Conscientiousness** and questions of 'why?', 'who?', 'what for?', and 'at what (social) cost?'
 
 ## the incompleteness of the data science Venn diagram
 
-Data visualizations are starting points which can provide insights, typically highlighting big truths or effects by obscuring other, presumably smaller ones. The Venn diagram model of data science is no exception: As with other graphs, figures, and maps, it allows us to see by showing only part of the picture. What does it omit? That is, beyond mathematics, computing, and domain expertise, what other skills contribute to the success of the data scientist?
-
-### additional domains
-
-For the liberal arts data scientist, we can note at least three additional important domains, that is, **communication**, **collaboration**, and **citizenship**.
-
-**Communication,** including writing and the design and display of quantitative data, is central to data science because results are inconsequential unless they are recognized, understood, and built upon. Facets of communication include oral presentations, written texts and good data visualizations.
-
-**Collaboration** is important because problems in data science are sufficiently complex so that any single individual will typically have expertise in some, but not all, facets of the area. Collaboration, even more than statistical and technical sophistication, is arguably the most distinctive feature of contemporary scholarship in the natural and social sciences as well as in the private sector [@isaacson2014].
-
-**Citizenship** is important because we are humans living in a social world; it includes serving the public good, overcoming the digital divide, furthering social justice, increasing public health, diminishing human suffering, and making the world a more beautiful place. The Type C data scientist is aware of the fact that the world and workforce are undergoing massive **change**: This puts the classic liberal arts focus of "learning how to learn" (as opposed to memorization) at center stage. Finally, the Type C data scientist is sensitive to the **creepiness** of living increasingly in a measured, observed world. These real-world goals should be informed by ethical **concerns** including a respect for the privacy and autonomy of our fellow humans.
+Data visualizations are starting points which can provide insights, typically highlighting big truths or effects by obscuring other, presumably smaller ones. The Venn diagram model of data science is no exception: As with other graphs, figures, and maps, it allows us to see by showing only part of the picture. What does it omit? That is, beyond mathematics, computing, and domain expertise, how else should we think about data science?
 
 ### an additional dimension
 
-Cutting across these various facets (statistics, computing, domain expertise, collaboration, communication, and citizenship), a second dimension can be articulated. No one of us can excel in all of these domains, rather, we might aim towards a hierarchy of goals ranging from **literacy** (can comprehend) through **proficiency** (can communicate and contribute) to **fluency** (can practice) to **leadership** (can create new solutions or methods).
+Cutting across these various facets (statistics, computing, domain expertise, collaboration, communication, and citizenship), a second dimension can be articulated. No one of us can excel in all of these domains, rather, each of us we might aim towards a hierarchy of goals ranging from **literacy** (can comprehend) through **proficiency** (can communicate and contribute) to **fluency** (can practice) to **leadership** (can create new solutions or methods).
 
-That is, we can think of **a *continuum* of ability, including knowledge, skills, interests, and goals.** That continuum ranges from the data *consumer* to the data *citizen* to the data science *contributor.* A Type C data science includes this dimension of 'depth' as well.
+That is, we can think of **a *continuum* of mastery, including knowledge, skills, interests, and goals.** That continuum ranges from the data *consumer* to the data *citizen* to the data science *contributor.* Each aspect or type fo data science can be arranged in this hierarchy.
+
++----------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| Level                | Type A:\                                                                                         | Type B:\                                                                               | Type C: Conscientiousness                                                                                                 |
+|                      | Analysis                                                                                         | Building                                                                               |                                                                                                                           |
++:====================:+:================================================================================================:+:======================================================================================:+:=========================================================================================================================:+
+| 1.  **Literacy**\    | Interpret a regression table; understand statistical significance and uncertainty.               | Understand what code does; describe a data pipeline or machine learning workflow.      | Read a study critically; recognize ethical, historical, and social dimensions of a data problem.                          |
+|     (can comprehend) |                                                                                                  |                                                                                        |                                                                                                                           |
++----------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| 2.  **Proficiency**\ | Conduct an exploratory data analysis; create visualizations; apply standard statistical methods. | Modify scripts; clean and manage datasets; contribute code to a collaborative project. | Frame research questions; connect data to disciplinary knowledge; communicate findings to diverse audiences.              |
+|     (can contribute) |                                                                                                  |                                                                                        |                                                                                                                           |
++----------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| 3.  **Fluency**\     | Design and execute a complete empirical study; build predictive models; evaluate evidence.       | Build reproducible software, databases, dashboards, or machine-learning applications.  | Lead domain-based investigations; integrate technical results with substantive interpretation and ethical reasoning.      |
+|     (can practice)   |                                                                                                  |                                                                                        |                                                                                                                           |
++----------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| 4.  **Leadership**\  | Develop new analytical methods; establish research agendas; mentor analysts.                     | Create novel tools, platforms, or computational approaches; lead technical teams.      | Shape public discourse; influence policy and practice; advance scholarship, civic engagement, and responsible innovation. |
+|     (can innovate)   |                                                                                                  |                                                                                        |                                                                                                                           |
++----------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+
+*Table: Data science as an array of levels of mastery and orientations.*
 
 ## the importance of data science for society
 
-Communication, collaboration, and citizenship are each associated with the concept of trust. Trust is an important social good because it is associated with both individual well being [@poulin2015] and the stability of democratic institutions [@sullivan1999]. But interpersonal and institutional trust, including trust in science, have declined in recent years [@deane2024]. The decline in trust in science has been exacerbated by the so-called reproducibility (or replication) crisis, in which many scientific results initially characterized as "statistically significant" have been found not to hold up under scrutiny, that is, aren't reproducible. The reasons for the reproducibility crisis are many and contentious, but there is substantial consensus that one path towards better science involves the public sharing of methods and data. A second path towards better and more trustworthy science involves the use of larger datasets: With large datasets, effects are more stable and "statistical significance" is rarely a concern. Other indices, such as measures of accuracy and effect size are typically of primary interest. Data science, with its tools for reproducible analysis and its use of big data sets, can make science more trustworthy and improve the quality of our lives.
+The 'C' words of communication, collaboration, citizenship, and conscientiousness are all associated with the concept of trust. Trust is an important social good because it is associated with both individual well being [@poulin2015] and the stability of democratic institutions [@sullivan1999]. But interpersonal and institutional trust, including trust in science, have declined in recent years [@deane2024].
 
-### intelligence, artificial intelligence (AI), and careers
-
-It is difficult to predict the consequences of advances in AI for career selection. Some areas are likely to be impacted by AI more than others, but because AI is still in its infancy, we can only speculate. But one way to approach this question is to begin by considering what constitutes "intelligence." According to @sternberg2018intelligence, intelligence can be thought of as having three components. One of these is **Analytical Intelligence**, which includes things like planning, reasoning, acquiring knowledge, and problem solving. A second is **Creative Intelligence**, which includes both the ability to deal with novel situations effectively, and the ability to "automatize" or efficiently execute familiar tasks. The third is **Practical or Contextual Intelligence**, which includes the ability to adapt to new environments.
-
-AI engines or agents (or simply AIs) are, for now at least, effective at only some of these. They are better than humans at knowledge acquisition, logical reasoning and some kinds of problem solving. All of these are parts of Analytical Intelligence. They are also better than us at one part of Sternberg's Creative Intelligence: They excel at many types of automatized routines.
-
-Beyond this, they struggle. My desktop AI (Microsoft Copilot 365 Version 19.2508.31121.0) tells me that the strengths of AI, understood in the context of Sternberg's theory, make it ideal for things like "Data Analysis, Financial modeling, Diagnostics, Scheduling and logistics, and Repetitive administrative tasks." The first and last of these are core parts of data science, but not the whole of it. AI struggles (again, according to Copilot), with "Leadership and strategic decision-making, Counseling, therapy, and social work, Cross-cultural negotiation, [and] Artistic innovation requiring deep emotional resonance." Careers that are likely to grow include creative professions (design, storytelling), human-centered roles (coaching, diplomacy), and also hybrid roles, that is, "Professionals who use AI tools to enhance their work (e.g., data-informed decision-makers)."
-
-All of this should be taken with a grain of salt. Today's AI capabilities are quite limited compared to what they will be a year from now, and the AI that you and I might use on our desktops is, in all likelihood, a simple version of what is already available to large-scale users.
-
-> Oliver is an embodied AI described as a "helperbot" in the recent Broadway musical *Maybe Happy Ending*. We can imagine that a helperbot like Oliver could be built on a model that synthesized millions of interactions between people in asymmetrical roles, such as butlers and their employers, secretaries and bosses, and assistants and supervisors. In the musical, Oliver appears to have been an ideal servant, one who anticipated his owner's needs consistently, promptly and sensitively.
->
-> I won't spoil it for you, but *Maybe Happy Ending* can be seen as portraying the challenges AI agents face, and how Artificial Intelligence is different from human intelligence. In Sternberg's (2018) terms, Oliver struggles not just with the question of how to adapt to a new environment, but also how to choose an environment altogether. How will it react when it encounters problems for which it has simply no frame of reference?
-
-[![Darren Criss as Oliver in Maybe Happy Ending](images/helperbot.jpg)](https://youtu.be/c-aGhUjerL8?si=jFpXxJhL3XxnrDcA)
+The decline in trust in science has been exacerbated by the so-called reproducibility (or replication) crisis, in which many scientific results initially characterized as "statistically significant" have been found not to hold up under scrutiny, that is, aren't reproducible. The reasons for the reproducibility crisis are many and contentious, but there is substantial consensus that one path towards better science involves the public sharing of methods and data. A second path towards better and more trustworthy science involves the use of larger datasets: With large datasets, effects are more stable and "statistical significance" is rarely a concern. Other indices, such as measures of accuracy and effect size are typically of primary interest. Data science, with its tools for reproducible analysis and its use of big data sets, can make science more trustworthy and improve the quality of our lives.
 
 ### the challenge of TMI
 

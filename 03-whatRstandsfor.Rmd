@@ -4,9 +4,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # what R stands for ...
 
-R was initially developed by Ross Ihaka and Robert Gentleman as a tool to help teach university-level statistics at the University of Auckland. At one level, the name 'R' simply stands for the first initial of these two founders [@hornik2022]. But, just as we noted that the 'C' in Type C Data Analysis stands for concepts such as concentration, communication, collaboration, the 'R' in our programming language means much more:
+R was initially developed by Ross Ihaka and Robert Gentleman as a tool to help teach university-level statistics at the University of Auckland in New Zealand. At one level, the name 'R' simply stands for the first initial of these two founders [@hornik2022]. But, just as we noted that the 'C' in Type C Data Analysis stands for concepts such as concentration, communication, collaboration, the 'R' in our programming language means much more:
 
-R is a system for **reproducible** analysis, and reproducibility is essential. When we write R code, we'll use R markdown documents. An R markdown document can include text (comments or explanations), 'chunks' of code, and output including graphs and tables. Having explanations, code, and results in a single document facilitates reproducible work. (Jupyter notebooks in the Python world are similar in this respect).
+R is a system for **reproducible** analysis, and reproducibility is essential. When we write R code, we'll use R markdown (and Quarto) documents.[^03-whatrstandsfor-1] These formats can include text (comments or explanations), 'chunks' of code, and output including graphs and tables, in a single place. Having explanations, code, and results in a single document facilitates reproducible work. (Jupyter notebooks in the Python world are similar in this respect).
+
+[^03-whatrstandsfor-1]: The R markdown programming language is slowly being replaced with newer, and ultimately more capable, software called Quarto. Quarto is largely back-compatible with R markdown, but can be used with other languages including Python as well. A description of the differences between R markdown and Quarto may be found [here](https://quarto.org/docs/faq/rmarkdown.html). For our purposes, you can treat Quarto files (.qmd suffix) as R markdown files (.rmd), and vice-versa. Note that at this time, some Windows machines (including KL's) have difficulty rendering Quarto documents (Quarto rendering issue #14642).
+
+    , , Quarto, and each of which we may come across later in the term.
 
 R is for **research**. Research is not just an end-product, not just a published paper or book:
 
@@ -28,9 +32,9 @@ You'll also learn (more directly) from people, including your classmates, as wel
 
 R might stand for **relatively high level**. Programming languages can be described along a continuum from high to low level, the former (like R) are more accessible to humans, the latter (like assembly language) more accessible to machines. Python, Java, and C++ are all more towards the middle of this continuum.
 
-R does not stand for '[**arggh**](https://www.urbandictionary.com/define.php?term=ARGH),' although you may proclaim this in frustration ('arggh, why can't I get this to work?) or, perhaps, in satisfaction ('arggh, matey, that be a clever way of doing this').[^03-whatrstandsfor-1]
+R does not stand for '[**arggh**](https://www.urbandictionary.com/define.php?term=ARGH),' although you may proclaim this in frustration ('arggh, why can't I get this to work?) or, perhaps, in satisfaction ('arggh, matey, that be a clever way of doing this').[^03-whatrstandsfor-2]
 
-[^03-whatrstandsfor-1]: Actually, pirates have little use for R, as pirates love the C (programming language).
+[^03-whatrstandsfor-2]: Actually, pirates have little use for R, because pirates love the C (programming language).
 
 But R does stand for **rewarding**. A language is a way of thinking about the world, and this is true for computer languages as well. You'll be challenged by its complexity, its idiosyncracy, its alien logic. But you will succeed, and you will find that you can do things that you did not believe possible.
 
@@ -43,14 +47,6 @@ So how do you choose, and where do you begin? For our purposes, we will start wi
 To download the tidyverse package from the 'net, open RStudio, find the 'console' window on the left side of your screen, and enter the command followed by \<enter\> or \<return\>
 
 > install.packages("tidyverse")
-
-## cha-cha-cha-changes
-
-R is constantly changing, not just in the proliferation of packages, but also in the organization of the R community. While R is free and open source, RStudio is a commercial product. The company (and website) that develops the RStudio IDE is undergoing a name change (from RStudio to Posit). This is motivated, in part, by the need to make the RStudio platform more welcoming for other languages including Python.
-
-Similarly, the R markdown programming language is slowly being replaced with newer, and ultimately more capable, software called Quarto. Quarto is back-compatible with R markdown, but can be used with other languages including Python as well. A description of the differences between R markdown and Quarto may be found [here](https://quarto.org/docs/faq/rmarkdown.html). For our purposes, you can treat Quarto files (.qmd suffix) as R markdown files (.rmd), and vice-versa.
-
-One more change: Posit (the company) is developing a new IDE called 'Positron.' Positron may ultimately be a more useful environment for data science than the RStudio IDE, but it is in the beta testing stage at this writing. The RStudio environment, and the Rmarkdown documents that are produced within it, will continue to be available, and widely used, for the foreseeable future.
 
 ## some technical characteristics
 
@@ -70,8 +66,6 @@ One does not simply 'learn R.' Unlike, say, learning to ride a bicycle, fry an e
 
 For us, the key ideas in "looking for help" will include not just the tools on the RStudio IDE, but also (a) using Google searches wisely, (b) judicious use of AI assistance, and (c) reaching out to your classmates and instructor.
 
-Here, as in the real world, there is an etiquette for help-seeking which is based on consideration. Your search for help should begin by making sure that others will encounter the same result, then by stripping the problem down to its essence. Once you have reduced the problem to this minimal, reproducible essence, you will often be able to spot the problem yourself - and, if not, you will make it easier for others to help you. There is an R package (reprex) which will likely facilitate this, but I haven't tried it yet. [Here](https://www.tidyverse.org/help/) is a good introduction.
-
 Finally, to get a sense of the power and versatility of R Markdown documents, you might explore this [tutorial](https://rmarkdown.rstudio.com/lesson-1.html). Note that, if you want to work interactively with the tutorial, you will need to first sign up for an account on RStudio cloud. Go to [posit.cloud](https://posit.cloud), click on "learn more" in the "Free" column, then sign up.
 
-When you encounter obstacles, remember the 15-minute rule.
+When you encounter obstacles, remember to maintain a balance between persistence and help-seeking.

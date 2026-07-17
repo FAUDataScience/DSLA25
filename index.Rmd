@@ -1,6 +1,6 @@
 ---
 title: "Data science for the liberal arts"
-author: "Kevin Lanning"
+author: "Kevin Lanning and Tom Leppard"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 

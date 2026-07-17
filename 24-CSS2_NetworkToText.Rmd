@@ -7,7 +7,7 @@ output:
   pdf_document: default
 ---
 
-## Some explorations of the nature and structure of computational social science using simple text analysis
+# Some explorations of the nature and structure of computational social science using simple text analysis
 
 As with the network visualizations, we use a tidy approach to text as well.
 
