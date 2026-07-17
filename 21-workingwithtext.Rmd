@@ -53,25 +53,25 @@ But did they, though? Is there evidence that the r/*fedworkers* subreddit was be
 
 We'll consider the following:
 
--   What specific words differentiate Trump era posts (since his second inauguration in January 2025) from those from the Biden era (prior to the November 2024 election)? For this, we'll rely primarily on visualizations, in particular, differential word clouds of single words and bigrams.
+- What specific words differentiate Trump era posts (since his second inauguration in January 2025) from those from the Biden era (prior to the November 2024 election)? For this, we'll rely primarily on visualizations, in particular, differential word clouds of single words and bigrams.
 
--   What categories of speech differentiate the two epochs? For this, we'll use a proprietary tool, *Linguistic Inquiry and Word Count.* LIWC is a widely used measure for extracting grammatical, social, and psychological variables from text [LIWC; @boyd2022]. We'll generate tables for the LIWC categories and examine the effect size and statistical significance of these differences.
+- What categories of speech differentiate the two epochs? For this, we'll use a proprietary tool, *Linguistic Inquiry and Word Count.* LIWC is a widely used measure for extracting grammatical, social, and psychological variables from text [LIWC; @boyd2022]. We'll generate tables for the LIWC categories and examine the effect size and statistical significance of these differences.
 
 This approach can optionally be extended to additional comparisons, including:
 
--   Are similar results obtained when we examine comments rather than posts? (Here, we could compare Trump-era words and categories with Biden-era words and categories).
+- Are similar results obtained when we examine comments rather than posts? (Here, we could compare Trump-era words and categories with Biden-era words and categories).
 
--   How are comments and posts different from each other? (Here, we could compare words and categories for r/fedworkers posts with words and categories for r/fedworkers comments)
+- How are comments and posts different from each other? (Here, we could compare words and categories for r/fedworkers posts with words and categories for r/fedworkers comments)
 
--   Does the content of posts (or comments) between the election and the inaugural more closely resemble that of the Biden era (as Biden was still president) or the coming Trump administration?
+- Does the content of posts (or comments) between the election and the inaugural more closely resemble that of the Biden era (as Biden was still president) or the coming Trump administration?
 
 In order to address these questions, we'll briefly touch on some auxiliary technical questions as well, including:
 
--   Should we 'stem' words prior to analysis? That is, should we treat terms such as (*donut* and *donuts*) as the same word or as different? How about (*go* and *going*)?
+- Should we 'stem' words prior to analysis? That is, should we treat terms such as (*donut* and *donuts*) as the same word or as different? How about (*go* and *going*)?
 
--   A similar question can be asked about case - should all characters be set to lowercase? That is, should (*I'm* and *i'm*) be treated as the same? How about (*DOGE* and *doge*)?
+- A similar question can be asked about case - should all characters be set to lowercase? That is, should (*I'm* and *i'm*) be treated as the same? How about (*DOGE* and *doge*)?
 
--   Should we include common stop words (*a*, *and*, *if*, *or*, *me*) in our analysis, or disregard them?
+- Should we include common stop words (*a*, *and*, *if*, *or*, *me*) in our analysis, or disregard them?
 
 ### finding Reddit data
 

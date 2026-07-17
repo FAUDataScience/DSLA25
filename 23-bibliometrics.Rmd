@@ -293,10 +293,9 @@ edgeList %>%
   write_csv(file.path(dataDir, "CSSEdges.csv"))
 ```
 
-A second approach is to prepare a single network file that is directly readable by a new Web-based tool called [Gephi Lite](https://gephi.org/lite/) (as well as by Gephi). The lite version lacks some of the power (and complexity) of Gephi, but it does demonstrate how one can quickly generate attractive graphs using this popular interactive tool. There are two tutorials and a manual [here](https://docs.gephi.org/lite/).
+A second approach is to prepare a single network file that is directly readable by a new Web-based tool called [Gephi Lite](https://gephi.org/lite/) (as well as by Gephi). The lite version lacks some of the power (and complexity) of Gephi, but it does demonstrate how one can quickly generate attractive graphs using this popular interactive tool. There are two tutorials and a manual [here](https://docs.gephi.org/lite/). (This package is not working in July 2026, so this section is commented out for now.)
 
-```{r}
-#install.packages("rgexf")
+
 library(rgexf)
 edges <- edgeList |> 
   select(source = from, target = to)
@@ -309,7 +308,7 @@ write.gexf(nodes = nodes,
            edgesWeight = weights,
            output = (file.path(dataDir, "CSS.gexf")))
 
-```
+
 
 ### understanding the communities using text analysis
 

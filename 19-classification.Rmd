@@ -89,11 +89,11 @@ On the test data, we are correct `r 100*(round(accuracy,2))` percent of the time
 
 In many decision problems, there is an asymmetry in the cost of different types of errors: if you are foraging for mushrooms, for example, an error of the form
 
--   *you decide its safe but it is poisonous*
+- *you decide its safe but it is poisonous*
 
 is more costly than the converse,
 
--   *you decide its poisonous and it is safe*.
+- *you decide its poisonous and it is safe*.
 
 This may be true in the present example as well. Consider someone who is looking for a spouse, but is really averse to the idea of getting hurt by an affair. That person might feel like the cost of marrying an unfaithful person is much greater than the cost of not marrying a faithful one. So we adjust the threshold downwards:
 
@@ -131,8 +131,8 @@ This function describes outcomes in several ways, as there are many languages fo
 
 In these data, it's been set up so that
 
--   hit rate \~ sensitivity \~ ("no affair" \| no affair)
--   correct rejection \~ specificity \~ ("affair" \| affair)
+- hit rate \~ sensitivity \~ ("no affair" \| no affair)
+- correct rejection \~ specificity \~ ("affair" \| affair)
 
 ```{r}
 threshold <- .5
