@@ -1,0 +1,41 @@
+---
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# appendix - answers to selected problems
+
+## preface
+
+**0.1** - For computational literacy to be a virtuous pursuit, it should ultimately be in the service of human values such as *dignity, health, justice, meaningfulness, freedom, connection, love, happiness, prosperity,* and *sustainability*. Imagine that you wanted to collect data on whether people valued these things. How would you do it? What would you find?
+
+> Most of us want all (or mostly all) of these things. If you ask people to simply rate how important each of these are on a 3-point scale (unimportant, neither important nor unimportant, important), many would choose 'important' for all of these.
+>
+> If you used a longer scale, with 5 or 7 points, you would get a little bit more variability between people (some would use only the high end, some would be more stingy) and between values (perhaps 'health' would be rated more highly than 'prosperity').
+>
+> But if you really want to learn something about the people who are doing these ratings, ask them instead for *rankings*. You could ask for a complete ranking (from 1 to 10), or a partial one (say, just the most and least important, or the top three). Rankings are an *ipsative* form of measurement - formally, one in which each person obtains the same average score.
+>
+> We should probably use rankings more than we do. But people may not like rankings because they are time-consuming and require reflection.
+>
+> How would you rank these values? Which are the most and least important to you? Does this set of rankings have any relevance for your choice of an academic concentration or career choice? Should it? Perhaps not surprisingly, rankings rather than ratings are the primary measurement approach in vocational (career) counseling [-@gati2014].
+
+**0.2** Imagine that your class was presented with a two question exam. The first question was "What is the next prime number after 1471?" The second question was "Who was the next Governor of Maryland after Spiro Agnew?" If the mean number correct was zero, could we say anything about the variance or standard deviation?
+
+> The mean and standard deviation are the two most fundamental parameters of statistical distributions. We can usually treat them as independent - but there are limiting cases, including this one: If the mean is zero, and negative scores are impossible, then everyone must have missed both of these answers.
+>
+> Recognizing this is an example of "data intuition."
+
+**0.3** What does a correlation of -1.2 suggest?
+
+> It suggests that there is an error in your code. This is another example of data intution.
+
+## chapter 2
+
+**2.1** *Susie is applying to two med schools. At School A, 25% of students are accepted, and at School B, 25% are accepted as well. You are Susie. Are you going to get in to at least one of these programs? What is the probability? Does your estimate depend upon any assumptions?*
+
+> Susie faces four possible outcomes - getting into both A and B, just A, just B, or neither. The outcome of interest is that she gets into neither program. If p(not A) = .75, and p (not B) = .75., and if programs A and B make their judgments independently, then p(neither) = .75\*.75 \~ .56.
+>
+> But that's really only the starting point. This answer depends upon the assumption that med school selections are independent of each other (like two coin flips). This is unlikely to be the case: MCAT scores, grades, etc. are likely to be weighted in similar ways at different programs.

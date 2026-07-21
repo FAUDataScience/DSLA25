@@ -9,7 +9,9 @@ tab:unnamed-chunk-99
 tab:unnamed-chunk-103
 tab:unnamed-chunk-109
 tab:unnamed-chunk-110
-intelligence-artificial-intelligence-ai-and-careers
+the-role-of-the-liberal-arts-in-data-science
+intelligence-and-artificial-intelligence-ai
+vibe-coding
 how-much-should-you-use-ai-in-this-class
 what-is-data-science-for-the-liberal-arts
 some-meanings-of-type-c-data-science
@@ -17,13 +19,14 @@ the-incompleteness-of-the-data-science-venn-diagram
 an-additional-dimension
 the-importance-of-data-science-for-society
 the-challenge-of-tmi
-discussion-what-are-your-objectives-in-data-science
+exercise
 getting-started
 are-you-already-a-programmer-and-statistician
 spreadsheets---some-best-practices
 setting-up-your-laptop-some-basic-tools
 ai-and-the-15-minute-rule
 installing-r-and-rstudio-desktop
+exercises-1
 what-r-stands-for
 base-r-and-packages
 some-technical-characteristics
@@ -64,7 +67,7 @@ the-psychology-of-data-visualization
 the-power-of-animation
 telling-the-truth-when-the-truth-is-unclear
 visualizing-uncertainty
-exercises
+exercises-2
 further-reading-and-resources
 notes-for-next-revision
 visualization-in-r-with-ggplot
@@ -79,7 +82,7 @@ keeping-conditional-probabilities-straight
 bayes-theorem
 continuous-probability-distributions
 dangerous-equations
-exercises-1
+exercises-3
 did-we-just-drive-by-a-cop
 practice-applying-bayes-theorem
 decision-making-under-uncertainty
@@ -94,7 +97,7 @@ wrangling-and-tidying
 the-structure-of-the-tidyverse
 where-should-we-eat
 tall-and-wide-formats
-exercises-2
+exercises-4
 more-on-tidy-coding
 finding-exploring-cleaning-and-combining-data
 florida-educational-data
@@ -207,7 +210,7 @@ the-digital-divide
 still-more-case-studies
 some-potential-remedies
 technology-change-and-risk
-exercises-3
+advanced-exercises
 generating-correlated-data-gpa-and-sat-and-putting-it-in-a-google-sheet
 now-look-at-your-data-in-the-spreadsheet
 using-ai-to-help-us-here
@@ -221,3 +224,6 @@ first-analysis-what-are-the-top-papers-in-each-community-module-of-the-network
 second-analysis-what-are-the-words-that-characterize-computational-social-science
 third-analysis-how-does-the-language-of-different-communities-differ
 a-few-thoughts
+appendix---answers-to-selected-problems
+preface-1
+chapter-2

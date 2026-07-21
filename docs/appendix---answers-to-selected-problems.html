@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>22 an introduction to networks | Data science for the liberal arts</title>
-  <meta name="description" content="22 an introduction to networks | Data science for the liberal arts" />
+  <title>26 appendix - answers to selected problems | Data science for the liberal arts</title>
+  <meta name="description" content="26 appendix - answers to selected problems | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta property="og:title" content="26 appendix - answers to selected problems | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="22 an introduction to networks | Data science for the liberal arts" />
+  <meta name="twitter:title" content="26 appendix - answers to selected problems | Data science for the liberal arts" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="working-with-text.html"/>
-<link rel="next" href="case-study-the-network-structure-of-computational-social-science.html"/>
+<link rel="prev" href="references.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -515,199 +515,326 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="an-introduction-to-networks" class="section level1 hasAnchor" number="22">
-<h1><span class="header-section-number">22</span> an introduction to networks<a href="an-introduction-to-networks.html#an-introduction-to-networks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><em>“No man is an island,<br />
-entire of itself;<br />
-every man is a piece of the continent,<br />
-a part of the main.”</em></p>
-<p>-John Donne.</p>
-<div style="max-width:1024px">
-<div style="position:relative;height:0;padding-bottom:56.25%">
-<iframe src="https://embed.ted.com/talks/nicholas_christakis_the_hidden_influence_of_social_networks" width="1024px" height="576px" title="The hidden influence of social networks" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen onload="window.parent.postMessage(&#39;iframeLoaded&#39;, &#39;https://embed.ted.com&#39;)">
-</iframe>
-</div>
-</div>
-<div id="introduction" class="section level2 hasAnchor" number="22.1">
-<h2><span class="header-section-number">22.1</span> introduction<a href="an-introduction-to-networks.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Networks are everywhere - they include, of course, the internet, which can be seen as a network of machines linked by cables and various cellular and satellite technologies. They also includes social network applications such as <em>X</em> and Instagram which operate within these networks. For engineers, networks are the structures that underlie power grids and transportation systems. For epidemiologists, networks describe the paths through which infectious diseases spread. For social scientists, networks are a key unit of analysis in understanding the structure of social groups. Phenomena as diverse as altruism <span class="citation">(<a href="#ref-apicella2012">Apicella et al. 2012</a>)</span>, kidney donations <span class="citation">(<a href="#ref-nikzad2021">Nikzad et al. 2021</a>)</span>, and obesity <span class="citation">(<a href="#ref-christakis2007">Christakis and Fowler 2007</a>)</span> can be understood, in part, as network phenomena. (That’s Christakis in the TED talk linked above).</p>
-<p>Networks demand a different approach to data science: up ’til now, the building block of our projects have been data frames or tibbles - objects which can be represented by matrices of observations (rows) x variables (columns). Representing networks in this way is tricky, but we <em>can</em> represent a given network in this way.</p>
-<p>In this chapter, we briefly introduce some key network concepts. We then consider how network structures can be examined and understood in the tidyverse. In the next chapter, we will consider a case study in network analysis, examining a <em>bibliometric</em> network structure of a scholarly discipline.</p>
-<div id="a-simple-example-networks-and-balance-theory" class="section level3 hasAnchor" number="22.1.1">
-<h3><span class="header-section-number">22.1.1</span> a simple example: networks and balance theory<a href="an-introduction-to-networks.html#a-simple-example-networks-and-balance-theory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="appendix---answers-to-selected-problems" class="section level1 hasAnchor" number="26">
+<h1><span class="header-section-number">26</span> appendix - answers to selected problems<a href="appendix---answers-to-selected-problems.html#appendix---answers-to-selected-problems" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preface-1" class="section level2 hasAnchor" number="26.1">
+<h2><span class="header-section-number">26.1</span> preface<a href="appendix---answers-to-selected-problems.html#preface-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>0.1</strong> - For computational literacy to be a virtuous pursuit, it should ultimately be in the service of human values such as <em>dignity, health, justice, meaningfulness, freedom, connection, love, happiness, prosperity,</em> and <em>sustainability</em>. Imagine that you wanted to collect data on whether people valued these things. How would you do it? What would you find?</p>
 <blockquote>
-<p>Let’s begin by imagining that you have a friend - maybe you two are the last humans on the planet, or just might as well be. Then someone else comes along, and you don’t care for this person, but your friend does. We’ll represent this as an undirected, signed network consisting of just three nodes and the edges between them <span class="citation">(<a href="#ref-harary1959">Harary 1959</a>)</span>.</p>
+<p>Most of us want all (or mostly all) of these things. If you ask people to simply rate how important each of these are on a 3-point scale (unimportant, neither important nor unimportant, important), many would choose ‘important’ for all of these.</p>
+<p>If you used a longer scale, with 5 or 7 points, you would get a little bit more variability between people (some would use only the high end, some would be more stingy) and between values (perhaps ‘health’ would be rated more highly than ‘prosperity’).</p>
+<p>But if you really want to learn something about the people who are doing these ratings, ask them instead for <em>rankings</em>. You could ask for a complete ranking (from 1 to 10), or a partial one (say, just the most and least important, or the top three). Rankings are an <em>ipsative</em> form of measurement - formally, one in which each person obtains the same average score.</p>
+<p>We should probably use rankings more than we do. But people may not like rankings because they are time-consuming and require reflection.</p>
+<p>How would you rank these values? Which are the most and least important to you? Does this set of rankings have any relevance for your choice of an academic concentration or career choice? Should it? Perhaps not surprisingly, rankings rather than ratings are the primary measurement approach in vocational (career) counseling <span class="citation">(<a href="#ref-gati2014">2014</a>)</span>.</p>
 </blockquote>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="an-introduction-to-networks.html#cb284-1" tabindex="-1"></a><span class="co"># if you are running windows, these two lines </span></span>
-<span id="cb284-2"><a href="an-introduction-to-networks.html#cb284-2" tabindex="-1"></a><span class="co"># will avoid warnings about missing fonts</span></span>
-<span id="cb284-3"><a href="an-introduction-to-networks.html#cb284-3" tabindex="-1"></a></span>
-<span id="cb284-4"><a href="an-introduction-to-networks.html#cb284-4" tabindex="-1"></a><span class="co">#extrafont::font_import()</span></span>
-<span id="cb284-5"><a href="an-introduction-to-networks.html#cb284-5" tabindex="-1"></a>extrafont<span class="sc">::</span><span class="fu">loadfonts</span>(<span class="at">device=</span><span class="st">&quot;win&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="an-introduction-to-networks.html#cb285-1" tabindex="-1"></a><span class="co"># Create a data frame for the nodes</span></span>
-<span id="cb285-2"><a href="an-introduction-to-networks.html#cb285-2" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb285-3"><a href="an-introduction-to-networks.html#cb285-3" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;you&quot;</span>, <span class="st">&quot;best friend&quot;</span>, <span class="st">&quot;other person&quot;</span>)</span>
-<span id="cb285-4"><a href="an-introduction-to-networks.html#cb285-4" tabindex="-1"></a>)</span>
-<span id="cb285-5"><a href="an-introduction-to-networks.html#cb285-5" tabindex="-1"></a></span>
-<span id="cb285-6"><a href="an-introduction-to-networks.html#cb285-6" tabindex="-1"></a><span class="co"># Create a data frame for the edges</span></span>
-<span id="cb285-7"><a href="an-introduction-to-networks.html#cb285-7" tabindex="-1"></a><span class="co"># The &#39;sign&#39; column is used to represent positive (1) or negative (-1) relationships</span></span>
-<span id="cb285-8"><a href="an-introduction-to-networks.html#cb285-8" tabindex="-1"></a>edges <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb285-9"><a href="an-introduction-to-networks.html#cb285-9" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;you&quot;</span>, <span class="st">&quot;best friend&quot;</span>, <span class="st">&quot;you&quot;</span>),</span>
-<span id="cb285-10"><a href="an-introduction-to-networks.html#cb285-10" tabindex="-1"></a>  <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;best friend&quot;</span>, <span class="st">&quot;other person&quot;</span>, <span class="st">&quot;other person&quot;</span>),  <span class="at">sign =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb285-11"><a href="an-introduction-to-networks.html#cb285-11" tabindex="-1"></a>)</span>
-<span id="cb285-12"><a href="an-introduction-to-networks.html#cb285-12" tabindex="-1"></a></span>
-<span id="cb285-13"><a href="an-introduction-to-networks.html#cb285-13" tabindex="-1"></a><span class="co"># Convert the data frames into a tidygraph object</span></span>
-<span id="cb285-14"><a href="an-introduction-to-networks.html#cb285-14" tabindex="-1"></a><span class="co"># Use &#39;as_tbl_graph&#39; to specify the node and edge data</span></span>
-<span id="cb285-15"><a href="an-introduction-to-networks.html#cb285-15" tabindex="-1"></a>triangle <span class="ot">&lt;-</span> <span class="fu">as_tbl_graph</span>(edges, <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb285-16"><a href="an-introduction-to-networks.html#cb285-16" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> nodes<span class="sc">$</span>name)</span>
-<span id="cb285-17"><a href="an-introduction-to-networks.html#cb285-17" tabindex="-1"></a></span>
-<span id="cb285-18"><a href="an-introduction-to-networks.html#cb285-18" tabindex="-1"></a><span class="co"># Visualize the imbalanced triangle</span></span>
-<span id="cb285-19"><a href="an-introduction-to-networks.html#cb285-19" tabindex="-1"></a><span class="fu">ggraph</span>(triangle, <span class="at">layout =</span> <span class="st">&quot;circle&quot;</span>) <span class="sc">+</span></span>
-<span id="cb285-20"><a href="an-introduction-to-networks.html#cb285-20" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(</span>
-<span id="cb285-21"><a href="an-introduction-to-networks.html#cb285-21" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb285-22"><a href="an-introduction-to-networks.html#cb285-22" tabindex="-1"></a>      <span class="at">color =</span> <span class="fu">factor</span>(sign),</span>
-<span id="cb285-23"><a href="an-introduction-to-networks.html#cb285-23" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="fu">factor</span>(sign)</span>
-<span id="cb285-24"><a href="an-introduction-to-networks.html#cb285-24" tabindex="-1"></a>    ),</span>
-<span id="cb285-25"><a href="an-introduction-to-networks.html#cb285-25" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="cn">NULL</span>, <span class="co"># No arrows needed for undirected graph</span></span>
-<span id="cb285-26"><a href="an-introduction-to-networks.html#cb285-26" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">1.2</span> <span class="co"># Make edges more visible</span></span>
-<span id="cb285-27"><a href="an-introduction-to-networks.html#cb285-27" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb285-28"><a href="an-introduction-to-networks.html#cb285-28" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span></span>
-<span id="cb285-29"><a href="an-introduction-to-networks.html#cb285-29" tabindex="-1"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
-<span id="cb285-30"><a href="an-introduction-to-networks.html#cb285-30" tabindex="-1"></a>  <span class="fu">scale_edge_color_manual</span>(</span>
-<span id="cb285-31"><a href="an-introduction-to-networks.html#cb285-31" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Relationship&quot;</span>,</span>
-<span id="cb285-32"><a href="an-introduction-to-networks.html#cb285-32" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb285-33"><a href="an-introduction-to-networks.html#cb285-33" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb285-34"><a href="an-introduction-to-networks.html#cb285-34" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb285-35"><a href="an-introduction-to-networks.html#cb285-35" tabindex="-1"></a>  <span class="fu">scale_edge_linetype_manual</span>(</span>
-<span id="cb285-36"><a href="an-introduction-to-networks.html#cb285-36" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;Relationship&quot;</span>,</span>
-<span id="cb285-37"><a href="an-introduction-to-networks.html#cb285-37" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;solid&quot;</span>, <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;dashed&quot;</span>),</span>
-<span id="cb285-38"><a href="an-introduction-to-networks.html#cb285-38" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Positive&quot;</span>, <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb285-39"><a href="an-introduction-to-networks.html#cb285-39" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb285-40"><a href="an-introduction-to-networks.html#cb285-40" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb285-41"><a href="an-introduction-to-networks.html#cb285-41" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb285-42"><a href="an-introduction-to-networks.html#cb285-42" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Is three a bad number?&quot;</span>  )</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-94-1.png" alt="" width="672" /></p>
-<p>So. Is this system stable? What changes in edge weights might make it so? What changes would <em>not</em> make things better? What do all ‘stable’ (or ‘unstable’) networks have in common?</p>
-<p>This is an application of <em>balance theory</em> <span class="citation">(<a href="#ref-cartwright1956">Cartwright and Harary 1956</a>)</span>, which suggests that certain configurations of positive and negative edges are more stable than others. A recent <a href="https://www.nytimes.com/interactive/2024/04/20/opinion/a-visual-guide-to-the-middle-east.html"><em>NY Times</em> article</a> from a few years ago illustrates (kind of) how the complex geopolitical situation in the contemporary Middle East can be modeled using ideas drawn from balance theory and simple signed networks like the one above.</p>
-</div>
-</div>
-<div id="key-network-concepts" class="section level2 hasAnchor" number="22.2">
-<h2><span class="header-section-number">22.2</span> key network concepts<a href="an-introduction-to-networks.html#key-network-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Networks involve two types of objects called <strong>nodes</strong> (or vertices) and <strong>edges</strong> (or links). Networks may be directed or undirected. Edges in a <strong>directed</strong> network might describe relationships such as <em>likes, follows,</em> <em>has heard of, cites,</em> or <em>clicks on.</em> We can represent them by arrows between nodes. Edges may be <strong>weighted</strong>. For example, in a network of a college curriculum, weights might correspond to the number of classes a student took with a particular professor.</p>
-<p>Edges in an <strong>undirected</strong> network are symmetrical, as in the case of sharing a common property or ancestor. Undirected relationships are marked by phrases such as <em>are siblings, are allies, know each other, are married, have been cited by the same source,</em> and <em>have both been exposed to.</em> We can represent undirected networks by lines without arrowheads.</p>
-<p>Unrequited love is a directed relationship, requited or reciprocal love can be modeled as undirected one.</p>
-<p><strong>Paths</strong> are series of connected edges between nodes.</p>
-<p>Networks may be <strong>unsigned</strong> (only positive links) or <strong>signed</strong> (with positive and negative links).</p>
-<p>In some networks, there is just one type of node. In addition to these <strong>single-mode networks</strong>, we will also encounter <strong>bipartite (two-mode) networks</strong>. A network of enrollments, for example, might include two types of nodes (e.g., classes and students). Edges in such a network describe relationships such as <em>is enrolled in</em>. In <strong>bipartite networks,</strong> there can only be links between different types of nodes (so classes can’t be enrolled in classes for example).</p>
-<div id="centrality" class="section level3 hasAnchor" number="22.2.1">
-<h3><span class="header-section-number">22.2.1</span> centrality<a href="an-introduction-to-networks.html#centrality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Within networks, nodes differ in <strong>centrality,</strong> connectedness, or importance. There are different measures and types of centrality - for example, the number (<strong>degree</strong>) of a node describes its number of connections. In directed networks, we can further distinguish between indegree centrality, for incoming links, and outdegree centrality, for outgoing ones. On some social media platforms, this might be described by ‘followers’ and ‘is following’, respectively.</p>
-<p>Other measures of centrality gauge the importance of a node by the number of other nodes it connects (betweenness centrality). The most interesting measures of centrality, eigenvector centrality and <strong>PageRank</strong>, are <em>recursive</em>. That is, a node is central or important to the extent that the nodes to which it is linked are themselves central or important. PageRank was the original foundation of modern search engine on the Web. (The “Page” in PageRank does not refer to Webpage, but to Larry Page, one of the founders (with Sergey Brin) of Google <span class="citation">(<a href="#ref-page1999">Page et al. 1999</a>)</span>.</p>
-</div>
-<div id="components-and-communities" class="section level3 hasAnchor" number="22.2.2">
-<h3><span class="header-section-number">22.2.2</span> components and communities<a href="an-introduction-to-networks.html#components-and-communities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Networks vary in their size (e.g., big vs small), number of discrete components (zero for the empty set, one for a network in which all nodes are directly or indirectly connected, more than this otherwise), and also in their community structure or clustering. Whereas the number of components in a network is relatively unambiguous, communities in networks are often fuzzy or difficult to discern, in much the same way that constellations in the night sky might seem arbitrarily ‘drawn.’</p>
-<p>Just as there are many notions of centrality, there are also many approaches to thinking about communities. For example, we might use a “top-down” approach in which we begin with all of the nodes in a network and cleave them into two groups that both (a) minimize within-group distances and (b) maximize between-group distances. We could then repeat this strategy until we met some criterion. This approach gives a tree-like picture of community structure.</p>
-<p>Alternatively, we can use a “bottom-up” approach to thinking about categories - combining the two closest nodes into a single community, then repeating this as appropriate. Communities in which all members are directly connected to all others are referred to as <strong>cliques.</strong> In the bottom-up approach, unlike the top-down approach, there are typically left-over nodes which are not connected to any community. In some applications of the bottom-up approach, communities are allowed to overlap, giving rise to complex structures such as that illustrated previously in Figure 20.1.</p>
-</div>
-<div id="another-example-its-a-small-world" class="section level3 hasAnchor" number="22.2.3">
-<h3><span class="header-section-number">22.2.3</span> another example: it’s a small world<a href="an-introduction-to-networks.html#another-example-its-a-small-world" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>0.2</strong> Imagine that your class was presented with a two question exam. The first question was “What is the next prime number after 1471?” The second question was “Who was the next Governor of Maryland after Spiro Agnew?” If the mean number correct was zero, could we say anything about the variance or standard deviation?</p>
 <blockquote>
-<p>Consider a bipartite network in which there are two types of nodes, students and classes. An edge in this network represents a particular student who is enrolled in a particular class. Make a sketch of this network for you and a friend who is not in this class. Is there a path between the two of you? How about if we add another friend - or ten friends - to the network? What do we notice about the component structure of the network and the paths between nodes as the network grows bigger? <span class="citation">(<a href="#ref-milgram1967">Milgram 1967</a>)</span>.</p>
+<p>The mean and standard deviation are the two most fundamental parameters of statistical distributions. We can usually treat them as independent - but there are limiting cases, including this one: If the mean is zero, and negative scores are impossible, then everyone must have missed both of these answers.</p>
+<p>Recognizing this is an example of “data intuition.”</p>
 </blockquote>
-<p>In data science, it’s generally easiest to begin with very small datasets and to work towards bigger ones. With networks, this isn’t always the case, because very small networks may be structurally more complex than larger ones.</p>
+<p><strong>0.3</strong> What does a correlation of -1.2 suggest?</p>
+<blockquote>
+<p>It suggests that there is an error in your code. This is another example of data intution.</p>
+</blockquote>
 </div>
-<div id="static-and-dynamic-networks" class="section level3 hasAnchor" number="22.2.4">
-<h3><span class="header-section-number">22.2.4</span> static and dynamic networks<a href="an-introduction-to-networks.html#static-and-dynamic-networks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Finally, we can distinguish between static networks (assessed at just one moment in time) and dynamic ones, which change. In dynamic networks, several important phenomena can be seen. One of these is <strong>contagion</strong> - not just of diseases, but also of emotions <span class="citation">(<a href="#ref-kelly2016">Kelly et al. 2016</a>)</span> and a range of socially desirable and undesirable phenomena <span class="citation">(<a href="#ref-christakis2013">Christakis and Fowler 2013</a>)</span>. Another phenomena seen in dynamic networks is <strong>preferential attachment</strong> in which the most important nodes become still more important over time <span class="citation">(<a href="#ref-watts2004">Watts 2004</a>)</span>.</p>
-<p>Preferential attachment is reflected in many aspects of contemporary culture; we see it when a handful of restaurants or products ‘go viral’ while others struggle to attract customers. I believe that the acceleration of inequality of wealth and power in contemporary society is, in part, a product of the connectedness of the network in which we live, an unfortunate byproduct of efficient systems in the digital age.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="an-introduction-to-networks.html#cb286-1" tabindex="-1"></a>ba <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb286-2"><a href="an-introduction-to-networks.html#cb286-2" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb286-3"><a href="an-introduction-to-networks.html#cb286-3" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb286-4"><a href="an-introduction-to-networks.html#cb286-4" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb286-5"><a href="an-introduction-to-networks.html#cb286-5" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb286-6"><a href="an-introduction-to-networks.html#cb286-6" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb286-7"><a href="an-introduction-to-networks.html#cb286-7" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb286-8"><a href="an-introduction-to-networks.html#cb286-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb286-9"><a href="an-introduction-to-networks.html#cb286-9" tabindex="-1"></a>bb <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb286-10"><a href="an-introduction-to-networks.html#cb286-10" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb286-11"><a href="an-introduction-to-networks.html#cb286-11" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb286-12"><a href="an-introduction-to-networks.html#cb286-12" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb286-13"><a href="an-introduction-to-networks.html#cb286-13" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb286-14"><a href="an-introduction-to-networks.html#cb286-14" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb286-15"><a href="an-introduction-to-networks.html#cb286-15" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb286-16"><a href="an-introduction-to-networks.html#cb286-16" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb286-17"><a href="an-introduction-to-networks.html#cb286-17" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">play_barabasi_albert</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">power =</span> <span class="dv">1</span>, </span>
-<span id="cb286-18"><a href="an-introduction-to-networks.html#cb286-18" tabindex="-1"></a>                           <span class="at">appeal_zero =</span> <span class="dv">0</span>, <span class="at">growth =</span> <span class="dv">1</span>, </span>
-<span id="cb286-19"><a href="an-introduction-to-networks.html#cb286-19" tabindex="-1"></a>                           <span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb286-20"><a href="an-introduction-to-networks.html#cb286-20" tabindex="-1"></a>  <span class="fu">ggraph</span>(<span class="at">layout =</span> <span class="st">&quot;kk&quot;</span>) <span class="sc">+</span></span>
-<span id="cb286-21"><a href="an-introduction-to-networks.html#cb286-21" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;BLUE&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb286-22"><a href="an-introduction-to-networks.html#cb286-22" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb286-23"><a href="an-introduction-to-networks.html#cb286-23" tabindex="-1"></a>  <span class="fu">theme_graph</span>() <span class="sc">+</span></span>
-<span id="cb286-24"><a href="an-introduction-to-networks.html#cb286-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb286-25"><a href="an-introduction-to-networks.html#cb286-25" tabindex="-1"></a><span class="fu">plot_grid</span> (ba, bb, bc,</span>
-<span id="cb286-26"><a href="an-introduction-to-networks.html#cb286-26" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb286-27"><a href="an-introduction-to-networks.html#cb286-27" tabindex="-1"></a>  <span class="fu">draw_figure_label</span>(<span class="st">&quot;Preferential attachment: As networks grow, there is increasing inequality in centrality (degree)&quot;</span>)</span></code></pre></div>
-<p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-95-1.png" alt="" width="672" /></p>
-</div>
-</div>
-<div id="some-additional-sources" class="section level2 hasAnchor" number="22.3">
-<h2><span class="header-section-number">22.3</span> some additional sources<a href="an-introduction-to-networks.html#some-additional-sources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can learn more about networks in the following resources:</p>
-<ol style="list-style-type: decimal">
-<li><p><a href="https://rpubs.com/neloe/ggraph_intro" title="Neloe RPubs">Introduction to Networks with ggraph</a> and The Simpsons</p></li>
-<li><p><a href="https://cbail.github.io/ids704/social-networks/Intro_to_Network_Analysis_in_R.html">Intro to Network Analysis in R</a> (Bail, SICSS)</p></li>
-<li><p><a href="https://bookdown.org/jdholster1/idsr/network-analysis.html">Network chapter</a> (Holster, Laboratory for Interdisciplinary Statistical Analysis). A comprehensive introduction and links to a case study of network psychometrics.</p></li>
-<li><p>Bibliometric network videos (Lanning, see Chapter 23)</p>
-<ol style="list-style-type: decimal">
-<li>CSSIntro0 <a href="https://www.youtube.com/watch?v=qD8Q08k2trs">GettingWOS Refs</a></li>
-<li>CSSIntro1 <a href="https://www.youtube.com/watch?v=cSi7-WzDkzM">Citation and structural networks</a></li>
-<li>CSSIntro2 <a href="https://www.youtube.com/watch?v=bz5mYaFIZZs">Visualizing networks</a></li>
-<li>CSSIntro3 <a href="https://www.youtube.com/watch?v=_GCxTyiquuw">Combining Text and Network analysis</a></li>
-</ol></li>
-</ol>
+<div id="chapter-2" class="section level2 hasAnchor" number="26.2">
+<h2><span class="header-section-number">26.2</span> chapter 2<a href="appendix---answers-to-selected-problems.html#chapter-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>2.1</strong> <em>Susie is applying to two med schools. At School A, 25% of students are accepted, and at School B, 25% are accepted as well. You are Susie. Are you going to get in to at least one of these programs? What is the probability? Does your estimate depend upon any assumptions?</em></p>
+<blockquote>
+<p>Susie faces four possible outcomes - getting into both A and B, just A, just B, or neither. The outcome of interest is that she gets into neither program. If p(not A) = .75, and p (not B) = .75., and if programs A and B make their judgments independently, then p(neither) = .75*.75 ~ .56.</p>
+<p>But that’s really only the starting point. This answer depends upon the assumption that med school selections are independent of each other (like two coin flips). This is unlikely to be the case: MCAT scores, grades, etc. are likely to be weighted in similar ways at different programs.</p>
+</blockquote>
 
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="an-introduction-to-networks.html#cb287-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warn =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>) <span class="co"># defaults for all chunks after this one</span></span>
-<span id="cb287-2"><a href="an-introduction-to-networks.html#cb287-2" tabindex="-1"></a><span class="co">#if needed, install.packages(&quot;&quot;)</span></span>
-<span id="cb287-3"><a href="an-introduction-to-networks.html#cb287-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb287-4"><a href="an-introduction-to-networks.html#cb287-4" tabindex="-1"></a><span class="fu">library</span>(kableExtra) <span class="co"># for tables </span></span>
-<span id="cb287-5"><a href="an-introduction-to-networks.html#cb287-5" tabindex="-1"></a><span class="fu">library</span>(bibliometrix) <span class="co"># for generating network from bib data &amp; reducing to one mode</span></span>
-<span id="cb287-6"><a href="an-introduction-to-networks.html#cb287-6" tabindex="-1"></a><span class="co">#library(qgraph)  # for drawing simple graphs</span></span>
-<span id="cb287-7"><a href="an-introduction-to-networks.html#cb287-7" tabindex="-1"></a><span class="fu">library</span>(tidygraph) <span class="co"># for representing graphs as matrices of nodes/edges</span></span>
-<span id="cb287-8"><a href="an-introduction-to-networks.html#cb287-8" tabindex="-1"></a><span class="fu">library</span>(igraph) <span class="co"># needed by tidygraph</span></span>
-<span id="cb287-9"><a href="an-introduction-to-networks.html#cb287-9" tabindex="-1"></a><span class="fu">library</span>(ggraph) </span></code></pre></div>
-</div>
-</div>
-<h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-apicella2012" class="csl-entry">
+<div class="csl-entry">
+Anscombe, FJ. 1973. <span>“Graphs in Statistical Analysis.”</span> <em>American Statistician</em> 27 (1): 17–21.
+</div>
+<div class="csl-entry">
 Apicella, Coren L., Frank W. Marlowe, James H. Fowler, and Nicholas A. Christakis. 2012. <span>“Social Networks and Cooperation in Hunter-Gatherers.”</span> <em>Nature</em> 481 (7382): 497–501. <a href="https://doi.org/10/fz3v4v">https://doi.org/10/fz3v4v</a>.
 </div>
-<div id="ref-cartwright1956" class="csl-entry">
+<div class="csl-entry">
+Baker, Monya. 2016. <span>“Is There a Reproducibility Crisis?”</span> <em>Nature</em> 533: 26.
+</div>
+<div class="csl-entry">
+Benjamin, Daniel J., James O. Berger, Magnus Johannesson, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/10/cff2">https://doi.org/10/cff2</a>.
+</div>
+<div class="csl-entry">
+Blumenthal, Arthur L. 1975. <span>“A Reappraisal of <span>Wilhelm Wundt</span>.”</span> <em>American Psychologist</em> 30 (11): 1081.
+</div>
+<div class="csl-entry">
+Bond, Robert M., Christopher J. Fariss, Jason J. Jones, et al. 2012. <span>“A 61-Million-Person Experiment in Social Influence and Political Mobilization.”</span> <em>Nature</em> 489 (7415): 295–98. <a href="https://doi.org/10/f3689v">https://doi.org/10/f3689v</a>.
+</div>
+<div class="csl-entry">
+Bonomi, Flavio, Rodolfo Milito, Jiang Zhu, and Sateesh Addepalli. 2012. <span>“Fog Computing and Its Role in the Internet of Things.”</span> <em>Proceedings of the First Edition of the <span>MCC</span> Workshop on <span>Mobile</span> Cloud Computing</em>, 13–16. <a href="https://doi.org/10/gft9b9">https://doi.org/10/gft9b9</a>.
+</div>
+<div class="csl-entry">
+Boyd, Ryan L, Ashwini Ashokkumar, Sarah Seraj, and James W Pennebaker. 2022. <span>“The Development and Psychometric Properties of LIWC-22.”</span> <em>Austin, TX: University of Texas at Austin</em> 10: 1–47.
+</div>
+<div class="csl-entry">
+Boyd, Ryan L., Paola Pasca, and Kevin Lanning. 2020. <span>“The <span>Personality Panorama</span>: <span>Conceptualizing Personality Through Big Behavioural Data</span>: <span>The</span> Personality Panorama.”</span> <em>European Journal of Personality</em>, ahead of print, April. <a href="https://doi.org/10/gg4t8j">https://doi.org/10/gg4t8j</a>.
+</div>
+<div class="csl-entry">
+Broman, Karl W., and Kara H. Woo. 2018. <span>“Data <span>Organization</span> in <span>Spreadsheets</span>.”</span> <em>The American Statistician</em> 72 (1): 2–10. <a href="https://doi.org/10.1080/00031305.2017.1375989">https://doi.org/10.1080/00031305.2017.1375989</a>.
+</div>
+<div class="csl-entry">
+Buckheit, Jonathan B., and David L. Donoho. 1995. <span>“Wavelab and Reproducible Research.”</span> In <em>Wavelets and Statistics</em>. Springer.
+</div>
+<div class="csl-entry">
 Cartwright, Dorwin, and Frank Harary. 1956. <span>“Structural Balance: A Generalization of <span>Heider</span>’s Theory.”</span> <em>Psychological Review</em> 63 (5): 277.
 </div>
-<div id="ref-christakis2007" class="csl-entry">
+<div class="csl-entry">
 Christakis, Nicholas A., and James H. Fowler. 2007. <span>“The Spread of Obesity in a Large Social Network over 32 Years.”</span> <em>N Engl J Med</em> 357: 3709. <a href="https://doi.org/10/dmrgt6">https://doi.org/10/dmrgt6</a>.
 </div>
-<div id="ref-christakis2013" class="csl-entry">
+<div class="csl-entry">
 Christakis, Nicholas A., and James H. Fowler. 2013. <span>“Social Contagion Theory: Examining Dynamic Social Networks and Human Behavior.”</span> <em>Statistics in Medicine</em> 32 (4): 556–77. <a href="https://doi.org/10/ck2j">https://doi.org/10/ck2j</a>.
 </div>
-<div id="ref-harary1959" class="csl-entry">
+<div class="csl-entry">
+Clarke, Russell, David Dorwin, and Rob Nash. 2009. <span>“Is Open Source Software More Secure?”</span> <em>Homeland Security/Cyber Security</em>.
+</div>
+<div class="csl-entry">
+Cleveland, William S., and Robert McGill. 1985. <span>“Graphical <span>Perception</span> and <span>Graphical Methods</span> for <span>Analyzing Scientific Data</span>.”</span> <em>Science, New Series</em> 229 (4716): 828–33. <a href="https://www.jstor.org/stable/1695272">https://www.jstor.org/stable/1695272</a>.
+</div>
+<div class="csl-entry">
+Cox, Jonathan, and Michael Lindell. 2013. <span>“Visualizing Uncertainty in Predicted Hurricane Tracks.”</span> <em>International Journal for Uncertainty Quantification</em> 3 (2). <a href="https://doi.org/10/gjjsfw">https://doi.org/10/gjjsfw</a>.
+</div>
+<div class="csl-entry">
+Deane, Claudia. 2024. <em>Americans’ <span>Deepening Mistrust</span> of <span>Institutions</span></em>.
+</div>
+<div class="csl-entry">
+Donoho, David. 2017. <span>“50 <span>Years</span> of <span>Data Science</span>.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
+</div>
+<div class="csl-entry">
+Donoho, David L. 2010. <span>“An Invitation to Reproducible Computational Research.”</span> <em>Biostatistics</em> 11 (3): 385–88. <a href="https://doi.org/10/bxwkns">https://doi.org/10/bxwkns</a>.
+</div>
+<div class="csl-entry">
+Erdelyi, Matthew H. 1974. <span>“A New Look at the New Look: <span>Perceptual</span> Defense and Vigilance.”</span> <em>Psychological Review</em> 81 (1): 1–25. <a href="https://doi.org/10/cs5c5q">https://doi.org/10/cs5c5q</a>.
+</div>
+<div class="csl-entry">
+FitzGerald, Ben, Peter L Levin, and Jacqueline Parziale. 2016. <em>Open Source Software &amp; the Department of Defense</em>. Center for a New American Security.
+</div>
+<div class="csl-entry">
+Gandrud, Christopher. 2013. <em>Reproducible <span>Research</span> with <span>R</span> and <span>R Studio</span></em>. CRC Press.
+</div>
+<div class="csl-entry">
+Garcia, David, Mansi Goel, Amod Kant Agrawal, and Ponnurangam Kumaraguru. 2018. <span>“Collective Aspects of Privacy in the <span>Twitter</span> Social Network.”</span> <em>EPJ Data Science</em> 7: 1–13. <a href="https://doi.org/10/cjhr">https://doi.org/10/cjhr</a>.
+</div>
+<div class="csl-entry">
+Gati, Itamar, and Nimrod Levin. 2014. <span>“Counseling for Career Decision<span>-</span>Making Difficulties: Measures and Methods.”</span> <em>The Career Development Quarterly</em> 62 (2): 98–113. <a href="https://doi.org/10.1002/j.2161-0045.2014.00073.x">https://doi.org/10.1002/j.2161-0045.2014.00073.x</a>.
+</div>
+<div class="csl-entry">
+Gleibs, Ilka H. 2014. <span>“Turning Virtual Public Spaces into Laboratories: <span>Thoughts</span> on Conducting Online Field Studies Using Social Network Sites.”</span> <em>Analyses of Social Issues and Public Policy</em> 14 (1): 352–70. <a href="https://doi.org/10/f6t7gd">https://doi.org/10/f6t7gd</a>.
+</div>
+<div class="csl-entry">
+<span class="nocase">Grange, JA, D Lakens, F Adolfi, et al.</span> 2018. <span>“Justify Your Alpha.”</span> <em>Nature Human Behavior</em>.
+</div>
+<div class="csl-entry">
 Harary, Frank. 1959. <span>“On the Measurement of Structural Balance.”</span> <em>Behavioral Science</em> 4 (4): 316–23. <a href="https://doi.org/10/cp9nfp">https://doi.org/10/cp9nfp</a>.
 </div>
-<div id="ref-kelly2016" class="csl-entry">
+<div class="csl-entry">
+Hastie, Reid, and Robyn M Dawes. 2010. <em>Rational Choice in an Uncertain World: <span>The</span> Psychology of Judgment and Decision Making</em>. Sage.
+</div>
+<div class="csl-entry">
+Healy, Kieran. 2017. <em>Data Visualization for Social Science: <span>A</span> Practical Introduction with r and Ggplot2</em>.
+</div>
+<div class="csl-entry">
+Henrich, Joseph, Steven J. Heine, and Ara Norenzayan. 2010. <span>“The Weirdest People in the World?”</span> <em>Behavioral and Brain Sciences</em> 33 (2-3): 61–83. <a href="https://doi.org/10/c9j35b">https://doi.org/10/c9j35b</a>.
+</div>
+<div class="csl-entry">
+Hicks, Stephanie C., and Rafael A. Irizarry. 2018. <span>“A <span>Guide</span> to <span>Teaching Data Science</span>.”</span> <em>The American Statistician</em> 72 (4): 382–91. <a href="https://doi.org/10/gfr5tf">https://doi.org/10/gfr5tf</a>.
+</div>
+<div class="csl-entry">
+Hornik, Kurt, and The R Core Team. 2022. <em>R <span>FAQ</span>: <span>The Comprehensive R Archive Network</span>.</em>
+</div>
+<div class="csl-entry">
+Hullman, Jessica, Paul Resnick, and Eytan Adar. 2015. <span>“Hypothetical <span>Outcome Plots Outperform Error Bars</span> and <span>Violin Plots</span> for <span>Inferences</span> about <span>Reliability</span> of <span>Variable Ordering</span>.”</span> <em>PLOS ONE</em> 10 (11): e0142444. <a href="https://doi.org/10.1371/journal.pone.0142444">https://doi.org/10.1371/journal.pone.0142444</a>.
+</div>
+<div class="csl-entry">
+Hvitfeldt, Emil, and Julia Silge. 2021. <em>Supervised Machine Learning for Text Analysis in <span>R</span></em>. <span>Chapman and Hall/CRC</span>.
+</div>
+<div class="csl-entry">
+Ioannidis, John PA. 2005. <span>“Why Most Published Research Findings Are False.”</span> <em>PLoS Medicine</em> 2 (8): e124. <a href="https://doi.org/10/chhf6b">https://doi.org/10/chhf6b</a>.
+</div>
+<div class="csl-entry">
+Isaacson, Walter. 2014. <em>The <span>Innovators</span>: <span>How</span> a <span>Group</span> of <span>Hackers</span>, <span>Geniuses</span>, and <span>Geeks Created</span> the <span>Digital Revolution</span></em>. <span>Simon and Schuster</span>.
+</div>
+<div class="csl-entry">
+Jackson, Dan. 2017. <span>“The <span>Netflix Prize</span>: <span>How</span> a 1 <span>Million Contest Changed Binge-Watching Forever</span>.”</span> <em>Thrillist. Com</em>.
+</div>
+<div class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An <span>Introduction</span> to <span>Statistical Learning</span></em>. Vol. 103. Springer <span>Texts</span> in <span>Statistics</span>. Springer New York. <a href="https://doi.org/10.1007/978-1-4614-7138-7">https://doi.org/10.1007/978-1-4614-7138-7</a>.
+</div>
+<div class="csl-entry">
 Kelly, Janice R., Nicole E. Iannone, and Megan K. McCarty. 2016. <span>“Emotional Contagion of Anger Is Automatic: An Evolutionary Explanation.”</span> <em>British Journal of Social Psychology</em> 55 (1): 182–91. <a href="https://doi.org/10/gf6mn3">https://doi.org/10/gf6mn3</a>.
 </div>
-<div id="ref-milgram1967" class="csl-entry">
+<div class="csl-entry">
+Kondo, Marie. 2016. <em>Spark <span>Joy</span>: An Illustrated Master Class on the Art of Organizing and Tidying up</em>. Ten Speed Press.
+</div>
+<div class="csl-entry">
+Kumar, Devinder, Alexander Wong, and Graham W Taylor. 2017. <span>“Explaining the Unexplained: <span>A</span> Class-Enhanced Attentive Response (Clear) Approach to Understanding Deep Neural Networks.”</span> <em>Proceedings of the <span>IEEE</span> Conference on Computer Vision and Pattern Recognition Workshops</em>, 36–44.
+</div>
+<div class="csl-entry">
+Lakatos, Imre. 1969. <span>“Falsification and the Methodology of Scientific Research Programmes.”</span> <em>Criticism and the Growth of Knowledge. Cambridge University Press: Cambridge</em>.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 1987. <span>“Some <span>Reasons</span> for <span>Distinguishing Between</span> <span>‘<span class="nocase">Non-normative Response</span>’</span> and <span>‘<span>Irrational Decision</span>’</span>.”</span> <em>The Journal of Psychology</em> 121 (2): 109–17. <a href="https://doi.org/10/fv4hh5">https://doi.org/10/fv4hh5</a>.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 1994. <span>“Dimensionality of <span>Observer Ratings</span> on the <span class="nocase">California Adult Q-set</span>.”</span> <em>Journal of Personality and Social Psychology</em> 67 (July): 151–60. <a href="https://doi.org/10/drnkvm">https://doi.org/10/drnkvm</a>.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 1996. <span>“Robustness Is Not Dimensionality: <span>On</span> the Sensitivity of Component Comparability Coefficients to Sample Size.”</span> <em>Multivariate Behavioral Research</em> 31 (1): 33–46. <a href="https://doi.org/10/dt6gb3">https://doi.org/10/dt6gb3</a>.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 2017. <span>“What Is the Relationship Between <span>‘Personality’</span> and <span>‘Social’</span> Psychologies? <span>Network</span>, Community, and Whole Text Analyses of the Structure of Contemporary Scholarship.”</span> <em>Collabra: Psychology</em> 3 (1): 8.
+</div>
+<div class="csl-entry">
+Lanning, Kevin. 2018. <span>“Data Visualizations in Personality and Social Psychology: <span>Challenges</span> in Representing Taxonomic, Community, and Developmental Structures.”</span> In <em>Association of Psychological Science Annual Convention, San Francisco, May 25.</em>
+</div>
+<div class="csl-entry">
+Lanning, Kevin, and Ari Rosenberg. 2009. <span>“The Dimensionality of <span>American</span> Political Attitudes: Tensions Between Equality and Freedom in the Wake of <span>September</span> 11.”</span> <em>Behavioral Sciences of Terrorism and Political Aggression</em> 1 (2): 84–100. <a href="https://doi.org/10/fckr37">https://doi.org/10/fckr37</a>.
+</div>
+<div class="csl-entry">
+Leek, Jeffrey T, and Roger D Peng. 2015. <span>“Statistics: <span>P</span> Values Are Just the Tip of the Iceberg.”</span> <em>Nature</em> 520 (7549): 612. <a href="https://doi.org/10/gfb8jm">https://doi.org/10/gfb8jm</a>.
+</div>
+<div class="csl-entry">
+Loevinger, Jane. 1957. <span>“Objective <span>Tests</span> as <span>Instruments</span> of <span>Psychological Theory</span>.”</span> <em>Psychological Reports</em> 3 (3): 635–94. <a href="https://doi.org/10/b27jpk">https://doi.org/10/b27jpk</a>.
+</div>
+<div class="csl-entry">
+Loukides, Hilary, Mike. 2018. <em>Ethics and Data Science</em>. O’Reilly.
+</div>
+<div class="csl-entry">
+Matz, S. C., M. Kosinski, G. Nave, and D. J. Stillwell. 2017. <span>“Psychological Targeting as an Effective Approach to Digital Mass Persuasion.”</span> <em>Proceedings of the National Academy of Sciences</em> 114 (48): 12714–19. <a href="https://doi.org/10.1073/pnas.1710966114">https://doi.org/10.1073/pnas.1710966114</a>.
+</div>
+<div class="csl-entry">
+McShane, Blakeley B., David Gal, Andrew Gelman, Christian Robert, and Jennifer L. Tackett. 2017. <span>“Abandon <span>Statistical Significance</span>.”</span> <em>arXiv:1709.07588 [Stat]</em>, September. <a href="https://arxiv.org/abs/1709.07588">https://arxiv.org/abs/1709.07588</a>.
+</div>
+<div class="csl-entry">
+Merton, Robert K. 1936. <span>“The Unanticipated Consequences of Purposive Social Action.”</span> <em>American Sociological Review</em> 1 (6): 894–904. <a href="https://doi.org/10/fjg8hf">https://doi.org/10/fjg8hf</a>.
+</div>
+<div class="csl-entry">
+<span class="nocase">Miguel, Edward, Colin Camerer, Katherine Casey, et al.</span> 2014. <span>“Promoting Transparency in Social Science Research.”</span> <em>Science</em> 343 (6166): 30–31. <a href="https://doi.org/10/gdrcpz">https://doi.org/10/gdrcpz</a>.
+</div>
+<div class="csl-entry">
 Milgram, Stanley. 1967. <span>“The Small World Problem.”</span> <em>Psychology Today</em> 2 (1): 6067.
 </div>
-<div id="ref-nikzad2021" class="csl-entry">
+<div class="csl-entry">
+Munafò, Marcus R., Brian A. Nosek, Dorothy V. M. Bishop, et al. 2017. <span>“A Manifesto for Reproducible Science.”</span> <em>Nature Human Behaviour</em> 1 (1): 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a>.
+</div>
+<div class="csl-entry">
+Narayanan, Arvind, and Vitaly Shmatikov. 2008. <span>“Robust <span class="nocase">De-anonymization</span> of <span>Large Sparse Datasets</span>.”</span> <em>2008 <span>IEEE Symposium</span> on <span>Security</span> and <span>Privacy</span> (Sp 2008)</em> (Oakland, CA, USA), May, 111–25. <a href="https://doi.org/10.1109/SP.2008.33">https://doi.org/10.1109/SP.2008.33</a>.
+</div>
+<div class="csl-entry">
 Nikzad, Afshin, Mohammad Akbarpour, Michael A. Rees, and Alvin E. Roth. 2021. <span>“Global Kidney Chains.”</span> <em>Proceedings of the National Academy of Sciences of the United States of America</em> 118 (36): e2106652118. <a href="https://doi.org/10.1073/pnas.2106652118">https://doi.org/10.1073/pnas.2106652118</a>.
 </div>
-<div id="ref-page1999" class="csl-entry">
+<div class="csl-entry">
+Ondaatje, Michael, and Walter Murch. 2002. <em>The Conversations: <span>Walter Murch</span> and the Art of Editing Film</em>. A&amp;C Black.
+</div>
+<div class="csl-entry">
+Open Science Collaboration. 2015. <span>“Estimating the Reproducibility of Psychological Science.”</span> <em>Science</em> 349 (6251): aac4716–16. <a href="https://doi.org/10/68c">https://doi.org/10/68c</a>.
+</div>
+<div class="csl-entry">
 Page, Lawrence, Sergey Brin, Rajeev Motwani, and Terry Winograd. 1999. <em>The PageRank Citation Ranking: Bringing Order to the Web.</em>
 </div>
-<div id="ref-watts2004" class="csl-entry">
+<div class="csl-entry">
+Paulos, John Allen. 1988. <em>Innumeracy: Mathematical Illiteracy and Its Consequences</em>. Macmillan. <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=WeWYwvrsEaMC&amp;oi=fnd&amp;pg=PR7&amp;dq=innumeracy&amp;ots=pPXmCCNStp&amp;sig=WXcy7mxbU60SnbdssboVEcBQVWE">https://books.google.com/books?hl=en&amp;lr=&amp;id=WeWYwvrsEaMC&amp;oi=fnd&amp;pg=PR7&amp;dq=innumeracy&amp;ots=pPXmCCNStp&amp;sig=WXcy7mxbU60SnbdssboVEcBQVWE</a>.
+</div>
+<div class="csl-entry">
+Peng, Roger. 2018. <em>Teaching r to New Users - from Tapply to the Tidyverse</em>.
+</div>
+<div class="csl-entry">
+Peng, Roger D. 2014. <em>R <span>Programming</span> for <span>Data Science</span></em>.
+</div>
+<div class="csl-entry">
+Pennebaker, James W., Cindy K. Chung, Joey Frazee, Gary M. Lavergne, and David I. Beaver. 2014. <span>“When <span>Small Words Foretell Academic Success</span>: <span>The Case</span> of <span>College Admissions Essays</span>.”</span> <em>PLoS ONE</em> 9 (12): e115844. <a href="https://doi.org/10/f6z8q5">https://doi.org/10/f6z8q5</a>.
+</div>
+<div class="csl-entry">
+Phillips, Nathaniel D., Hansjörg Neth, Jan K. Woike, and Wolfgang Gaissmaier. 2017. <span>“<span>FFTrees</span>: <span>A</span> Toolbox to Create, Visualize, and Evaluate Fast-and-Frugal Decision Trees.”</span> <em>Judgment and Decision Making</em> 12 (4): 344–68.
+</div>
+<div class="csl-entry">
+Poulin, Michael J., and Claudia M. Haase. 2015. <span>“Growing to <span>Trust</span>: <span>Evidence That Trust Increases</span> and <span>Sustains Well-Being Across</span> the <span>Life Span</span>.”</span> <em>Social Psychological and Personality Science</em> 6 (6): 614–21. <a href="https://doi.org/10.1177/1948550615574301">https://doi.org/10.1177/1948550615574301</a>.
+</div>
+<div class="csl-entry">
+Reinsel, David, John Gantz, and John Rydning. 2025. <em>The <span>Digitization</span> of the <span>World</span></em>.
+</div>
+<div class="csl-entry">
+Shattuck, Roger. 1997. <em>Forbidden Knowledge: <span>From Prometheus</span> to Pornography</em>. Houghton Mifflin Harcourt.
+</div>
+<div class="csl-entry">
+Silge, Julia, and David Robinson. 2017. <em>Text Mining with <span>R</span>: <span>A</span> Tidy Approach</em>. " O’Reilly Media, Inc.".
+</div>
+<div class="csl-entry">
+Slovic, Paul, David Zionts, Andrew K Woods, Ryan Goodman, and Derek Jinks. 2013. <span>“Psychic Numbing and Mass Atrocity.”</span> <em>The Behavioral Foundations of Public Policy</em>, 126–42. <a href="https://doi.org/10/gk4945">https://doi.org/10/gk4945</a>.
+</div>
+<div class="csl-entry">
+Sternberg, Robert J. 1999. <span>“The Theory of Successful Intelligence.”</span> <em>Review of General Psychology</em> 3 (4): 292–316. <a href="https://doi.org/10/cqrkxh">https://doi.org/10/cqrkxh</a>.
+</div>
+<div class="csl-entry">
+Sternberg, Robert J. 2018. <em>Theories of Intelligence</em>. Edited by Steven I. Pfeiffer, Elizabeth Shaunessy-Dedrick, and Megan Foley-Nicpon. American Psychological Association. <a href="https://doi.org/10.1037/0000038-010">https://doi.org/10.1037/0000038-010</a>.
+</div>
+<div class="csl-entry">
+Sullivan, J. L., and J. E. Transue. 1999. <span>“<span>THE PSYCHOLOGICAL UNDERPINNINGS OF DEMOCRACY</span>: <span>A Selective Review</span> of <span>Research</span> on <span>Political Tolerance</span>, <span>Interpersonal Trust</span>, and <span>Social Capital</span>.”</span> <em>Annual Review of Psychology</em> 50 (1): 625–50. <a href="https://doi.org/10/cmthvk">https://doi.org/10/cmthvk</a>.
+</div>
+<div class="csl-entry">
+Sweeney, Latanya. 2005. <span>“Privacy-Enhanced Linking.”</span> <em>ACM SIGKDD Explorations Newsletter</em> 7 (2): 72–75. <a href="https://doi.org/10/bjvpjh">https://doi.org/10/bjvpjh</a>.
+</div>
+<div class="csl-entry">
+Szucs, Denes, and John Ioannidis. 2017. <span>“When Null Hypothesis Significance Testing Is Unsuitable for Research: A Reassessment.”</span> <em>Frontiers in Human Neuroscience</em> 11: 390. <a href="https://doi.org/10/gc6vws">https://doi.org/10/gc6vws</a>.
+</div>
+<div class="csl-entry">
+Thies, Justus, Michael Zollhöfer, Matthias Nießner, Levi Valgaerts, Marc Stamminger, and Christian Theobalt. 2015. <span>“Real-Time Expression Transfer for Facial Reenactment.”</span> <em>ACM Trans. Graph.</em> 34 (6): 183–81. <a href="https://doi.org/10/f7wqz7">https://doi.org/10/f7wqz7</a>.
+</div>
+<div class="csl-entry">
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. 2nd ed. Graphics Press.
+</div>
+<div class="csl-entry">
+Tukey, John W. 1962. <span>“The Future of Data Analysis.”</span> <em>The Annals of Mathematical Statistics</em> 33 (1): 1–67. <a href="https://doi.org/10/d48nqg">https://doi.org/10/d48nqg</a>.
+</div>
+<div class="csl-entry">
+Tukey, John W. 1977. <span>“<span>EDA</span>: <span>Exploratory</span> Data Analysis.”</span> <em>Reading, Mass</em>.
+</div>
+<div class="csl-entry">
+Tversky, Amos, and Daniel Kahneman. 1974. <span>“Judgment Under <span>Uncertainty</span>: <span>Heuristics</span> and <span>Biases</span>.”</span> <em>Science</em> 185 (4157): 1124–31. <a href="https://doi.org/10/gwh">https://doi.org/10/gwh</a>.
+</div>
+<div class="csl-entry">
+Wainer, Howard. 2007. <span>“The <span>Most Dangerous Equation</span>.”</span> <em>American Scientist</em> 95 (3): 249. <a href="https://doi.org/10.1511/2007.65.249">https://doi.org/10.1511/2007.65.249</a>.
+</div>
+<div class="csl-entry">
+Wainer, H, and D Thissen. 1981. <em>Graphical <span>Data Analysis</span></em>. 51.
+</div>
+<div class="csl-entry">
 Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <span>Networks</span>.”</span> <em>Annual Review of Sociology</em> 3: 243–70. <a href="https://www.jstor.org/stable/29737693">https://www.jstor.org/stable/29737693</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, et al. 2019. <span>“Welcome to the <span>Tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science 2e</em>. " O’Reilly Media, Inc.".
+</div>
+<div class="csl-entry">
+Wu, Tim. 2019. <span>“How <span>Capitalism Betrayed Privacy</span>.”</span> <em>The New York Times</em>, 5.
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-gati2014" class="csl-entry">
+Gati, Itamar, and Nimrod Levin. 2014. <span>“Counseling for Career Decision<span>-</span>Making Difficulties: Measures and Methods.”</span> <em>The Career Development Quarterly</em> 62 (2): 98–113. <a href="https://doi.org/10.1002/j.2161-0045.2014.00073.x">https://doi.org/10.1002/j.2161-0045.2014.00073.x</a>.
 </div>
 </div>
             </section>
@@ -715,8 +842,8 @@ Watts, Duncan J. 2004. <span>“The "<span>New</span>" <span>Science</span> of <
           </div>
         </div>
       </div>
-<a href="working-with-text.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="case-study-the-network-structure-of-computational-social-science.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

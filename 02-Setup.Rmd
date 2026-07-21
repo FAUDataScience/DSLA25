@@ -26,27 +26,15 @@ Regarding **programming**, you may know more than you think you do. Here's a sim
 
 As a post-millennial student from a WEIRD culture, or Western, Educated, Industrialized, Rich Democracy [@henrich2010], you've 'programmed' computers, too, if only to enter a password, open an app, and upload a photo on your cell phone.
 
-**Statistics** is of fundamental importance, not just for understanding abstract trends, but for making decisions about everyday life. Consider the case of a senior undergraduate who wants to go to med school. How many schools should she apply to?
-
-> **Exercise 2_1** *Susie is applying to two med schools. At School A, 25% of students are accepted, and at School B, 25% are accepted as well. You are Susie. Are you going to get in to at least one of these programs? What is the probability? Does your estimate depend upon any assumptions?*
+**Statistics** is of fundamental importance, not just for understanding abstract trends, but for making decisions about everyday life. Consider the case of a senior undergraduate who wants to go to med school. How many schools should she apply to? (see exercise 2.1, below)
 
 Questions such as these are important for us. If the combined probability is low, it will *likely* (another probability concept) make sense for Susie to spend the time, money, energy, and ego-involvement to apply to additional programs. If the probability is higher, it may not. But problems like this are hard - our estimates of probability are frequently poorly calibrated, and combining probability estimates is challenging. See, e.g., Tversky and Kahneman [-@tversky1974], and consider taking a course in *Behavioral Economics* or *Thinking and Decision Making* to learn more.
 
 ## spreadsheets - some best practices
 
-Spreadsheets are handy tools, particularly for smaller datasets. You may have worked with data in spreadsheets such as Microsoft Excel or Google Sheets. If you haven't here's a start:
+You may have worked with data in spreadsheets such as Microsoft Excel or Google Sheets (see exercise 2.2). Spreadsheets are handy tools, particularly for smaller datasets. The first spreadsheet program, VisiCalc, was the first "killer app" to usher in the personal computer revolution. But spreadsheets have limitations as well.
 
-> **Exercise 2_2** Open the Google Sheet at <http://bit.ly/dslaX2_1>. Save a copy and edit it, entering the following in cell B7:
->
-> *=SUM (B2:B6)*
->
-> What is the result?
->
-> Now **copy cell B7 to C7**
->
-> What happens? Is this the result you expected?
-
-Spreadsheets are great tools - the first one, VisiCalc, was the first "killer app" to usher in the personal computer revolution. But spreadsheets have limitations as well. **Best practices** have been proposed for using spreadsheets in data science such as, for example, including only data (and not calculations) in spreadsheets, using what we will recognize as a 'tidy' format in which data are in a simple rectangle (that is, avoid combining cells and using multi-line headers), and saving spreadsheets as simple text files, typically in comma-delimited or CSV format [@broman2018]. Typically, this means that each worksheet will be in a separate file, rather than in workbooks with multiple tabs.
+**Best practices** have been proposed for using spreadsheets in data science such as, for example, including only data (and not calculations) in spreadsheets, using what we will recognize as a 'tidy' format in which data are in a simple rectangle (that is, avoid combining cells and using multi-line headers), and saving spreadsheets as simple text files, typically in comma-delimited or CSV format [@broman2018]. Typically, this means that each worksheet will be in a separate file, rather than in workbooks with multiple tabs.
 
 There are good reasons for these recommendations: When we manipulate data in spreadsheets, we typically will not have a record of what was (and wasn't) changed, and this compromises the reproducibility of our work. Similarly, when we sort data in spreadsheets, we risk chaos, for example, if we sort only certain columns, the integrity of spreadsheet-rows will be lost.
 
@@ -83,3 +71,23 @@ That's not ideal. Struggle on your own for at least a few minutes. Work at the e
 ## installing R and RStudio desktop
 
 Finally, if you have not already done so, install the latest version of R on your own Windows or Mac laptop. Then install RStudio Desktop. (RStudio is our interface, the environment we will use to write, test, and run R code).
+
+### exercises
+
+> **2.1** Susie is applying to two med schools. At School A, 25% of students are accepted, and at School B, 25% are accepted as well. You are Susie. Are you going to get in to at least one of these programs? What is the probability? Does your estimate depend upon any assumptions?
+>
+> **2.2** Open the Google Sheet at <http://bit.ly/dslaX2_1>. Save a copy and edit it, entering the following in cell B7:
+>
+> =average (B2:B6)
+>
+> What is the result?
+>
+> Now **copy cell B7 to C7**
+>
+> What happens? Is this the result you expected?
+>
+> **2.3** What is the rationale for the argument that spreadsheets should be used primarily to store, and not to analyze, data?
+>
+> **2.4** What is the 15-minute rule, and how should it be adjusted in the age of AI?
+>
+> ### 

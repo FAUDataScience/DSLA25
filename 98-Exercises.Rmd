@@ -2,11 +2,11 @@
 knitr::opts_chunk$set(echo = TRUE, warn = FALSE, message = FALSE) # defaults for all chunks after this one
 ```
 
-# exercises
+# advanced exercises
 
 ## generating correlated data (GPA and SAT) and putting it in a Google Sheet
 
-It's simple to generate a single random variable, but we often want to examine data for several variables that are correlated. The MVRnorm function, in the MASS package, does this.
+It's simple to generate a single random variable, but we often want to examine data for several variables that are correlated - perhaps like SAT scores and HS GPA. The MVRnorm function, in the MASS package, does this.
 
 We use this to generate two variables with mean 0 and standard deviation 1, a given correlation, and a given sample size (number of rows).
 
