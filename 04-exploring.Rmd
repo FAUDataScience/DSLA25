@@ -6,23 +6,42 @@ knitr::opts_chunk$set(echo = TRUE)
 
 There are many sources for learning the basics of R. A few of these follow. Please **spend at least 180 mins exploring at least two of the following.** Be prepared to discuss your progress next class: You will be asked which source(s) you used, what you struggled with, what questions you have, and what you would recommend to your classmates. **Hint:** If you find the material too challenging, remember the 15 minute rule, take a break away from your machine and other screens, clear your head, then try a different approach.
 
-## go to the movies
+## say my name, say my name
 
-About nine years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction [here](https://idc9.github.io/stor390/notes/getting_started/getting_started.html).
+When you learn that someone's name is, say, *Denise,* *Tracy, Donald*, or even *Adolf*, what goes through your head? Many new parents spend a great deal of time choosing a name for their child. Some of us have renamed ourselves - maybe we've embraced a nickname, are chasing celebrity with a stage name, or perhaps have even enrolled in a witness protection program.
 
-You can consider his report from the standpoint of style (formatting, organization), coding (how he did this), data (the part of the IMDB data he is looking at), and his results (plots of distributions and relationships).
+What's in a name? The SSA (social security administration) has data on the historical popularity of first names in the US. The babynames package in R includes this dataset as well as others - you can read more about it on [this page](https://cran.r-project.org/web/packages/babynames/index.html "https://cran.r-project.org/web/packages/babynames/index.html"). Install and load the library. Learn something interesting from the data. Be prepared to share your struggles and insights with the class.
 
-Do you have any questions about the movie data? How might you ask these?
+```{r}
+#install.packages("babynames") # install package onto your machine
+library(babynames) # load the package into your R session
+head(babynames) # see what it looks like
+```
 
-A minimal amount of sleuthing - a click on the STOR 390 link at the top of the page, then a quick scroll - reveals that "all of [Carmichael's] course material is on the github repo" - or repository.
+## find the movies
 
-- Can you find the Rmd document that generated his work?
+About ten years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction [here](https://idc9.github.io/stor390/notes/getting_started/getting_started.html).
 
-- Can you download it on to your machine?
+There is a *lot* on that page. You can consider his report from the standpoint of style (formatting, organization), coding (how he did this), data (the part of the IMDB data he is looking at), and his results (plots of distributions and relationships).
 
-- If you try to run it, what happens?
+If you try to open the dataset, however, you will run into an obstacle - the link on Carmichael's page is dead. Don't let that stop you. *(If you were working on your thesis and came across a problem like this, what would you do next?)* Once again, be prepared to share your struggles and insights with the class.
 
-- If you were working on your thesis and came across a problem like this, what would you do next?
+## play ball
+
+Baseball, perhaps more than other major team sports, is a stat-intensive enterprise. "Sabermetrics" is area of study which (perhaps sadly) has nothing to do with swordfights, but instead takes its name from the Society of American Baseball Researchers (SABR).
+
+Ben Baumer et al's (2024) [*Modern Data Science with R*](https://mdsr-book.github.io/mdsr3e/) is a useful supplementary text that covers much of the same territory as the present one. There is a supplemental R package (mdsr) that includes a number of small and interesting datasets, including one about major league baseball (MLB) teams and revenue
+
+```{r}
+# install.packages("mdsr") 
+library (mdsr) 
+data(package = "mdsr") # list the datasets in the library
+head(MLB_teams) 
+```
+
+There is a lot of baseball data that can be studied in R. If you are a fan, Albert et al's (2025) [*Analyzing Baseball Data with R*](https://beanumber.github.io/abdwr3e/)is a good way to learn R and learn about some of the statistical issues in the game.
+
+Even if you aren't a fan, the way that we approach questions such as "[who is the GOAT in baseball?](https://www.nytimes.com/2025/08/12/science/baseball-statistics-babe-bonds.html?unlocked_article_code=1.zlA.o6Au.Ge6SzFhFQd4F&smid=url-share)" are worthy of consideration. How do you compare a player such as Babe Ruth - who played at a time when only white, American males could play - with Barry Bonds, or Shohei Ohtani? One answer is [here](https://eckeraadjustment.web.illinois.edu/era-adjusted-war.html).
 
 ## go into the clouds
 
@@ -63,7 +82,7 @@ The second chapter of [Healy's online book about Data visualizations](https://so
 
 ## read (parts of) another introductory book
 
-In addition to the Wickham text and the Baumer et al. [Modern Data Science with R](https://mdsr-book.github.io/mdsr3e/) book, one more warrants study: ModernDive (v2), aka [Statistical Inference via Data Science](https://moderndive.com/v2/index.html) is a new introduction to R and data science authored by Chester Ismay, Albert Kim, and Arturo Valdivia. It's contents largely parallel those in Wickham and Baumer; if you decide to read all or part of it, please let me know what you think.
+In addition to the present test, several others warrant study, including Wickham's (2023) R for data science 2e and Baumer's (2024) [Modern Data Science with R](https://mdsr-book.github.io/mdsr3e/).
 
 ## older approaches
 
