@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="5 now draw the rest of the owl | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/images/chihuahuamuffin.PNG" />
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="5 now draw the rest of the owl | Data science for the liberal arts" />
   
   
-  
+  <meta name="twitter:image" content="/images/chihuahuamuffin.PNG" />
 
 <meta name="author" content="Kevin Lanning and Tom Leppard" />
 
@@ -533,23 +533,23 @@ div.csl-indent {
 <blockquote>
 <p>Remember that any package needs to be installed on your machine once before progressing. That is, if you installed the tidyverse previously, you don’t need to do the first line here. If you haven’t installed the tidyverse, you should remove the octothorpe or pound sign (#) on the second line before running this next chunk:</p>
 </blockquote>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="now-draw-the-rest-of-the-owl.html#cb11-1" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
-<span id="cb11-2"><a href="now-draw-the-rest-of-the-owl.html#cb11-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="now-draw-the-rest-of-the-owl.html#cb7-1" tabindex="-1"></a><span class="co"># install.packages(&quot;tidyverse&quot;)</span></span>
+<span id="cb7-2"><a href="now-draw-the-rest-of-the-owl.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="now-explore-the-babynames-package" class="section level3 hasAnchor" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> now explore the babynames package<a href="now-draw-the-rest-of-the-owl.html#now-explore-the-babynames-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The babynames dataset is described <a href="https://cran.r-project.org/web/packages/babynames/readme/README.html">here</a>. What is in the data? What interesting questions might you ask about the dataset?</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="now-draw-the-rest-of-the-owl.html#cb12-1" tabindex="-1"></a><span class="co"># install.packages(&quot;babynames&quot;)</span></span>
-<span id="cb12-2"><a href="now-draw-the-rest-of-the-owl.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb12-3"><a href="now-draw-the-rest-of-the-owl.html#cb12-3" tabindex="-1"></a><span class="fu">data</span>(babynames)</span>
-<span id="cb12-4"><a href="now-draw-the-rest-of-the-owl.html#cb12-4" tabindex="-1"></a><span class="fu">str</span>(babynames)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="now-draw-the-rest-of-the-owl.html#cb8-1" tabindex="-1"></a><span class="co"># install.packages(&quot;babynames&quot;)</span></span>
+<span id="cb8-2"><a href="now-draw-the-rest-of-the-owl.html#cb8-2" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb8-3"><a href="now-draw-the-rest-of-the-owl.html#cb8-3" tabindex="-1"></a><span class="fu">data</span>(babynames)</span>
+<span id="cb8-4"><a href="now-draw-the-rest-of-the-owl.html#cb8-4" tabindex="-1"></a><span class="fu">str</span>(babynames)</span></code></pre></div>
 <pre><code>## tibble [1,924,665 × 5] (S3: tbl_df/tbl/data.frame)
 ##  $ year: num [1:1924665] 1880 1880 1880 1880 1880 1880 1880 1880 1880 1880 ...
 ##  $ sex : chr [1:1924665] &quot;F&quot; &quot;F&quot; &quot;F&quot; &quot;F&quot; ...
 ##  $ name: chr [1:1924665] &quot;Mary&quot; &quot;Anna&quot; &quot;Emma&quot; &quot;Elizabeth&quot; ...
 ##  $ n   : int [1:1924665] 7065 2604 2003 1939 1746 1578 1472 1414 1320 1288 ...
 ##  $ prop: num [1:1924665] 0.0724 0.0267 0.0205 0.0199 0.0179 ...</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="now-draw-the-rest-of-the-owl.html#cb14-1" tabindex="-1"></a>babynames <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="now-draw-the-rest-of-the-owl.html#cb10-1" tabindex="-1"></a>babynames <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##    year sex   name        n       prop
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;      &lt;dbl&gt;
@@ -562,10 +562,10 @@ div.csl-indent {
 <div id="or-the-ggplot2movies-package" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> or the (ggplot2)movies package<a href="now-draw-the-rest-of-the-owl.html#or-the-ggplot2movies-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The index page for the movies dataset is <a href="https://cran.r-project.org/web/packages/ggplot2movies/index.html">here</a>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="now-draw-the-rest-of-the-owl.html#cb16-1" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2movies&quot;)</span></span>
-<span id="cb16-2"><a href="now-draw-the-rest-of-the-owl.html#cb16-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2movies)</span>
-<span id="cb16-3"><a href="now-draw-the-rest-of-the-owl.html#cb16-3" tabindex="-1"></a><span class="fu">data</span>(movies)</span>
-<span id="cb16-4"><a href="now-draw-the-rest-of-the-owl.html#cb16-4" tabindex="-1"></a><span class="fu">str</span>(movies)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="now-draw-the-rest-of-the-owl.html#cb12-1" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2movies&quot;)</span></span>
+<span id="cb12-2"><a href="now-draw-the-rest-of-the-owl.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2movies)</span>
+<span id="cb12-3"><a href="now-draw-the-rest-of-the-owl.html#cb12-3" tabindex="-1"></a><span class="fu">data</span>(movies)</span>
+<span id="cb12-4"><a href="now-draw-the-rest-of-the-owl.html#cb12-4" tabindex="-1"></a><span class="fu">str</span>(movies)</span></code></pre></div>
 <pre><code>## tibble [58,788 × 24] (S3: tbl_df/tbl/data.frame)
 ##  $ title      : chr [1:58788] &quot;$&quot; &quot;$1000 a Touchdown&quot; &quot;$21 a Day Once a Month&quot; &quot;$40,000&quot; ...
 ##  $ year       : int [1:58788] 1971 1939 1941 1996 1975 2000 2002 2002 1987 1917 ...
@@ -591,7 +591,7 @@ div.csl-indent {
 ##  $ Documentary: int [1:58788] 0 0 0 0 0 0 0 1 0 0 ...
 ##  $ Romance    : int [1:58788] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Short      : int [1:58788] 0 0 1 0 0 0 0 1 0 0 ...</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="now-draw-the-rest-of-the-owl.html#cb18-1" tabindex="-1"></a>movies <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="now-draw-the-rest-of-the-owl.html#cb14-1" tabindex="-1"></a>movies <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 24
 ##   title      year length budget rating votes    r1    r2    r3    r4    r5    r6
 ##   &lt;chr&gt;     &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;

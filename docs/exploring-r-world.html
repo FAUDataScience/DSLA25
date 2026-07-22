@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="4 exploring R world | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/images/chihuahuamuffin.PNG" />
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="4 exploring R world | Data science for the liberal arts" />
   
   
-  
+  <meta name="twitter:image" content="/images/chihuahuamuffin.PNG" />
 
 <meta name="author" content="Kevin Lanning and Tom Leppard" />
 
@@ -525,9 +525,8 @@ div.csl-indent {
 <p>When you learn that someone’s name is, say, <em>Denise,</em> <em>Tracy, Donald</em>, or even <em>Adolf</em>, what goes through your head? Many new parents spend a great deal of time choosing a name for their child. Some of us have renamed ourselves - maybe we’ve embraced a nickname, are chasing celebrity with a stage name, or perhaps have even enrolled in a witness protection program.</p>
 <p>What’s in a name? The SSA (social security administration) has data on the historical popularity of first names in the US. The babynames package in R includes this dataset as well as others - you can read more about it on <a href="https://cran.r-project.org/web/packages/babynames/index.html" title="https://cran.r-project.org/web/packages/babynames/index.html">this page</a>. Install and load the library. Learn something interesting from the data. Be prepared to share your struggles and insights with the class.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="exploring-r-world.html#cb2-1" tabindex="-1"></a><span class="co">#install.packages(&quot;babynames&quot;) # install package onto your machine</span></span>
-<span id="cb2-2"><a href="exploring-r-world.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># load the package into your R session</span></span></code></pre></div>
-<pre><code>## Warning: package &#39;babynames&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="exploring-r-world.html#cb4-1" tabindex="-1"></a><span class="fu">head</span>(babynames) <span class="co"># see what it looks like</span></span></code></pre></div>
+<span id="cb2-2"><a href="exploring-r-world.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(babynames) <span class="co"># load the package into your R session</span></span>
+<span id="cb2-3"><a href="exploring-r-world.html#cb2-3" tabindex="-1"></a><span class="fu">head</span>(babynames) <span class="co"># see what it looks like</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##    year sex   name          n   prop
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
@@ -548,11 +547,10 @@ div.csl-indent {
 <h2><span class="header-section-number">4.3</span> play ball<a href="exploring-r-world.html#play-ball" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Baseball, perhaps more than other major team sports, is a stat-intensive enterprise. “Sabermetrics” is area of study which (perhaps sadly) has nothing to do with swordfights, but instead takes its name from the Society of American Baseball Researchers (SABR).</p>
 <p>Ben Baumer et al’s (2024) <a href="https://mdsr-book.github.io/mdsr3e/"><em>Modern Data Science with R</em></a> is a useful supplementary text that covers much of the same territory as the present one. There is a supplemental R package (mdsr) that includes a number of small and interesting datasets, including one about major league baseball (MLB) teams and revenue</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="exploring-r-world.html#cb6-1" tabindex="-1"></a><span class="co"># install.packages(&quot;mdsr&quot;) </span></span>
-<span id="cb6-2"><a href="exploring-r-world.html#cb6-2" tabindex="-1"></a><span class="fu">library</span> (mdsr) </span></code></pre></div>
-<pre><code>## Warning: package &#39;mdsr&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="exploring-r-world.html#cb8-1" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;mdsr&quot;</span>) <span class="co"># list the datasets in the library</span></span>
-<span id="cb8-2"><a href="exploring-r-world.html#cb8-2" tabindex="-1"></a><span class="fu">head</span>(MLB_teams) </span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="exploring-r-world.html#cb4-1" tabindex="-1"></a><span class="co"># install.packages(&quot;mdsr&quot;) </span></span>
+<span id="cb4-2"><a href="exploring-r-world.html#cb4-2" tabindex="-1"></a><span class="fu">library</span> (mdsr) </span>
+<span id="cb4-3"><a href="exploring-r-world.html#cb4-3" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;mdsr&quot;</span>) <span class="co"># list the datasets in the library</span></span>
+<span id="cb4-4"><a href="exploring-r-world.html#cb4-4" tabindex="-1"></a><span class="fu">head</span>(MLB_teams) </span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   yearID teamID lgID      W     L  WPct attendance normAttend   payroll metroPop
 ##    &lt;int&gt; &lt;chr&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;      &lt;int&gt;      &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;

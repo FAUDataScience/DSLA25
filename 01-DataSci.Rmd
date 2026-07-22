@@ -49,8 +49,8 @@ Cutting across these various facets (statistics, computing, domain expertise, co
 That is, we can think of **a *continuum* of mastery, including knowledge, skills, interests, and goals.** That continuum ranges from the data *consumer* through the data *citizens* and *critics* to the data science *contributor.* Each aspect or type of data science can be arranged in this hierarchy:
 
 +---------------------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
-| Level and role                  | Type A:\                                                                                         | Type B:\                                                                               | Type C: Conscientiousness                                                                                                 |
-|                                 | Analysis                                                                                         | Building                                                                               |                                                                                                                           |
+| Level and role                  | Type A:\                                                                                         | Type B:\                                                                               | Type C:\                                                                                                                  |
+|                                 | Analysis                                                                                         | Building                                                                               | Conscientiousness                                                                                                         |
 +:===============================:+:================================================================================================:+:======================================================================================:+:=========================================================================================================================:+
 | 1.  **Literacy**\               | Interpret a regression table; understand statistical significance and uncertainty.               | Understand what code does; describe a data pipeline or machine learning workflow.      | Read a study critically; recognize ethical, historical, and social dimensions of a data problem.                          |
 |     (consumer; can comprehend)  |                                                                                                  |                                                                                        |                                                                                                                           |
@@ -65,7 +65,7 @@ That is, we can think of **a *continuum* of mastery, including knowledge, skills
 |     (contributor; can innovate) |                                                                                                  |                                                                                        |                                                                                                                           |
 +---------------------------------+--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
 
-*Table: Data science as an array of levels of mastery and aspects.*
+*Table 1: Data science as an array of levels of mastery and aspects.*
 
 ## the importance of data science for society
 
@@ -87,4 +87,4 @@ Like perception in psychology and editing in the arts, data science is concerned
 
 ## exercise
 
-**1.1** Consider the 4 (row) x 3 (column) matrix above that describes levels and aspects of data science. In two paragraphs, describe your standing on each of the three aspects. Where are you now? Where would you like to be at the end of the class? Where would you like to be in a few years? Where can you make your greatest contribution to data science in the liberal arts?
+**1.1** Consider the 4 (row) x 3 (column) array in Table 1 that describes levels and aspects of data science. In a few paragraphs, describe your standing on each of the three aspects. Where are you now? Where would you like to be at the end of the class? Where would you like to be in a few years? Where can you make your greatest contribution to data science in the liberal arts?

@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="13 applied data science | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/images/chihuahuamuffin.PNG" />
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="13 applied data science | Data science for the liberal arts" />
   
   
-  
+  <meta name="twitter:image" content="/images/chihuahuamuffin.PNG" />
 
 <meta name="author" content="Kevin Lanning and Tom Leppard" />
 
@@ -532,10 +532,9 @@ div.csl-indent {
 <div id="covid-data-in-2025" class="section level3 hasAnchor" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> COVID data in 2025<a href="applied-data-science.html#covid-data-in-2025" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Today, there are a number of R packages intended to help analyze COVID data. The COVID19 package provides records of the outbreak on a global scale. Here’s some sample code:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="applied-data-science.html#cb68-1" tabindex="-1"></a><span class="co"># install.packages(&quot;COVID19&quot;)</span></span>
-<span id="cb68-2"><a href="applied-data-science.html#cb68-2" tabindex="-1"></a><span class="fu">library</span>(COVID19)</span></code></pre></div>
-<pre><code>## Warning: package &#39;COVID19&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="applied-data-science.html#cb70-1" tabindex="-1"></a>allCovid <span class="ot">&lt;-</span> <span class="fu">covid19</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="applied-data-science.html#cb52-1" tabindex="-1"></a><span class="co"># install.packages(&quot;COVID19&quot;)</span></span>
+<span id="cb52-2"><a href="applied-data-science.html#cb52-2" tabindex="-1"></a><span class="fu">library</span>(COVID19)</span>
+<span id="cb52-3"><a href="applied-data-science.html#cb52-3" tabindex="-1"></a>allCovid <span class="ot">&lt;-</span> <span class="fu">covid19</span>()</span></code></pre></div>
 <pre><code>## We have invested a lot of time and effort in creating COVID-19 Data
 ## Hub, please cite the following when using it:
 ## 
@@ -552,16 +551,16 @@ div.csl-indent {
 ##  &gt; print(citation(&#39;COVID19&#39;), bibtex=TRUE)
 ## 
 ## To hide this message use &#39;verbose = FALSE&#39;.</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="applied-data-science.html#cb72-1" tabindex="-1"></a>CovidbyDate <span class="ot">&lt;-</span> allCovid <span class="sc">|&gt;</span></span>
-<span id="cb72-2"><a href="applied-data-science.html#cb72-2" tabindex="-1"></a>    <span class="fu">select</span>(date,confirmed, deaths, recovered, people_vaccinated,</span>
-<span id="cb72-3"><a href="applied-data-science.html#cb72-3" tabindex="-1"></a>           <span class="at">place =</span> administrative_area_level_1) <span class="sc">|&gt;</span></span>
-<span id="cb72-4"><a href="applied-data-science.html#cb72-4" tabindex="-1"></a>    <span class="fu">group_by</span>(date, place) <span class="sc">|&gt;</span></span>
-<span id="cb72-5"><a href="applied-data-science.html#cb72-5" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb72-6"><a href="applied-data-science.html#cb72-6" tabindex="-1"></a>CovidbyDate <span class="sc">|&gt;</span></span>
-<span id="cb72-7"><a href="applied-data-science.html#cb72-7" tabindex="-1"></a>    <span class="fu">filter</span> (date <span class="sc">&lt;</span> <span class="st">&quot;2023-01-01&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb72-8"><a href="applied-data-science.html#cb72-8" tabindex="-1"></a>    <span class="fu">filter</span>(place <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb72-9"><a href="applied-data-science.html#cb72-9" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">confirmed =</span> <span class="fu">sum</span>(confirmed)) <span class="sc">%&gt;%</span></span>
-<span id="cb72-10"><a href="applied-data-science.html#cb72-10" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date)) <span class="sc">+</span>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>confirmed))</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="applied-data-science.html#cb54-1" tabindex="-1"></a>CovidbyDate <span class="ot">&lt;-</span> allCovid <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="applied-data-science.html#cb54-2" tabindex="-1"></a>    <span class="fu">select</span>(date,confirmed, deaths, recovered, people_vaccinated,</span>
+<span id="cb54-3"><a href="applied-data-science.html#cb54-3" tabindex="-1"></a>           <span class="at">place =</span> administrative_area_level_1) <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a href="applied-data-science.html#cb54-4" tabindex="-1"></a>    <span class="fu">group_by</span>(date, place) <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a href="applied-data-science.html#cb54-5" tabindex="-1"></a>    <span class="fu">summarise_if</span>(is.numeric, sum, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb54-6"><a href="applied-data-science.html#cb54-6" tabindex="-1"></a>CovidbyDate <span class="sc">|&gt;</span></span>
+<span id="cb54-7"><a href="applied-data-science.html#cb54-7" tabindex="-1"></a>    <span class="fu">filter</span> (date <span class="sc">&lt;</span> <span class="st">&quot;2023-01-01&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-8"><a href="applied-data-science.html#cb54-8" tabindex="-1"></a>    <span class="fu">filter</span>(place <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-9"><a href="applied-data-science.html#cb54-9" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">confirmed =</span> <span class="fu">sum</span>(confirmed)) <span class="sc">%&gt;%</span></span>
+<span id="cb54-10"><a href="applied-data-science.html#cb54-10" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>date)) <span class="sc">+</span>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>confirmed))</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
 <p>A second package can be used to examine the impact of COVID more indirectly, but possibly more accurately, by looking at excess mortality data.</p>
 </div>
@@ -573,30 +572,19 @@ div.csl-indent {
 <div id="the-excess-mortality-package" class="section level3 hasAnchor" number="13.1.3">
 <h3><span class="header-section-number">13.1.3</span> the excess mortality package<a href="applied-data-science.html#the-excess-mortality-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The R excess mortality package (excessmort) can be used to calculate the expected number of deaths in a region and time period. Among other things, it can be used to estimate the effects of the pandemic on mortality in individual states based on historical data rather than particular diagnoses. You can learn more about the package at <a href="https://cran.r-project.org/web/packages/excessmort/vignettes/excessmort.html" class="uri">https://cran.r-project.org/web/packages/excessmort/vignettes/excessmort.html</a>.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="applied-data-science.html#cb73-1" tabindex="-1"></a><span class="co"># install.packages(&quot;excessmort&quot;)</span></span>
-<span id="cb73-2"><a href="applied-data-science.html#cb73-2" tabindex="-1"></a><span class="fu">library</span>(excessmort)</span></code></pre></div>
-<pre><code>## Warning: package &#39;excessmort&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="applied-data-science.html#cb75-1" tabindex="-1"></a>exclude_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2017</span>, <span class="dv">12</span>, <span class="dv">16</span>), <span class="fu">make_date</span>(<span class="dv">2018</span>, <span class="dv">1</span>, <span class="dv">16</span>), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>),</span>
-<span id="cb75-2"><a href="applied-data-science.html#cb75-2" tabindex="-1"></a>                   <span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">max</span>(cdc_state_counts<span class="sc">$</span>date), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>)) </span>
-<span id="cb75-3"><a href="applied-data-science.html#cb75-3" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
-<span id="cb75-4"><a href="applied-data-science.html#cb75-4" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;Florida&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb75-5"><a href="applied-data-science.html#cb75-5" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
-<pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
-## the model is not recommended with less than five years of data. Consider
-## setting include.trend = FALSE.</code></pre>
-<pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
-<pre><code>## Overall death rate is 10.5.</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="applied-data-science.html#cb79-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="applied-data-science.html#cb55-1" tabindex="-1"></a><span class="co"># install.packages(&quot;excessmort&quot;)</span></span>
+<span id="cb55-2"><a href="applied-data-science.html#cb55-2" tabindex="-1"></a><span class="fu">library</span>(excessmort)</span>
+<span id="cb55-3"><a href="applied-data-science.html#cb55-3" tabindex="-1"></a>exclude_dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2017</span>, <span class="dv">12</span>, <span class="dv">16</span>), <span class="fu">make_date</span>(<span class="dv">2018</span>, <span class="dv">1</span>, <span class="dv">16</span>), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>),</span>
+<span id="cb55-4"><a href="applied-data-science.html#cb55-4" tabindex="-1"></a>                   <span class="fu">seq</span>(<span class="fu">make_date</span>(<span class="dv">2020</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="fu">max</span>(cdc_state_counts<span class="sc">$</span>date), <span class="at">by =</span> <span class="st">&quot;day&quot;</span>)) </span>
+<span id="cb55-5"><a href="applied-data-science.html#cb55-5" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb55-6"><a href="applied-data-science.html#cb55-6" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;Florida&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb55-7"><a href="applied-data-science.html#cb55-7" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span>
+<span id="cb55-8"><a href="applied-data-science.html#cb55-8" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in Florida&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="applied-data-science.html#cb80-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
-<span id="cb80-2"><a href="applied-data-science.html#cb80-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb80-3"><a href="applied-data-science.html#cb80-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span></code></pre></div>
-<pre><code>## Warning in compute_expected(., exclude = exclude_dates): Including a trend in
-## the model is not recommended with less than five years of data. Consider
-## setting include.trend = FALSE.</code></pre>
-<pre><code>## No frequency provided, determined to be 52 measurements per year.</code></pre>
-<pre><code>## Overall death rate is 7.33.</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="applied-data-science.html#cb84-1" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="applied-data-science.html#cb56-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> cdc_state_counts <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="applied-data-science.html#cb56-2" tabindex="-1"></a>    <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">&quot;California&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="applied-data-science.html#cb56-3" tabindex="-1"></a>    <span class="fu">compute_expected</span>(<span class="at">exclude =</span> exclude_dates)</span>
+<span id="cb56-4"><a href="applied-data-science.html#cb56-4" tabindex="-1"></a><span class="fu">expected_plot</span>(counts, <span class="at">title =</span> <span class="st">&quot;Expected (blue) and actual (grey) Weekly Mortality Counts in California&quot;</span>)</span></code></pre></div>
 <p><img src="DataSciLibArts_files/figure-html/unnamed-chunk-27-2.png" alt="" width="672" /></p>
 </div>
 </div>

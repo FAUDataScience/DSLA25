@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="11 wrangling and tidying | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/images/chihuahuamuffin.PNG" />
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="11 wrangling and tidying | Data science for the liberal arts" />
   
   
-  
+  <meta name="twitter:image" content="/images/chihuahuamuffin.PNG" />
 
 <meta name="author" content="Kevin Lanning and Tom Leppard" />
 
@@ -529,7 +529,7 @@ div.csl-indent {
 <h2><span class="header-section-number">11.1</span> the structure of the tidyverse<a href="wrangling-and-tidying.html#the-structure-of-the-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The R programming language was initially intended to serve engineers, and the tidyverse can be seen as a collection of packages which are aimed at a broader audience of statisticians and data scientists, and to help them become more productive <span class="citation">(<a href="#ref-peng2018">Peng 2018</a>)</span>. Tidyverse packages have a common syntax that makes it easier to generate and understand code and create reproducible results. Tidyverse packages may be described as having three layers.</p>
 <p><strong>The core of the tidyverse</strong> includes nine packages. You will see the list of these packages when you load the tidyverse:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="wrangling-and-tidying.html#cb30-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="wrangling-and-tidying.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>Each package includes a number of functions. Many tidyverse packages are described on handy <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a> such as this one for dplyr:</p>
 <p><a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf"><img src="images/dplyrcheatsheet.png" alt="Dplyr Cheatsheet" /></a></p>
 <p><strong>The periphery of the tidyverse</strong> consists of additional packages which are less commonly invoked than those in the tidyverse core. Unlike the core packages, all of these peripheral or auxiliary packages must be loaded into memory by an explicit statement, e.g., <em>library(googlesheets4).</em> You can see the list of all (core and peripheral) packages with the tidyverse_packages command:</p>
@@ -545,16 +545,16 @@ div.csl-indent {
 <h2><span class="header-section-number">11.2</span> where should we eat?<a href="wrangling-and-tidying.html#where-should-we-eat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Tidyverse functions from at least two of the core tidyverse packages, <strong>dplyr</strong> and <strong>tidyr</strong>, help wrangle, clean, and shape our data into a tidy form that can ‘spark joy’ <span class="citation">(<a href="#ref-kondo2016">Kondo 2016</a>)</span>. To learn more about tidy data and how we use dplyr and tidyr in everyday coding, we will construct and explore a simulated dataset, consisting of a 100 restaurants, each of which is described by just a few variables.</p>
 <p>To do this, we’ll first name the restaurants. We begin with the data from the babynames package, then will use <em>filter</em> function (from dplyr) to choose only names since 1981, then we <em>group</em> and <em>summarize</em> the data by name, then <em>arrange</em> (sort) the names by popularity, then <em>slice</em> (take only) the first 100 observations, then finally <em>select</em> only the name column. Each of these functions is part of the dplyr package:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="wrangling-and-tidying.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
-<span id="cb31-2"><a href="wrangling-and-tidying.html#cb31-2" tabindex="-1"></a><span class="co"># make restaurant names</span></span>
-<span id="cb31-3"><a href="wrangling-and-tidying.html#cb31-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> babynames <span class="sc">|&gt;</span> </span>
-<span id="cb31-4"><a href="wrangling-and-tidying.html#cb31-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1980</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb31-5"><a href="wrangling-and-tidying.html#cb31-5" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span> </span>
-<span id="cb31-6"><a href="wrangling-and-tidying.html#cb31-6" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb31-7"><a href="wrangling-and-tidying.html#cb31-7" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb31-8"><a href="wrangling-and-tidying.html#cb31-8" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb31-9"><a href="wrangling-and-tidying.html#cb31-9" tabindex="-1"></a>    <span class="fu">select</span>(name) </span>
-<span id="cb31-10"><a href="wrangling-and-tidying.html#cb31-10" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="wrangling-and-tidying.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
+<span id="cb23-2"><a href="wrangling-and-tidying.html#cb23-2" tabindex="-1"></a><span class="co"># make restaurant names</span></span>
+<span id="cb23-3"><a href="wrangling-and-tidying.html#cb23-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> babynames <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href="wrangling-and-tidying.html#cb23-4" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1980</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a href="wrangling-and-tidying.html#cb23-5" tabindex="-1"></a>    <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span> </span>
+<span id="cb23-6"><a href="wrangling-and-tidying.html#cb23-6" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">n=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-7"><a href="wrangling-and-tidying.html#cb23-7" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-8"><a href="wrangling-and-tidying.html#cb23-8" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb23-9"><a href="wrangling-and-tidying.html#cb23-9" tabindex="-1"></a>    <span class="fu">select</span>(name) </span>
+<span id="cb23-10"><a href="wrangling-and-tidying.html#cb23-10" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 1
 ##   name       
 ##   &lt;chr&gt;      
@@ -562,9 +562,9 @@ div.csl-indent {
 ## 2 Christopher
 ## 3 Matthew</code></pre>
 <p>In the prior chunk of text we wrangled - or, if you prefer, massaged - the babynames data in a few ways to get us a simple list of 100 popular names. But this is only a start. Let’s change the set of ‘person names’ into ‘restaurant names.’ To do this, we will use <em>mutate</em> (another dplyr function) then combine each name with the phrase <em>’s_place.</em>’ To combine strings, we use the <em>str_c</em> function. This is from the <strong>stringr</strong> package, which is another package in the core of the tidyverse:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="wrangling-and-tidying.html#cb33-1" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href="wrangling-and-tidying.html#cb33-2" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">resto_name =</span> <span class="fu">str_c</span>(name,<span class="st">&quot;s_place&quot;</span>)) </span>
-<span id="cb33-3"><a href="wrangling-and-tidying.html#cb33-3" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="wrangling-and-tidying.html#cb25-1" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="wrangling-and-tidying.html#cb25-2" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">resto_name =</span> <span class="fu">str_c</span>(name,<span class="st">&quot;s_place&quot;</span>)) </span>
+<span id="cb25-3"><a href="wrangling-and-tidying.html#cb25-3" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   name        resto_name        
 ##   &lt;chr&gt;       &lt;chr&gt;             
@@ -579,22 +579,22 @@ div.csl-indent {
 <p><em>when health is equal to 1, call it F, else …</em></p>
 </blockquote>
 <p>In addition to health, assume that we have cost data as well. We’ll use essentially the same code to come up with our cost variable. Then we drop our original name variable.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="wrangling-and-tidying.html#cb35-1" tabindex="-1"></a><span class="co"># add health ratings</span></span>
-<span id="cb35-2"><a href="wrangling-and-tidying.html#cb35-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
-<span id="cb35-3"><a href="wrangling-and-tidying.html#cb35-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
-<span id="cb35-4"><a href="wrangling-and-tidying.html#cb35-4" tabindex="-1"></a><span class="co">#    mutate(health = round(runif(n=n(),1,5))) |&gt; </span></span>
-<span id="cb35-5"><a href="wrangling-and-tidying.html#cb35-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">health =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span>  </span>
-<span id="cb35-6"><a href="wrangling-and-tidying.html#cb35-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">health =</span> <span class="fu">case_when</span>(health <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;F&#39;</span>,</span>
-<span id="cb35-7"><a href="wrangling-and-tidying.html#cb35-7" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;D&#39;</span>,</span>
-<span id="cb35-8"><a href="wrangling-and-tidying.html#cb35-8" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;C&#39;</span>,</span>
-<span id="cb35-9"><a href="wrangling-and-tidying.html#cb35-9" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&#39;B&#39;</span>,</span>
-<span id="cb35-10"><a href="wrangling-and-tidying.html#cb35-10" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&#39;A&#39;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb35-11"><a href="wrangling-and-tidying.html#cb35-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span></span>
-<span id="cb35-12"><a href="wrangling-and-tidying.html#cb35-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">case_when</span>(cost <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;$&#39;</span>,</span>
-<span id="cb35-13"><a href="wrangling-and-tidying.html#cb35-13" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;$$&#39;</span>,</span>
-<span id="cb35-14"><a href="wrangling-and-tidying.html#cb35-14" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;$$$&#39;</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb35-15"><a href="wrangling-and-tidying.html#cb35-15" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>name)</span>
-<span id="cb35-16"><a href="wrangling-and-tidying.html#cb35-16" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="wrangling-and-tidying.html#cb27-1" tabindex="-1"></a><span class="co"># add health ratings</span></span>
+<span id="cb27-2"><a href="wrangling-and-tidying.html#cb27-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33458</span>)</span>
+<span id="cb27-3"><a href="wrangling-and-tidying.html#cb27-3" tabindex="-1"></a>restodata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="wrangling-and-tidying.html#cb27-4" tabindex="-1"></a><span class="co">#    mutate(health = round(runif(n=n(),1,5))) |&gt; </span></span>
+<span id="cb27-5"><a href="wrangling-and-tidying.html#cb27-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">health =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span>  </span>
+<span id="cb27-6"><a href="wrangling-and-tidying.html#cb27-6" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">health =</span> <span class="fu">case_when</span>(health <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;F&#39;</span>,</span>
+<span id="cb27-7"><a href="wrangling-and-tidying.html#cb27-7" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;D&#39;</span>,</span>
+<span id="cb27-8"><a href="wrangling-and-tidying.html#cb27-8" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;C&#39;</span>,</span>
+<span id="cb27-9"><a href="wrangling-and-tidying.html#cb27-9" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">&#39;B&#39;</span>,</span>
+<span id="cb27-10"><a href="wrangling-and-tidying.html#cb27-10" tabindex="-1"></a>                                health <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&#39;A&#39;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-11"><a href="wrangling-and-tidying.html#cb27-11" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span></span>
+<span id="cb27-12"><a href="wrangling-and-tidying.html#cb27-12" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">cost =</span> <span class="fu">case_when</span>(cost <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&#39;$&#39;</span>,</span>
+<span id="cb27-13"><a href="wrangling-and-tidying.html#cb27-13" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">&#39;$$&#39;</span>,</span>
+<span id="cb27-14"><a href="wrangling-and-tidying.html#cb27-14" tabindex="-1"></a>                              cost <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&#39;$$$&#39;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-15"><a href="wrangling-and-tidying.html#cb27-15" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>name)</span>
+<span id="cb27-16"><a href="wrangling-and-tidying.html#cb27-16" tabindex="-1"></a><span class="fu">head</span>(restodata,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   resto_name         health cost 
 ##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;
@@ -612,27 +612,27 @@ div.csl-indent {
 <p><em>Finally, remove the lines where the meal data is missing.</em></p>
 </blockquote>
 <p>We are calling this dataset ‘tallrestodata’ for reasons that will become apparent.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="wrangling-and-tidying.html#cb37-1" tabindex="-1"></a><span class="co"># note that the same code runs three times </span></span>
-<span id="cb37-2"><a href="wrangling-and-tidying.html#cb37-2" tabindex="-1"></a><span class="co"># we should simplify this by creating a function</span></span>
-<span id="cb37-3"><a href="wrangling-and-tidying.html#cb37-3" tabindex="-1"></a>breakfastdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
-<span id="cb37-4"><a href="wrangling-and-tidying.html#cb37-4" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-5"><a href="wrangling-and-tidying.html#cb37-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-6"><a href="wrangling-and-tidying.html#cb37-6" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
-<span id="cb37-7"><a href="wrangling-and-tidying.html#cb37-7" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Breakfast&quot;</span> ))</span>
-<span id="cb37-8"><a href="wrangling-and-tidying.html#cb37-8" tabindex="-1"></a>lunchdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
-<span id="cb37-9"><a href="wrangling-and-tidying.html#cb37-9" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-10"><a href="wrangling-and-tidying.html#cb37-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-11"><a href="wrangling-and-tidying.html#cb37-11" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">26</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
-<span id="cb37-12"><a href="wrangling-and-tidying.html#cb37-12" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Lunch&quot;</span> ))</span>
-<span id="cb37-13"><a href="wrangling-and-tidying.html#cb37-13" tabindex="-1"></a>dinnerdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
-<span id="cb37-14"><a href="wrangling-and-tidying.html#cb37-14" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-15"><a href="wrangling-and-tidying.html#cb37-15" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-16"><a href="wrangling-and-tidying.html#cb37-16" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">16</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
-<span id="cb37-17"><a href="wrangling-and-tidying.html#cb37-17" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Dinner&quot;</span> ))</span>
-<span id="cb37-18"><a href="wrangling-and-tidying.html#cb37-18" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> lunchdata <span class="sc">|&gt;</span> </span>
-<span id="cb37-19"><a href="wrangling-and-tidying.html#cb37-19" tabindex="-1"></a>    <span class="fu">bind_rows</span>(dinnerdata, breakfastdata) <span class="sc">|&gt;</span> </span>
-<span id="cb37-20"><a href="wrangling-and-tidying.html#cb37-20" tabindex="-1"></a>    <span class="fu">drop_na</span>(meal)</span>
-<span id="cb37-21"><a href="wrangling-and-tidying.html#cb37-21" tabindex="-1"></a><span class="fu">head</span>(tallrestodata,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="wrangling-and-tidying.html#cb29-1" tabindex="-1"></a><span class="co"># note that the same code runs three times </span></span>
+<span id="cb29-2"><a href="wrangling-and-tidying.html#cb29-2" tabindex="-1"></a><span class="co"># we should simplify this by creating a function</span></span>
+<span id="cb29-3"><a href="wrangling-and-tidying.html#cb29-3" tabindex="-1"></a>breakfastdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="wrangling-and-tidying.html#cb29-4" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-5"><a href="wrangling-and-tidying.html#cb29-5" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-6"><a href="wrangling-and-tidying.html#cb29-6" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb29-7"><a href="wrangling-and-tidying.html#cb29-7" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Breakfast&quot;</span> ))</span>
+<span id="cb29-8"><a href="wrangling-and-tidying.html#cb29-8" tabindex="-1"></a>lunchdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb29-9"><a href="wrangling-and-tidying.html#cb29-9" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-10"><a href="wrangling-and-tidying.html#cb29-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-11"><a href="wrangling-and-tidying.html#cb29-11" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">26</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb29-12"><a href="wrangling-and-tidying.html#cb29-12" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Lunch&quot;</span> ))</span>
+<span id="cb29-13"><a href="wrangling-and-tidying.html#cb29-13" tabindex="-1"></a>dinnerdata <span class="ot">&lt;-</span> restodata <span class="sc">|&gt;</span></span>
+<span id="cb29-14"><a href="wrangling-and-tidying.html#cb29-14" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">popularity =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">100</span>, <span class="at">replace=</span>T)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-15"><a href="wrangling-and-tidying.html#cb29-15" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">100</span>, <span class="at">replace=</span>F)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-16"><a href="wrangling-and-tidying.html#cb29-16" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">meal =</span> <span class="fu">case_when</span> (meal <span class="sc">&lt;</span> <span class="dv">16</span> <span class="sc">~</span> <span class="cn">NA</span>, </span>
+<span id="cb29-17"><a href="wrangling-and-tidying.html#cb29-17" tabindex="-1"></a>                              <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Dinner&quot;</span> ))</span>
+<span id="cb29-18"><a href="wrangling-and-tidying.html#cb29-18" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> lunchdata <span class="sc">|&gt;</span> </span>
+<span id="cb29-19"><a href="wrangling-and-tidying.html#cb29-19" tabindex="-1"></a>    <span class="fu">bind_rows</span>(dinnerdata, breakfastdata) <span class="sc">|&gt;</span> </span>
+<span id="cb29-20"><a href="wrangling-and-tidying.html#cb29-20" tabindex="-1"></a>    <span class="fu">drop_na</span>(meal)</span>
+<span id="cb29-21"><a href="wrangling-and-tidying.html#cb29-21" tabindex="-1"></a><span class="fu">head</span>(tallrestodata,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   resto_name         health cost  popularity meal 
 ##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;
@@ -645,18 +645,18 @@ div.csl-indent {
 <p>One approach to this is to create a new variable in the data for the (average popularity at lunch and dinner) minus (popularity at breakfast). High scores on this would give us restaurants that might be really good or interesting, but not crowded, for a breakfast meal. But popularity at breakfast, lunch, and dinner are in different rows of the restodata; so this is a little tricky.</p>
 <p>The easiest way to do this is to use the <em>pivot_wider</em> function from the tidyr package. Again, the syntax is challenging - you may find the <a href="https://rstudio.github.io/cheatsheets/tidyr.pdf">cheatsheet</a> to be useful. This will reshape the data from tall and narrow to a format that is typically wider and shorter.</p>
 <p>From this wider data, we use mutate twice t ultimately create a new variable called <em>secretBreakfastPlace</em>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="wrangling-and-tidying.html#cb39-1" tabindex="-1"></a>widerestodata <span class="ot">&lt;-</span> tallrestodata <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="wrangling-and-tidying.html#cb39-2" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> meal,</span>
-<span id="cb39-3"><a href="wrangling-and-tidying.html#cb39-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
-<span id="cb39-4"><a href="wrangling-and-tidying.html#cb39-4" tabindex="-1"></a>                <span class="at">values_from =</span> </span>
-<span id="cb39-5"><a href="wrangling-and-tidying.html#cb39-5" tabindex="-1"></a>                    <span class="fu">c</span>(popularity)) <span class="sc">|&gt;</span> </span>
-<span id="cb39-6"><a href="wrangling-and-tidying.html#cb39-6" tabindex="-1"></a><span class="co"># we could create the secretBreakfast variable</span></span>
-<span id="cb39-7"><a href="wrangling-and-tidying.html#cb39-7" tabindex="-1"></a><span class="co"># in a single step, but this is probably more clear</span></span>
-<span id="cb39-8"><a href="wrangling-and-tidying.html#cb39-8" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">lunchDinnerPop =</span> (popularity_Lunch <span class="sc">+</span></span>
-<span id="cb39-9"><a href="wrangling-and-tidying.html#cb39-9" tabindex="-1"></a>                popularity_Dinner)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-10"><a href="wrangling-and-tidying.html#cb39-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">secretBreakfastPlace =</span> lunchDinnerPop <span class="sc">-</span></span>
-<span id="cb39-11"><a href="wrangling-and-tidying.html#cb39-11" tabindex="-1"></a>                popularity_Breakfast) </span>
-<span id="cb39-12"><a href="wrangling-and-tidying.html#cb39-12" tabindex="-1"></a><span class="fu">head</span>(widerestodata)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="wrangling-and-tidying.html#cb31-1" tabindex="-1"></a>widerestodata <span class="ot">&lt;-</span> tallrestodata <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="wrangling-and-tidying.html#cb31-2" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> meal,</span>
+<span id="cb31-3"><a href="wrangling-and-tidying.html#cb31-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
+<span id="cb31-4"><a href="wrangling-and-tidying.html#cb31-4" tabindex="-1"></a>                <span class="at">values_from =</span> </span>
+<span id="cb31-5"><a href="wrangling-and-tidying.html#cb31-5" tabindex="-1"></a>                    <span class="fu">c</span>(popularity)) <span class="sc">|&gt;</span> </span>
+<span id="cb31-6"><a href="wrangling-and-tidying.html#cb31-6" tabindex="-1"></a><span class="co"># we could create the secretBreakfast variable</span></span>
+<span id="cb31-7"><a href="wrangling-and-tidying.html#cb31-7" tabindex="-1"></a><span class="co"># in a single step, but this is probably more clear</span></span>
+<span id="cb31-8"><a href="wrangling-and-tidying.html#cb31-8" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">lunchDinnerPop =</span> (popularity_Lunch <span class="sc">+</span></span>
+<span id="cb31-9"><a href="wrangling-and-tidying.html#cb31-9" tabindex="-1"></a>                popularity_Dinner)<span class="sc">/</span><span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb31-10"><a href="wrangling-and-tidying.html#cb31-10" tabindex="-1"></a>    <span class="fu">mutate</span> (<span class="at">secretBreakfastPlace =</span> lunchDinnerPop <span class="sc">-</span></span>
+<span id="cb31-11"><a href="wrangling-and-tidying.html#cb31-11" tabindex="-1"></a>                popularity_Breakfast) </span>
+<span id="cb31-12"><a href="wrangling-and-tidying.html#cb31-12" tabindex="-1"></a><span class="fu">head</span>(widerestodata)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   resto_name         health cost  popularity_Lunch popularity_Dinner
 ##   &lt;chr&gt;              &lt;chr&gt;  &lt;chr&gt;            &lt;int&gt;             &lt;int&gt;
@@ -669,17 +669,17 @@ div.csl-indent {
 ## # ℹ 3 more variables: popularity_Breakfast &lt;int&gt;, lunchDinnerPop &lt;dbl&gt;,
 ## #   secretBreakfastPlace &lt;dbl&gt;</code></pre>
 <p>Although the <em>widerestodata</em> has what we want, it is not tidy: The ‘popularity’ variable is now in three columns rather than one, and there are many cells with missing values. So we reshape the data back to its tall and tidy form, but which now includes the variable describing the two new mutated variables. Then we sort it by our desired variable, secretBreakfastPlace</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="wrangling-and-tidying.html#cb41-1" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> widerestodata <span class="sc">|&gt;</span> </span>
-<span id="cb41-2"><a href="wrangling-and-tidying.html#cb41-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;meal&#39;</span>,</span>
-<span id="cb41-3"><a href="wrangling-and-tidying.html#cb41-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
-<span id="cb41-4"><a href="wrangling-and-tidying.html#cb41-4" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&#39;popularity_Breakfast&#39;</span>,</span>
-<span id="cb41-5"><a href="wrangling-and-tidying.html#cb41-5" tabindex="-1"></a>                          <span class="st">&#39;popularity_Lunch&#39;</span>,</span>
-<span id="cb41-6"><a href="wrangling-and-tidying.html#cb41-6" tabindex="-1"></a>                          <span class="st">&#39;popularity_Dinner&#39;</span>),</span>
-<span id="cb41-7"><a href="wrangling-and-tidying.html#cb41-7" tabindex="-1"></a>                <span class="at">values_to =</span> </span>
-<span id="cb41-8"><a href="wrangling-and-tidying.html#cb41-8" tabindex="-1"></a>                    (<span class="st">&#39;popularity&#39;</span>),</span>
-<span id="cb41-9"><a href="wrangling-and-tidying.html#cb41-9" tabindex="-1"></a>                <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb41-10"><a href="wrangling-and-tidying.html#cb41-10" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(secretBreakfastPlace))</span>
-<span id="cb41-11"><a href="wrangling-and-tidying.html#cb41-11" tabindex="-1"></a><span class="fu">head</span>(tallrestodata)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="wrangling-and-tidying.html#cb33-1" tabindex="-1"></a>tallrestodata <span class="ot">&lt;-</span> widerestodata <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href="wrangling-and-tidying.html#cb33-2" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">&#39;meal&#39;</span>,</span>
+<span id="cb33-3"><a href="wrangling-and-tidying.html#cb33-3" tabindex="-1"></a>                <span class="at">names_prefix =</span> <span class="st">&quot;popularity_&quot;</span>,</span>
+<span id="cb33-4"><a href="wrangling-and-tidying.html#cb33-4" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&#39;popularity_Breakfast&#39;</span>,</span>
+<span id="cb33-5"><a href="wrangling-and-tidying.html#cb33-5" tabindex="-1"></a>                          <span class="st">&#39;popularity_Lunch&#39;</span>,</span>
+<span id="cb33-6"><a href="wrangling-and-tidying.html#cb33-6" tabindex="-1"></a>                          <span class="st">&#39;popularity_Dinner&#39;</span>),</span>
+<span id="cb33-7"><a href="wrangling-and-tidying.html#cb33-7" tabindex="-1"></a>                <span class="at">values_to =</span> </span>
+<span id="cb33-8"><a href="wrangling-and-tidying.html#cb33-8" tabindex="-1"></a>                    (<span class="st">&#39;popularity&#39;</span>),</span>
+<span id="cb33-9"><a href="wrangling-and-tidying.html#cb33-9" tabindex="-1"></a>                <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb33-10"><a href="wrangling-and-tidying.html#cb33-10" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(secretBreakfastPlace))</span>
+<span id="cb33-11"><a href="wrangling-and-tidying.html#cb33-11" tabindex="-1"></a><span class="fu">head</span>(tallrestodata)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ##   resto_name   health cost  lunchDinnerPop secretBreakfastPlace meal  popularity
 ##   &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;          &lt;dbl&gt;                &lt;dbl&gt; &lt;chr&gt;      &lt;int&gt;
@@ -708,26 +708,23 @@ div.csl-indent {
 <li><p><strong>write functions.</strong> If you repeat a section of code, rewrite it as a function. (See the example above).</p></li>
 <li><p><strong>annotate your work</strong>. Assume that you will come back to it at a later date, while working on a different project, and use portions of your current code. Your R markdown documents should be a log. When you run in to a significant, challenging problem, don’t delete your mistakes, but ## comment them out - as I have done in a few places above.</p></li>
 </ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="wrangling-and-tidying.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code></pre></div>
-<pre><code>## Warning: package &#39;gapminder&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="wrangling-and-tidying.html#cb45-1" tabindex="-1"></a>b <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb45-2"><a href="wrangling-and-tidying.html#cb45-2" tabindex="-1"></a><span class="co"># when should you comment out an error</span></span>
-<span id="cb45-3"><a href="wrangling-and-tidying.html#cb45-3" tabindex="-1"></a><span class="co"># instead of deleting it? for me, I&#39;ll </span></span>
-<span id="cb45-4"><a href="wrangling-and-tidying.html#cb45-4" tabindex="-1"></a><span class="co"># comment out errors that took me a long time </span></span>
-<span id="cb45-5"><a href="wrangling-and-tidying.html#cb45-5" tabindex="-1"></a><span class="co"># to solve, and/or that I&#39;ll learn from. </span></span>
-<span id="cb45-6"><a href="wrangling-and-tidying.html#cb45-6" tabindex="-1"></a><span class="co"># Probably not here, in other words...</span></span>
-<span id="cb45-7"><a href="wrangling-and-tidying.html#cb45-7" tabindex="-1"></a><span class="co">#  filter(lifeExp) &gt; 70 bad parens</span></span>
-<span id="cb45-8"><a href="wrangling-and-tidying.html#cb45-8" tabindex="-1"></a>    <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="wrangling-and-tidying.html#cb35-1" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb35-2"><a href="wrangling-and-tidying.html#cb35-2" tabindex="-1"></a>b <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="wrangling-and-tidying.html#cb35-3" tabindex="-1"></a><span class="co"># when should you comment out an error</span></span>
+<span id="cb35-4"><a href="wrangling-and-tidying.html#cb35-4" tabindex="-1"></a><span class="co"># instead of deleting it? for me, I&#39;ll </span></span>
+<span id="cb35-5"><a href="wrangling-and-tidying.html#cb35-5" tabindex="-1"></a><span class="co"># comment out errors that took me a long time </span></span>
+<span id="cb35-6"><a href="wrangling-and-tidying.html#cb35-6" tabindex="-1"></a><span class="co"># to solve, and/or that I&#39;ll learn from. </span></span>
+<span id="cb35-7"><a href="wrangling-and-tidying.html#cb35-7" tabindex="-1"></a><span class="co"># Probably not here, in other words...</span></span>
+<span id="cb35-8"><a href="wrangling-and-tidying.html#cb35-8" tabindex="-1"></a><span class="co">#  filter(lifeExp) &gt; 70 bad parens</span></span>
+<span id="cb35-9"><a href="wrangling-and-tidying.html#cb35-9" tabindex="-1"></a>    <span class="fu">filter</span>(lifeExp <span class="sc">&gt;</span> <span class="dv">70</span>)</span></code></pre></div>
 <p>Finally, <strong>maintain perspective.</strong> Your need to solve problems (how to analyze x, etc.) should not take a back seat to your desire to write the best code. There is almost always a better way to do things. Strive reasonably to accomplish this, but be prepared to <strong>kludge</strong>.</p>
 
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="wrangling-and-tidying.html#cb46-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb46-2"><a href="wrangling-and-tidying.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb46-3"><a href="wrangling-and-tidying.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb46-4"><a href="wrangling-and-tidying.html#cb46-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb46-5"><a href="wrangling-and-tidying.html#cb46-5" tabindex="-1"></a><span class="fu">library</span>(corrr)</span></code></pre></div>
-<pre><code>## Warning: package &#39;corrr&#39; was built under R version 4.6.1</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="wrangling-and-tidying.html#cb48-1" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
-<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 4.6.1</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="wrangling-and-tidying.html#cb36-1" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-2"><a href="wrangling-and-tidying.html#cb36-2" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb36-3"><a href="wrangling-and-tidying.html#cb36-3" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb36-4"><a href="wrangling-and-tidying.html#cb36-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb36-5"><a href="wrangling-and-tidying.html#cb36-5" tabindex="-1"></a><span class="fu">library</span>(corrr)</span>
+<span id="cb36-6"><a href="wrangling-and-tidying.html#cb36-6" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
 </div>
 </div>
 <h3>References</h3>

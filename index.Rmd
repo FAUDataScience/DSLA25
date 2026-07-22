@@ -15,8 +15,16 @@ biblio-style: apalike
 link-citations: yes
 github-repo: kevinlanning/DSLA25
 # classoption: "openany"
-# cover-image: images/chihuahuamuffin.png
+cover-image: images/chihuahuamuffin.PNG
 urlcolor: blue
 linkcolor: blue
 ---
 # {-} 
+```{r INDEXsetup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+library(tidyverse)
+```
