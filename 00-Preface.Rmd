@@ -15,7 +15,7 @@ This work-in-progress will ultimately serve as a textbook for introductory under
 
 It's our intention that this text should serve *every* college student, regardless of concentration or college major. The skills and insights that you will gain in this course will help you in graduate and professional schools, will help you in your careers, and will help you in your goal of making a better world. And it will help you train the next generation of data scientists as well.
 
-## the role of the liberal arts in data science
+## the role of the liberal arts in data science  {.unnumbered}
 
 Since the middle of the 20th Century, we have been living in an age of information, in which global commerce, social communities, and, increasingly, individual identities are all driven more by the movement of electrons than by basic needs for sustenance, agrarian challenges, and manufacturing. To prosper, and even to behave responsibly, in the age of information requires a new form of literacy, one which goes beyond spoken or written language, and even beyond quantitative 'numeracy' [@paulos1988].
 
@@ -71,11 +71,11 @@ In the last few years, we've shifted the class from a focus on 'Base R' (as KL l
 
 R is our programming language, but RStudio is the platform (technically, an Integrated Development Environment or IDE) that we will use write, run, and publish our work. While R is open-source, RStudio is published by Posit, a for-profit company which has spun off a number of additional products such as Posit Cloud (for cloud-based collaboration) and Shiny (for interactive graphics). We are likely to come across both of these later in the term.
 
-### intelligence and artificial intelligence (AI)
+### intelligence and artificial intelligence (AI)  {.unnumbered}
 
 Today, the most dramatic changes to data science are associated with AI. It is difficult to predict the consequences of advances in AI for things like career selection: Some areas are likely to be impacted by AI more than others, but because AI is still in its infancy, we can only speculate.
 
-But one way to approach this question is to begin by considering what constitutes (human) "intelligence." According to Sternberg -@sternberg2018intelligence, intelligence can be thought of as having three components. One of these is **Analytical Intelligence**, which includes things like planning, reasoning, acquiring knowledge, and problem solving. A second is **Creative Intelligence**, which includes both the ability to deal with novel situations effectively, and the ability to "automatize" or efficiently execute familiar tasks. The third is **Practical or Contextual Intelligence**, which includes the ability to adapt to new environments.
+But one way to approach this question is to begin by considering what constitutes (human) "intelligence." According to Sternberg [-@sternberg2018intelligence], intelligence can be thought of as having three components. One of these is **Analytical Intelligence**, which includes things like planning, reasoning, acquiring knowledge, and problem solving. A second is **Creative Intelligence**, which includes both the ability to deal with novel situations effectively, and the ability to "automatize" or efficiently execute familiar tasks. The third is **Practical or Contextual Intelligence**, which includes the ability to adapt to new environments.
 
 AI engines or agents (or simply AIs) are, for now at least, effective at only some of these. They are better than humans at knowledge acquisition, logical reasoning and some kinds of problem solving. All of these are parts of Analytical Intelligence. They are also better than us at one part of Sternberg's Creative Intelligence: They excel at many types of automatized routines.
 
@@ -83,11 +83,11 @@ Beyond this, AIs struggle. My desktop AI (Microsoft Copilot 365 Version 19.2508.
 
 All of this should be taken with a grain of salt. Today's AI capabilities are quite limited compared to what they will be a year from now, and the AI that you and I might use on our desktops is, in all likelihood, a simple version of what is already available to large-scale users.
 
-### vibe coding
+### vibe coding  {.unnumbered}
 
 Introductory data science is, in the age of AI, moving towards *vibe coding*, where the focus is much less on syntax and more on things like logical reasoning and so-called "data intuition," or the acquired sensitivity to data that don't make sense. The danger of vibe coding is that you literally don't know what you are doing, and that your code becomes a black box.
 
-### how much should you use AI in this class?
+### how much should you use AI in this class?  {.unnumbered}
 
 Abraham Lincoln, who, at 6'4" (193 cm) was the tallest President in American history, was once asked how long a man's legs should be. Legend has it that he replied "long enough to reach the ground."
 
