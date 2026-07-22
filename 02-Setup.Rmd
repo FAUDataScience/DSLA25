@@ -56,7 +56,7 @@ Version control is an important concept in data science. Collaboratively built p
 
 An important determinant of your success - not just in this class, but in life - will be the balance you maintain between persistence and help-seeking.
 
-Prior to the age of AI, asking for help with a coding problem implied imposing a burden on another person (near or more typically far, on bulletin boards such as s[tackoverflow.com](https://stackoverflow.com)). We do not and should not treat such burdens lightly, so we would hesitate before help-seeking, and take some time to frame our questions carefully and explicitly.
+Prior to the age of AI, asking for help with a coding problem implied imposing a burden on another person (near or more typically far, on bulletin boards such as [stackoverflow.com](https://stackoverflow.com)). We do not and should not treat such burdens lightly, so we would hesitate before help-seeking, and take some time to frame our questions carefully and explicitly.
 
 The 15-minute rule provided a guideline for the balance between persistence and help-seeking: It has been cleverly summarized as "[You must try, and then you must ask](https://www.mattringel.com/2013/09/30/you-must-try-and-then-you-must-ask/)."[^02-setup-1] More explicitly, when you get stuck, you should keep trying for 15 minutes, then reach out to others.
 
@@ -72,7 +72,7 @@ That's not ideal. Struggle on your own for at least a few minutes. Work at the e
 
 Finally, if you have not already done so, install the latest version of R on your own Windows or Mac laptop. Then install RStudio Desktop. (RStudio is our interface, the environment we will use to write, test, and run R code).
 
-### exercises
+## exercises
 
 > **2.1** Susie is applying to two med schools. At School A, 25% of students are accepted, and at School B, 25% are accepted as well. You are Susie. Are you going to get in to at least one of these programs? What is the probability? Does your estimate depend upon any assumptions?
 >

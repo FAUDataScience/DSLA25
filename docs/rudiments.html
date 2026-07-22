@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Part II: Towards data literacy | Data science for the liberal arts</title>
-  <meta name="description" content="Part II: Towards data literacy | Data science for the liberal arts" />
+  <title>4 rudiments | Data science for the liberal arts</title>
+  <meta name="description" content="4 rudiments | Data science for the liberal arts" />
   <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Part II: Towards data literacy | Data science for the liberal arts" />
+  <meta property="og:title" content="4 rudiments | Data science for the liberal arts" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/images/chihuahuamuffin.PNG" />
   
   <meta name="github-repo" content="kevinlanning/DSLA25" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Part II: Towards data literacy | Data science for the liberal arts" />
+  <meta name="twitter:title" content="4 rudiments | Data science for the liberal arts" />
   
   
   <meta name="twitter:image" content="/images/chihuahuamuffin.PNG" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rudiments.html"/>
-<link rel="next" href="now-draw-the-rest-of-the-owl.html"/>
+<link rel="prev" href="what-r-stands-for.html"/>
+<link rel="next" href="part-ii-towards-data-literacy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -513,16 +513,101 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="part-ii-towards-data-literacy" class="section level1 unnumbered hasAnchor">
-<h1>Part II: Towards data literacy<a href="part-ii-towards-data-literacy.html#part-ii-towards-data-literacy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rudiments" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> rudiments<a href="rudiments.html#rudiments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The best way to learn R is to play with it on real data - we’ll be doing that in the next chapter. If you feel ready to do that, go for it. If you find all of this a little intimidating, please consider one or more of the following:</p>
+<div id="go-to-datacamp" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> go to (data)camp<a href="rudiments.html#go-to-datacamp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Many folks swear by (and others, I presume, at) DataCamp, which kind of gamifies the process of learning how to code. As a student in this class, you have access to all of their stuff… free. You can even do lessons on your phone. Use the link given to you in class to enroll, then explore the introductory-level classes in R at <a href="https://www.datacamp.com/category/r" class="uri">https://www.datacamp.com/category/r</a></p>
+</div>
+<div id="learn-to-knit-or-render" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> learn to knit (or render)<a href="rudiments.html#learn-to-knit-or-render" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In <em>literate programming</em>, comments, code, and results are integrated in a clear and reproducible way - they <em>document</em> our work.</p>
+<p>‘Markdown’ is a simple language for adding formatting to text. ‘R’ is a statistical language. ‘R Markdown’ is a variant of R that you can use to produce or publish complex documents like this one.</p>
+<p>To create an R markdown (Rmd) document, open up Rstudio, click on (<strong>File -&gt; New File -&gt; R Markdown</strong>). A window will open up with a file that begins with a block of <em>YAML</em> (Yet Another Markdown Language). You can edit this as needed:</p>
+<pre><code>---
+title: &quot;Here&#39;s an R Markdown Document&quot;
+author: &quot;Frankie McFrank Frank&quot;
+date: &quot;9/12/2026&quot;
+output: html_document
+---</code></pre>
+<p>Go ahead and click on the clever “knit” icon in the bar just above the source window to create a sample document. You’ll need to save the file with a new name, then R will finally create an HTML (Hyper Text Markdown Language ) page. Compare the R Markdown document (your code) with the result (the HTML).</p>
+<p>The second chapter of <a href="https://socviz.co/">Healy’s online book about Data visualizations</a> provides a more thorough explanation of R Markdown as well as an introduction to R and R studio which largely parallels the discussions here and in the <a href="https://r4ds.hadley.nz/index.html">Wickham et al. text</a> <span class="citation">(<a href="#ref-healy2017">Healy 2017</a>; <a href="#ref-wickham2023">Wickham et al. 2023</a>)</span>. We’ll be discussing R Markdown (and its cousin Quarto) in Chapter 6.</p>
+</div>
+<div id="read-parts-of-another-introductory-book" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> read (parts of) another introductory book<a href="rudiments.html#read-parts-of-another-introductory-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In addition to the present test, several others warrant study, including not just Wickham’s (2023) text, but also Baumer’s (2024) <a href="https://mdsr-book.github.io/mdsr3e/">Modern Data Science with R</a>.</p>
+</div>
+<div id="open-the-box" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> open the box<a href="rudiments.html#open-the-box" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Go to <a href="https://datasciencebox.org/content">datasciencebox/content</a>. Click on the “Hello world” link; this will take you to the beginning of Mine Çetinkaya-Rundel’s introductory lessons on R. These include slides, the source code for the slides (these are written in R markdown), and videos of her lectures, including the one we watched on the first day of class.</p>
+<p>You’ll find that thse lessons are offered in the cloud-based R environment</p>
+<p>Midway down this page, you’ll find a link to “the RStudio Cloud workspace for Data Science Course in a Box project.” Open it up and begin to explore the code and data behind her presentation.</p>
+</div>
+<div id="go-to-the-movies" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> go to the movies<a href="rudiments.html#go-to-the-movies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>About ten years ago, Iain Carmichael used data from the Internet Movies Database (IMDB) to introduce R. You can see his introduction <a href="https://idc9.github.io/stor390/notes/getting_started/getting_started.html">here</a>.</p>
+<p>There is a <em>lot</em> on that page. Study his report - the style (formatting, organization), the code (how he did this), the data (the part of the IMDB data he is looking at), and the results (plots of distributions and relationships). We’ll return to this in the next chapter.</p>
+</div>
+<div id="older-approaches" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> older approaches<a href="rudiments.html#older-approaches" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I, like thousands of others, learned R in the process of completing the Johns Hopkins <a href="https://jhudatascience.org/courses.html">Data Science Specialization</a> offered through <a href="https://www.coursera.org/">Coursera</a>. The sequence can be challenging, but their introduction to R used an accessible, interactive R package called <em>Swirl.</em> You can read about swirl (“learn R in R”) at <a href="https://swirlstats.com/" class="uri">https://swirlstats.com/</a>.</p>
+<div id="using-swirl" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> using Swirl<a href="rudiments.html#using-swirl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>After loading R (and opening R studio), you will get to the Swirl lessons with the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Install the Swirl package on your computer (you only need to do this once). Type the following into your console window in R studio (typically left hand side of your screen or lower left)</li>
+</ol>
+<blockquote>
+<p>install.packages</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Then load the package into your workspace (you’ll need to do this at the beginning of every session you use Swirl)</li>
+</ol>
+<blockquote>
+<p>library (swirl)</p>
+</blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Then run it!</li>
+</ol>
+<blockquote>
+<p>swirl ()</p>
+</blockquote>
+<p>Swirl will ask a few questions then give you the option of choosing one of several courses. You’ll choose the R Programming option, which leads to 15 separate lessons.</p>
+<p>At the end of each lesson, you’ll be asked</p>
+<blockquote>
+<p><em>Would you like to receive credit for completing this course on Coursera.org?</em></p>
+</blockquote>
+<p>Answer no… then do another lesson.</p>
+</div>
+<div id="readingwatching-roger-pengs-text-andor-videos" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> reading/watching Roger Peng’s text and/or videos<a href="rudiments.html#readingwatching-roger-pengs-text-andor-videos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Finally, you might consider the text and videos from the Coursera R class. Most of the material from that class can be found in Roger Peng’s <span class="citation">(<a href="#ref-peng2014">2014</a>)</span> text, a slightly updated version of which can be found <a href="https://bookdown.org/rdpeng/rprogdatascience/">here</a>. The videos in the series may be found in this <a href="https://www.youtube.com/watch?v=wy0h1f5awRI&amp;list=PL_bgmYHGITt-8Noh1fZpxTHJ-GrBb626R">playlist</a>. Here’s an introduction:</p>
+<p><a href="https://youtu.be/wy0h1f5awRI"><img src="https://img.youtube.com/vi/wy0h1f5awRI/0.jpg" alt="Roger Peng" /></a>.</p>
+<p><em>Roger Peng introducing R</em></p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-healy2017" class="csl-entry">
+Healy, Kieran. 2017. <em>Data Visualization for Social Science: <span>A</span> Practical Introduction with r and Ggplot2</em>.
+</div>
+<div id="ref-peng2014" class="csl-entry">
+Peng, Roger D. 2014. <em>R <span>Programming</span> for <span>Data Science</span></em>.
+</div>
+<div id="ref-wickham2023" class="csl-entry">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science 2e</em>. " O’Reilly Media, Inc.".
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="rudiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="now-draw-the-rest-of-the-owl.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="what-r-stands-for.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-ii-towards-data-literacy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
